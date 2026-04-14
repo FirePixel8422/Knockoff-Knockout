@@ -1,33 +1,29 @@
-using Fire_Pixel.Utility;
 using TMPro;
 using UnityEngine;
 
 
-public class LoadingTextAnimator : MonoBehaviour
+public class LoadingTextAnimator : UpdateMonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI loadingTextObj;
+    [SerializeField] private TextMeshProUGUI loadingtext;
     [SerializeField] private float animationSpeed = 0.5f;
 
     private string loadingText;
     private float time;
 
 
-    private void Start()
+    private void Awake()
     {
-        loadingText = loadingTextObj.text;
+        loadingText = loadingtext.text;
         time = animationSpeed * 2;
     }
 
-    private void OnEnable() => CallbackScheduler.RegisterUpdate(OnUpdate);
-    private void OnDisable() => CallbackScheduler.RegisterUpdate(OnUpdate);
 
-
-    private void OnUpdate()
+    protected override void OnUpdate()
     {
         time += Time.deltaTime;
 
         float dotCount = time / animationSpeed % 4;
 
-        loadingTextObj.text = loadingText + new string('.', (int)dotCount);
+        loadingtext.text = loadingText + new string('.', (int)dotCount);
     }
 }

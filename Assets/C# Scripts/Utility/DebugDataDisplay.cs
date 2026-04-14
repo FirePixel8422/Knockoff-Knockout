@@ -1,15 +1,15 @@
 #if UNITY_EDITOR
-using Fire_Pixel.Utility;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Profiling;
 
-public class DebugDataDisplay : MonoBehaviour
+
+public class DebugDataDisplay : UpdateMonoBehaviour
 {
     [SerializeField, Tooltip("Average over this many seconds")]
-    private float avgTime = 1f;
+    private float avgFPSCombineTime = 1f;
 
     [Space(10)]
 
@@ -28,10 +28,10 @@ public class DebugDataDisplay : MonoBehaviour
 
     [Space(10)]
 
-    [Header("Component Counts:")]
-    [SerializeField] private int gameObjectCount;
-    [SerializeField] private int componentCount;
-    [SerializeField] private int activeComponentCount;
+    [Header("Component Counts: (Active/Total)")]
+    [SerializeField] private string gameObjectCount;
+    [SerializeField] private string componentCount;
+    [SerializeField] private string uiComponentCount;
     [SerializeField] private int activeAudioSources;
 
     private static readonly CultureInfo enCulture = new CultureInfo("en-US");
@@ -44,25 +44,19 @@ public class DebugDataDisplay : MonoBehaviour
 
     private readonly Queue<FrameData> frameTimes = new Queue<FrameData>();
 
-    private void OnEnable()
-    {
-        CallbackScheduler.RegisterUpdate(OnUpdate);
-        ReloadExpensiveStats(); // Initial load of expensive stats
-    }
 
-    private void OnDisable()
+    private void Start()
     {
-        CallbackScheduler.UnRegisterUpdate(OnUpdate);
+        ReloadExpensiveStats();
     }
-
-    private void OnUpdate()
+    protected override void OnUpdate()
     {
         float currentTime = Time.time;
         float deltaTime = Time.deltaTime;
 
         // Track frame times for rolling avg
         frameTimes.Enqueue(new FrameData { timestamp = currentTime, deltaTime = deltaTime });
-        while (frameTimes.Count > 0 && currentTime - frameTimes.Peek().timestamp > avgTime)
+        while (frameTimes.Count > 0 && currentTime - frameTimes.Peek().timestamp > avgFPSCombineTime)
             frameTimes.Dequeue();
 
         // Calculate averages
@@ -98,20 +92,19 @@ public class DebugDataDisplay : MonoBehaviour
     // Manual reload method to refresh expensive stats (call from inspector button)
     public void ReloadExpensiveStats()
     {
-        gameObjectCount = this.FindObjectsOfType<GameObject>(true).Length;
+        int totalGameObjectCount = this.FindObjectsOfType<GameObject>(true).Length;
+        int activeGameObjectCount = this.FindObjectsOfType<GameObject>(true).Count(c => c.activeInHierarchy);
+        gameObjectCount = $"{activeGameObjectCount}/{totalGameObjectCount}";
 
-        componentCount = this.FindObjectsOfType<Component>(true).Count(c => c is not Transform);
-        activeComponentCount = this.FindObjectsOfType<Component>(true).Count(c => c is not Transform);
+        int totalComponentCount = this.FindObjectsOfType<Component>(true).Count(c => c is not Transform && c.GetComponent<RectTransform>() == null);
+        int activeComponentCount = this.FindObjectsOfType<Component>(true).Count(c => c is not Transform && c.GetComponent<RectTransform>() == null && c.gameObject.activeInHierarchy && (c is not Behaviour b || b.enabled));
+        componentCount = $"{activeComponentCount}/{totalComponentCount}";
 
-        activeAudioSources = 0;
-        AudioSource[] sources = this.FindObjectsOfType<AudioSource>(true);
-        foreach (var src in sources)
-        {
-            if (src.isPlaying)
-            {
-                activeAudioSources += 1;
-            }
-        }
+        int totalUIComponentCount = this.FindObjectsOfType<Component>(true).Count(c => c.GetComponent<RectTransform>() != null);
+        int activeUIComponentCount = this.FindObjectsOfType<Component>(true).Count(c => c.GetComponent<RectTransform>() != null && c.gameObject.activeInHierarchy && (c is not Behaviour b || b.enabled));
+        uiComponentCount = $"{activeUIComponentCount}/{totalUIComponentCount}";
+
+        activeAudioSources = this.FindObjectsOfType<AudioSource>(true).Count(c => c.isPlaying);
     }
 }
 #endif
