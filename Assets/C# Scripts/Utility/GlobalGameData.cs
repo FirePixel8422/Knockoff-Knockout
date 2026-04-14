@@ -8,4 +8,5 @@ public static class GlobalGameData
 {
     public const int MAX_PLAYERS = 2;
     public const bool LOG_FILE_OPERATIONS = false;
+    public const float TICK_TIME = 1 / 60;
 }

@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
@@ -15,17 +14,14 @@ namespace Fire_Pixel.Utility
     /// </summary>
     public static class CallbackScheduler
     {
+#pragma warning disable IDE1006
         private static event Action Update;
-        private static event Action LateUpdate;
-        private static event Action FixedUpdate;
+        private static event Action FrameTick;
 
-        private static event Action NetworkTick;
-
-        private static event Action LateDestroy;
         private static event Action LateApplicationQuit;
+#pragma warning restore IDE1006
 
         private static readonly List<DelayedCallback> delayedCallbacks = new List<DelayedCallback>();
-        private static readonly List<InvokeCallbackReference> callbackReferences = new List<InvokeCallbackReference>();
 
         private static bool quitting;
 
@@ -74,112 +70,40 @@ namespace Fire_Pixel.Utility
         #endregion
 
 
-        #region void LateUpdate
+        #region void FrameTick
 
         /// <summary>
-        /// Register a method to call after every frame like LateUpdate()
+        /// Register a method to call every frame like FrameTick()
         /// </summary>
-        public static void RegisterLateUpdate(Action action)
+        public static void RegisterFrameTick(Action action)
         {
-            LateUpdate += action;
+            FrameTick += action;
         }
         /// <summary>
-        /// Unregister a registerd method for LateUpdate()
+        /// Unregister a registerd method for FrameTick()
         /// </summary>
-        public static void UnRegisterLateUpdate(Action action)
+        public static void UnRegisterFrameTick(Action action)
         {
-            LateUpdate -= action;
+            FrameTick -= action;
         }
         /// <summary>
-        /// Register or Unregister a method for LateUpdate() based on bool <paramref name="register"/>
+        /// Register or Unregister a method for FrameTick() based on bool <paramref name="register"/>
         /// </summary>
-        public static void ManageLateUpdate(Action action, bool register)
+        public static void ManageFrameTick(Action action, bool register)
         {
             if (register)
             {
-                RegisterLateUpdate(action);
+                RegisterFrameTick(action);
             }
             else
             {
-                UnRegisterLateUpdate(action);
+                UnRegisterFrameTick(action);
             }
         }
 
         #endregion
 
-
-        #region void FixedUpdate
-
-        /// <summary>
-        /// Register a method to call every fixed frame like FixedUpdate()
-        /// </summary>
-        public static void RegisterFixedUpdate(Action action)
-        {
-            FixedUpdate += action;
-        }
-        /// <summary>
-        /// Unregister a registerd method for FixedUpdate()
-        /// </summary>
-        public static void UnRegisterFixedUpdate(Action action)
-        {
-            FixedUpdate -= action;
-        }
-        /// <summary>
-        /// Register or Unregister a method for FixedUpdate() based on bool <paramref name="register"/>
-        /// </summary>
-        public static void ManageFixedUpdate(Action action, bool register)
-        {
-            if (register)
-            {
-                RegisterFixedUpdate(action);
-            }
-            else
-            {
-                UnRegisterFixedUpdate(action);
-            }
-        }
-
-        #endregion
-
-
-        #region void NetworkTick
-
-        /// <summary>
-        /// Register a method to call every frame like NetworkTick()
-        /// </summary>
-        public static void RegisterNetworkTick(Action action)
-        {
-            NetworkTick += action;
-        }
-        /// <summary>
-        /// Unregister a registerd method for NetworkTick()
-        /// </summary>
-        public static void UnRegisterNetworkTick(Action action)
-        {
-            NetworkTick -= action;
-        }
-        /// <summary>
-        /// Register or Unregister a method for NetworkTick() based on bool <paramref name="register"/>
-        /// </summary>
-        public static void ManageNetworkTick(Action action, bool register)
-        {
-            if (register)
-            {
-                RegisterNetworkTick(action);
-            }
-            else
-            {
-                UnRegisterNetworkTick(action);
-            }
-        }
-
-        #endregion
-
-
-        public static void CreateLateDestroyCallback(Action action)
-        {
-            LateDestroy += action;
-        }
+        
         public static void CreateLateApplicationQuitCallback(Action action)
         {
             LateApplicationQuit += action;
@@ -190,24 +114,19 @@ namespace Fire_Pixel.Utility
 
         public static InvokeCallbackReference Invoke(float delay, Action callback, int groupId = 0)
         {
-            delayedCallbacks.Add(new DelayedCallback(callback, Time.time + delay, groupId));
+            int callbackId = delayedCallbacks.Count;
+            DelayedCallback delayedCallback = new DelayedCallback(callback, Time.time + delay, groupId, callbackId);
 
-            InvokeCallbackReference callbackRef = new InvokeCallbackReference(delayedCallbacks.Count - 1);
-            callbackReferences.Add(callbackRef);
+            delayedCallbacks.Add(delayedCallback);
 
-            return callbackRef;
+            return delayedCallback.CallbackRef;
         }
         /// <summary>
         /// Stops a previously scheduled Invoke Callback by ref and clears its reference.
         /// </summary>
-        public static void CancelInvoke(ref InvokeCallbackReference callbackRef)
+        public static void CancelInvoke(InvokeCallbackReference callbackRef)
         {
-            if (callbackRef == null) return;
-
             RemoveDelayedCallback(callbackRef.Id);
-
-            // Destroy callback reference
-            callbackRef = null;
         }
         /// <summary>
         /// Cancel all invokes with the same group id, useful to cancel all callbacks of a script for example when it gets destroyed without having to save every callback reference
@@ -228,31 +147,16 @@ namespace Fire_Pixel.Utility
         /// </summary>
         private static void RemoveDelayedCallback(int toRemoveId)
         {
-            // If the callback to remove is not the last one, update the last callback in list id to match new position after SwapBack
+            delayedCallbacks[toRemoveId].CallbackRef = null;
+
+            // If the callback to remove is not the last one, Update the last callback in list id to match new position after SwapBack
             if (toRemoveId != delayedCallbacks.Count - 1)
             {
                 // Update the reference of the moved callback
-                callbackReferences[^1].SetId(toRemoveId);
+                delayedCallbacks[^1].CallbackRef.Id = toRemoveId;
             }
             // Remove the callback and its reference
-            callbackReferences.RemoveAtSwapBack(toRemoveId);
             delayedCallbacks.RemoveAtSwapBack(toRemoveId);
-        }
-
-
-        [System.Serializable]
-        public struct DelayedCallback
-        {
-            public Action Callback;
-            public float InvokeGlobalTime;
-            public int GroupId;
-
-            public DelayedCallback(Action callback, float invokeGlobalTime, int groupId)
-            {
-                Callback = callback;
-                InvokeGlobalTime = invokeGlobalTime;
-                GroupId = groupId;
-            }
         }
 
         #endregion
@@ -265,65 +169,45 @@ namespace Fire_Pixel.Utility
         {
             public static CallbackRunnerInstance Instance { get; set; }
 
+            private float frameTimeAccumulator = 0f;
 
             public void Init()
             {
                 Instance = this;
-                StartCoroutine(UpdateLoop());
             }
 
-            private void InvokeNetworkTick()
+            private void Update()
             {
-                NetworkTick?.Invoke();
-            }
-            private IEnumerator UpdateLoop()
-            {
-                float fixedAccumulator = 0f;
-                float fixedDelta = Time.fixedDeltaTime;
-
-                while (true)
+                if (quitting)
                 {
-                    if (quitting)
+                    LateApplicationQuit?.Invoke();
+                    LateApplicationQuit = null;
+                    StopAllCoroutines();
+                    return;
+                }
+
+                // Update
+                CallbackScheduler.Update?.Invoke();
+
+                // Frame Tick
+                frameTimeAccumulator += Time.unscaledDeltaTime;
+
+                while (frameTimeAccumulator >= GlobalGameData.TICK_TIME)
+                {
+                    FrameTick?.Invoke();
+                    frameTimeAccumulator -= GlobalGameData.TICK_TIME;
+                }
+
+                // Invoke delayed callbacks
+                float time = Time.time;
+                for (int i = delayedCallbacks.Count - 1; i >= 0; i--)
+                {
+                    if (time >= delayedCallbacks[i].InvokeGlobalTime)
                     {
-                        LateApplicationQuit?.Invoke();
-                        LateApplicationQuit = null;
-                        StopAllCoroutines();
-                        yield break;
+                        Action callback = delayedCallbacks[i].Callback;
+                        callback?.Invoke();
+                        RemoveDelayedCallback(i);
                     }
-
-                    // Update
-                    Update?.Invoke();
-
-                    // Invoke delayed callbacks
-                    float time = Time.time;
-                    for (int i = delayedCallbacks.Count - 1; i >= 0; i--)
-                    {
-                        if (time >= delayedCallbacks[i].InvokeGlobalTime)
-                        {
-                            Action callback = delayedCallbacks[i].Callback;
-                            callback?.Invoke();
-                            RemoveDelayedCallback(i);
-                        }
-                    }
-
-                    // FixedUpdate
-                    fixedAccumulator += Time.deltaTime;
-                    while (fixedAccumulator >= fixedDelta)
-                    {
-                        FixedUpdate?.Invoke();
-                        fixedAccumulator -= fixedDelta;
-                    }
-
-                    // LateUpdate
-                    LateUpdate?.Invoke();
-
-                    if (LateDestroy != null)
-                    {
-                        LateDestroy.Invoke();
-                        LateDestroy = null;
-                    }
-
-                    yield return null;
                 }
             }
 
@@ -333,12 +217,8 @@ namespace Fire_Pixel.Utility
             }
             private void OnDestroy()
             {
-                Update = null;
-                LateUpdate = null;
-                FixedUpdate = null;
-
-                LateDestroy = null;
-                LateApplicationQuit = null;
+                CallbackScheduler.Update = null;
+                CallbackScheduler.LateApplicationQuit = null;
             }
         }
     }
@@ -347,10 +227,25 @@ namespace Fire_Pixel.Utility
 }
 
 [System.Serializable]
+public class DelayedCallback
+{
+    public Action Callback;
+    public float InvokeGlobalTime;
+    public int GroupId;
+    public InvokeCallbackReference CallbackRef;
+
+    public DelayedCallback(Action callback, float invokeGlobalTime, int groupId, int callbackId)
+    {
+        Callback = callback;
+        InvokeGlobalTime = invokeGlobalTime;
+        GroupId = groupId;
+        CallbackRef = new InvokeCallbackReference(callbackId);
+    }
+}
+[System.Serializable]
 public class InvokeCallbackReference
 {
-    public int Id { get; private set; }
-    public void SetId(int id) => Id = id;
+    public int Id;
 
     public InvokeCallbackReference(int id)
     {

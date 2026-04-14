@@ -22,11 +22,11 @@ public static class ExtensionMethods
     /// Stops a previously scheduled Invoke Callback on target (<see cref="MonoBehaviour"/>) and clears its reference.
     /// Must be called on the same owner (<see cref="MonoBehaviour"/>) that started the coroutine.
     /// </summary>
-    public static void CancelInvoke(this MonoBehaviour _, ref InvokeCallbackReference callbackRef)
+    public static void CancelInvoke(this MonoBehaviour _, InvokeCallbackReference callbackRef)
     {
         if (callbackRef == null) return;
 
-        CallbackScheduler.CancelInvoke(ref callbackRef);
+        CallbackScheduler.CancelInvoke(callbackRef);
     }
     /// <summary>
     /// Stops a previously scheduled Invoke Callback on <see cref="CallbackScheduler"/> and clears its reference.
