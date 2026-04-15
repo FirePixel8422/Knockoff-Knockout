@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 6647871175774743337}
   - component: {fileID: 9173212224041243981}
   - component: {fileID: 3202442160554733417}
-  - component: {fileID: 1196539315858885832}
   - component: {fileID: 4250311173971591269}
+  - component: {fileID: 8953830541065579870}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -68,7 +68,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: 8358bc8e5f0fe054894d16bd8838a1d0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -92,29 +92,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &1196539315858885832
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8383564846585285421}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4250311173971591269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,3 +104,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ebcd271199a54b4c9c844e52d4d65a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  IsAssigned: 0
+--- !u!114 &8953830541065579870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8383564846585285421}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  size:
+    x: 1
+    y: 1
+    z: 1
+  colliderType: 1

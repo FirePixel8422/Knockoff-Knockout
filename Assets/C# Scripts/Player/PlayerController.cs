@@ -6,6 +6,10 @@
 /// </summary>
 public class PlayerController : UpdateMonoBehaviour
 {
+    [SerializeField] private PlayerController opponent;
+    [SerializeField] private PlayerColliderHandler collisionHandler;
+
+    public FighterState State;
     public bool IsAssigned;
 
 
@@ -24,6 +28,9 @@ public class PlayerController : UpdateMonoBehaviour
 
     protected override void OnFrameTick()
     {
-
+        if (State == FighterState.MoveActive)
+        {
+            collisionHandler.FrameTick_HurtBoxes(opponent.collisionHandler);
+        }
     }
 }

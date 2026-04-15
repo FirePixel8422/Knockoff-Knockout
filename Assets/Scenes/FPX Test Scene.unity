@@ -366,6 +366,11 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 9923e560ab7602e4e9a17e049dd34650, type: 2}
+    - target: {fileID: 4250311173971591269, guid: f2199243b681d5f4a9dacff39c99612b,
+        type: 3}
+      propertyPath: opponent
+      value: 
+      objectReference: {fileID: 2018489639464893120}
     - target: {fileID: 6647871175774743337, guid: f2199243b681d5f4a9dacff39c99612b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -585,11 +590,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3202442160554733417, guid: f2199243b681d5f4a9dacff39c99612b,
+    - target: {fileID: 4250311173971591269, guid: f2199243b681d5f4a9dacff39c99612b,
         type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
+      propertyPath: opponent
       value: 
-      objectReference: {fileID: 2100000, guid: 8358bc8e5f0fe054894d16bd8838a1d0, type: 2}
+      objectReference: {fileID: 301392651}
     - target: {fileID: 6647871175774743337, guid: f2199243b681d5f4a9dacff39c99612b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -644,6 +649,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8953830541065579870, guid: f2199243b681d5f4a9dacff39c99612b,
+        type: 3}
+      propertyPath: colliderType
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
