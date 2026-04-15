@@ -75,7 +75,7 @@ Preset:
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_text
-    value: New Text
+    value: Text?
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_isRightToLeft
@@ -84,7 +84,7 @@ Preset:
   - target: {fileID: 0}
     propertyPath: m_fontAsset
     value: 
-    objectReference: {fileID: 11400000, guid: 51e8bf946c4be8b4f9cddf7a69740971, type: 2}
+    objectReference: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   - target: {fileID: 0}
     propertyPath: m_sharedMaterial
     value: 
@@ -264,6 +264,10 @@ Preset:
   - target: {fileID: 0}
     propertyPath: m_characterSpacing
     value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_characterHorizontalScale
+    value: 1
     objectReference: {fileID: 0}
   - target: {fileID: 0}
     propertyPath: m_wordSpacing

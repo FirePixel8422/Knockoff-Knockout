@@ -171,6 +171,10 @@ namespace Fire_Pixel.Utility
 
             private float frameTimeAccumulator = 0f;
 
+            private int cCatchUpTicks = 0;
+            private const int MAX_CATCH_UP_TICKS = 5;
+
+
             public void Init()
             {
                 Instance = this;
@@ -189,13 +193,17 @@ namespace Fire_Pixel.Utility
                 // Update
                 CallbackScheduler.Update?.Invoke();
 
-                // Frame Tick
+                // Frame Tick (Up to 5 times per frame for catchup)
+                cCatchUpTicks = 0;
                 frameTimeAccumulator += Time.unscaledDeltaTime;
 
                 while (frameTimeAccumulator >= GlobalGameData.TICK_TIME)
                 {
                     FrameTick?.Invoke();
                     frameTimeAccumulator -= GlobalGameData.TICK_TIME;
+
+                    cCatchUpTicks += 1;
+                    if (cCatchUpTicks == MAX_CATCH_UP_TICKS) break;
                 }
 
                 // Invoke delayed callbacks

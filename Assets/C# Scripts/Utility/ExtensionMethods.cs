@@ -221,7 +221,9 @@ public static class ExtensionMethods
 
     public static T[] FindObjectsOfTypeOrdered<T>() where T : Component
     {
+#pragma warning disable CS0618
         T[] objects = UnityEngine.Object.FindObjectsOfType<T>();
+#pragma warning restore CS0618
 
         System.Array.Sort(objects, (a, b) =>
         {
