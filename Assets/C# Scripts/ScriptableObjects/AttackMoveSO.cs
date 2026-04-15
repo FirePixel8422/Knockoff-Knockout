@@ -1,6 +1,7 @@
 using UnityEngine;
 
 
+
 [CreateAssetMenu(fileName = "New Move", menuName = "ScriptableObjects/AttackMove", order = -1003)]
 public class AttackSO : ScriptableObject
 {
