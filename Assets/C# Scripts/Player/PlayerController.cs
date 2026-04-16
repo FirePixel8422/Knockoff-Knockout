@@ -13,6 +13,11 @@ public class PlayerController : UpdateMonoBehaviour
     public bool IsAssigned;
 
 
+    private void Awake()
+    {
+        collisionHandler.Init(transform);
+    }
+
     public void OnButton1(bool performed)
     {
         //DebugLogger.Log(gameObject.name + "Square" + performed);
@@ -26,11 +31,17 @@ public class PlayerController : UpdateMonoBehaviour
         //DebugLogger.Log(gameObject.name + "Cross" + performed);
     }
 
+
+
     protected override void OnFrameTick()
     {
         if (State == FighterState.MoveActive)
         {
-            collisionHandler.FrameTick_HurtBoxes(opponent.collisionHandler);
+            bool hit = CollisionUtils.CheckAABBIntersection(opponent.collisionHandler.HitBoxes, collisionHandler.HurtBoxes);
+
+            print(hit);
         }
+
+        bool isStunned = State == FighterState.HitStun || State == FighterState.StandingBlockStun || State == FighterState.HitStun;
     }
 }

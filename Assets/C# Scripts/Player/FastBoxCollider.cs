@@ -22,6 +22,8 @@ public class FastBoxCollider : MonoBehaviour
     }
 
 
+#if UNITY_EDITOR
+    static readonly Color INVALID_COLOR = new Color(0.6f, 0.2f, 1);
     static readonly Color HITBOX_COLOR = new Color(0.1f, 0.1f, 1);
     static readonly Color HURTBOX_COLOR = new Color(1, 0.05f, 0.05f);
 
@@ -31,11 +33,11 @@ public class FastBoxCollider : MonoBehaviour
         {
             ColliderType.Hitbox => HITBOX_COLOR,
             ColliderType.Hurtbox => HURTBOX_COLOR,
-            ColliderType.None or _ => Color.purple,
+            ColliderType.None or _ => INVALID_COLOR,
         };
         Gizmos.DrawWireMesh(GlobalMeshes.Cube, transform.position, Quaternion.identity, size);
-        Gizmos.DrawWireMesh(GlobalMeshes.Cube, transform.position, Quaternion.identity, size * 0.99f);
     }
+#endif
 }
 
 [System.Serializable]

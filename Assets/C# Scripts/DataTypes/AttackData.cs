@@ -9,7 +9,7 @@ public struct AttackData
 #endif
 
     public float Damage;
-    public float Knockack;
+    public float Knockback;
 
     public AttackType Type;
     public FrameData FrameData;

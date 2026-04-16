@@ -6,7 +6,7 @@ using UnityEngine;
 public class AttackSO : ScriptableObject
 {
     public AttackData Value;
-
+    
 
     private void OnValidate()
     {

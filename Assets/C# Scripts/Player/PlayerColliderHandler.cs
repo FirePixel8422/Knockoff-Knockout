@@ -1,6 +1,4 @@
-﻿using Unity.Burst;
-using Unity.Mathematics;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 /// <summary>
@@ -9,72 +7,47 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerColliderHandler
 {
-    [SerializeField] private FastBoxCollider[] hitBoxes;
-    [SerializeField] private FastBoxCollider[] hurtBoxes;
-    public FastBoxCollider[] HitBoxes => hitBoxes;
+    public FastBoxCollider[] HitBoxes { get; private set; }
+    public FastBoxCollider[] HurtBoxes { get; private set; }
 
 
-    /// <summary>
-    /// Called through <see cref="PlayerController"/> every tick (60fps) while any hurtbox is still active
-    /// </summary>
-    public void NEED_GOOD_NAME_FOR_METHOD(FastBoxCollider[] enemyHitBoxes, AttackType attackType, FighterState enemyState)
+    public void Init(Transform playerRoot)
     {
-        int enemyHitBoxCount = enemyHitBoxes.Length;
-        int playerHurtBoxCount = hurtBoxes.Length;
+        FastBoxCollider[] colliders = playerRoot.GetComponentsInChildren<FastBoxCollider>();
 
-        // Get Enemy HitBox AABBs
-        AABB[] enemyAABBs = new AABB[enemyHitBoxCount];
-        for (int i = 0; i < enemyHitBoxCount; i++)
-        {
-            enemyAABBs[i] = enemyHitBoxes[i].GetAABB();
-        }
-        // Get Player HurtBox AABBs
-        AABB[] playerAABBs = new AABB[enemyHitBoxCount];
-        for (int i = 0; i < enemyHitBoxCount; i++)
-        {
-            playerAABBs[i] = hurtBoxes[i].GetAABB();
-        }
+        int colliderCount = colliders.Length;
+        int hitBoxCount = 0;
+        int hurtBoxCount = 0;
 
-        for (int i = 0; i < playerHurtBoxCount; i++)
+        // Get HitBox and HurtBox Counts
+        for (int i = 0; i < colliderCount; i++)
         {
-            if (!hurtBoxes[i].isActiveAndEnabled) continue;
-
-            for (int j = 0; j < enemyHitBoxCount; j++)
+            if (colliders[i].Type == ColliderType.Hitbox)
             {
-                if (!hurtBoxes[i].isActiveAndEnabled) continue;
-
-                // Any hit?
-                if (TestAABB(in playerAABBs[i], in enemyAABBs[j]))
-                {
-                    ResolveConnectedMove(attackType, enemyState);
-                    return;
-                }
+                hitBoxCount += 1;
+            }
+            else if (colliders[i].Type == ColliderType.Hurtbox)
+            {
+                hurtBoxCount += 1;
             }
         }
-    }
-    private void ResolveConnectedMove(AttackType attackType, FighterState enemyState)
-    {
-        switch (enemyState)
+
+        HitBoxes = new FastBoxCollider[hitBoxCount];
+        HurtBoxes = new FastBoxCollider[hurtBoxCount];
+        int hitBoxId = 0;
+        int hurtBoxId = 0;
+
+        // Store HitBox and HurtBoxs
+        for (int i = 0; i < colliderCount; i++)
         {
-            case FighterState.MoveStartup:
-                // Interrupt, worst scenario
-                break;
-
-            case FighterState.:
-
-                break;
-
-
-            case FighterState.Retreating:
-            case FighterState.Idle:
-
-                break;
+            if (colliders[i].Type == ColliderType.Hitbox)
+            {
+                HitBoxes[hitBoxId++] = colliders[i];
+            }
+            else if (colliders[i].Type == ColliderType.Hurtbox)
+            {
+                HurtBoxes[hurtBoxId++] = colliders[i];
+            }
         }
-    }
-
-    [BurstCompile]
-    private static bool TestAABB(in AABB a, in AABB b)
-    {
-        return math.all(a.Min <= b.Max) && math.all(a.Max >= b.Min);
     }
 }
