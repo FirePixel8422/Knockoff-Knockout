@@ -8,9 +8,9 @@ using UnityEngine;
 /// </summary>
 public static class DebugLogger
 {
-    public const string ScriptingDefineSymbol = "Enable_Debug_Systems";
+    private const string SRC = GlobalGameData.DEBUG_LOGGER_SRC;
 
-    [System.Diagnostics.Conditional(ScriptingDefineSymbol)]
+    [System.Diagnostics.Conditional(SRC)]
     public static void Log(object message, bool logCondition = true)
     {
         if (logCondition)
@@ -19,7 +19,7 @@ public static class DebugLogger
         }
     }
 
-    [System.Diagnostics.Conditional(ScriptingDefineSymbol)]
+    [System.Diagnostics.Conditional(SRC)]
     public static void LogWarning(object message, bool logCondition = true)
     {
         if (logCondition)
@@ -28,7 +28,7 @@ public static class DebugLogger
         }
     }
 
-    [System.Diagnostics.Conditional(ScriptingDefineSymbol)]
+    [System.Diagnostics.Conditional(SRC)]
     public static void LogError(object message, bool logCondition = true)
     {
         if (logCondition)
@@ -37,7 +37,7 @@ public static class DebugLogger
         }
     }
 
-    [System.Diagnostics.Conditional(ScriptingDefineSymbol)]
+    [System.Diagnostics.Conditional(SRC)]
     public static void Throw(object message, bool throwCondition = true)
     {
         if (throwCondition)
