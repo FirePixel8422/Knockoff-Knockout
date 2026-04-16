@@ -214,6 +214,57 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   opponent: {fileID: 0}
+  inputHandler:
+    inputBuffer:
+      inputBuffer:
+      - AttackFlags: 0
+        Direction:
+          x: 0
+          y: 0
+      - AttackFlags: 0
+        Direction:
+          x: 0
+          y: 0
+      - AttackFlags: 0
+        Direction:
+          x: 0
+          y: 0
+      - AttackFlags: 0
+        Direction:
+          x: 0
+          y: 0
+      - AttackFlags: 0
+        Direction:
+          x: 0
+          y: 0
+      - AttackFlags: 0
+        Direction:
+          x: 0
+          y: 0
+      - AttackFlags: 0
+        Direction:
+          x: 0
+          y: 0
+      - AttackFlags: 0
+        Direction:
+          x: 0
+          y: 0
+      - AttackFlags: 0
+        Direction:
+          x: 0
+          y: 0
+      - AttackFlags: 0
+        Direction:
+          x: 0
+          y: 0
+      - AttackFlags: 0
+        Direction:
+          x: 0
+          y: 0
+      - AttackFlags: 0
+        Direction:
+          x: 0
+          y: 0
   State: 0
   IsAssigned: 0
 --- !u!114 &7012654021298077395

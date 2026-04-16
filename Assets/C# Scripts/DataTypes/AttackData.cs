@@ -11,7 +11,7 @@ public struct AttackData
     public float Damage;
     public float Knockback;
 
-    public AttackType Type;
+    public AttackLevel Type;
     public FrameData FrameData;
 
     public AttackSO Combo;

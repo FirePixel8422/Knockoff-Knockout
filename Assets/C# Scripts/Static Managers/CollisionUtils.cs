@@ -58,10 +58,10 @@ public static class CollisionUtils
     /// <summary>
     /// Get GuardResult based on what type of attack hit the target player in what FighterState
     /// </summary>
-    public static GuardResult GetGuardResult(AttackType attackType, FighterState defenderState)
+    public static GuardResult GetGuardResult(AttackLevel attackType, FighterState defenderState)
     {
         // If attack is unblockable, defender gets hit OR interrupted
-        if (attackType == AttackType.Unblockable)
+        if (attackType == AttackLevel.Unblockable)
         {
             return defenderState == FighterState.MoveStartup ?
                 GuardResult.Interrupted :
@@ -78,7 +78,7 @@ public static class CollisionUtils
             FighterState.Retreating or FighterState.Idle or FighterState.StandingBlockStun =>
                 attackType switch
                 {
-                    AttackType.Mid or AttackType.High => 
+                    AttackLevel.Mid or AttackLevel.High => 
                         GuardResult.StandingBlocked,
 
                     _ => 
@@ -89,7 +89,7 @@ public static class CollisionUtils
             FighterState.Crouching or FighterState.CrouchedBlockStun =>
                 attackType switch
                 {
-                    AttackType.Low => 
+                    AttackLevel.Low => 
                         GuardResult.LowBlocked,
 
                     _ => 

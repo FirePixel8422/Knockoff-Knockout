@@ -17,6 +17,7 @@ namespace Fire_Pixel.Utility
 #pragma warning disable IDE1006
         private static event Action Update;
         private static event Action FrameTick;
+        private static event Action LateFrameTick;
 
         private static event Action LateApplicationQuit;
 #pragma warning restore IDE1006
@@ -52,20 +53,6 @@ namespace Fire_Pixel.Utility
         {
             Update -= action;
         }
-        /// <summary>
-        /// Register or Unregister a method for Update() based on bool <paramref name="register"/>
-        /// </summary>
-        public static void ManageUpdate(Action action, bool register)
-        {
-            if (register)
-            {
-                RegisterUpdate(action);
-            }
-            else
-            {
-                UnRegisterUpdate(action);
-            }
-        }
 
         #endregion
 
@@ -86,24 +73,28 @@ namespace Fire_Pixel.Utility
         {
             FrameTick -= action;
         }
-        /// <summary>
-        /// Register or Unregister a method for FrameTick() based on bool <paramref name="register"/>
-        /// </summary>
-        public static void ManageFrameTick(Action action, bool register)
-        {
-            if (register)
-            {
-                RegisterFrameTick(action);
-            }
-            else
-            {
-                UnRegisterFrameTick(action);
-            }
-        }
-
         #endregion
 
-        
+
+        #region void LateFrameTick
+
+        /// <summary>
+        /// Register a method to call every frame like FrameTick()
+        /// </summary>
+        public static void RegisterLateFrameTick(Action action)
+        {
+            FrameTick += action;
+        }
+        /// <summary>
+        /// Unregister a registerd method for FrameTick()
+        /// </summary>
+        public static void UnRegisterLateFrameTick(Action action)
+        {
+            FrameTick -= action;
+        }
+        #endregion
+
+
         public static void CreateLateApplicationQuitCallback(Action action)
         {
             LateApplicationQuit += action;
@@ -199,6 +190,7 @@ namespace Fire_Pixel.Utility
                 while (frameTimeAccumulator >= GlobalGameData.TICK_TIME)
                 {
                     FrameTick?.Invoke();
+                    LateFrameTick?.Invoke();
                     frameTimeAccumulator -= GlobalGameData.TICK_TIME;
 
                     cCatchUpTicks += 1;
@@ -225,6 +217,8 @@ namespace Fire_Pixel.Utility
             private void OnDestroy()
             {
                 CallbackScheduler.Update = null;
+                CallbackScheduler.FrameTick = null;
+                CallbackScheduler.LateFrameTick = null;
                 CallbackScheduler.LateApplicationQuit = null;
             }
         }

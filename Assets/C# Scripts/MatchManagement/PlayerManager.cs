@@ -12,7 +12,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private PlayerController[] players;
     [SerializeField] private InputActionReference joinAction;
 
-    private Dictionary<InputDevice, PlayerController> deviceToPlayer = new(2);
+    private Dictionary<InputDevice, PlayerController> deviceToPlayerMap = new(2);
 
 #if Enable_Debug_Systems
     [SerializeField] private bool logInputDeviceChanges = true;
@@ -24,26 +24,118 @@ public class PlayerManager : MonoBehaviour
         InputSystem.onDeviceChange += OnDeviceChanged;
 
         joinAction.action.Enable();
-        joinAction.action.performed += OnPlayerJoined;
+        joinAction.action.performed += OnJoin;
     }
     private void OnDestroy()
     {
         InputSystem.onDeviceChange -= OnDeviceChanged;
 
-        joinAction.action.performed -= OnPlayerJoined;
+        joinAction.action.performed -= OnJoin;
         joinAction.action.Disable();
     }
 
 
-    #region Connect/Disconnect Devices
+    #region Player Input Callbacks
 
     /// <summary>
     /// When a player presses the join button, try to assign their device to an available player slot.
     /// </summary>
-    private void OnPlayerJoined(InputAction.CallbackContext ctx) => TryConnectDevice(ctx.control.device);
+    private void OnJoin(InputAction.CallbackContext ctx)
+    {
+        TryConnectDevice(ctx.control.device);
+    }
+
+    public void OnDirection(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started) return;
+
+        if (deviceToPlayerMap.TryGetValue(ctx.control.device, out PlayerController player))
+        {
+            player.InputHandler.OnDirection(ctx.ReadValue<Vector2>());
+        }
+    }
+
+    public void OnButton1(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started) return;
+
+        if (deviceToPlayerMap.TryGetValue(ctx.control.device, out PlayerController player))
+        {
+            player.InputHandler.OnButton(AttackInputFlags.B1, ctx.performed);
+        }
+    }
+    public void OnButton2(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started) return;
+
+        if (deviceToPlayerMap.TryGetValue(ctx.control.device, out PlayerController player))
+        {
+            player.InputHandler.OnButton(AttackInputFlags.B2, ctx.performed);
+        }
+    }
+    public void OnButton3(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started) return;
+
+        if (deviceToPlayerMap.TryGetValue(ctx.control.device, out PlayerController player))
+        {
+            player.InputHandler.OnButton(AttackInputFlags.B3, ctx.performed);
+        }
+    }
+    public void OnButton4(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started) return;
+
+        if (deviceToPlayerMap.TryGetValue(ctx.control.device, out PlayerController player))
+        {
+            player.InputHandler.OnButton(AttackInputFlags.B4, ctx.performed);
+        }
+    }
+    public void OnButton5(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started) return;
+
+        if (deviceToPlayerMap.TryGetValue(ctx.control.device, out PlayerController player))
+        {
+            player.InputHandler.OnButton(AttackInputFlags.B5, ctx.performed);
+        }
+    }
+    public void OnButton6(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started) return;
+
+        if (deviceToPlayerMap.TryGetValue(ctx.control.device, out PlayerController player))
+        {
+            player.InputHandler.OnButton(AttackInputFlags.B6, ctx.performed);
+        }
+    }
+    public void OnButton7(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started) return;
+
+        if (deviceToPlayerMap.TryGetValue(ctx.control.device, out PlayerController player))
+        {
+            player.InputHandler.OnButton(AttackInputFlags.B7, ctx.performed);
+        }
+    }
+    public void OnButton8(InputAction.CallbackContext ctx)
+    {
+        if (ctx.started) return;
+
+        if (deviceToPlayerMap.TryGetValue(ctx.control.device, out PlayerController player))
+        {
+            player.InputHandler.OnButton(AttackInputFlags.B8, ctx.performed);
+        }
+    }
+
+    #endregion
+
+
+    #region Connect/Disconnect Devices
+
     private void TryConnectDevice(InputDevice device)
     {
-        if (deviceToPlayer.ContainsKey(device))
+        if (deviceToPlayerMap.ContainsKey(device))
         {
             DebugLogger.Log("Device " + device + " is already assigned to a player, skipping...", logInputDeviceChanges);
             return;
@@ -64,9 +156,8 @@ public class PlayerManager : MonoBehaviour
             return;
         }
 
-        deviceToPlayer[device] = player;
+        deviceToPlayerMap[device] = player;
         DebugLogger.Log($"Connected {device.displayName} to {player.name}", logInputDeviceChanges);
-
 
         if (device is Gamepad pad)
         {
@@ -90,81 +181,14 @@ public class PlayerManager : MonoBehaviour
     }
     private void DisconnectDevice(InputDevice device)
     {
-        if (!deviceToPlayer.TryGetValue(device, out PlayerController player))
+        if (!deviceToPlayerMap.TryGetValue(device, out PlayerController player))
             return;
 
         DebugLogger.Log($"Device disconnected: {device.displayName}", logInputDeviceChanges);
 
-        deviceToPlayer.Remove(device);
+        deviceToPlayerMap.Remove(device);
         player.IsAssigned = false;
     }
 
     #endregion
-
-
-    /*
-    public void OnButton1(InputAction.CallbackContext ctx)
-    {
-        if (ctx.started) return;
-
-        if (deviceToPlayer.TryGetValue(ctx.control.device, out PlayerController player))
-        {
-            player.OnButton1(ctx.performed);
-        }
-    }
-    public void OnButton2(InputAction.CallbackContext ctx)
-    {
-        if (ctx.started) return;
-
-        if (deviceToPlayer.TryGetValue(ctx.control.device, out PlayerController player))
-        {
-            player.OnButton2(ctx.performed);
-        }
-    }
-    public void OnButton3(InputAction.CallbackContext ctx)
-    {
-        if (ctx.started) return;
-
-        if (deviceToPlayer.TryGetValue(ctx.control.device, out PlayerController player))
-        {
-            player.OnButton3(ctx.performed);
-        }
-    }
-    public void OnButton4(InputAction.CallbackContext ctx)
-    {
-        if (ctx.started) return;
-
-        if (deviceToPlayer.TryGetValue(ctx.control.device, out PlayerController player))
-        {
-            player.OnButton4(ctx.performed);
-        }
-    }
-    public void OnButton5(InputAction.CallbackContext ctx)
-    {
-        if (ctx.started) return;
-
-        if (deviceToPlayer.TryGetValue(ctx.control.device, out PlayerController player))
-        {
-            player.OnButton5(ctx.performed);
-        }
-    }
-    public void OnButton6(InputAction.CallbackContext ctx)
-    {
-        if (ctx.started) return;
-
-        if (deviceToPlayer.TryGetValue(ctx.control.device, out PlayerController player))
-        {
-            player.OnButton6(ctx.performed);
-        }
-    }
-    public void OnDirection(InputAction.CallbackContext ctx)
-    {
-        if (ctx.started) return;
-
-        if (deviceToPlayer.TryGetValue(ctx.control.device, out PlayerController player))
-        {
-            player.OnButton1(ctx.performed);
-        }
-    }
-    */
 }

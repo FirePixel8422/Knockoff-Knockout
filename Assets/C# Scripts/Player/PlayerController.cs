@@ -4,12 +4,15 @@
 /// <summary>
 /// MB class that is the core of the player controller. Holds subcomponenents and handles input.
 /// </summary>
-public class PlayerController : UpdateMonoBehaviour
+public class PlayerController : FrameTickMonoBehaviour
 {
     [SerializeField] private PlayerController opponent;
+    [SerializeField] private PlayerStateMachine stateMachine;
     [SerializeField] private PlayerColliderHandler collisionHandler;
+    [SerializeField] private PlayerInputHandler inputHandler;
 
-    public FighterState State;
+    public PlayerInputHandler InputHandler => inputHandler;
+
     public bool IsAssigned;
 
 
@@ -18,30 +21,19 @@ public class PlayerController : UpdateMonoBehaviour
         collisionHandler.Init(transform);
     }
 
-    public void OnButton1(bool performed)
-    {
-        //DebugLogger.Log(gameObject.name + "Square" + performed);
-    }
-    public void OnButton2(bool performed)
-    {
-        //DebugLogger.Log(gameObject.name + "Triangle" + performed);
-    }
-    public void OnButton3(bool performed)
-    {
-        //DebugLogger.Log(gameObject.name + "Cross" + performed);
-    }
-
-
 
     protected override void OnFrameTick()
     {
-        if (State == FighterState.MoveActive)
+        if (stateMachine.State == FighterState.MoveActive)
         {
-            bool hit = CollisionUtils.CheckAABBIntersection(opponent.collisionHandler.HitBoxes, collisionHandler.HurtBoxes);
-
-            print(hit);
+            if (CollisionUtils.CheckAABBIntersection(opponent.collisionHandler.HitBoxes, collisionHandler.HurtBoxes))
+            {
+                GuardResult guardResult = CollisionUtils.GetGuardResult(stateMachine.CurrentMove.Type, opponent.stateMachine.State);
+            }
         }
 
-        bool isStunned = State == FighterState.HitStun || State == FighterState.StandingBlockStun || State == FighterState.HitStun;
+        bool stunned = stateMachine.IsStunned;
+
+        inputHandler.OnFrameTick();
     }
 }

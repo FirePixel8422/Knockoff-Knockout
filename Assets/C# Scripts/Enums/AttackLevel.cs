@@ -2,7 +2,7 @@
 
 
 
-public enum AttackType : byte
+public enum AttackLevel : byte
 {
     Low,
     Mid,
