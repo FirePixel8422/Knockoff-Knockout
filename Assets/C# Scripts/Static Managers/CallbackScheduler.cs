@@ -197,7 +197,6 @@ namespace Fire_Pixel.Utility
             {
                 CallbackScheduler.Update = null;
                 CallbackScheduler.FrameTick = null;
-                CallbackScheduler.LateFrameTick = null;
                 CallbackScheduler.LateApplicationQuit = null;
             }
         }
