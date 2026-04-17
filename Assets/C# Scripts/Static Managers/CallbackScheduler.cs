@@ -17,7 +17,6 @@ namespace Fire_Pixel.Utility
 #pragma warning disable IDE1006
         private static event Action Update;
         private static event Action FrameTick;
-        private static event Action LateFrameTick;
 
         private static event Action LateApplicationQuit;
 #pragma warning restore IDE1006
@@ -70,25 +69,6 @@ namespace Fire_Pixel.Utility
         /// Unregister a registerd method for FrameTick()
         /// </summary>
         public static void UnRegisterFrameTick(Action action)
-        {
-            FrameTick -= action;
-        }
-        #endregion
-
-
-        #region void LateFrameTick
-
-        /// <summary>
-        /// Register a method to call every frame like FrameTick()
-        /// </summary>
-        public static void RegisterLateFrameTick(Action action)
-        {
-            FrameTick += action;
-        }
-        /// <summary>
-        /// Unregister a registerd method for FrameTick()
-        /// </summary>
-        public static void UnRegisterLateFrameTick(Action action)
         {
             FrameTick -= action;
         }
@@ -190,7 +170,6 @@ namespace Fire_Pixel.Utility
                 while (frameTimeAccumulator >= GlobalGameData.TICK_TIME)
                 {
                     FrameTick?.Invoke();
-                    LateFrameTick?.Invoke();
                     frameTimeAccumulator -= GlobalGameData.TICK_TIME;
 
                     cCatchUpTicks += 1;

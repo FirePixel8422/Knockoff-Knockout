@@ -9,37 +9,37 @@ using Unity.Burst;
 public static class CollisionUtils
 {
     /// <summary>
-    /// Called through <see cref="PlayerController"/> every tick (60fps) while any hurtbox is still active
+    /// Called through attacker <see cref="PlayerController"/> every tick (60fps) while any hurtbox is still active
     /// </summary>
-    /// <returns>True if ANY collision was found</returns>
-    public static bool CheckAABBIntersection(FastBoxCollider[] hitBoxes, FastBoxCollider[] hurtBoxes)
+    /// <returns>True if ANY collision between any collider of <paramref name="groupA"/> with <paramref name="groupB"/> was found</returns>
+    public static bool CheckAABBIntersection(FastBoxCollider[] groupA, FastBoxCollider[] groupB)
     {
-        int hitBoxCount = hitBoxes.Length;
-        int hurtBoxCount = hurtBoxes.Length;
+        int groupA_Count = groupA.Length;
+        int groupB_Count = groupB.Length;
 
         // Get Target HitBox AABBs
-        AABB[] hitBoxAABBs = new AABB[hitBoxCount];
-        for (int i = 0; i < hitBoxCount; i++)
+        AABB[] GroupA_AABBs = new AABB[groupA_Count];
+        for (int i = 0; i < groupA_Count; i++)
         {
-            hitBoxAABBs[i] = hitBoxes[i].GetAABB();
+            GroupA_AABBs[i] = groupA[i].GetAABB();
         }
         // Get Player HurtBox AABBs
-        AABB[] hurtBoxAABBs = new AABB[hurtBoxCount];
-        for (int i = 0; i < hitBoxCount; i++)
+        AABB[] GroupB_AABBs = new AABB[groupB_Count];
+        for (int i = 0; i < groupB_Count; i++)
         {
-            hurtBoxAABBs[i] = hurtBoxes[i].GetAABB();
+            GroupB_AABBs[i] = groupB[i].GetAABB();
         }
 
-        for (int i = 0; i < hurtBoxCount; i++)
+        for (int i = 0; i < groupA_Count; i++)
         {
-            if (!hurtBoxes[i].isActiveAndEnabled) continue;
+            if (!groupA[i].isActiveAndEnabled) continue;
 
-            for (int j = 0; j < hitBoxCount; j++)
+            for (int j = 0; j < groupB_Count; j++)
             {
-                if (!hurtBoxes[i].isActiveAndEnabled) continue;
+                if (!groupB[i].isActiveAndEnabled) continue;
 
                 // Any hit?
-                if (TestAABB(in hurtBoxAABBs[i], in hitBoxAABBs[j]))
+                if (TestAABB(in GroupA_AABBs[i], in GroupB_AABBs[j]))
                 {
                     return true;
                 }
