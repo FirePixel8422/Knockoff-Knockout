@@ -514,6 +514,11 @@ MonoBehaviour:
   - {fileID: 301392651}
   joinAction: {fileID: 7203224188655383399, guid: 55b1832b565223b4f95b8569d55ed7cb,
     type: 3}
+  onJoinRumble:
+    Duration: 0.15
+    LowFreq: 0.75
+    HighFreq: 0.75
+    FadeTime: 0.15
   logInputDeviceChanges: 1
 --- !u!4 &707133917
 Transform:
@@ -809,12 +814,12 @@ PrefabInstance:
     - target: {fileID: 1889299610588722292, guid: 2d3306922c09fbb40bfb4bb8ef641979,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1889299610588722292, guid: 2d3306922c09fbb40bfb4bb8ef641979,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3171119466656694304, guid: 2d3306922c09fbb40bfb4bb8ef641979,
         type: 3}
@@ -929,12 +934,12 @@ PrefabInstance:
     - target: {fileID: 7701649501502819775, guid: 2d3306922c09fbb40bfb4bb8ef641979,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7701649501502819775, guid: 2d3306922c09fbb40bfb4bb8ef641979,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

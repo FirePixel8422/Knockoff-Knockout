@@ -5,7 +5,7 @@
 public enum FighterState : byte
 {
     /// <summary>
-    /// Fighter is standing still upright
+    /// Fighter is standing still upright (Also used as null state, no state)
     /// </summary>
     Idle,
     /// <summary>

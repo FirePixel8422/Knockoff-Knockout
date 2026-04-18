@@ -2,8 +2,6 @@
 
 
 
-using Unity.Mathematics;
-
 [System.Serializable]
 public struct FrameInput
 {
@@ -12,7 +10,7 @@ public struct FrameInput
     /// </summary>
     public AttackInputFlags AttackFlags;
     /// <summary>
-    /// Stick Direction. X is horizontal, Y is vertical. Values are between -1 and 1. (0,0) is neutral.
+    /// Stick Direction, ignoring diagonals
     /// </summary>
-    public int2 Direction;
+    public DirectionInputFlag DirectionFlag;
 }

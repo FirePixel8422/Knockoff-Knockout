@@ -1,5 +1,4 @@
-﻿using Unity.Mathematics;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 /// <summary>
@@ -9,8 +8,6 @@ using UnityEngine;
 public class PlayerInputHandler
 {
     [SerializeField] private InputBufferHandler bufferHandler = new InputBufferHandler();
-
-    private const float DEADZONE = GlobalGameData.STICK_DEADZONE;
 
 
     /// <summary>
@@ -25,15 +22,32 @@ public class PlayerInputHandler
     /// </summary>
     public void OnDirection(Vector2 dirVec)
     {
-        int2 dir = new int2()
+        DirectionInputFlag dirFlag;
+
+        if (dirVec == Vector2.zero)
         {
-            x = dirVec.x > DEADZONE ? 1 : dirVec.x < -DEADZONE ? -1 : 0,
-            y = dirVec.y > DEADZONE ? 1 : dirVec.y < -DEADZONE ? -1 : 0
-        };
-        bufferHandler.UpdateCurrentDirection(dir);
+            dirFlag = DirectionInputFlag.Neutral;
+        }
+        else if (Mathf.Abs(dirVec.x) > Mathf.Abs(dirVec.y))
+        {
+            dirFlag = dirVec.x >= 0
+                ? DirectionInputFlag.Right
+                : DirectionInputFlag.Left;
+        }
+        else 
+        {
+            dirFlag = dirVec.y >= 0
+                ? DirectionInputFlag.Up
+                : DirectionInputFlag.Down;
+        }
+
+        bufferHandler.UpdateCurrentDirection(dirFlag);
     }
 
-    public void OnFrameTick() => bufferHandler.PushBuffer();
+    /// <summary>
+    /// Push all collected input from the last tick to the current one into the input buffer
+    /// </summary>
+    public void CollectInputs() => bufferHandler.PushBuffer();
 }
 
 [System.Serializable]
@@ -42,7 +56,7 @@ public class InputBufferHandler
     [SerializeField] private FrameInput[] inputBuffer = new FrameInput[GlobalGameData.INPUT_BUFFER_SIZE];
     private int index;
 
-    private FrameInput cRawInput;
+    [SerializeField] private FrameInput cRawInput;
 
 
     public void UpdateCurrentInput(AttackInputFlags flag, bool state)
@@ -56,9 +70,9 @@ public class InputBufferHandler
             cRawInput.AttackFlags &= ~flag;
         }
     }
-    public void UpdateCurrentDirection(int2 dir)
+    public void UpdateCurrentDirection(DirectionInputFlag dir)
     {
-        cRawInput.Direction = dir;
+        cRawInput.DirectionFlag = dir;
     }
 
     public void PushBuffer()
@@ -67,5 +81,26 @@ public class InputBufferHandler
         inputBuffer[index] = cRawInput;
 
         index.IncrementSmart(GlobalGameData.INPUT_BUFFER_SIZE);
+    }
+
+    public bool TestInputForMove(FrameInput targetInput)
+    {
+        int targetIndex = index;
+        for (int i = 0; i < inputBuffer.Length; i++)
+        {
+            FrameInput bufferedInput = inputBuffer[targetIndex];
+
+            // Check if buffered input has the same direction and contains the same buttons (or more)
+            if (bufferedInput.DirectionFlag == targetInput.DirectionFlag &&
+                bufferedInput.AttackFlags.HasFlag(targetInput.AttackFlags))
+            {
+                return true;
+            }
+
+            targetIndex.DecrementSmart(GlobalGameData.INPUT_BUFFER_SIZE);
+        }
+
+        // Move input wasnt found in buffer
+        return false;
     }
 }

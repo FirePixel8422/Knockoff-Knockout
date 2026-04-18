@@ -121,6 +121,7 @@ GameObject:
   - component: {fileID: 3202442160554733417}
   - component: {fileID: 4250311173971591269}
   - component: {fileID: 7012654021298077395}
+  - component: {fileID: 9196834861683052340}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -214,8 +215,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   opponent: {fileID: 0}
+  stateMachine:
+    state: 0
+    bufferedState: 0
+    currentMove:
+      AnimationName: 
+      Damage: 0
+      Knockback: 0
+      Level: 0
+      FrameData:
+        Startup: 0
+        ActiveFrames: 0
+        Recovery: 0
+        CancelWindow:
+          x: 0
+          y: 0
+        HitStun: 0
+        BlockStun: 0
+        CounterHitBonus: 0
+        HitStop: 0
+      StringTransitions: []
+      GeneratedAnimHash: 0
+      TotalAttackDuration: 0
+      AdvantageOnHit: 0
+      AdvantageOnBlock: 0
+    HitStop: 0
+    Recovery: 0
+    HitStun: 0
+    BlockStun: 0
   inputHandler:
-    inputBuffer:
+    bufferHandler:
       inputBuffer:
       - AttackFlags: 0
         Direction:
@@ -265,7 +294,6 @@ MonoBehaviour:
         Direction:
           x: 0
           y: 0
-  State: 0
   IsAssigned: 0
 --- !u!114 &7012654021298077395
 MonoBehaviour:
@@ -284,3 +312,25 @@ MonoBehaviour:
     x: 0.85
     y: 1.8
     z: 0.85
+--- !u!95 &9196834861683052340
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8383564846585285421}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ece59eac25c5ae443bebc52542aa554b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

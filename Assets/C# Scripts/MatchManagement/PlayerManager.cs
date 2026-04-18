@@ -11,6 +11,7 @@ public class PlayerManager : MonoBehaviour
 {
     [SerializeField] private PlayerController[] players;
     [SerializeField] private InputActionReference joinAction;
+    [SerializeField] private GamepadRumbleParameters onJoinRumble;
 
     private Dictionary<InputDevice, PlayerController> deviceToPlayerMap = new(2);
 
@@ -161,7 +162,7 @@ public class PlayerManager : MonoBehaviour
 
         if (device is Gamepad pad)
         {
-            pad.SetMotorSpeeds(12, 5); // (lowFreq, highFreq)
+            StartCoroutine(GamepadRumble.Rumble(pad, onJoinRumble));
         }
     }
 

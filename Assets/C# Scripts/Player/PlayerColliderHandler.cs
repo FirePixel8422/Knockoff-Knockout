@@ -7,11 +7,11 @@
 [System.Serializable]
 public class PlayerColliderHandler
 {
-    public FastBoxCollider[] HitBoxes { get; private set; }
-    public FastBoxCollider[] HurtBoxes { get; private set; }
+    public readonly FastBoxCollider[] HitBoxes;
+    public readonly FastBoxCollider[] HurtBoxes;
 
 
-    public void Init(Transform playerRoot)
+    public PlayerColliderHandler(Transform playerRoot)
     {
         FastBoxCollider[] colliders = playerRoot.GetComponentsInChildren<FastBoxCollider>();
 
