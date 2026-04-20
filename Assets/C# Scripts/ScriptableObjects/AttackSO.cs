@@ -2,7 +2,7 @@ using UnityEngine;
 
 
 
-[CreateAssetMenu(fileName = "New Move", menuName = "ScriptableObjects/AttackMove", order = -1003)]
+[CreateAssetMenu(fileName = "New Move", menuName = "ScriptableObjects/Combat/Move", order = -1003)]
 public class AttackSO : ScriptableObject
 {
     public AttackData Value;

@@ -7,7 +7,8 @@
 [System.Serializable]
 public class PlayerInputHandler
 {
-    [SerializeField] private InputBufferHandler bufferHandler = new InputBufferHandler();
+    [EditorReadOnly, SerializeField] private AttackData[] moveSet;
+    [EditorReadOnly, SerializeField] private InputBufferHandler bufferHandler = new();
 
 
     /// <summary>
@@ -59,6 +60,8 @@ public class InputBufferHandler
     [SerializeField] private FrameInput cRawInput;
 
 
+    #region Buffer Update/Managament
+
     public void UpdateCurrentInput(AttackInputFlags flag, bool state)
     {
         if (state == true)
@@ -79,28 +82,75 @@ public class InputBufferHandler
     {
         // Write collected input to buffer
         inputBuffer[index] = cRawInput;
+        cRawInput.AttackFlags = AttackInputFlags.None;
 
         index.IncrementSmart(GlobalGameData.INPUT_BUFFER_SIZE);
     }
 
-    public bool TestInputForMove(FrameInput targetInput)
+    #endregion
+
+
+    /// <summary>
+    /// Check all moves to see if input buffer correlates to one
+    /// </summary>
+    public bool NAME_TBD(AttackData[] moveSet, out AttackData targetMove)
     {
-        int targetIndex = index;
-        for (int i = 0; i < inputBuffer.Length; i++)
+        int bestMoveStrength = 0;
+        targetMove = new AttackData();
+
+        int moveSetLength = moveSet.Length;
+        for (int i = 0; i < moveSetLength; i++)
         {
-            FrameInput bufferedInput = inputBuffer[targetIndex];
+            int moveStrength = TestInput(moveSet[i].Input);
 
-            // Check if buffered input has the same direction and contains the same buttons (or more)
-            if (bufferedInput.DirectionFlag == targetInput.DirectionFlag &&
-                bufferedInput.AttackFlags.HasFlag(targetInput.AttackFlags))
-            {
-                return true;
-            }
+            if (moveStrength <= bestMoveStrength)
+                continue;
 
-            targetIndex.DecrementSmart(GlobalGameData.INPUT_BUFFER_SIZE);
+            bestMoveStrength = moveStrength;
+            targetMove = moveSet[i];
         }
 
-        // Move input wasnt found in buffer
-        return false;
+        return bestMoveStrength != 0;
+    }
+    /// <summary>
+    /// Check if input is found in buffer for inputted move their Keybinds (FrameInput)
+    /// </summary>
+    private int TestInput(FrameInput targetInput)
+    {
+        int moveStrength = 0;
+        int bufferIndex = index;
+        bufferIndex.DecrementSmart(GlobalGameData.INPUT_BUFFER_SIZE);
+
+        for (int i = 0; i < GlobalGameData.INPUT_BUFFER_SIZE; i++)
+        {
+            // Check if buffered input contains the same attack buttons
+            if (!inputBuffer[bufferIndex].AttackFlags.HasFlag(targetInput.AttackFlags))
+            {
+                bufferIndex.DecrementSmart(GlobalGameData.INPUT_BUFFER_SIZE);
+                continue;
+            }
+
+            // If button is correct and direction is neutral, award 2/3 points
+            if (targetInput.DirectionFlag == DirectionInputFlag.Neutral)
+            {
+                moveStrength = 2;
+                continue;
+            }
+
+            int dirIndex = bufferIndex;
+            for (int j = 0; j < GlobalGameData.DIRECTION_BUFFER_WINDOW; j++)
+            {
+                // Check into the past of the buffer for X frames for if the target attacks direction is found
+                if (inputBuffer[dirIndex].DirectionFlag == targetInput.DirectionFlag)
+                {
+                    // Exact move was matched with buffer history, award 3/3 points
+                    return 3;
+                }
+                dirIndex.DecrementSmart(GlobalGameData.INPUT_BUFFER_SIZE);
+            }
+
+            bufferIndex.DecrementSmart(GlobalGameData.INPUT_BUFFER_SIZE);
+        }
+        return moveStrength;
     }
 }

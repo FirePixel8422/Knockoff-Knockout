@@ -4,6 +4,8 @@
 [Flags]
 public enum AttackInputFlags : byte
 {
+    None = 0,
+
     /// <summary>Square (Left Punch)</summary>
     B1 = 1 << 0,
     /// <summary>Triangle (Right Punch)</summary>

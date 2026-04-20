@@ -14,5 +14,6 @@ public static class GlobalGameData
     public const float TICK_TIME = 1f / 60;
     public const int MAX_TICK_CATCH_UP = 5;
 
-    public const int INPUT_BUFFER_SIZE = 6;
+    public const int INPUT_BUFFER_SIZE = 8;
+    public const int DIRECTION_BUFFER_WINDOW = 2;
 }
