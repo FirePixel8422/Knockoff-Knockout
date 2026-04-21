@@ -7,6 +7,7 @@
 public class PlayerController : FrameTickMonoBehaviour
 {
     [SerializeField] private PlayerController opponent;
+    [SerializeField] private AttackMoveSetSO moveSetSO;
 
     [SerializeField] private PlayerStateMachine stateMachine = new();
     [SerializeField] private PlayerInputHandler inputHandler = new();
@@ -19,6 +20,7 @@ public class PlayerController : FrameTickMonoBehaviour
 
     private void Awake()
     {
+        inputHandler.Init(moveSetSO.GetMoveArray());
         stateMachine.Init(transform);
         collisionHandler = new PlayerColliderHandler(transform);
     }
@@ -27,6 +29,13 @@ public class PlayerController : FrameTickMonoBehaviour
     protected override void OnFrameTick()
     {
         inputHandler.CollectInputs();
+        if (stateMachine.IsStunned == false)
+        {
+            if (inputHandler.TryGetMove(out AttackData targetMove))
+            {
+                print(targetMove.AnimationName);
+            }
+        }
 
         // If any move is active from this player (attackers perpective), check collision between any active hurtboxes with the opponennts hitboxes.
         if (stateMachine.State == FighterState.MoveActive)

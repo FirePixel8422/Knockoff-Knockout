@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 /// <summary>
 /// Manager MB class that assigns input devices to the players.
 /// </summary>
-
 public class PlayerManager : MonoBehaviour
 {
     [SerializeField] private PlayerController[] players;
@@ -149,6 +148,7 @@ public class PlayerManager : MonoBehaviour
 
             player = players[i];
             player.IsAssigned = true;
+            player.enabled = true;
             break;
         }
         if (player == null)
@@ -189,6 +189,7 @@ public class PlayerManager : MonoBehaviour
 
         deviceToPlayerMap.Remove(device);
         player.IsAssigned = false;
+        player.enabled = false;
     }
 
     #endregion

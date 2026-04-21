@@ -209,12 +209,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8383564846585285421}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ebcd271199a54b4c9c844e52d4d65a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   opponent: {fileID: 0}
+  moveSetSO: {fileID: 11400000, guid: 0fef3c80fa41e8e49a9cb3b36f9bc920, type: 2}
   stateMachine:
     state: 0
     bufferedState: 0
@@ -234,6 +235,10 @@ MonoBehaviour:
         BlockStun: 0
         CounterHitBonus: 0
         HitStop: 0
+        BlockStop: 0
+      Input:
+        AttackFlags: 0
+        DirectionFlag: 0
       StringTransitions: []
       GeneratedAnimHash: 0
       TotalAttackDuration: 0
@@ -244,56 +249,60 @@ MonoBehaviour:
     HitStun: 0
     BlockStun: 0
   inputHandler:
+    moveSet:
+    - AnimationName: 
+      Damage: 0
+      Knockback: 0
+      Level: 0
+      FrameData:
+        Startup: 0
+        ActiveFrames: 0
+        Recovery: 0
+        CancelWindow:
+          x: 0
+          y: 0
+        HitStun: 0
+        BlockStun: 0
+        CounterHitBonus: 0
+        HitStop: 0
+        BlockStop: 0
+      Input:
+        AttackFlags: 0
+        DirectionFlag: 0
+      StringTransitions: []
+      GeneratedAnimHash: 0
+      TotalAttackDuration: 0
+      AdvantageOnHit: 0
+      AdvantageOnBlock: 0
     bufferHandler:
       inputBuffer:
       - AttackFlags: 0
-        Direction:
-          x: 0
-          y: 0
+        DirectionFlag: 0
       - AttackFlags: 0
-        Direction:
-          x: 0
-          y: 0
+        DirectionFlag: 0
       - AttackFlags: 0
-        Direction:
-          x: 0
-          y: 0
+        DirectionFlag: 0
       - AttackFlags: 0
-        Direction:
-          x: 0
-          y: 0
+        DirectionFlag: 0
       - AttackFlags: 0
-        Direction:
-          x: 0
-          y: 0
+        DirectionFlag: 0
       - AttackFlags: 0
-        Direction:
-          x: 0
-          y: 0
+        DirectionFlag: 0
       - AttackFlags: 0
-        Direction:
-          x: 0
-          y: 0
+        DirectionFlag: 0
       - AttackFlags: 0
-        Direction:
-          x: 0
-          y: 0
+        DirectionFlag: 0
       - AttackFlags: 0
-        Direction:
-          x: 0
-          y: 0
+        DirectionFlag: 0
       - AttackFlags: 0
-        Direction:
-          x: 0
-          y: 0
+        DirectionFlag: 0
       - AttackFlags: 0
-        Direction:
-          x: 0
-          y: 0
+        DirectionFlag: 0
       - AttackFlags: 0
-        Direction:
-          x: 0
-          y: 0
+        DirectionFlag: 0
+      cRawInput:
+        AttackFlags: 0
+        DirectionFlag: 0
   IsAssigned: 0
 --- !u!114 &7012654021298077395
 MonoBehaviour:

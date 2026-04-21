@@ -11,6 +11,15 @@ public class PlayerInputHandler
     [EditorReadOnly, SerializeField] private InputBufferHandler bufferHandler = new();
 
 
+
+    public void Init(AttackData[] moveSet)
+    {
+        this.moveSet = moveSet;
+    }
+
+    
+    #region Player Input Callbacks
+
     /// <summary>
     /// Called by the PlayerInput component when an input is performed or canceled, with that corresponding button
     /// </summary>
@@ -45,10 +54,40 @@ public class PlayerInputHandler
         bufferHandler.UpdateCurrentDirection(dirFlag);
     }
 
+    #endregion
+
+
     /// <summary>
     /// Push all collected input from the last tick to the current one into the input buffer
     /// </summary>
     public void CollectInputs() => bufferHandler.PushBuffer();
+    
+    /// <summary>
+    /// Check all moves to see if input buffer correlates to one
+    /// </summary>
+    public bool TryGetMove(out AttackData targetMove)
+    {
+        int bestMoveStrength = 0;
+        targetMove = new AttackData();
+
+        int moveSetLength = moveSet.Length;
+        for (int i = 0; i < moveSetLength; i++)
+        {
+            int moveStrength = bufferHandler.TestInput(moveSet[i].Input);
+
+            if (moveStrength <= bestMoveStrength)
+                continue;
+
+            bestMoveStrength = moveStrength;
+            targetMove = moveSet[i];
+
+            // Perfect input found, no need to continue checking other moves in the moveset
+            if (bestMoveStrength == 3)
+                break;
+        }
+
+        return bestMoveStrength != 0;
+    }
 }
 
 [System.Serializable]
@@ -91,31 +130,9 @@ public class InputBufferHandler
 
 
     /// <summary>
-    /// Check all moves to see if input buffer correlates to one
-    /// </summary>
-    public bool NAME_TBD(AttackData[] moveSet, out AttackData targetMove)
-    {
-        int bestMoveStrength = 0;
-        targetMove = new AttackData();
-
-        int moveSetLength = moveSet.Length;
-        for (int i = 0; i < moveSetLength; i++)
-        {
-            int moveStrength = TestInput(moveSet[i].Input);
-
-            if (moveStrength <= bestMoveStrength)
-                continue;
-
-            bestMoveStrength = moveStrength;
-            targetMove = moveSet[i];
-        }
-
-        return bestMoveStrength != 0;
-    }
-    /// <summary>
     /// Check if input is found in buffer for inputted move their Keybinds (FrameInput)
     /// </summary>
-    private int TestInput(FrameInput targetInput)
+    public int TestInput(FrameInput targetInput)
     {
         int moveStrength = 0;
         int bufferIndex = index;
@@ -123,27 +140,26 @@ public class InputBufferHandler
 
         for (int i = 0; i < GlobalGameData.INPUT_BUFFER_SIZE; i++)
         {
-            // Check if buffered input contains the same attack buttons
+            // Check if buffered input contains the same attack buttons, if not > next buffer input
             if (!inputBuffer[bufferIndex].AttackFlags.HasFlag(targetInput.AttackFlags))
             {
                 bufferIndex.DecrementSmart(GlobalGameData.INPUT_BUFFER_SIZE);
                 continue;
             }
 
-            // If button is correct and direction is neutral, award 2/3 points
+            // If button is correct and the to test inputs direction is neutral > award 1/3 points
             if (targetInput.DirectionFlag == DirectionInputFlag.Neutral)
             {
-                moveStrength = 2;
-                continue;
+                moveStrength = 1;
             }
 
             int dirIndex = bufferIndex;
-            for (int j = 0; j < GlobalGameData.DIRECTION_BUFFER_WINDOW; j++)
+            for (int j = 0; j < 1 + GlobalGameData.DIRECTION_BUFFER_WINDOW; j++)
             {
                 // Check into the past of the buffer for X frames for if the target attacks direction is found
                 if (inputBuffer[dirIndex].DirectionFlag == targetInput.DirectionFlag)
                 {
-                    // Exact move was matched with buffer history, award 3/3 points
+                    // Exact move was matched with buffer history > award 3/3 points
                     return 3;
                 }
                 dirIndex.DecrementSmart(GlobalGameData.INPUT_BUFFER_SIZE);
