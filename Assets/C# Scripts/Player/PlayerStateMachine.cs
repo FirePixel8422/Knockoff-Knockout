@@ -25,7 +25,7 @@ public class PlayerStateMachine
         HitStun > 0 ||
         BlockStun > 0;
 
-    private Animator anim;
+    private readonly Animator anim;
 
 
     public PlayerStateMachine(Transform playerRoot)

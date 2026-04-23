@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b862d7d41f8e184187976caf926811d, type: 3}
+  m_Name: LowKick
+  m_EditorClassIdentifier: Assembly-CSharp::AttackSO
+  Value:
+    AnimationName: LowKick
+    Damage: 1
+    Knockback: 0
+    Level: 0
+    FrameData:
+      Startup: 5
+      ActiveFrames: 2
+      Recovery: 10
+      CancelWindow:
+        x: 0
+        y: 0
+      HitStun: 12
+      BlockStun: 8
+      CounterHitBonus: 0
+      HitStop: 8
+      BlockStop: 4
+    Input:
+      AttackFlags: 1
+      DirectionFlag: 2
+    StringTransitions: []
+    GeneratedAnimHash: 859106820
+    TotalAttackDuration: 17
+    AdvantageOnHit: 2
+    AdvantageOnBlock: -2

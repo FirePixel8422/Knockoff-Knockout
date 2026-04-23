@@ -21,7 +21,6 @@ public class PlayerManager : MonoBehaviour
 
     private void Awake()
     {
-        print("test");
         InputSystem.onDeviceChange += OnDeviceChanged;
 
         joinAction.action.Enable();
