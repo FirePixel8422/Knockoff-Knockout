@@ -21,18 +21,29 @@ namespace Fire_Pixel.Utility
         private static event Action LateApplicationQuit;
 #pragma warning restore IDE1006
 
-        private static readonly List<DelayedCallback> delayedCallbacks = new List<DelayedCallback>();
+        private static readonly List<DelayedCallback> delayedCallbacks = new();
 
         private static bool quitting;
 
 
-        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         private static void Initialize()
         {
+            Reset();
+
             CallbackRunnerInstance gameManager = new GameObject(">>UpdateScheduler<<").AddComponent<CallbackRunnerInstance>();
             gameManager.Init();
 
             GameObject.DontDestroyOnLoad(gameManager.gameObject);
+        }
+        public static void Reset()
+        {
+            Update = null;
+            FrameTick = null;
+            LateApplicationQuit = null;
+
+            delayedCallbacks?.Clear();
+            quitting = false;
         }
 
 
