@@ -21,6 +21,7 @@ public class PlayerManager : MonoBehaviour
 
     private void Awake()
     {
+        print("test");
         InputSystem.onDeviceChange += OnDeviceChanged;
 
         joinAction.action.Enable();
@@ -57,74 +58,74 @@ public class PlayerManager : MonoBehaviour
 
     public void OnButton1(InputAction.CallbackContext ctx)
     {
-        if (ctx.started) return;
+        if (!ctx.performed) return;
 
         if (deviceToPlayerMap.TryGetValue(ctx.control.device, out PlayerController player))
         {
-            player.InputHandler.OnButton(AttackInputFlags.B1, ctx.performed);
+            player.InputHandler.OnButtonPressed(AttackInputFlags.B1);
         }
     }
     public void OnButton2(InputAction.CallbackContext ctx)
     {
-        if (ctx.started) return;
+        if (!ctx.performed) return;
 
         if (deviceToPlayerMap.TryGetValue(ctx.control.device, out PlayerController player))
         {
-            player.InputHandler.OnButton(AttackInputFlags.B2, ctx.performed);
+            player.InputHandler.OnButtonPressed(AttackInputFlags.B2);
         }
     }
     public void OnButton3(InputAction.CallbackContext ctx)
     {
-        if (ctx.started) return;
+        if (!ctx.performed) return;
 
         if (deviceToPlayerMap.TryGetValue(ctx.control.device, out PlayerController player))
         {
-            player.InputHandler.OnButton(AttackInputFlags.B3, ctx.performed);
+            player.InputHandler.OnButtonPressed(AttackInputFlags.B3);
         }
     }
     public void OnButton4(InputAction.CallbackContext ctx)
     {
-        if (ctx.started) return;
+        if (!ctx.performed) return;
 
         if (deviceToPlayerMap.TryGetValue(ctx.control.device, out PlayerController player))
         {
-            player.InputHandler.OnButton(AttackInputFlags.B4, ctx.performed);
+            player.InputHandler.OnButtonPressed(AttackInputFlags.B4);
         }
     }
     public void OnButton5(InputAction.CallbackContext ctx)
     {
-        if (ctx.started) return;
+        if (!ctx.performed) return;
 
         if (deviceToPlayerMap.TryGetValue(ctx.control.device, out PlayerController player))
         {
-            player.InputHandler.OnButton(AttackInputFlags.B5, ctx.performed);
+            player.InputHandler.OnButtonPressed(AttackInputFlags.B5);
         }
     }
     public void OnButton6(InputAction.CallbackContext ctx)
     {
-        if (ctx.started) return;
+        if (!ctx.performed) return;
 
         if (deviceToPlayerMap.TryGetValue(ctx.control.device, out PlayerController player))
         {
-            player.InputHandler.OnButton(AttackInputFlags.B6, ctx.performed);
+            player.InputHandler.OnButtonPressed(AttackInputFlags.B6);
         }
     }
     public void OnButton7(InputAction.CallbackContext ctx)
     {
-        if (ctx.started) return;
+        if (!ctx.performed) return;
 
         if (deviceToPlayerMap.TryGetValue(ctx.control.device, out PlayerController player))
         {
-            player.InputHandler.OnButton(AttackInputFlags.B7, ctx.performed);
+            player.InputHandler.OnButtonPressed(AttackInputFlags.B7);
         }
     }
     public void OnButton8(InputAction.CallbackContext ctx)
     {
-        if (ctx.started) return;
+        if (!ctx.performed) return;
 
         if (deviceToPlayerMap.TryGetValue(ctx.control.device, out PlayerController player))
         {
-            player.InputHandler.OnButton(AttackInputFlags.B8, ctx.performed);
+            player.InputHandler.OnButtonPressed(AttackInputFlags.B8);
         }
     }
 

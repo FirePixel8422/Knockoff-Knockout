@@ -8,13 +8,14 @@
 public class PlayerInputHandler
 {
     [EditorReadOnly, SerializeField] private AttackData[] moveSet;
-    [EditorReadOnly, SerializeField] private InputBufferHandler bufferHandler = new();
+    [EditorReadOnly, SerializeField] private InputBufferHandler bufferHandler;
 
 
 
-    public void Init(AttackData[] moveSet)
+    public PlayerInputHandler(AttackData[] moveSet)
     {
         this.moveSet = moveSet;
+        bufferHandler = new InputBufferHandler();
     }
 
     
@@ -23,9 +24,9 @@ public class PlayerInputHandler
     /// <summary>
     /// Called by the PlayerInput component when an input is performed or canceled, with that corresponding button
     /// </summary>
-    public void OnButton(AttackInputFlags flag, bool performed)
+    public void OnButtonPressed(AttackInputFlags flag)
     {
-        bufferHandler.UpdateCurrentInput(flag, performed);
+        bufferHandler.UpdateCurrentInput(flag);
     }
     /// <summary>
     /// Called by the PlayerInput component when the directional input is performed or canceled, with the current direction.
@@ -60,8 +61,11 @@ public class PlayerInputHandler
     /// <summary>
     /// Push all collected input from the last tick to the current one into the input buffer
     /// </summary>
-    public void CollectInputs() => bufferHandler.PushBuffer();
-    
+    public void CollectInputs()
+    {
+        bufferHandler.PushBuffer();
+    }
+
     /// <summary>
     /// Check all moves to see if input buffer correlates to one
     /// </summary>
@@ -101,16 +105,9 @@ public class InputBufferHandler
 
     #region Buffer Update/Managament
 
-    public void UpdateCurrentInput(AttackInputFlags flag, bool state)
+    public void UpdateCurrentInput(AttackInputFlags flag)
     {
-        if (state == true)
-        {
-            cRawInput.AttackFlags |= flag;
-        }
-        else
-        {
-            cRawInput.AttackFlags &= ~flag;
-        }
+        cRawInput.AttackFlags |= flag;
     }
     public void UpdateCurrentDirection(DirectionInputFlag dir)
     {

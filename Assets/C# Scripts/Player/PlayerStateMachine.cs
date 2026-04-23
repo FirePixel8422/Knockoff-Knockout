@@ -28,7 +28,7 @@ public class PlayerStateMachine
     private Animator anim;
 
 
-    public void Init(Transform playerRoot)
+    public PlayerStateMachine(Transform playerRoot)
     {
         anim = playerRoot.GetComponent<Animator>();
         anim.enabled = false;

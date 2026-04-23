@@ -9,8 +9,8 @@ public class PlayerController : FrameTickMonoBehaviour
     [SerializeField] private PlayerController opponent;
     [SerializeField] private AttackMoveSetSO moveSetSO;
 
-    [SerializeField] private PlayerStateMachine stateMachine = new();
-    [SerializeField] private PlayerInputHandler inputHandler = new();
+    [SerializeField] private PlayerStateMachine stateMachine;
+    [SerializeField] private PlayerInputHandler inputHandler;
     [SerializeField] private PlayerColliderHandler collisionHandler;
 
     public PlayerInputHandler InputHandler => inputHandler;
@@ -20,8 +20,8 @@ public class PlayerController : FrameTickMonoBehaviour
 
     private void Awake()
     {
-        inputHandler.Init(moveSetSO.GetMoveArray());
-        stateMachine.Init(transform);
+        inputHandler = new PlayerInputHandler(moveSetSO.GetMoveArray());
+        stateMachine = new PlayerStateMachine(transform);
         collisionHandler = new PlayerColliderHandler(transform);
     }
 
@@ -34,6 +34,8 @@ public class PlayerController : FrameTickMonoBehaviour
             if (inputHandler.TryGetMove(out AttackData targetMove))
             {
                 print(targetMove.AnimationName);
+
+                stateMachine.Recovery = targetMove.FrameData.Recovery + targetMove.FrameData.ActiveFrames + targetMove.FrameData.Startup;
             }
         }
 

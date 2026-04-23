@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AttackMoveSetSO
   Moves:
   - {fileID: 11400000, guid: 09c34198734623249a305c2ec70bd826, type: 2}
+  - {fileID: 11400000, guid: e6e87422e5c9f594d914b638f692e0e3, type: 2}
