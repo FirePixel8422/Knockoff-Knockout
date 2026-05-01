@@ -40,7 +40,7 @@ public class PlayerController : FrameTickMonoBehaviour
         }
 
         // If any move is active from this player (attackers perpective), check collision between any active hurtboxes with the opponennts hitboxes.
-        if (stateMachine.State == FighterState.MoveActive)
+        if (stateMachine.State.CombatState == CombatState.MoveActive)
         {
             // Check if any opponent hitbix is hit
             if (CollisionUtils.CheckAABBIntersection(opponent.collisionHandler.HitBoxes, collisionHandler.HurtBoxes))

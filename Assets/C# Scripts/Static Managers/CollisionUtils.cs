@@ -60,22 +60,25 @@ public static class CollisionUtils
     /// </summary>
     public static GuardResult GetGuardResult(AttackLevel attackType, FighterState defenderState)
     {
-        // If attack is unblockable, defender gets hit OR interrupted
-        if (attackType == AttackLevel.Unblockable)
+        bool defenderIsInStartup = defenderState.CombatState == CombatState.MoveStartup;
+
+        // If defender is still stunned or if the incoming attack is unblockable, defender gets hit OR interrupted
+        if (defenderState.CombatState == CombatState.HitStun || attackType == AttackLevel.Unblockable)
         {
-            return defenderState == FighterState.MoveStartup ?
+            return defenderIsInStartup ?
                 GuardResult.Interrupted :
                 GuardResult.Hit;
         }
-
-        return defenderState switch
+        // If defender is in startup animation of their own attack, they gets interrupted
+        if (defenderIsInStartup)
         {
-            // Defenders is in startup animation fo his own attack, he gets intrerupted
-            FighterState.MoveStartup => 
-                GuardResult.Interrupted,
+            return GuardResult.Interrupted;
+        }
 
-            // Defender Blocks Mids and Highs, loses to Lows
-            FighterState.Retreating or FighterState.Idle or FighterState.StandingBlockStun =>
+        return defenderState.MovementState switch
+        {
+            // If defender is standing still or walking backwards, they blocks mids and highs and lose to lows
+            MovementState.Standing or MovementState.Retreating =>
                 attackType switch
                 {
                     AttackLevel.Mid or AttackLevel.High => 
@@ -85,8 +88,8 @@ public static class CollisionUtils
                         GuardResult.Hit,
                 },
 
-            // Defender blocks lows, loses to Mids and highs
-            FighterState.Crouching or FighterState.CrouchedBlockStun =>
+            // If defender is crouching, they blocks Lows and lose to mids and highs
+            MovementState.Crouching =>
                 attackType switch
                 {
                     AttackLevel.Low => 
