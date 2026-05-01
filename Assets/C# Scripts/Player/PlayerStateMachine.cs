@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.VisualScripting;
+using UnityEngine;
 
 
 /// <summary>
@@ -32,6 +33,21 @@ public class PlayerStateMachine
     {
         anim = playerRoot.GetComponent<Animator>();
         anim.enabled = false;
+    }
+
+    public void ResolveAttack(AttackData move, bool isTarget)
+    {
+        HitStop += move.FrameData.HitStop;
+
+        if (isTarget)
+        {
+            HitStun += move.FrameData.HitStun;
+            BlockStun += move.FrameData.BlockStun;
+        }
+        else
+        {
+            Recovery += move.FrameData.Recovery;
+        }
     }
 
     /// <summary>

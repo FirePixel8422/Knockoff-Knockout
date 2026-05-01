@@ -46,7 +46,7 @@ public class PlayerController : FrameTickMonoBehaviour
             if (CollisionUtils.CheckAABBIntersection(opponent.collisionHandler.HitBoxes, collisionHandler.HurtBoxes))
             {
                 // hit opponent and send Attack Level (Low/Mid/High)
-                opponent.OnAttackImpact(stateMachine.CurrentMove.Level);
+                GuardResult opponentGuardResult = opponent.OnAttackImpact(stateMachine.CurrentMove.Level);
             }
         }
 
@@ -58,7 +58,7 @@ public class PlayerController : FrameTickMonoBehaviour
     /// <summary>
     /// Called when this player (from defender perspective) gets hit by an attack.
     /// </summary>
-    public void OnAttackImpact(AttackLevel level)
+    public GuardResult OnAttackImpact(AttackLevel level)
     {
         GuardResult guardResult = CollisionUtils.GetGuardResult(level, stateMachine.State);
     }

@@ -731,6 +731,11 @@ PrefabInstance:
       propertyPath: opponent
       value: 
       objectReference: {fileID: 301392651}
+    - target: {fileID: 4250311173971591269, guid: f2199243b681d5f4a9dacff39c99612b,
+        type: 3}
+      propertyPath: inputHandler.moveSet.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6647871175774743337, guid: f2199243b681d5f4a9dacff39c99612b,
         type: 3}
       propertyPath: m_LocalPosition.x
