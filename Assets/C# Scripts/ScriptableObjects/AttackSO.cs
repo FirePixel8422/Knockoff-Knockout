@@ -14,6 +14,6 @@ public class AttackSO : ScriptableObject
 
         Value.AdvantageOnHit = Value.FrameData.HitStun - Value.FrameData.Recovery;
         Value.AdvantageOnBlock = Value.FrameData.BlockStun - Value.FrameData.Recovery;
-        Value.TotalAttackDuration = Value.FrameData.Startup + Value.FrameData.ActiveFrames + Value.FrameData.Recovery;
+        Value.TotalAttackDuration = Value.FrameData.Startup + Value.FrameData.Active + Value.FrameData.Recovery;
     }
 }

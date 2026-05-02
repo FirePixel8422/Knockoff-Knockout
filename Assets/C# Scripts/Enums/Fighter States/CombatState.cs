@@ -19,11 +19,11 @@ public enum CombatState
     /// <summary>
     /// Fighter is in the startup frames of an attack animation
     /// </summary>
-    MoveStartup,
+    AttackStartup,
     /// <summary>
     /// Fighter is in the active frames of an attack animation
     /// </summary>
-    MoveActive,
+    AttackActive,
 
     /// <summary>
     /// Fighter is in stun frame phase because he was hit by an attack

@@ -11,7 +11,6 @@ public class PlayerInputHandler
     [EditorReadOnly, SerializeField] private InputBufferHandler bufferHandler;
 
 
-
     public PlayerInputHandler(AttackData[] moveSet)
     {
         this.moveSet = moveSet;
@@ -69,7 +68,7 @@ public class PlayerInputHandler
     /// <summary>
     /// Check all moves to see if input buffer correlates to one
     /// </summary>
-    public bool TryGetMove(out AttackData targetMove)
+    public bool TryReadAttack(out AttackData targetMove)
     {
         int bestMoveStrength = 0;
         targetMove = new AttackData();

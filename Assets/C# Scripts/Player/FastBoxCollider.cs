@@ -5,9 +5,13 @@ using UnityEngine;
 
 public class FastBoxCollider : MonoBehaviour
 {
+    [SerializeField] private int id;
+
     [SerializeField] private ColliderType colliderType;
     [SerializeField] private float3 size = new float3(1);
+    
 
+    public int Id => id;
     public ColliderType Type => colliderType;
     public AABB GetAABB()
     {
@@ -23,6 +27,8 @@ public class FastBoxCollider : MonoBehaviour
 
 
 #if UNITY_EDITOR
+    public float3 Size => size;
+
     static readonly Color INVALID_COLOR = new Color(0.6f, 0.2f, 1);
     static readonly Color HITBOX_COLOR = new Color(0.1f, 0.1f, 1);
     static readonly Color HURTBOX_COLOR = new Color(1, 0.05f, 0.05f);

@@ -17,9 +17,10 @@ MonoBehaviour:
     Damage: 1
     Knockback: 0
     Level: 2
+    HitBoxIds: 
     FrameData:
       Startup: 10
-      ActiveFrames: 2
+      Active: 2
       Recovery: 40
       CancelWindow:
         x: 0

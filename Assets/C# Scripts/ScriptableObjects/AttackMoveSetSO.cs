@@ -5,16 +5,16 @@
 [CreateAssetMenu(fileName = "New MoveSet", menuName = "ScriptableObjects/Combat/MoveSet", order = -1003)]
 public class AttackMoveSetSO : ScriptableObject
 {
-    [SerializeField] private AttackSO[] Moves;
+    [SerializeField] private AttackSO[] Attacks;
     
-    public AttackData[] GetMoveArray()
+    public AttackData[] GetAttacksArray()
     {
-        int moveCount = Moves.Length;
+        int moveCount = Attacks.Length;
         AttackData[] moveArray = new AttackData[moveCount];
 
         for (int i = 0; i < moveCount; i++)
         {
-            moveArray[i] = Moves[i].Value;
+            moveArray[i] = Attacks[i].Value;
         }
         return moveArray;
     }

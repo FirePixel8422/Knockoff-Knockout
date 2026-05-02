@@ -9,7 +9,6 @@ public class PlayerStateMachine
 {
     [SerializeField] private FighterState state;
     [SerializeField] private FighterState bufferedState;
-    [SerializeField] private AttackData currentMove;
 
     public int HitStop;
 
@@ -18,7 +17,6 @@ public class PlayerStateMachine
     public int BlockStun;
 
     public FighterState State => state;
-    public AttackData CurrentMove => currentMove;
     public bool IsStunned =>
         HitStop > 0 ||
         Recovery > 0 ||
