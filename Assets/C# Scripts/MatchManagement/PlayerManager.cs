@@ -1,6 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Controls;
+using UnityEngine.InputSystem.Utilities;
 
 
 /// <summary>
@@ -9,29 +12,32 @@ using UnityEngine.InputSystem;
 public class PlayerManager : MonoBehaviour
 {
     [SerializeField] private PlayerController[] players;
-    [SerializeField] private InputActionReference joinAction;
     [SerializeField] private GamepadRumbleParameters onJoinRumble;
 
     private Dictionary<InputDevice, PlayerController> deviceToPlayerMap = new(2);
+    private InputDevice desktopDevice;
 
 #if Enable_Debug_Systems
     [SerializeField] private bool logInputDeviceChanges = true;
 #endif
 
 
+    private IDisposable joinListener;
+
     private void Awake()
     {
+        desktopDevice = Keyboard.current;
+
         InputSystem.onDeviceChange += OnDeviceChanged;
 
-        joinAction.action.Enable();
-        joinAction.action.performed += OnJoin;
+        joinListener = InputSystem.onAnyButtonPress.Call(OnAnyButtonPress);
     }
+
     private void OnDestroy()
     {
         InputSystem.onDeviceChange -= OnDeviceChanged;
 
-        joinAction.action.performed -= OnJoin;
-        joinAction.action.Disable();
+        joinListener?.Dispose();
     }
 
 
@@ -40,18 +46,42 @@ public class PlayerManager : MonoBehaviour
     /// <summary>
     /// When a player presses the join button, try to assign their device to an available player slot.
     /// </summary>
-    private void OnJoin(InputAction.CallbackContext ctx)
+    private void OnAnyButtonPress(InputControl control)
     {
-        TryConnectDevice(ctx.control.device);
+        print("pre");
+
+        InputDevice device = control.device;
+
+        if (control is not ButtonControl)
+            return;
+
+        // Treat keyboard + mouse as one shared desktop player
+        if (device is Mouse)
+        {
+            return;
+        }
+
+        if (device is Keyboard)
+        {
+            device = desktopDevice;
+        }
+        else if (device is not Gamepad)
+        {
+            return;
+        }
+
+        TryConnectDevice(device);
     }
 
     public void OnDirection(InputAction.CallbackContext ctx)
     {
         if (ctx.started) return;
 
-        if (deviceToPlayerMap.TryGetValue(ctx.control.device, out PlayerController player))
+        if (GetTargetPlayer(ctx.control.device, out PlayerController player))
         {
-            player.InputHandler.OnDirection(ctx.ReadValue<Vector2>());
+            Vector2 dirVec = ctx.ReadValue<Vector2>();
+
+            player.InputHandler.OnDirection(dirVec);
         }
     }
 
@@ -59,7 +89,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (!ctx.performed) return;
 
-        if (deviceToPlayerMap.TryGetValue(ctx.control.device, out PlayerController player))
+        if (GetTargetPlayer(ctx.control.device, out PlayerController player))
         {
             player.InputHandler.OnButtonPressed(AttackInputFlags.B1);
         }
@@ -68,7 +98,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (!ctx.performed) return;
 
-        if (deviceToPlayerMap.TryGetValue(ctx.control.device, out PlayerController player))
+        if (GetTargetPlayer(ctx.control.device, out PlayerController player))
         {
             player.InputHandler.OnButtonPressed(AttackInputFlags.B2);
         }
@@ -77,7 +107,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (!ctx.performed) return;
 
-        if (deviceToPlayerMap.TryGetValue(ctx.control.device, out PlayerController player))
+        if (GetTargetPlayer(ctx.control.device, out PlayerController player))
         {
             player.InputHandler.OnButtonPressed(AttackInputFlags.B3);
         }
@@ -86,7 +116,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (!ctx.performed) return;
 
-        if (deviceToPlayerMap.TryGetValue(ctx.control.device, out PlayerController player))
+        if (GetTargetPlayer(ctx.control.device, out PlayerController player))
         {
             player.InputHandler.OnButtonPressed(AttackInputFlags.B4);
         }
@@ -95,7 +125,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (!ctx.performed) return;
 
-        if (deviceToPlayerMap.TryGetValue(ctx.control.device, out PlayerController player))
+        if (GetTargetPlayer(ctx.control.device, out PlayerController player))
         {
             player.InputHandler.OnButtonPressed(AttackInputFlags.B5);
         }
@@ -104,7 +134,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (!ctx.performed) return;
 
-        if (deviceToPlayerMap.TryGetValue(ctx.control.device, out PlayerController player))
+        if (GetTargetPlayer(ctx.control.device, out PlayerController player))
         {
             player.InputHandler.OnButtonPressed(AttackInputFlags.B6);
         }
@@ -113,7 +143,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (!ctx.performed) return;
 
-        if (deviceToPlayerMap.TryGetValue(ctx.control.device, out PlayerController player))
+        if (GetTargetPlayer(ctx.control.device, out PlayerController player))
         {
             player.InputHandler.OnButtonPressed(AttackInputFlags.B7);
         }
@@ -122,10 +152,20 @@ public class PlayerManager : MonoBehaviour
     {
         if (!ctx.performed) return;
 
-        if (deviceToPlayerMap.TryGetValue(ctx.control.device, out PlayerController player))
+        if (GetTargetPlayer(ctx.control.device, out PlayerController player))
         {
             player.InputHandler.OnButtonPressed(AttackInputFlags.B8);
         }
+    }
+
+    private bool GetTargetPlayer(InputDevice device, out PlayerController player)
+    {
+        if (device is Keyboard || device is Mouse)
+        {
+            device = desktopDevice;
+        }
+
+        return deviceToPlayerMap.TryGetValue(device, out player);
     }
 
     #endregion
@@ -182,8 +222,22 @@ public class PlayerManager : MonoBehaviour
     }
     private void DisconnectDevice(InputDevice device)
     {
-        if (!deviceToPlayerMap.TryGetValue(device, out PlayerController player))
+        if (device is Mouse)
+        {
             return;
+        }
+
+        if (device is Keyboard)
+        {
+            device = desktopDevice;
+        }
+
+        if (!GetTargetPlayer(device, out PlayerController player))
+        {
+            DebugLogger.LogError("errror");
+
+            return;
+        }
 
         DebugLogger.Log($"Device disconnected: {device.displayName}", logInputDeviceChanges);
 

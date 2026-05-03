@@ -35,7 +35,12 @@ public enum CombatState
     BlockStun,
 
     /// <summary>
-    /// Fighter is in the active frames of a Parry animation
+    /// Fighter is in the active frames of a ParryLow animation
     /// </summary>
-    Parry,
+    ParryLow,
+
+    /// <summary>
+    /// Fighter is in the active frames of a ParryHigh animation
+    /// </summary>
+    ParryHigh,
 }

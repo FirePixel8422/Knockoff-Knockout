@@ -1,22 +1,25 @@
 ﻿using UnityEngine;
+using UnityEngine.Rendering;
 
 
 /// <summary>
 /// MB class that is the core of the player controller. Holds subcomponenents and handles input.
 /// </summary>
-public class PlayerController : FrameTickMonoBehaviour
+public class PlayerController : FrameTickUpdateMB
 {
     [SerializeField] private PlayerController opponent;
     [SerializeField] private AttackMoveSetSO moveSetSO;
 
+    [SerializeField] private PlayerStateMachine stateMachine;
+    [SerializeField] private PlayerInputHandler inputHandler;
+
     [SerializeField] private PlayerAttackHandler attackHandler;
     [SerializeField] private PlayerMovementHandler movementHandler;
 
-    [SerializeField] private PlayerStateMachine stateMachine;
-    [SerializeField] private PlayerInputHandler inputHandler;
     [SerializeField] private PlayerColliderHandler collisionHandler;
 
     public PlayerInputHandler InputHandler => inputHandler;
+    public PlayerMovementHandler MovementHandler => movementHandler;
 
     public bool IsAssigned;
 
@@ -25,22 +28,34 @@ public class PlayerController : FrameTickMonoBehaviour
     {
         inputHandler = new PlayerInputHandler(moveSetSO.GetAttacksArray());
         stateMachine = new PlayerStateMachine(transform);
+
+        movementHandler = new PlayerMovementHandler(inputHandler, stateMachine, transform);
+        attackHandler = new PlayerAttackHandler(inputHandler, stateMachine);
+
         collisionHandler = new PlayerColliderHandler(transform);
     }
 
+    protected override void OnUpdate()
+    {
+        movementHandler.OnUpdate();
+    }
 
     // Core tick loop.
     protected override void OnFrameTick()
     {
+        // 1: Collect Inputs
         inputHandler.CollectInputs();
+
+        // 2: Run Attack Systems
+        attackHandler.OnFrameTick();
+
+        // 3: Run Movement Systems
+        movementHandler.OnFrameTick();
+
         if (stateMachine.IsStunned == false)
         {
-            if (inputHandler.TryReadAttack(out AttackData targetMove))
-            {
-                attackHandler.SetBufferedAttack(targetMove);
-            }
         }
-
+        // 4: Run Attack Collision
         // If any move is active from this player (attackers perpective), check collision between any active hurtboxes with the opponennts hitboxes.
         if (stateMachine.State.CombatState == CombatState.AttackActive)
         {
@@ -48,7 +63,7 @@ public class PlayerController : FrameTickMonoBehaviour
             if (CollisionUtils.CheckAABBIntersection(opponent.collisionHandler.HitBoxes, collisionHandler.HurtBoxes))
             {
                 // hit opponent and send Attack Level (Low/Mid/High)
-                //GuardResult opponentGuardResult = opponent.OnAttackImpact(stateMachine.CurrentMove.Level);
+                AttackResult opponentGuardResult = opponent.OnAttackImpact(attackHandler.CurrentActiveAttack.Level);
             }
         }
 
@@ -57,18 +72,13 @@ public class PlayerController : FrameTickMonoBehaviour
         stateMachine.OnFrameTick();
     }
 
-    public void StartAttack(AttackData targetMove)
-    {
-
-    }
-
     /// <summary>
     /// Called when this player (from defender perspective) gets hit by an attack.
     /// </summary>
-    public GuardResult OnAttackImpact(AttackLevel level)
+    public AttackResult OnAttackImpact(AttackLevel level)
     {
-        GuardResult guardResult = GetGuardResult(level, stateMachine.State);
-        return guardResult;
+        AttackResult attackResult = GetAttackResult(level, stateMachine.State);
+        return attackResult;
 
         // CLEAR BUFFERED MOVE
         // CLEAR BUFFERED MOVE
@@ -78,51 +88,68 @@ public class PlayerController : FrameTickMonoBehaviour
     }
 
     /// <summary>
-    /// Get GuardResult based on what type of attack hit the target player in what FighterState
+    /// Get <see cref="AttackResult"/> based on what type of attack hit the defender in what state
     /// </summary>
-    private GuardResult GetGuardResult(AttackLevel attackType, FighterState defenderState)
+    private AttackResult GetAttackResult(AttackLevel attackType, FighterState defenderState)
     {
-        bool defenderIsInStartup = defenderState.CombatState == CombatState.AttackStartup;
-
-        // If defender is still stunned or if the incoming attack is unblockable, defender gets hit OR interrupted
-        if (defenderState.CombatState == CombatState.HitStun || attackType == AttackLevel.Unblockable)
+        // If the defender is in an active parry
+        if (defenderState.CombatState == CombatState.ParryHigh)
         {
-            return defenderIsInStartup ?
-                GuardResult.Interrupted :
-                GuardResult.Hit;
+            return attackType == AttackLevel.High
+                ? AttackResult.Parried
+                : AttackResult.Hit;
         }
-        // If defender is in startup animation of their own attack, they gets interrupted
-        if (defenderIsInStartup)
+        if (defenderState.CombatState == CombatState.ParryLow)
         {
-            return GuardResult.Interrupted;
+            return attackType == AttackLevel.Low
+                ? AttackResult.Parried
+                : AttackResult.Hit;
         }
 
-        return defenderState.MovementState switch
+        // If defender cant block or the incoming attack is unblockable, the defender gets hit OR interrupted
+        if ((defenderState.CanBlock() == false) || attackType == AttackLevel.Unblockable)
         {
-            // If defender is standing still or walking backwards, they blocks mids and highs and lose to lows
-            MovementState.Standing or MovementState.Retreating =>
-                attackType switch
-                {
-                    AttackLevel.Mid or AttackLevel.High =>
-                        GuardResult.StandingBlocked,
+            return defenderState.CombatState == CombatState.AttackStartup ?
+                AttackResult.CounterHit :
+                AttackResult.Hit;
+        }
 
-                    _ =>
-                        GuardResult.Hit,
-                },
+        // If defender is crouching, they blocks lows, duck highs but lose to mids
+        if (defenderState.GroundState == GroundState.Crouching)
+        {
+            return attackType switch
+            {
+                AttackLevel.Low =>
+                 AttackResult.LowBlocked,
 
-            // If defender is crouching, they blocks Lows and lose to mids and highs
-            MovementState.Crouching =>
-                attackType switch
-                {
-                    AttackLevel.Low =>
-                        GuardResult.LowBlocked,
+                AttackLevel.High => 
+                    AttackResult.Missed,
+                _ =>
+                    AttackResult.Hit,
+            };
+        }
+        // If defender is standing
+        if (defenderState.GroundState == GroundState.Standing)
+        {
+            return defenderState.MovementState switch
+            {
+                // If defender is standing still or walking backwards, they blocks mids and highs and lose to lows
+                MovementState.Idle or MovementState.Retreating =>
+                    attackType switch
+                    {
+                        AttackLevel.Mid or AttackLevel.High =>
+                            AttackResult.StandingBlocked,
 
-                    _ =>
-                        GuardResult.Hit,
-                },
+                        _ =>
+                            AttackResult.Hit,
+                    },
 
-            _ =>
-                GuardResult.Hit,
-        };
+                _ => 
+                    AttackResult.Hit,
+            };
+        }
+
+        // Should be unreachable, so parry to allow quicker debugging.
+        return AttackResult.Parried;
     }
 }

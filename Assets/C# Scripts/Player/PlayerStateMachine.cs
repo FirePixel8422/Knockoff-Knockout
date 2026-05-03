@@ -7,7 +7,7 @@
 [System.Serializable]
 public class PlayerStateMachine
 {
-    [SerializeField] private FighterState state;
+    public FighterState State;
     [SerializeField] private FighterState bufferedState;
 
     public int HitStop;
@@ -15,8 +15,6 @@ public class PlayerStateMachine
     public int Recovery;
     public int HitStun;
     public int BlockStun;
-
-    public FighterState State => state;
     public bool IsStunned =>
         HitStop > 0 ||
         Recovery > 0 ||
@@ -75,7 +73,7 @@ public class PlayerStateMachine
     }
     public void SetFighterState(FighterState newState)
     {
-        state = newState;
+        State = newState;
     }
     public void PlayAnimation(int animHash, int transitionFrames = 0, int layer = 0)
     {

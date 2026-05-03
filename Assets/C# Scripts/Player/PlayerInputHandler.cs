@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.Collections;
+using UnityEngine;
 
 
 /// <summary>
@@ -7,7 +8,7 @@
 [System.Serializable]
 public class PlayerInputHandler
 {
-    [EditorReadOnly, SerializeField] private AttackData[] moveSet;
+    [ReadOnly, SerializeField] private AttackData[] moveSet;
     [EditorReadOnly, SerializeField] private InputBufferHandler bufferHandler;
 
 
@@ -20,38 +21,34 @@ public class PlayerInputHandler
     
     #region Player Input Callbacks
 
-    /// <summary>
-    /// Called by the PlayerInput component when an input is performed or canceled, with that corresponding button
-    /// </summary>
+    // Called by the PlayerInput component when an input is performed or canceled, with that corresponding button as AttackInputFlag
     public void OnButtonPressed(AttackInputFlags flag)
     {
         bufferHandler.UpdateCurrentInput(flag);
     }
-    /// <summary>
-    /// Called by the PlayerInput component when the directional input is performed or canceled, with the current direction.
-    /// </summary>
+    // Called by the PlayerInput component when the directional input is performed or canceled.
     public void OnDirection(Vector2 dirVec)
     {
-        DirectionInputFlag dirFlag;
+        DirectionInput dirInput;
 
         if (dirVec == Vector2.zero)
         {
-            dirFlag = DirectionInputFlag.Neutral;
+            dirInput = DirectionInput.Neutral;
         }
         else if (Mathf.Abs(dirVec.x) > Mathf.Abs(dirVec.y))
         {
-            dirFlag = dirVec.x >= 0
-                ? DirectionInputFlag.Right
-                : DirectionInputFlag.Left;
+            dirInput = dirVec.x >= 0
+                ? DirectionInput.Right
+                : DirectionInput.Left;
         }
-        else 
+        else
         {
-            dirFlag = dirVec.y >= 0
-                ? DirectionInputFlag.Up
-                : DirectionInputFlag.Down;
+            dirInput = dirVec.y >= 0
+                ? DirectionInput.Up
+                : DirectionInput.Down;
         }
 
-        bufferHandler.UpdateCurrentDirection(dirFlag);
+        bufferHandler.UpdateCurrentDirection(dirInput);
     }
 
     #endregion
@@ -68,29 +65,35 @@ public class PlayerInputHandler
     /// <summary>
     /// Check all moves to see if input buffer correlates to one
     /// </summary>
-    public bool TryReadAttack(out AttackData targetMove)
+    public bool TryReadAttack(out AttackData targetAttack)
     {
-        int bestMoveStrength = 0;
-        targetMove = new AttackData();
+        int bestAttackStrength = 0;
+        int attackStrength;
+        targetAttack = new AttackData();
 
         int moveSetLength = moveSet.Length;
         for (int i = 0; i < moveSetLength; i++)
         {
-            int moveStrength = bufferHandler.TestInput(moveSet[i].Input);
+            attackStrength = bufferHandler.TestInput(moveSet[i].Input);
 
-            if (moveStrength <= bestMoveStrength)
+            if (attackStrength <= bestAttackStrength)
                 continue;
 
-            bestMoveStrength = moveStrength;
-            targetMove = moveSet[i];
+            bestAttackStrength = attackStrength;
+            targetAttack = moveSet[i];
 
             // Perfect input found, no need to continue checking other moves in the moveset
-            if (bestMoveStrength == 3)
+            if (bestAttackStrength == 3)
                 break;
         }
 
-        return bestMoveStrength != 0;
+        return bestAttackStrength != 0;
     }
+
+    /// <summary>
+    /// Get latest direction input from buffer
+    /// </summary>
+    public DirectionInput GetCurrentDirection() => bufferHandler.GetCurrentDirection();
 }
 
 [System.Serializable]
@@ -101,14 +104,22 @@ public class InputBufferHandler
 
     [SerializeField] private FrameInput cRawInput;
 
+    public DirectionInput GetCurrentDirection() => cRawInput.DirectionFlag;
+
 
     #region Buffer Update/Managament
 
+    /// <summary>
+    /// Add <paramref name="flag"/> to current tick's buffered attack button inputs
+    /// </summary>
     public void UpdateCurrentInput(AttackInputFlags flag)
     {
         cRawInput.AttackFlags |= flag;
     }
-    public void UpdateCurrentDirection(DirectionInputFlag dir)
+    /// <summary>
+    /// Set <paramref name="dir"/> in current tick's buffered direction
+    /// </summary>
+    public void UpdateCurrentDirection(DirectionInput dir)
     {
         cRawInput.DirectionFlag = dir;
     }
@@ -144,7 +155,7 @@ public class InputBufferHandler
             }
 
             // If button is correct and the to test inputs direction is neutral > award 1/3 points
-            if (targetInput.DirectionFlag == DirectionInputFlag.Neutral)
+            if (targetInput.DirectionFlag == DirectionInput.Neutral)
             {
                 moveStrength = 1;
             }

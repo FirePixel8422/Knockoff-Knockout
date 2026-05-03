@@ -1,5 +1,6 @@
 #if UNITY_EDITOR
 using System;
+using Unity.Collections;
 using UnityEngine;
 
 
@@ -31,7 +32,7 @@ public class AttackDataTester : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        if (target == null) return;
+        if (target == null || target.Value.HurtBoxIds.IsNullOrEmpty()) return;
 
         int attackHitBoxCount = target.Value.HurtBoxIds.Length;
         int hitBoxCount = hitboxes.Length;

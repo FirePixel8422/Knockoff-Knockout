@@ -7,20 +7,24 @@
 public enum MovementState
 {
     /// <summary>
-    /// Fighter is standing
+    /// Fighter is not moving
     /// </summary>
-    Standing,
+    Idle,
     /// <summary>
-    /// Fighter is crouching
+    /// Fighter is walking away from opponent
     /// </summary>
-    Crouching,
+    Retreating,
 
     /// <summary>
     /// Fighter is walking towards opponent
     /// </summary>
     Pushing,
     /// <summary>
-    /// Fighter is walking away from opponent
+    /// Fighter is dashing towards or away from opponent
     /// </summary>
-    Retreating,
+    Dashing,
+    /// <summary>
+    /// Fighter is sidestepping into the foreground or background
+    /// </summary>
+    SideStepping,
 }

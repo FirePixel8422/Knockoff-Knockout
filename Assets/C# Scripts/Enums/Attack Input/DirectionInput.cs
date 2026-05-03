@@ -1,7 +1,7 @@
-﻿using System;
+﻿
 
 
-public enum DirectionInputFlag : byte
+public enum DirectionInput : byte
 {
     Neutral,
     Up,

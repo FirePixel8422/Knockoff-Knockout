@@ -5,14 +5,15 @@
 /// <summary>
 /// Result of the defender when hit by a move (attack)
 /// </summary>
-public enum GuardResult : byte
+public enum AttackResult : byte
 {
+    Missed,
+
     Hit,
-    Interrupted,
+    CounterHit,
 
     StandingBlocked,
     LowBlocked,
 
-    HighParried,
-    LowParried,
+    Parried,
 }

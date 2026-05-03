@@ -12,5 +12,5 @@ public struct FrameInput
     /// <summary>
     /// Stick Direction, ignoring diagonals
     /// </summary>
-    public DirectionInputFlag DirectionFlag;
+    public DirectionInput DirectionFlag;
 }
