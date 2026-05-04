@@ -47,11 +47,11 @@ MonoBehaviour:
   players:
   - {fileID: 0}
   - {fileID: 0}
-  joinAction: {fileID: 7203224188655383399, guid: 55b1832b565223b4f95b8569d55ed7cb,
-    type: 3}
   onJoinRumble:
     Duration: 0.15
     LowFreq: 0.75
     HighFreq: 0.75
     FadeTime: 0.15
   logInputDeviceChanges: 1
+  joinAction: {fileID: 7203224188655383399, guid: 55b1832b565223b4f95b8569d55ed7cb,
+    type: 3}

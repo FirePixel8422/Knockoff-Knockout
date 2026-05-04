@@ -156,116 +156,6 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "WASD (Keyboard)",
-                    "id": "045be784-007d-42ea-ae38-fb8bf864c739",
-                    "path": "2DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Direction",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "up",
-                    "id": "491d0acc-eb80-40f1-b160-9611cd1bd33e",
-                    "path": "<Keyboard>/w",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Mouse&Keyboard",
-                    "action": "Direction",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "098fa1d0-1f79-4d80-9b50-dba3ba977cf2",
-                    "path": "<Keyboard>/s",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Mouse&Keyboard",
-                    "action": "Direction",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "5e0cf0f5-b668-4477-9d08-d441d07bd27f",
-                    "path": "<Keyboard>/a",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Mouse&Keyboard",
-                    "action": "Direction",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "aeb2c386-c4b1-444a-a2a5-c89cb9d2b1ec",
-                    "path": "<Keyboard>/d",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Mouse&Keyboard",
-                    "action": "Direction",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "ArrowKeys (Keyboard)",
-                    "id": "8f4d3df9-56b8-4f76-9c7d-e699e7f8f086",
-                    "path": "2DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Direction",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "up",
-                    "id": "efb42d2f-ca77-42a2-8cac-bbd18e4c8995",
-                    "path": "<Keyboard>/upArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Mouse&Keyboard",
-                    "action": "Direction",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "down",
-                    "id": "7d1e5c78-0912-4621-9ee8-42d538e636f4",
-                    "path": "<Keyboard>/downArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Mouse&Keyboard",
-                    "action": "Direction",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "left",
-                    "id": "153012cd-84dd-49c1-aef0-91d8d5748eda",
-                    "path": "<Keyboard>/leftArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Mouse&Keyboard",
-                    "action": "Direction",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "4b506339-c8a3-4005-8293-06888433bd5c",
-                    "path": "<Keyboard>/rightArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Mouse&Keyboard",
-                    "action": "Direction",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
                     "name": "",
                     "id": "29b81238-fecb-41e3-9f9c-6c47f1698e3b",
                     "path": "<Gamepad>/buttonNorth",
@@ -283,17 +173,6 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Button 1",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "8c7565b1-de3a-46ad-a8f3-10b9696f056d",
-                    "path": "<Keyboard>/1",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Mouse&Keyboard",
                     "action": "Button 1",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -403,33 +282,11 @@
                 },
                 {
                     "name": "",
-                    "id": "05c59d6f-7f34-4646-9b2c-b72f8b7c67f0",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Mouse&Keyboard",
-                    "action": "Menu Exit",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "e1e21b69-eae4-4748-80a7-65ea9a964999",
                     "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Join Game",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ece56c6d-d79b-4cfb-b2a5-1ea467328f9e",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Mouse&Keyboard",
                     "action": "Join Game",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -450,20 +307,9 @@
             ]
         },
         {
-            "name": "Mouse&Keyboard",
-            "bindingGroup": "Mouse&Keyboard",
-            "devices": [
-                {
-                    "devicePath": "<Keyboard>",
-                    "isOptional": false,
-                    "isOR": false
-                },
-                {
-                    "devicePath": "<Mouse>",
-                    "isOptional": true,
-                    "isOR": false
-                }
-            ]
+            "name": "Keyboard&Mouse",
+            "bindingGroup": "Keyboard&Mouse",
+            "devices": []
         }
     ]
 }

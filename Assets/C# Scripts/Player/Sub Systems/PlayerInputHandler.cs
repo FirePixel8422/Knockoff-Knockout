@@ -12,6 +12,8 @@ public class PlayerInputHandler
     [EditorReadOnly, SerializeField] private InputBufferHandler bufferHandler;
 
 
+    public Vector2 dir;
+
     public PlayerInputHandler(AttackData[] moveSet)
     {
         this.moveSet = moveSet;
@@ -29,6 +31,8 @@ public class PlayerInputHandler
     // Called by the PlayerInput component when the directional input is performed or canceled.
     public void OnDirection(Vector2 dirVec)
     {
+        dir = dirVec;
+
         DirectionInput dirInput;
 
         if (dirVec == Vector2.zero)

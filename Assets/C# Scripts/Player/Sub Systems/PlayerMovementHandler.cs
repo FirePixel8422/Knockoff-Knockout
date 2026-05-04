@@ -10,7 +10,7 @@ public class PlayerMovementHandler
     private readonly PlayerInputHandler inputHandler;
     private readonly PlayerStateMachine stateMachine;
     private readonly Transform transform;
-    private MovementState movementState
+    private MovementState MovementState
     {
         get => stateMachine.State.MovementState;
         set => stateMachine.State.MovementState = value;
@@ -37,20 +37,19 @@ public class PlayerMovementHandler
         {
             case DirectionInput.Left:
                 targetFighterPosition -= transform.right * GlobalGameData.TICK_TIME * 12;
-                movementState = MovementState.Retreating;
+                MovementState = MovementState.Retreating;
                 break;
 
 
             case DirectionInput.Right:
                 targetFighterPosition += transform.right * GlobalGameData.TICK_TIME * 12;
-                movementState = MovementState.Pushing;
+                MovementState = MovementState.Pushing;
                 break;
 
             default:
-                movementState = MovementState.Idle;
+                MovementState = MovementState.Idle;
                 break;
-        }
-        ;
+        };
     }
     public void OnUpdate()
     {

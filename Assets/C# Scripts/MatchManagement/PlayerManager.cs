@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Controls;
-using UnityEngine.InputSystem.Utilities;
 
 
 /// <summary>
@@ -11,240 +8,52 @@ using UnityEngine.InputSystem.Utilities;
 /// </summary>
 public class PlayerManager : MonoBehaviour
 {
-    [SerializeField] private PlayerController[] players;
+    public static PlayerManager Instance { get; private set; }
+    private void Awake() => Instance = this;
+
+
+    [SerializeField] private PlayerInputRouter[] players;
     [SerializeField] private GamepadRumbleParameters onJoinRumble;
 
-    private Dictionary<InputDevice, PlayerController> deviceToPlayerMap = new(2);
-    private InputDevice desktopDevice;
+    private readonly Dictionary<PlayerInputBinder, PlayerInputRouter> binderToRouterMap = new(2);
 
 #if Enable_Debug_Systems
     [SerializeField] private bool logInputDeviceChanges = true;
 #endif
 
 
-    private IDisposable joinListener;
-
-    private void Awake()
-    {
-        desktopDevice = Keyboard.current;
-
-        InputSystem.onDeviceChange += OnDeviceChanged;
-
-        joinListener = InputSystem.onAnyButtonPress.Call(OnAnyButtonPress);
-    }
-
-    private void OnDestroy()
-    {
-        InputSystem.onDeviceChange -= OnDeviceChanged;
-
-        joinListener?.Dispose();
-    }
-
-
-    #region Player Input Callbacks
-
     /// <summary>
-    /// When a player presses the join button, try to assign their device to an available player slot.
+    /// Bind an input module (binder) to a player (router)
     /// </summary>
-    private void OnAnyButtonPress(InputControl control)
+    public void TryBindPlayerInput(PlayerInputBinder binder, InputDevice device = null)
     {
-        print("pre");
-
-        InputDevice device = control.device;
-
-        if (control is not ButtonControl)
-            return;
-
-        // Treat keyboard + mouse as one shared desktop player
-        if (device is Mouse)
+        if (binderToRouterMap.ContainsKey(binder))
         {
+            DebugLogger.Log("'" + binder.name + "' is already assigned to a player, skipping...", logInputDeviceChanges);
             return;
         }
 
-        if (device is Keyboard)
-        {
-            device = desktopDevice;
-        }
-        else if (device is not Gamepad)
-        {
-            return;
-        }
-
-        TryConnectDevice(device);
-    }
-
-    public void OnDirection(InputAction.CallbackContext ctx)
-    {
-        if (ctx.started) return;
-
-        if (GetTargetPlayer(ctx.control.device, out PlayerController player))
-        {
-            Vector2 dirVec = ctx.ReadValue<Vector2>();
-
-            player.InputHandler.OnDirection(dirVec);
-        }
-    }
-
-    public void OnButton1(InputAction.CallbackContext ctx)
-    {
-        if (!ctx.performed) return;
-
-        if (GetTargetPlayer(ctx.control.device, out PlayerController player))
-        {
-            player.InputHandler.OnButtonPressed(AttackInputFlags.B1);
-        }
-    }
-    public void OnButton2(InputAction.CallbackContext ctx)
-    {
-        if (!ctx.performed) return;
-
-        if (GetTargetPlayer(ctx.control.device, out PlayerController player))
-        {
-            player.InputHandler.OnButtonPressed(AttackInputFlags.B2);
-        }
-    }
-    public void OnButton3(InputAction.CallbackContext ctx)
-    {
-        if (!ctx.performed) return;
-
-        if (GetTargetPlayer(ctx.control.device, out PlayerController player))
-        {
-            player.InputHandler.OnButtonPressed(AttackInputFlags.B3);
-        }
-    }
-    public void OnButton4(InputAction.CallbackContext ctx)
-    {
-        if (!ctx.performed) return;
-
-        if (GetTargetPlayer(ctx.control.device, out PlayerController player))
-        {
-            player.InputHandler.OnButtonPressed(AttackInputFlags.B4);
-        }
-    }
-    public void OnButton5(InputAction.CallbackContext ctx)
-    {
-        if (!ctx.performed) return;
-
-        if (GetTargetPlayer(ctx.control.device, out PlayerController player))
-        {
-            player.InputHandler.OnButtonPressed(AttackInputFlags.B5);
-        }
-    }
-    public void OnButton6(InputAction.CallbackContext ctx)
-    {
-        if (!ctx.performed) return;
-
-        if (GetTargetPlayer(ctx.control.device, out PlayerController player))
-        {
-            player.InputHandler.OnButtonPressed(AttackInputFlags.B6);
-        }
-    }
-    public void OnButton7(InputAction.CallbackContext ctx)
-    {
-        if (!ctx.performed) return;
-
-        if (GetTargetPlayer(ctx.control.device, out PlayerController player))
-        {
-            player.InputHandler.OnButtonPressed(AttackInputFlags.B7);
-        }
-    }
-    public void OnButton8(InputAction.CallbackContext ctx)
-    {
-        if (!ctx.performed) return;
-
-        if (GetTargetPlayer(ctx.control.device, out PlayerController player))
-        {
-            player.InputHandler.OnButtonPressed(AttackInputFlags.B8);
-        }
-    }
-
-    private bool GetTargetPlayer(InputDevice device, out PlayerController player)
-    {
-        if (device is Keyboard || device is Mouse)
-        {
-            device = desktopDevice;
-        }
-
-        return deviceToPlayerMap.TryGetValue(device, out player);
-    }
-
-    #endregion
-
-
-    #region Connect/Disconnect Devices
-
-    private void TryConnectDevice(InputDevice device)
-    {
-        if (deviceToPlayerMap.ContainsKey(device))
-        {
-            DebugLogger.Log("Device " + device + " is already assigned to a player, skipping...", logInputDeviceChanges);
-            return;
-        }
-
-        PlayerController player = null;
+        PlayerInputRouter router = null;
         for (int i = 0; i < GlobalGameData.MAX_PLAYERS; i++)
         {
             if (players[i].IsAssigned) continue;
 
-            player = players[i];
-            player.IsAssigned = true;
-            player.enabled = true;
+            router = players[i];
+            binder.Bind(router);
             break;
         }
-        if (player == null)
+        if (router == null)
         {
-            DebugLogger.LogWarning("No available player slot for device " + device, logInputDeviceChanges);
+            DebugLogger.LogError("No available player slot for '" + binder.name + "' There shouldnt be more binders then routers", logInputDeviceChanges);
             return;
         }
 
-        deviceToPlayerMap[device] = player;
-        DebugLogger.Log($"Connected {device.displayName} to {player.name}", logInputDeviceChanges);
+        binderToRouterMap[binder] = router;
+        DebugLogger.Log($"Bound '{binder.name}' to {router.name}", logInputDeviceChanges);
 
-        if (device is Gamepad pad)
+        if (device != null && device is Gamepad pad)
         {
             StartCoroutine(GamepadRumble.Rumble(pad, onJoinRumble));
         }
     }
-
-    /// <summary>
-    /// When a device is disconnected, removed, or disabled, unassign it from its player slot.
-    /// </summary>
-    private void OnDeviceChanged(InputDevice device, InputDeviceChange change)
-    {
-        switch (change)
-        {
-            case InputDeviceChange.Disconnected:
-            case InputDeviceChange.Removed:
-            case InputDeviceChange.Disabled:
-                DisconnectDevice(device);
-                break;
-        }
-    }
-    private void DisconnectDevice(InputDevice device)
-    {
-        if (device is Mouse)
-        {
-            return;
-        }
-
-        if (device is Keyboard)
-        {
-            device = desktopDevice;
-        }
-
-        if (!GetTargetPlayer(device, out PlayerController player))
-        {
-            DebugLogger.LogError("errror");
-
-            return;
-        }
-
-        DebugLogger.Log($"Device disconnected: {device.displayName}", logInputDeviceChanges);
-
-        deviceToPlayerMap.Remove(device);
-        player.IsAssigned = false;
-        player.enabled = false;
-    }
-
-    #endregion
 }

@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Rendering;
 
 
 /// <summary>
@@ -21,8 +20,6 @@ public class PlayerController : FrameTickUpdateMB
     public PlayerInputHandler InputHandler => inputHandler;
     public PlayerMovementHandler MovementHandler => movementHandler;
 
-    public bool IsAssigned;
-
 
     private void Awake()
     {
@@ -33,6 +30,8 @@ public class PlayerController : FrameTickUpdateMB
         attackHandler = new PlayerAttackHandler(inputHandler, stateMachine);
 
         collisionHandler = new PlayerColliderHandler(transform);
+
+        GetComponent<PlayerInputRouter>().Init(inputHandler);
     }
 
     protected override void OnUpdate()
