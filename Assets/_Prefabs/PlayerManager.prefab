@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2853676541713439107}
   - component: {fileID: 4638663938442125716}
+  - component: {fileID: 6978140392595444865}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Untagged
@@ -47,11 +48,70 @@ MonoBehaviour:
   players:
   - {fileID: 0}
   - {fileID: 0}
+  playerColors:
+  - {r: 0.99215686, g: 0.53333336, b: 0.39607844, a: 1}
+  - {r: 0.32941177, g: 0.75686276, b: 1, a: 1}
   onJoinRumble:
     Duration: 0.15
     LowFreq: 0.75
     HighFreq: 0.75
     FadeTime: 0.15
   logInputDeviceChanges: 1
-  joinAction: {fileID: 7203224188655383399, guid: 55b1832b565223b4f95b8569d55ed7cb,
+--- !u!114 &6978140392595444865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 970020629409918045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 621567455fd1c4ceb811cc8a00b6a1a5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.InputSystem::UnityEngine.InputSystem.PlayerInputManager
+  m_NotificationBehavior: 2
+  m_MaxPlayerCount: 2
+  m_AllowJoining: 1
+  m_JoinBehavior: 1
+  m_PlayerJoinedEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4638663938442125716}
+        m_TargetAssemblyTypeName: PlayerManager, Assembly-CSharp
+        m_MethodName: OnPlayerJoined
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  m_PlayerLeftEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_JoinAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Join
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 6499272e-e984-4327-9df7-b719248915ad
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 7203224188655383399, guid: 55b1832b565223b4f95b8569d55ed7cb,
+      type: 3}
+  m_PlayerPrefab: {fileID: 4416558047975907525, guid: e50e7907cc0ddc349bb798d111c818f5,
     type: 3}
+  m_SplitScreen: 0
+  m_MaintainAspectRatioInSplitScreen: 0
+  m_FixedNumberOfSplitScreens: -1
+  m_SplitScreenRect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 1
+    height: 1
