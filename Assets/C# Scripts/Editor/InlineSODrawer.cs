@@ -9,7 +9,8 @@ public sealed class InlineSODrawer : PropertyDrawer
     {
         float height = EditorGUIUtility.singleLineHeight;
 
-        if (!property.isExpanded || property.objectReferenceValue == null)
+        // Null or collapsed = single line only
+        if (property.objectReferenceValue == null || !property.isExpanded)
         {
             return height;
         }
@@ -27,7 +28,8 @@ public sealed class InlineSODrawer : PropertyDrawer
                 continue;
             }
 
-            height += EditorGUI.GetPropertyHeight(iterator, true) + EditorGUIUtility.standardVerticalSpacing;
+            height += EditorGUI.GetPropertyHeight(iterator, true)
+                   + EditorGUIUtility.standardVerticalSpacing;
 
             enterChildren = false;
         }
@@ -46,17 +48,37 @@ public sealed class InlineSODrawer : PropertyDrawer
             EditorGUIUtility.singleLineHeight
         );
 
-        Rect foldoutRect = new Rect(
-            lineRect.x,
-            lineRect.y,
-            14f,
-            lineRect.height
-        );
+        bool hasObject = property.objectReferenceValue != null;
+
+        // Only reserve foldout space if object exists
+        float foldoutWidth = hasObject ? 14f : 0f;
+
+        if (hasObject)
+        {
+            Rect foldoutRect = new Rect(
+                lineRect.x,
+                lineRect.y,
+                foldoutWidth,
+                lineRect.height
+            );
+
+            property.isExpanded = EditorGUI.Foldout(
+                foldoutRect,
+                property.isExpanded,
+                GUIContent.none,
+                true
+            );
+        }
+        else
+        {
+            // Prevent stale expanded state when null
+            property.isExpanded = false;
+        }
 
         Rect labelRect = new Rect(
-            lineRect.x + 14f,
+            lineRect.x + foldoutWidth,
             lineRect.y,
-            EditorGUIUtility.labelWidth - 14f,
+            EditorGUIUtility.labelWidth - foldoutWidth,
             lineRect.height
         );
 
@@ -67,7 +89,6 @@ public sealed class InlineSODrawer : PropertyDrawer
             lineRect.height
         );
 
-        property.isExpanded = EditorGUI.Foldout(foldoutRect, property.isExpanded, GUIContent.none, true);
         EditorGUI.LabelField(labelRect, label);
 
         property.objectReferenceValue = EditorGUI.ObjectField(
@@ -77,7 +98,15 @@ public sealed class InlineSODrawer : PropertyDrawer
             false
         );
 
-        if (property.isExpanded && property.objectReferenceValue != null)
+        // If no object assigned, stop after normal object field
+        if (property.objectReferenceValue == null)
+        {
+            EditorGUI.EndProperty();
+            return;
+        }
+
+        // Draw inline fields only when expanded
+        if (property.isExpanded)
         {
             EditorGUI.indentLevel++;
 

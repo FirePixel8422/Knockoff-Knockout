@@ -1,6 +1,6 @@
 #if UNITY_EDITOR
 using System;
-using Unity.Collections;
+using UnityEditor;
 using UnityEngine;
 
 
@@ -9,14 +9,17 @@ using UnityEngine;
 /// </summary>
 public class AttackDataTester : MonoBehaviour
 {
-    [InlineSO, SerializeField] private AttackSO target;
+    [SerializeField] private Transform targetPlayer;
+    [InlineSO, SerializeField] private AttackSO targetData;
 
     private FastBoxCollider[] hitboxes;
 
 
     private void OnValidate()
     {
-        hitboxes = GetComponentsInChildren<FastBoxCollider>(true);
+        if (targetPlayer == null || targetData == null) return;
+
+        hitboxes = targetPlayer.GetComponentsInChildren<FastBoxCollider>(true);
 
         int hitboxCount = 0;
         for (int i = 0; i < hitboxes.Length; i++)
@@ -28,13 +31,15 @@ public class AttackDataTester : MonoBehaviour
             }
         }
         Array.Resize(ref hitboxes, hitboxCount);
+
+        EditorUtility.SetDirty(targetData);
     }
 
     private void OnDrawGizmos()
     {
-        if (target == null || target.Value.HurtBoxIds.IsNullOrEmpty()) return;
+        if (targetData == null || targetData.Value.HurtBoxIds.IsNullOrEmpty()) return;
 
-        int attackHitBoxCount = target.Value.HurtBoxIds.Length;
+        int attackHitBoxCount = targetData.Value.HurtBoxIds.Length;
         int hitBoxCount = hitboxes.Length;
         for (int i = 0; i < attackHitBoxCount; i++)
         {

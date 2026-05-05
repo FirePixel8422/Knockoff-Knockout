@@ -2,7 +2,6 @@
 using UnityEngine;
 
 
-
 public class FastBoxCollider : MonoBehaviour
 {
     [SerializeField] private int id;
