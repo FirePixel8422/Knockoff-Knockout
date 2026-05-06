@@ -17,7 +17,7 @@ MonoBehaviour:
     Damage: 1
     Knockback: 0
     Level: 2
-    HitBoxIds: 00000000
+    HurtBoxIds: 
     FrameData:
       Startup: 10
       Active: 2

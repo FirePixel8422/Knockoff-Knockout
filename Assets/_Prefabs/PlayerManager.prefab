@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 2853676541713439107}
   - component: {fileID: 4638663938442125716}
   - component: {fileID: 6978140392595444865}
+  - component: {fileID: 3434964988577358994}
+  - component: {fileID: 3131196938505597103}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Untagged
@@ -52,7 +54,7 @@ MonoBehaviour:
   - {r: 0.99215686, g: 0.53333336, b: 0.39607844, a: 1}
   - {r: 0.32941177, g: 0.75686276, b: 1, a: 1}
   onJoinRumble:
-    Duration: 0.15
+    Duration: 0.25
     LowFreq: 0.75
     HighFreq: 0.75
     FadeTime: 0.15
@@ -115,3 +117,43 @@ MonoBehaviour:
     y: 0
     width: 1
     height: 1
+--- !u!114 &3434964988577358994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 970020629409918045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 218db1b0f17f41740b2b8d1aefec6a1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ControllerAssigner
+  uiRoot: {fileID: 0}
+  controllerImages:
+  - {fileID: 0}
+  - {fileID: 0}
+  controllerSlotPositions:
+  - -400
+  - 0
+  - 400
+  fighterSlotToFighterId: 00000000ffffffff01000000
+  animationLerp: 12
+  onSelectPlayerRumble:
+    Duration: 0.15
+    LowFreq: 0.5
+    HighFreq: 0.5
+    FadeTime: 0.15
+--- !u!114 &3131196938505597103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 970020629409918045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f280c35168ef83b4684a6832a0dd742d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MatchManager
+  gamePaused: 0

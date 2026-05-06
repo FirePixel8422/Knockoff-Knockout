@@ -61,10 +61,11 @@ public class PlayerInputHandler
     /// <summary>
     /// Push all collected input from the last tick to the current one into the input buffer
     /// </summary>
-    public void CollectInputs()
-    {
-        bufferHandler.PushBuffer();
-    }
+    public void CollectInputs() => bufferHandler.PushBuffer();
+    /// <summary>
+    /// Reset all buffer inputs to default values
+    /// </summary>
+    public void ClearInputBuffer() => bufferHandler.ClearBuffer();
 
     /// <summary>
     /// Check all moves to see if input buffer correlates to one
@@ -128,13 +129,26 @@ public class InputBufferHandler
         cRawInput.DirectionFlag = dir;
     }
 
+    /// <summary>
+    /// Write collected input to buffer
+    /// </summary>
     public void PushBuffer()
     {
-        // Write collected input to buffer
         inputBuffer[index] = cRawInput;
         cRawInput.AttackFlags = AttackInputFlags.None;
 
         index.IncrementSmart(GlobalGameData.INPUT_BUFFER_SIZE);
+    }
+    /// <summary>
+    /// Reset all buffer inputs to default values
+    /// </summary>
+    public void ClearBuffer()
+    {
+        for (int i = 0; i < GlobalGameData.INPUT_BUFFER_SIZE; i++)
+        {
+            inputBuffer[i] = new FrameInput();
+        }
+        cRawInput = new FrameInput();
     }
 
     #endregion

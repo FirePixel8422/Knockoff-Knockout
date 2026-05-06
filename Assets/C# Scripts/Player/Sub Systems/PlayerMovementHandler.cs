@@ -29,7 +29,7 @@ public class PlayerMovementHandler
     }
 
 
-    public void OnFrameTick()
+    public void TickUpdate()
     {
         DirectionInput cdirFlag = inputHandler.GetCurrentDirection();
 

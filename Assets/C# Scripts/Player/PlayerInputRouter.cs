@@ -3,14 +3,6 @@
 
 public class PlayerInputRouter : MonoBehaviour
 {
-    [EditorReadOnly, SerializeField] private bool isAssigned;
-    public bool IsAssigned
-    {
-        get => isAssigned;
-        set => isAssigned = value;
-    }
-
-
     private PlayerInputHandler playerInputHandler;
 
 
@@ -20,8 +12,11 @@ public class PlayerInputRouter : MonoBehaviour
     }
 
 
+    public void OnInputDeviceLost()
+    {
+        playerInputHandler.ClearInputBuffer();
+    }
 
-    // Input Callbacks
     public void OnDirection(Vector2 dirVec)
     {
         playerInputHandler.OnDirection(dirVec);

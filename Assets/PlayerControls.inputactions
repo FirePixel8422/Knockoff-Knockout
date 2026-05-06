@@ -250,7 +250,7 @@
             "id": "fd85fef6-16b5-4849-90e6-67daee77afdc",
             "actions": [
                 {
-                    "name": "Join Game",
+                    "name": "Start",
                     "type": "Button",
                     "id": "d868f110-c2de-44c3-a263-3a4e7e79ec54",
                     "expectedControlType": "",
@@ -287,7 +287,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Join Game",
+                    "action": "Start",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -196,7 +196,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -337,8 +337,8 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
-  m_Antialiasing: 0
+  m_RenderPostProcessing: 1
+  m_Antialiasing: 1
   m_AntialiasingQuality: 2
   m_StopNaN: 0
   m_Dithering: 0
@@ -633,14 +633,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 581686779}
-  - component: {fileID: 581686780}
   m_Layer: 5
   m_Name: Controller Assignment (Parent)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &581686779
 RectTransform:
   m_ObjectHideFlags: 0
@@ -663,21 +662,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &581686780
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 581686778}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 218db1b0f17f41740b2b8d1aefec6a1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ControllerAssigner
-  controllers:
-  - {fileID: 1649518680}
-  - {fileID: 1265314489}
 --- !u!114 &707133915 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4638663938442125716, guid: 6cac0834235e2b148973d2983c240604,
@@ -740,7 +724,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.93207544, g: 0.32507408, b: 0.22334634, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -765,6 +749,52 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1265314488}
   m_CullTransparentMesh: 1
+--- !u!1 &1289473358
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1289473360}
+  - component: {fileID: 1289473359}
+  m_Layer: 0
+  m_Name: '>>AttackDataTester<<'
+  m_TagString: EditorOnly
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1289473359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289473358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bca62fb2e6046e40a081bdd934751d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AttackDataTester
+  targetPlayer: {fileID: 2018489639464893141}
+  targetData: {fileID: 11400000, guid: 09c34198734623249a305c2ec70bd826, type: 2}
+--- !u!4 &1289473360
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1289473358}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1649518679
 GameObject:
   m_ObjectHideFlags: 0
@@ -815,7 +845,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0.60952187, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1144,6 +1174,7 @@ MonoBehaviour:
       State: 0
       NextStateDelay: 0
     sequenceActive: 0
+  inputRouter: {fileID: 0}
 --- !u!1001 &2018489639464893119
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1229,18 +1260,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ebcd271199a54b4c9c844e52d4d65a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
---- !u!114 &2018489639464893135 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6393934417953728681, guid: f2199243b681d5f4a9dacff39c99612b,
+--- !u!4 &2018489639464893141 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6647871175774743337, guid: f2199243b681d5f4a9dacff39c99612b,
     type: 3}
   m_PrefabInstance: {fileID: 2018489639464893119}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 257d248b96c1dc740a4a46ee0bcf9141, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerInputRouter
 --- !u!1001 &3019749592603975892
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1396,7 +1421,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bca62fb2e6046e40a081bdd934751d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackDataTester
-  target: {fileID: 11400000, guid: 09c34198734623249a305c2ec70bd826, type: 2}
+  targetPlayer: {fileID: 0}
+  targetData: {fileID: 0}
 --- !u!114 &4250311173687583599 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4250311173971591269, guid: f2199243b681d5f4a9dacff39c99612b,
@@ -1420,7 +1446,7 @@ PrefabInstance:
     - target: {fileID: 970020629409918045, guid: 6cac0834235e2b148973d2983c240604,
         type: 3}
       propertyPath: m_Name
-      value: PlayerManager
+      value: '>>Match Management<<'
       objectReference: {fileID: 0}
     - target: {fileID: 2853676541713439107, guid: 6cac0834235e2b148973d2983c240604,
         type: 3}
@@ -1472,21 +1498,31 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4638663938442125716, guid: 6cac0834235e2b148973d2983c240604,
+    - target: {fileID: 3434964988577358994, guid: 6cac0834235e2b148973d2983c240604,
         type: 3}
-      propertyPath: onJoinRumble.Duration
-      value: 0.25
-      objectReference: {fileID: 0}
+      propertyPath: uiRoot
+      value: 
+      objectReference: {fileID: 581686778}
+    - target: {fileID: 3434964988577358994, guid: 6cac0834235e2b148973d2983c240604,
+        type: 3}
+      propertyPath: 'controllerImages.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1649518681}
+    - target: {fileID: 3434964988577358994, guid: 6cac0834235e2b148973d2983c240604,
+        type: 3}
+      propertyPath: 'controllerImages.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1265314490}
     - target: {fileID: 4638663938442125716, guid: 6cac0834235e2b148973d2983c240604,
         type: 3}
       propertyPath: 'players.Array.data[0]'
       value: 
-      objectReference: {fileID: 2018489639464893135}
+      objectReference: {fileID: 2018489639464893120}
     - target: {fileID: 4638663938442125716, guid: 6cac0834235e2b148973d2983c240604,
         type: 3}
       propertyPath: 'players.Array.data[1]'
       value: 
-      objectReference: {fileID: 9196834861967141958}
+      objectReference: {fileID: 4250311173687583599}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1871,18 +1907,6 @@ Transform:
   - {fileID: 5322213981960574494}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &9196834861967141958 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6393934417953728681, guid: f2199243b681d5f4a9dacff39c99612b,
-    type: 3}
-  m_PrefabInstance: {fileID: 301392650}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 257d248b96c1dc740a4a46ee0bcf9141, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerInputRouter
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1892,7 +1916,8 @@ SceneRoots:
   - {fileID: 2018489639464893119}
   - {fileID: 301392650}
   - {fileID: 9192624255695966380}
-  - {fileID: 4599025390890344103}
   - {fileID: 3019749592603975892}
   - {fileID: 129239200}
   - {fileID: 1922440322}
+  - {fileID: 1289473360}
+  - {fileID: 4599025390890344103}

@@ -1,15 +1,23 @@
-﻿using System.Collections;
+﻿using Fire_Pixel.Utility;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// Static class for setting gamepad rumble.
+/// </summary>
 public static class GamepadRumble
 {
-    public static IEnumerator Rumble(Gamepad pad, GamepadRumbleParameters vibrateParams)
+    /// <summary>
+    /// Set controller rumble on <paramref name="pad"/> with settings from <paramref name="vibrateParams"/>.
+    /// </summary>
+    public static void SetRumble(Gamepad pad, GamepadRumbleParameters vibrateParams)
     {
-        if (pad == null)
-        {
-            yield break;
-        }
+        CoroutineRunner.Instance.StartCoroutine(RumbleSequence(pad, vibrateParams));
+    }
+    private static IEnumerator RumbleSequence(Gamepad pad, GamepadRumbleParameters vibrateParams)
+    {
+        if (pad == null) yield break;
 
         vibrateParams.LowFreq = Mathf.Clamp01(vibrateParams.LowFreq);
         vibrateParams.HighFreq = Mathf.Clamp01(vibrateParams.HighFreq);
@@ -23,7 +31,7 @@ public static class GamepadRumble
 
         while (t < vibrateParams.FadeTime)
         {
-            t += Time.deltaTime;
+            t += Time.unscaledDeltaTime;
 
             float alpha = 1f - (t / vibrateParams.FadeTime);
             if (alpha < 0f)

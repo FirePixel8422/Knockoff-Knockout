@@ -123,7 +123,6 @@ GameObject:
   - component: {fileID: 4250311173971591269}
   - component: {fileID: 7012654021298077395}
   - component: {fileID: 9196834861683052340}
-  - component: {fileID: 1041433838694975234}
   - component: {fileID: 6393934417953728681}
   m_Layer: 0
   m_Name: Player
@@ -335,19 +334,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1041433838694975234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8383564846585285421}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1bca62fb2e6046e40a081bdd934751d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AttackDataTester
-  target: {fileID: 11400000, guid: 09c34198734623249a305c2ec70bd826, type: 2}
 --- !u!114 &6393934417953728681
 MonoBehaviour:
   m_ObjectHideFlags: 0

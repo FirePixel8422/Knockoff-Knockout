@@ -48,7 +48,7 @@ public class PlayerStateMachine
     /// <summary>
     /// Update animator and tick down stun states
     /// </summary>
-    public void OnFrameTick()
+    public void TickUpdate()
     {
         if (HitStop > 0)
         {

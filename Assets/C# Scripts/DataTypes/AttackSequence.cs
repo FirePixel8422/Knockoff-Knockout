@@ -23,7 +23,7 @@ public struct AttackSequence
     /// <summary>
     /// Tick down <see cref="NextStateDelay"/> and update to next state accordingly. Returns whether sequence has finished
     /// </summary>
-    public void OnFrameTick(out bool sequenceFinished)
+    public void TickUpdate(out bool isSequenceStillActive)
     {
         NextStateDelay -= 1;
 
@@ -42,7 +42,7 @@ public struct AttackSequence
             };
         }
 
-        sequenceFinished = State == AttackProgressionState.Ended;
+        isSequenceStillActive = State != AttackProgressionState.Ended;
     }
 
     /// <summary>

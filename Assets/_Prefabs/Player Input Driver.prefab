@@ -216,7 +216,19 @@ MonoBehaviour:
     m_ActionId: 2f30f334-8381-4d00-b339-4c5af6bbf8c3
     m_ActionName: 'Gameplay/Button 8[/DualShock4GamepadHID/leftTrigger,/DualShock4GamepadHID1/leftTrigger]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2166894028991553487}
+        m_TargetAssemblyTypeName: PlayerInputBinder, Assembly-CSharp
+        m_MethodName: OnStart
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: d868f110-c2de-44c3-a263-3a4e7e79ec54
     m_ActionName: 'Misc/Join Game[/DualShock4GamepadHID/start,/DualShock4GamepadHID1/start]'
   - m_PersistentCalls:
@@ -225,7 +237,7 @@ MonoBehaviour:
     m_ActionName: 'Misc/Menu Exit[/DualShock4GamepadHID/buttonEast,/DualShock4GamepadHID1/buttonEast]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Gameplay
+  m_DefaultActionMap: 
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &2166894028991553487
@@ -240,7 +252,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce4929492ddb98a499b93aaa5a5c317c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInputBinder
-  playerInput: {fileID: 0}
   playerInputRouter: {fileID: 0}
   isAssigned: 0
   playerId: 0
