@@ -8,7 +8,7 @@
 [System.Serializable]
 public struct FighterState
 {
-    public GroundState GroundState;
+    public StanceState GroundState;
     public MovementState MovementState;
     public CombatState CombatState;
 

@@ -124,11 +124,15 @@ public class PlayerManager : FrameTickUpdateMB
     {
         for (int i = 0; i < GlobalGameData.MAX_PLAYERS; i++)
         {
-            players[i].TickUpdateAttackIntersections();
+            players[i].PreTickUpdate();
         }
         for (int i = 0; i < GlobalGameData.MAX_PLAYERS; i++)
         {
-            players[i].TickUpdateAttack();
+            players[i].TickUpdate();
+        }
+        for (int i = 0; i < GlobalGameData.MAX_PLAYERS; i++)
+        {
+            players[i].PostTickUpdate();
         }
     }
 }

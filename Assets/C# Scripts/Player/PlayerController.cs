@@ -47,7 +47,7 @@ public class PlayerController : FrameTickUpdateMB
         movementHandler.OnUpdate();
     }
 
-    public void TickUpdateAttackIntersections()
+    public void PreTickUpdate()
     {
         // Check if a possible active attack hit the opponent. (attackers perspective)
         if (attackHandler.CheckAttackIntersection(opponent, out AttackResult result))
@@ -68,9 +68,16 @@ public class PlayerController : FrameTickUpdateMB
 
         return attackResult;
     }
-    public void TickUpdateAttack()
+    public void TickUpdate()
     {
-        attackHandler.CheckAndResolveAttackInput();
+        attackHandler.TickUpdateAttackSequence();
+
+        movementHandler.TickUpdateMovement();
+    }
+
+    public void PostTickUpdate()
+    {
+
     }
 
     //// Core tick loop.

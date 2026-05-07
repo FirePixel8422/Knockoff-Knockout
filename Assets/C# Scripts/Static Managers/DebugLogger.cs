@@ -6,9 +6,9 @@
 /// </summary>
 public static class DebugLogger
 {
-    private const string SRC = GlobalGameData.DEBUG_LOGGER_SRC;
+    private const string SDS = GlobalGameData.DEBUG_LOGGER_SDS;
 
-    [System.Diagnostics.Conditional(SRC)]
+    [System.Diagnostics.Conditional(SDS)]
     public static void Log(object message, bool logCondition = true)
     {
         if (logCondition)
@@ -17,7 +17,7 @@ public static class DebugLogger
         }
     }
 
-    [System.Diagnostics.Conditional(SRC)]
+    [System.Diagnostics.Conditional(SDS)]
     public static void LogWarning(object message, bool logCondition = true)
     {
         if (logCondition)
@@ -26,7 +26,7 @@ public static class DebugLogger
         }
     }
 
-    [System.Diagnostics.Conditional(SRC)]
+    [System.Diagnostics.Conditional(SDS)]
     public static void LogError(object message, bool logCondition = true)
     {
         if (logCondition)
@@ -35,7 +35,7 @@ public static class DebugLogger
         }
     }
 
-    [System.Diagnostics.Conditional(SRC)]
+    [System.Diagnostics.Conditional(SDS)]
     public static void Throw(object message, bool throwCondition = true)
     {
         if (throwCondition)

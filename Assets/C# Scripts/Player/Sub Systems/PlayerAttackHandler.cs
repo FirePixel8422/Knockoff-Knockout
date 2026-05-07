@@ -26,7 +26,8 @@ public class PlayerAttackHandler
         this.colliderHandler = colliderHandler;
     }
 
-    #region TickUpdate AttackIntersection and Attack Result Handling
+
+    #region AttackIntersection and Attack Result Handling
 
     /// <summary>
     ///If any move is active from this fighter (attacker perpective), check collision between any active hurtboxes with the opponents hitboxes.
@@ -87,7 +88,7 @@ public class PlayerAttackHandler
         }
 
         // If defender is crouching, they blocks lows, duck highs but lose to mids
-        if (defenderState.GroundState == GroundState.Crouching)
+        if (defenderState.GroundState == StanceState.Crouching)
         {
             return attackType switch
             {
@@ -101,7 +102,7 @@ public class PlayerAttackHandler
             };
         }
         // If defender is standing
-        if (defenderState.GroundState == GroundState.Standing)
+        if (defenderState.GroundState == StanceState.Standing)
         {
             return defenderState.MovementState switch
             {
@@ -131,7 +132,7 @@ public class PlayerAttackHandler
     /// <summary>
     /// Tick down active attack sequence or try creating a new one if there is no active on anymore.
     /// </summary>
-    public void CheckAndResolveAttackInput()
+    public void TickUpdateAttackSequence()
     {
         if (isSequenceActive)
         {

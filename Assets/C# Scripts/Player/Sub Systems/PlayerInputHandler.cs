@@ -12,8 +12,6 @@ public class PlayerInputHandler
     [EditorReadOnly, SerializeField] private InputBufferHandler bufferHandler;
 
 
-    public Vector2 dir;
-
     public PlayerInputHandler(AttackData[] moveSet)
     {
         this.moveSet = moveSet;
@@ -23,16 +21,18 @@ public class PlayerInputHandler
     
     #region Player Input Callbacks
 
-    // Called by the PlayerInput component when an input is performed or canceled, with that corresponding button as AttackInputFlag
+    /// <summary>
+    /// Send button input <paramref name="flag"/> to the input buffer
+    /// </summary>
     public void OnButtonPressed(AttackInputFlags flag)
     {
         bufferHandler.UpdateCurrentInput(flag);
     }
-    // Called by the PlayerInput component when the directional input is performed or canceled.
+    /// <summary>
+    /// Send direction input <paramref name="dirVec"/> to the input buffer
+    /// </summary>
     public void OnDirection(Vector2 dirVec)
     {
-        dir = dirVec;
-
         DirectionInput dirInput;
 
         if (dirVec == Vector2.zero)
@@ -57,6 +57,8 @@ public class PlayerInputHandler
 
     #endregion
 
+
+    #region Input Buffer Interaction
 
     /// <summary>
     /// Push all collected input from the last tick to the current one into the input buffer
@@ -96,9 +98,16 @@ public class PlayerInputHandler
     }
 
     /// <summary>
+    /// Check if there is a sidestep input in the buffer, if so return it as 
+    /// </summary>
+    /// <returns></returns>
+    public bool TryReadSideStep(out bool isSideStepUp) => bufferHandler.TestSideStep(out isSideStepUp);
+    /// <summary>
     /// Get latest direction input from buffer
     /// </summary>
     public DirectionInput GetCurrentDirection() => bufferHandler.GetCurrentDirection();
+
+    #endregion
 }
 
 [System.Serializable]
@@ -163,6 +172,7 @@ public class InputBufferHandler
         int bufferIndex = index;
         bufferIndex.DecrementSmart(GlobalGameData.INPUT_BUFFER_SIZE);
 
+        // Loop over whole buffer starting from current index all the way back to it
         for (int i = 0; i < GlobalGameData.INPUT_BUFFER_SIZE; i++)
         {
             // Check if buffered input contains the same attack buttons, if not > next buffer input
@@ -193,5 +203,52 @@ public class InputBufferHandler
             bufferIndex.DecrementSmart(GlobalGameData.INPUT_BUFFER_SIZE);
         }
         return moveStrength;
+    }
+
+    private const int SIDE_STEP_MAX_HOLD_TICKS = 6;
+
+    public bool TestSideStep(out bool isSideStepUp)
+    {
+        int dirHeldTickCount = 0;
+        DirectionInput activeDir = DirectionInput.Neutral;
+
+        int bufferIndex = index;
+        bufferIndex.DecrementSmart(GlobalGameData.INPUT_BUFFER_SIZE);
+
+        // Loop over whole buffer starting from current index all the way back to it
+        for (int i = 0; i < GlobalGameData.INPUT_BUFFER_SIZE; i++)
+        {
+            DirectionInput currentDir = inputBuffer[bufferIndex].DirectionFlag;
+
+            if (currentDir == DirectionInput.Up || currentDir == DirectionInput.Down)
+            {
+                // If dir changed compared to previous checked tick, reset dirHeldTickCount to 0
+                if (activeDir != currentDir)
+                {
+                    dirHeldTickCount = 0;
+                    activeDir = currentDir;
+                }
+
+                dirHeldTickCount += 1;
+            }
+            else if (currentDir == DirectionInput.Neutral)
+            {
+                // Check if dir was held long enough, but not too long for it to be considered a sidestep
+                if (dirHeldTickCount > 0 && dirHeldTickCount <= SIDE_STEP_MAX_HOLD_TICKS)
+                {
+                    isSideStepUp = activeDir == DirectionInput.Up;
+                    return true;
+                }
+
+                // If no sidestep input was decided, reset dirHeldTickCount
+                dirHeldTickCount = 0;
+                activeDir = DirectionInput.Neutral;
+            }
+
+            bufferIndex.DecrementSmart(GlobalGameData.INPUT_BUFFER_SIZE);
+        }
+
+        isSideStepUp = false;
+        return false;
     }
 }

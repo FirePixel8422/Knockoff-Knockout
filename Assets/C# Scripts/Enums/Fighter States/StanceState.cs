@@ -4,7 +4,7 @@
 /// <summary>
 /// State describing the stance of the fighter, standing or crouched
 /// </summary>
-public enum GroundState
+public enum StanceState
 {
     /// <summary>
     /// Fighter is standing

@@ -10,11 +10,6 @@ public class PlayerMovementHandler
     private readonly PlayerInputHandler inputHandler;
     private readonly PlayerStateMachine stateMachine;
     private readonly Transform transform;
-    private MovementState MovementState
-    {
-        get => stateMachine.State.MovementState;
-        set => stateMachine.State.MovementState = value;
-    }
 
     private Vector3 targetFighterPosition;
 
@@ -29,27 +24,26 @@ public class PlayerMovementHandler
     }
 
 
-    public void TickUpdate()
+    /// <summary>
+    /// Check for movement input in current tick buffer and resolve it
+    /// </summary>
+    public void TickUpdateMovement()
     {
         DirectionInput cdirFlag = inputHandler.GetCurrentDirection();
 
-        switch (cdirFlag)
+        (MovementState movementState, Vector3 addedMovement) = cdirFlag switch
         {
-            case DirectionInput.Left:
-                targetFighterPosition -= transform.right * GlobalGameData.TICK_TIME * 12;
-                MovementState = MovementState.Retreating;
-                break;
+            DirectionInput.Left =>
+                (MovementState.Retreating, -transform.right * GlobalGameData.TICK_TIME * 12),
 
 
-            case DirectionInput.Right:
-                targetFighterPosition += transform.right * GlobalGameData.TICK_TIME * 12;
-                MovementState = MovementState.Pushing;
-                break;
+            DirectionInput.Right =>
+                (MovementState.Pushing, transform.right * GlobalGameData.TICK_TIME * 12),
 
-            default:
-                MovementState = MovementState.Idle;
-                break;
+            _ =>
+                (MovementState.Idle, Vector3.zero),
         };
+        stateMachine.SetMovementState(movementState);
     }
     public void OnUpdate()
     {

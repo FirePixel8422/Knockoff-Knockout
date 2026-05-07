@@ -7,8 +7,12 @@
 [System.Serializable]
 public class PlayerStateMachine
 {
-    public FighterState State;
-    [SerializeField] private FighterState bufferedState;
+    [SerializeField] private FighterState state;
+    public FighterState State => state;
+    public void SetMovementState(MovementState movementState)
+    {
+        state.MovementState = movementState;
+    }
 
     public int HitStop;
 
@@ -30,8 +34,26 @@ public class PlayerStateMachine
         anim.enabled = false;
     }
 
-    public void ResolveAttack(AttackData move, bool isTarget)
+    public void ResolveAttack(AttackData move, AttackResult result, bool isTarget)
     {
+        switch (result)
+        {
+            case AttackResult.Missed:
+                return;
+
+            case AttackResult.Parried:
+                HitStop = GameRules.CombatSettings.Parry.HitStop;
+                if (!isTarget)
+                {
+                    HitStun = GameRules.CombatSettings.Parry.HitStun;
+                }
+                break;
+
+
+            default:
+
+                break;
+        }
         HitStop += move.FrameData.HitStop;
 
         if (isTarget)
@@ -63,17 +85,13 @@ public class PlayerStateMachine
         BlockStun = Mathf.Clamp(BlockStun - 1, 0, int.MaxValue);
 
         // If player was stunned and just recovered, set state to buffered state
-        if (wasStunned && (IsStunned == false))
-        {
-            SetFighterState(bufferedState);
-        }
+        //if (wasStunned && (IsStunned == false))
+        //{
+        //    SetFighterState(bufferedState);
+        //}
 
         anim.speed = 1;
         anim.Update(GlobalGameData.TICK_TIME);
-    }
-    public void SetFighterState(FighterState newState)
-    {
-        State = newState;
     }
     public void PlayAnimation(int animHash, int transitionFrames = 0, int layer = 0)
     {

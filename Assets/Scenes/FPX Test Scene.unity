@@ -1084,6 +1084,74 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &1349267185177400257
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6680771207272912712, guid: 847e6b649689b934c9fd1ba9fec323e4,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6680771207272912712, guid: 847e6b649689b934c9fd1ba9fec323e4,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6680771207272912712, guid: 847e6b649689b934c9fd1ba9fec323e4,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6680771207272912712, guid: 847e6b649689b934c9fd1ba9fec323e4,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6680771207272912712, guid: 847e6b649689b934c9fd1ba9fec323e4,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6680771207272912712, guid: 847e6b649689b934c9fd1ba9fec323e4,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6680771207272912712, guid: 847e6b649689b934c9fd1ba9fec323e4,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6680771207272912712, guid: 847e6b649689b934c9fd1ba9fec323e4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6680771207272912712, guid: 847e6b649689b934c9fd1ba9fec323e4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6680771207272912712, guid: 847e6b649689b934c9fd1ba9fec323e4,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6809299150361545309, guid: 847e6b649689b934c9fd1ba9fec323e4,
+        type: 3}
+      propertyPath: m_Name
+      value: '>>Data Initializer<<'
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 847e6b649689b934c9fd1ba9fec323e4, type: 3}
 --- !u!114 &1814699878627556320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1099,11 +1167,7 @@ MonoBehaviour:
   opponent: {fileID: 2018489639464893120}
   moveSetSO: {fileID: 11400000, guid: 0fef3c80fa41e8e49a9cb3b36f9bc920, type: 2}
   stateMachine:
-    State:
-      GroundState: 0
-      MovementState: 0
-      CombatState: 0
-    bufferedState:
+    state:
       GroundState: 0
       MovementState: 0
       CombatState: 0
@@ -1142,7 +1206,6 @@ MonoBehaviour:
       cRawInput:
         AttackFlags: 0
         DirectionFlag: 0
-    dir: {x: 0, y: 0}
   attackHandler:
     currentSequence:
       Attack:
@@ -1173,7 +1236,7 @@ MonoBehaviour:
         AdvantageOnBlock: 0
       State: 0
       NextStateDelay: 0
-    sequenceActive: 0
+    isSequenceActive: 0
   inputRouter: {fileID: 0}
 --- !u!1001 &2018489639464893119
 PrefabInstance:
@@ -1921,3 +1984,4 @@ SceneRoots:
   - {fileID: 1922440322}
   - {fileID: 1289473360}
   - {fileID: 4599025390890344103}
+  - {fileID: 1349267185177400257}
