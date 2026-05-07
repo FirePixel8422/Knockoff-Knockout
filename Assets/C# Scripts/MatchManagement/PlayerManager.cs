@@ -122,6 +122,8 @@ public class PlayerManager : FrameTickUpdateMB
     // TickUpdate players tick dependent logic in order.
     protected override void OnTickUpdate()
     {
+        if (MatchManager.Instance.GamePaused) return;
+
         for (int i = 0; i < GlobalGameData.MAX_PLAYERS; i++)
         {
             players[i].PreTickUpdate();

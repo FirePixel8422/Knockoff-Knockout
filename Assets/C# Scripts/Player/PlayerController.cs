@@ -68,7 +68,7 @@ public class PlayerController : FrameTickUpdateMB
 
         return attackResult;
     }
-    public void TickUpdate()
+    public void TickUpdate()    
     {
         attackHandler.TickUpdateAttackSequence();
 

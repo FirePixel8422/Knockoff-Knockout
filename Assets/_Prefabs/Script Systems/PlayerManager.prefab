@@ -58,7 +58,7 @@ MonoBehaviour:
     LowFreq: 0.75
     HighFreq: 0.75
     FadeTime: 0.15
-  logInputDeviceChanges: 1
+  logInputDeviceChanges: 0
 --- !u!114 &6978140392595444865
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -78,6 +78,8 @@ public class ControllerAssigner : UpdateMonoBehaviour
             return;
         }
 
+        DebugLogger.Log("Assigned Input Device " + playerInput.name, PlayerManager.Instance.LogInputDeviceChanges);
+
         deviceToIdMap[playerInput.devices[0]] = freeId;
 
         playerInput.actions["Direction"].performed += OnDirection;
@@ -93,6 +95,8 @@ public class ControllerAssigner : UpdateMonoBehaviour
     public void RemoveInputDevice(PlayerInput playerInput)
     {
         InputDevice device = playerInput.devices[0];
+
+        DebugLogger.Log("Removed Input Device " + playerInput.name, PlayerManager.Instance.LogInputDeviceChanges);
 
         if (deviceToIdMap.TryGetValue(device, out int targetId))
         {
@@ -279,4 +283,32 @@ public class ControllerAssigner : UpdateMonoBehaviour
         target.rectTransform.localPosition = pos;
         target.color = color;
     }
+
+
+    private void OnDestroy() => TryCleanupInputEvents();
+    private void TryCleanupInputEvents()
+    {
+        foreach (var kvp in deviceToIdMap)
+        {
+            PlayerInput playerInput = PlayerInput.GetPlayerByIndex(kvp.Value);
+            if (playerInput == null)
+            {
+#if UNITY_EDITOR
+                cleanupFails += 1;
+                DebugLogger.LogError("Critical Memmory Error, Events not cleaned up...", cleanupFails == 2);
+#endif
+                return;
+            }
+
+            playerInput.actions["Direction"].performed -= OnDirection;
+            playerInput.actions["Direction"].canceled -= OnDirection;
+            playerInput.actions["Start"].performed -= OnStart;
+        }
+    }
+
+#if UNITY_EDITOR
+    private int cleanupFails;
+
+    private void OnApplicationQuit() => TryCleanupInputEvents();
+#endif
 }
