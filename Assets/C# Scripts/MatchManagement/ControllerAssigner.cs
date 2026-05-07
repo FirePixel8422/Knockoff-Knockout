@@ -48,7 +48,6 @@ public class ControllerAssigner : UpdateMonoBehaviour
         {
             controllerImages[i].gameObject.SetActiveSmart(usedPlayerIds[i]);
         }
-
     }
     public void EndControllerAssignment()
     {
@@ -82,7 +81,7 @@ public class ControllerAssigner : UpdateMonoBehaviour
         deviceToIdMap[playerInput.devices[0]] = freeId;
 
         playerInput.actions["Direction"].performed += OnDirection;
-        playerInput.actions["Direction"].performed += OnDirection;
+        playerInput.actions["Direction"].canceled += OnDirection;
         playerInput.actions["Start"].performed += OnStart;
 
         playerInput.SwitchCurrentActionMap("Gameplay");

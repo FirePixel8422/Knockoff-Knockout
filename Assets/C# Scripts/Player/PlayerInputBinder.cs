@@ -48,7 +48,7 @@ public class PlayerInputBinder : MonoBehaviour
     {
         // Send removal to custom systems first before destroying the input device.
         ControllerAssigner.Instance.RemoveInputDevice(playerInput);
-        DebugLogger.Log($"Device {playerInput.devices[0].displayName} Lost, destroying input driver", PlayerManager.Instance.LogInputDeviceChanges);
+        DebugLogger.Log($"Device {playerInput.devices[0].displayName} lost, destroying input driver", PlayerManager.Instance.LogInputDeviceChanges);
 
         // Send destroy call to playermanager after 1 frame to give custom systems a chance to execute code while the input device is still alive.
         StartCoroutine(HandleDisconnect(playerInput));
