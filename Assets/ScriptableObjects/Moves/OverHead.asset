@@ -14,27 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AttackSO
   Value:
     AnimationName: OverHead
+    GeneratedAnimHash: -410435135
+    Lunge: 0
     Damage: 1
     Knockback: 0
     Level: 2
-    HitBoxIds: 
+    HurtBoxIds: 
     FrameData:
       Startup: 10
       Active: 2
       Recovery: 40
-      CancelWindow:
-        x: 0
-        y: 0
+      CancelWindow: 0
       HitStun: 20
       BlockStun: 14
-      CounterHitBonus: 0
+      CounterHitStun: 0
       HitStop: 8
       BlockStop: 4
     Input:
-      AttackFlags: 1
-      DirectionFlag: 2
+      AttackFlags: 2
+      DirectionFlag: 0
     StringTransitions: []
-    GeneratedAnimHash: -410435135
     TotalAttackDuration: 52
     AdvantageOnHit: -20
     AdvantageOnBlock: -26
+    AdvantageOnCounter: -40

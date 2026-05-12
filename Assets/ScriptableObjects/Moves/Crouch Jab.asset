@@ -10,31 +10,31 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b862d7d41f8e184187976caf926811d, type: 3}
-  m_Name: LowKick
+  m_Name: Crouch Jab
   m_EditorClassIdentifier: Assembly-CSharp::AttackSO
   Value:
-    AnimationName: LowKick
-    GeneratedAnimHash: 859106820
-    Lunge: 0
+    AnimationName: Jab
     Damage: 1
     Knockback: 0
-    Level: 0
-    HurtBoxIds: 
+    Level: 1
+    HurtBoxIds: 01000000
     FrameData:
       Startup: 12
       Active: 2
       Recovery: 14
-      CancelWindow: 0
-      HitStun: 18
-      BlockStun: 8
-      CounterHitStun: 0
+      CancelWindow:
+        x: 0
+        y: 0
+      HitStun: 20
+      BlockStun: 12
+      CounterHitBonus: 0
       HitStop: 8
       BlockStop: 4
     Input:
-      AttackFlags: 4
+      AttackFlags: 1
       DirectionFlag: 3
     StringTransitions: []
+    GeneratedAnimHash: 1561758614
     TotalAttackDuration: 28
-    AdvantageOnHit: 4
-    AdvantageOnBlock: -6
-    AdvantageOnCounter: -14
+    AdvantageOnHit: 6
+    AdvantageOnBlock: -2
