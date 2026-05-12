@@ -406,21 +406,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1889299610588722292, guid: 2d3306922c09fbb40bfb4bb8ef641979,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1889299610588722292, guid: 2d3306922c09fbb40bfb4bb8ef641979,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2824954183565928960, guid: 2d3306922c09fbb40bfb4bb8ef641979,
-        type: 3}
-      propertyPath: m_TargetGraphic
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 3171119466656694304, guid: 2d3306922c09fbb40bfb4bb8ef641979,
         type: 3}
       propertyPath: m_Pivot.x
@@ -521,25 +506,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4719682769174332474, guid: 2d3306922c09fbb40bfb4bb8ef641979,
-        type: 3}
-      propertyPath: m_TargetGraphic
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 5958848363558881620, guid: 2d3306922c09fbb40bfb4bb8ef641979,
         type: 3}
       propertyPath: m_Name
       value: HUD
-      objectReference: {fileID: 0}
-    - target: {fileID: 7701649501502819775, guid: 2d3306922c09fbb40bfb4bb8ef641979,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7701649501502819775, guid: 2d3306922c09fbb40bfb4bb8ef641979,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
