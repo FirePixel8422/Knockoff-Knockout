@@ -1,5 +1,55 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &126971433549659608
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1357852715577626544}
+  - component: {fileID: 6388775629773110502}
+  m_Layer: 0
+  m_Name: Hitboxes (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1357852715577626544
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 126971433549659608}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.20337246, y: -0.061023146, z: -0.04119136, w: 0.97632945}
+  m_LocalPosition: {x: -0.003, y: 0.112, z: -0.006}
+  m_LocalScale: {x: 0.9999702, y: 1.0051498, z: 0.99492}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5861820830753710211}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6388775629773110502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 126971433549659608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 1
+  halfSize:
+    x: 0.1
+    y: 0.1
+    z: 0.1
 --- !u!1 &205786206344463953
 GameObject:
   m_ObjectHideFlags: 0
@@ -10,9 +60,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1064448232984729368}
   - component: {fileID: 7102855956738101009}
-  - component: {fileID: 1419313951722446845}
   m_Layer: 0
-  m_Name: Hurt/Hitboxes (1)
+  m_Name: Hitboxes (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,24 +96,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
   id: 0
   colliderType: 1
-  halfSize:
-    x: 0.05
-    y: 0.05
-    z: 0.05
---- !u!114 &1419313951722446845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 205786206344463953}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
-  id: 0
-  colliderType: 2
   halfSize:
     x: 0.05
     y: 0.05
@@ -148,9 +179,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7996797310738642940}
   - component: {fileID: 7151240385439087908}
-  - component: {fileID: 7018409500402999878}
   m_Layer: 0
-  m_Name: Hurt/Hitboxes
+  m_Name: Hitboxes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -189,24 +219,6 @@ MonoBehaviour:
     x: 0.06
     y: 0.06
     z: 0.06
---- !u!114 &7018409500402999878
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 679404655205308566}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
-  id: 0
-  colliderType: 2
-  halfSize:
-    x: 0.06
-    y: 0.06
-    z: 0.06
 --- !u!1 &1083334587766134051
 GameObject:
   m_ObjectHideFlags: 0
@@ -217,9 +229,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5535785285345492940}
   - component: {fileID: 6098792166017571923}
-  - component: {fileID: 5914690768403776059}
   m_Layer: 0
-  m_Name: Hurt/Hitboxes (1)
+  m_Name: Hitboxes (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -254,24 +265,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
   id: 0
   colliderType: 1
-  halfSize:
-    x: 0.05
-    y: 0.05
-    z: 0.05
---- !u!114 &5914690768403776059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1083334587766134051}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
-  id: 0
-  colliderType: 2
   halfSize:
     x: 0.05
     y: 0.05
@@ -355,9 +348,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1369534706077477508}
   - component: {fileID: 2212816535420253503}
-  - component: {fileID: 2688612705263997989}
   m_Layer: 0
-  m_Name: Hurt/Hitboxes (2)
+  m_Name: Hitboxes (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -392,24 +384,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
   id: 0
   colliderType: 1
-  halfSize:
-    x: 0.1
-    y: 0.1
-    z: 0.1
---- !u!114 &2688612705263997989
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1838327128640715377}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
-  id: 0
-  colliderType: 2
   halfSize:
     x: 0.1
     y: 0.1
@@ -493,9 +467,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1020454937910794131}
   - component: {fileID: 1574238758459273528}
-  - component: {fileID: 2333784164191523845}
   m_Layer: 0
-  m_Name: Hurt/Hitboxes (2)
+  m_Name: Hitboxes (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -530,24 +503,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
   id: 0
   colliderType: 1
-  halfSize:
-    x: 0.04
-    y: 0.04
-    z: 0.04
---- !u!114 &2333784164191523845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2017989821624995675}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
-  id: 0
-  colliderType: 2
   halfSize:
     x: 0.04
     y: 0.04
@@ -700,9 +655,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1637596137181952630}
   - component: {fileID: 7423551084806506838}
-  - component: {fileID: 2050132987110202212}
   m_Layer: 0
-  m_Name: Hurt/Hitboxes
+  m_Name: Hitboxes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -741,24 +695,6 @@ MonoBehaviour:
     x: 0.08
     y: 0.08
     z: 0.08
---- !u!114 &2050132987110202212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2755472557945903614}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
-  id: 0
-  colliderType: 2
-  halfSize:
-    x: 0.08
-    y: 0.08
-    z: 0.08
 --- !u!1 &3059838646154103429
 GameObject:
   m_ObjectHideFlags: 0
@@ -771,7 +707,7 @@ GameObject:
   - component: {fileID: 2498024745786126775}
   - component: {fileID: 4899884215123148710}
   m_Layer: 0
-  m_Name: Hurt/Hitboxes (1)
+  m_Name: Hitboxes (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -838,9 +774,8 @@ GameObject:
   m_Component:
   - component: {fileID: 4579186334680026729}
   - component: {fileID: 2703809353310126172}
-  - component: {fileID: 6338571583094256532}
   m_Layer: 0
-  m_Name: Hurt/Hitboxes
+  m_Name: Hitboxes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -879,24 +814,6 @@ MonoBehaviour:
     x: 0.05
     y: 0.05
     z: 0.05
---- !u!114 &6338571583094256532
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4234834745102053757}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
-  id: 0
-  colliderType: 2
-  halfSize:
-    x: 0.05
-    y: 0.05
-    z: 0.05
 --- !u!1 &4525074385060816027
 GameObject:
   m_ObjectHideFlags: 0
@@ -907,9 +824,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2846259901180450172}
   - component: {fileID: 1190422526504072268}
-  - component: {fileID: 5246844810486022813}
   m_Layer: 0
-  m_Name: Hurt/Hitboxes (1)
+  m_Name: Hitboxes (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -948,24 +864,6 @@ MonoBehaviour:
     x: 0.08
     y: 0.08
     z: 0.08
---- !u!114 &5246844810486022813
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4525074385060816027}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
-  id: 0
-  colliderType: 2
-  halfSize:
-    x: 0.08
-    y: 0.08
-    z: 0.08
 --- !u!1 &4978997305782540251
 GameObject:
   m_ObjectHideFlags: 0
@@ -976,9 +874,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5539572536717564427}
   - component: {fileID: 5190536397661228751}
-  - component: {fileID: 2910389006188187492}
   m_Layer: 0
-  m_Name: Hurt/Hitboxes (2)
+  m_Name: Hitboxes (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1017,24 +914,6 @@ MonoBehaviour:
     x: 0.08
     y: 0.08
     z: 0.08
---- !u!114 &2910389006188187492
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4978997305782540251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
-  id: 0
-  colliderType: 2
-  halfSize:
-    x: 0.08
-    y: 0.08
-    z: 0.08
 --- !u!1 &5374105253560620058
 GameObject:
   m_ObjectHideFlags: 0
@@ -1045,9 +924,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8858916515644433285}
   - component: {fileID: 462349441569158861}
-  - component: {fileID: 7051274810002907489}
   m_Layer: 0
-  m_Name: Hurt/Hitboxes (1)
+  m_Name: Hitboxes (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1086,24 +964,6 @@ MonoBehaviour:
     x: 0.08
     y: 0.08
     z: 0.08
---- !u!114 &7051274810002907489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5374105253560620058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
-  id: 0
-  colliderType: 2
-  halfSize:
-    x: 0.08
-    y: 0.08
-    z: 0.08
 --- !u!1 &5767387939273733520
 GameObject:
   m_ObjectHideFlags: 0
@@ -1114,9 +974,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7005805863808136662}
   - component: {fileID: 734430286507157591}
-  - component: {fileID: 9107121127263025974}
   m_Layer: 0
-  m_Name: Hurt/Hitboxes (2)
+  m_Name: Hitboxes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1151,24 +1010,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
   id: 0
   colliderType: 1
-  halfSize:
-    x: 0.04
-    y: 0.04
-    z: 0.04
---- !u!114 &9107121127263025974
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5767387939273733520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
-  id: 0
-  colliderType: 2
   halfSize:
     x: 0.04
     y: 0.04
@@ -1252,9 +1093,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1738908137866145025}
   - component: {fileID: 6067356002362304810}
-  - component: {fileID: 6352621349865963860}
   m_Layer: 0
-  m_Name: Hurt/Hitboxes
+  m_Name: Hitboxes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1293,24 +1133,6 @@ MonoBehaviour:
     x: 0.05
     y: 0.05
     z: 0.05
---- !u!114 &6352621349865963860
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6309458690493852978}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
-  id: 0
-  colliderType: 2
-  halfSize:
-    x: 0.05
-    y: 0.05
-    z: 0.05
 --- !u!1 &6445986526282937953
 GameObject:
   m_ObjectHideFlags: 0
@@ -1321,9 +1143,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3088360861414161403}
   - component: {fileID: 5635123758638904298}
-  - component: {fileID: 135459745715231887}
   m_Layer: 0
-  m_Name: Hurt/Hitboxes (1)
+  m_Name: Hitboxes (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1358,24 +1179,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
   id: 0
   colliderType: 1
-  halfSize:
-    x: 0.1
-    y: 0.1
-    z: 0.1
---- !u!114 &135459745715231887
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6445986526282937953}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
-  id: 0
-  colliderType: 2
   halfSize:
     x: 0.1
     y: 0.1
@@ -1530,7 +1333,7 @@ GameObject:
   - component: {fileID: 9108528853816660427}
   - component: {fileID: 855807789264863984}
   m_Layer: 0
-  m_Name: Hurt/Hitboxes
+  m_Name: Hitboxes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1735,9 +1538,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2335246398248325217}
   - component: {fileID: 2724546261358546486}
-  - component: {fileID: 5863545966600680623}
   m_Layer: 0
-  m_Name: Hurt/Hitboxes
+  m_Name: Hitboxes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1772,24 +1574,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
   id: 0
   colliderType: 1
-  halfSize:
-    x: 0.06
-    y: 0.06
-    z: 0.06
---- !u!114 &5863545966600680623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8738189819546646467}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
-  id: 0
-  colliderType: 2
   halfSize:
     x: 0.06
     y: 0.06
@@ -2991,6 +2775,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -3589311989668628960, guid: f56bd06238713cb4fbae175ea8d17357,
         type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1357852715577626544}
+    - targetCorrespondingSourceObject: {fileID: -3589311989668628960, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      insertIndex: -1
       addedObject: {fileID: 1369534706077477508}
     - targetCorrespondingSourceObject: {fileID: -7285025709699086136, guid: f56bd06238713cb4fbae175ea8d17357,
         type: 3}
@@ -3042,10 +2830,10 @@ MonoBehaviour:
   moveSetSO: {fileID: 11400000, guid: 0fef3c80fa41e8e49a9cb3b36f9bc920, type: 2}
   stateMachine:
     state:
-      GroundState: 0
+      StanceState: 0
       MovementState: 0
       CombatState: 0
-    HitStop: 0
+    TimeStop: 0
     Recovery: 0
     HitStun: 0
     BlockStun: 0
@@ -3084,6 +2872,8 @@ MonoBehaviour:
     currentSequence:
       Attack:
         AnimationName: 
+        GeneratedAnimHash: 0
+        Lunge: 0
         Damage: 0
         Knockback: 0
         Level: 0
@@ -3092,25 +2882,22 @@ MonoBehaviour:
           Startup: 0
           Active: 0
           Recovery: 0
-          CancelWindow:
-            x: 0
-            y: 0
+          CancelWindow: 0
           HitStun: 0
           BlockStun: 0
-          CounterHitBonus: 0
+          CounterHitStun: 0
           HitStop: 0
           BlockStop: 0
         Input:
           AttackFlags: 0
           DirectionFlag: 0
         StringTransitions: []
-        GeneratedAnimHash: 0
         TotalAttackDuration: 0
         AdvantageOnHit: 0
         AdvantageOnBlock: 0
+        AdvantageOnCounter: 0
       State: 0
       NextStateDelay: 0
-    isSequenceActive: 0
   inputRouter: {fileID: 0}
 --- !u!95 &7838189496623482593
 Animator:
