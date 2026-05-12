@@ -14,27 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AttackSO
   Value:
     AnimationName: LowKick
-    GeneratedAnimHash: 859106820
-    Lunge: 0
     Damage: 1
     Knockback: 0
     Level: 0
-    HurtBoxIds: 
+    HurtBoxIds: 0500000006000000090000000a000000
     FrameData:
       Startup: 12
       Active: 2
       Recovery: 14
-      CancelWindow: 0
+      CancelWindow:
+        x: 0
+        y: 0
       HitStun: 18
       BlockStun: 8
-      CounterHitStun: 0
+      CounterHitBonus: 0
       HitStop: 8
       BlockStop: 4
     Input:
       AttackFlags: 4
       DirectionFlag: 3
     StringTransitions: []
+    GeneratedAnimHash: 859106820
     TotalAttackDuration: 28
     AdvantageOnHit: 4
     AdvantageOnBlock: -6
-    AdvantageOnCounter: -14

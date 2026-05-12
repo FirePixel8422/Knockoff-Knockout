@@ -1,5 +1,1937 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &205786206344463953
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1064448232984729368}
+  - component: {fileID: 7102855956738101009}
+  - component: {fileID: 1419313951722446845}
+  m_Layer: 0
+  m_Name: Hurt/Hitboxes (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1064448232984729368
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205786206344463953}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.9704434, y: -0.06991657, z: 0.15177351, w: 0.17411502}
+  m_LocalPosition: {x: -0.0014, y: 0.2806, z: 0.0224}
+  m_LocalScale: {x: 0.99481136, y: 1.0144336, z: 0.9908916}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3349955061783454147}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7102855956738101009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205786206344463953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 1
+  halfSize:
+    x: 0.05
+    y: 0.05
+    z: 0.05
+--- !u!114 &1419313951722446845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 205786206344463953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 2
+  halfSize:
+    x: 0.05
+    y: 0.05
+    z: 0.05
+--- !u!1 &541666469780598962
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2484104482038171146}
+  - component: {fileID: 5792183800912991332}
+  - component: {fileID: 8061272877048436767}
+  m_Layer: 0
+  m_Name: Hurt/Hitboxes (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2484104482038171146
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541666469780598962}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.97368, y: -0.0047113826, z: 0.2140457, w: -0.078163385}
+  m_LocalPosition: {x: 0.001, y: 0.0905, z: 0.0261}
+  m_LocalScale: {x: 0.9922929, y: 1.0220993, z: 0.9858616}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8224969967234592272}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5792183800912991332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541666469780598962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 1
+  halfSize:
+    x: 0.04
+    y: 0.04
+    z: 0.04
+--- !u!114 &8061272877048436767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 541666469780598962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 2
+  halfSize:
+    x: 0.04
+    y: 0.04
+    z: 0.04
+--- !u!1 &679404655205308566
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7996797310738642940}
+  - component: {fileID: 7151240385439087908}
+  - component: {fileID: 7018409500402999878}
+  m_Layer: 0
+  m_Name: Hurt/Hitboxes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7996797310738642940
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679404655205308566}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.21566945, y: -0.50087804, z: -0.8203257, w: 0.17226015}
+  m_LocalPosition: {x: -0.0062, y: 0.1207, z: 0.0245}
+  m_LocalScale: {x: 0.988448, y: 0.9949472, z: 1.0166239}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7500847813011851160}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7151240385439087908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679404655205308566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 1
+  halfSize:
+    x: 0.06
+    y: 0.06
+    z: 0.06
+--- !u!114 &7018409500402999878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 679404655205308566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 2
+  halfSize:
+    x: 0.06
+    y: 0.06
+    z: 0.06
+--- !u!1 &1083334587766134051
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5535785285345492940}
+  - component: {fileID: 6098792166017571923}
+  - component: {fileID: 5914690768403776059}
+  m_Layer: 0
+  m_Name: Hurt/Hitboxes (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5535785285345492940
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1083334587766134051}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.9002036, y: 0.016286235, z: 0.11295739, w: 0.42024857}
+  m_LocalPosition: {x: -0.0082, y: 0.2711, z: 0.011}
+  m_LocalScale: {x: 0.9950564, y: 1.006392, z: 0.99854493}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2179587064450007972}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6098792166017571923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1083334587766134051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 1
+  halfSize:
+    x: 0.05
+    y: 0.05
+    z: 0.05
+--- !u!114 &5914690768403776059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1083334587766134051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 2
+  halfSize:
+    x: 0.05
+    y: 0.05
+    z: 0.05
+--- !u!1 &1433784681900069911
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8062086100944522671}
+  - component: {fileID: 3363543592361418941}
+  - component: {fileID: 7810750877378977884}
+  m_Layer: 0
+  m_Name: Hurt/Hitboxes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8062086100944522671
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433784681900069911}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.14811923, y: -0.98423225, z: -0.058944143, w: -0.076636806}
+  m_LocalPosition: {x: 0.00022660576, y: 0.10604297, z: -0.0068802536}
+  m_LocalScale: {x: 1.0002161, y: 1.0021405, z: 0.99746484}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1810933015063405634}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3363543592361418941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433784681900069911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 1
+  halfSize:
+    x: 0.05
+    y: 0.05
+    z: 0.05
+--- !u!114 &7810750877378977884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1433784681900069911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 1
+  colliderType: 2
+  halfSize:
+    x: 0.05
+    y: 0.05
+    z: 0.05
+--- !u!1 &1838327128640715377
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1369534706077477508}
+  - component: {fileID: 2212816535420253503}
+  - component: {fileID: 2688612705263997989}
+  m_Layer: 0
+  m_Name: Hurt/Hitboxes (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1369534706077477508
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838327128640715377}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.20337246, y: -0.061023146, z: -0.04119136, w: 0.97632945}
+  m_LocalPosition: {x: -0.1029, y: 0.2245, z: -0.0172}
+  m_LocalScale: {x: 0.9999702, y: 1.0051498, z: 0.99492}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5861820830753710211}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2212816535420253503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838327128640715377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 1
+  halfSize:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+--- !u!114 &2688612705263997989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838327128640715377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 2
+  halfSize:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+--- !u!1 &1950137262941009252
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4880991007956951868}
+  - component: {fileID: 1482556522969607278}
+  - component: {fileID: 6487566701642240116}
+  m_Layer: 0
+  m_Name: Hurt/Hitboxes (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4880991007956951868
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1950137262941009252}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.9873919, y: 0.09043188, z: -0.11388081, w: 0.062534295}
+  m_LocalPosition: {x: -0.0013052381, y: 0.105330475, z: -0.036276072}
+  m_LocalScale: {x: 0.998415, y: 1.0034615, z: 0.9979538}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5334754369899873067}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1482556522969607278
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1950137262941009252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 1
+  halfSize:
+    x: 0.03
+    y: 0.03
+    z: 0.03
+--- !u!114 &6487566701642240116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1950137262941009252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 4
+  colliderType: 2
+  halfSize:
+    x: 0.03
+    y: 0.03
+    z: 0.03
+--- !u!1 &2017989821624995675
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1020454937910794131}
+  - component: {fileID: 1574238758459273528}
+  - component: {fileID: 2333784164191523845}
+  m_Layer: 0
+  m_Name: Hurt/Hitboxes (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1020454937910794131
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2017989821624995675}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.9704434, y: -0.06991657, z: 0.15177351, w: 0.17411502}
+  m_LocalPosition: {x: -0.018, y: 0.3685, z: 0.0267}
+  m_LocalScale: {x: 0.99481136, y: 1.0144336, z: 0.9908916}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3349955061783454147}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1574238758459273528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2017989821624995675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 1
+  halfSize:
+    x: 0.04
+    y: 0.04
+    z: 0.04
+--- !u!114 &2333784164191523845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2017989821624995675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 2
+  halfSize:
+    x: 0.04
+    y: 0.04
+    z: 0.04
+--- !u!1 &2675079706172739851
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5881755907832575349}
+  - component: {fileID: 1042693658361113750}
+  - component: {fileID: 5536059049450380653}
+  m_Layer: 0
+  m_Name: Hurt/Hitboxes (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5881755907832575349
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2675079706172739851}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.9503613, y: -0.042372987, z: 0.20443302, w: 0.23070532}
+  m_LocalPosition: {x: 0.0011, y: 0.1026, z: -0.0325}
+  m_LocalScale: {x: 0.9962587, y: 1.0159789, z: 0.98759353}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7275220445710150187}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1042693658361113750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2675079706172739851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 1
+  halfSize:
+    x: 0.03
+    y: 0.03
+    z: 0.03
+--- !u!114 &5536059049450380653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2675079706172739851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 6
+  colliderType: 2
+  halfSize:
+    x: 0.03
+    y: 0.03
+    z: 0.03
+--- !u!1 &2700037843374795817
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8323476969023513008}
+  - component: {fileID: 4964369094200513010}
+  - component: {fileID: 7865675011088483979}
+  m_Layer: 0
+  m_Name: Hurt/Hitboxes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8323476969023513008
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700037843374795817}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.20319857, y: -0.9052423, z: -0.34059554, w: 0.15245093}
+  m_LocalPosition: {x: -0.0004, y: 0.1322, z: 0.0197}
+  m_LocalScale: {x: 0.9956801, y: 1.0052261, z: 0.998672}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7695210296254282005}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4964369094200513010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700037843374795817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 1
+  halfSize:
+    x: 0.05
+    y: 0.05
+    z: 0.05
+--- !u!114 &7865675011088483979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2700037843374795817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 2
+  halfSize:
+    x: 0.05
+    y: 0.05
+    z: 0.05
+--- !u!1 &2755472557945903614
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1637596137181952630}
+  - component: {fileID: 7423551084806506838}
+  - component: {fileID: 2050132987110202212}
+  m_Layer: 0
+  m_Name: Hurt/Hitboxes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1637596137181952630
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2755472557945903614}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.015121245, y: -0.013789907, z: 0.00020854961, w: 0.99979055}
+  m_LocalPosition: {x: -0, y: 0.0364, z: 0.0011}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 400554872627469931}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7423551084806506838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2755472557945903614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 1
+  halfSize:
+    x: 0.08
+    y: 0.08
+    z: 0.08
+--- !u!114 &2050132987110202212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2755472557945903614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 2
+  halfSize:
+    x: 0.08
+    y: 0.08
+    z: 0.08
+--- !u!1 &3059838646154103429
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9109130181298855452}
+  - component: {fileID: 2498024745786126775}
+  - component: {fileID: 4899884215123148710}
+  m_Layer: 0
+  m_Name: Hurt/Hitboxes (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9109130181298855452
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3059838646154103429}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.99156, y: 0.07868407, z: 0.10034845, w: 0.023407312}
+  m_LocalPosition: {x: 0.0075, y: 0.184, z: 0.014}
+  m_LocalScale: {x: 0.99359095, y: 1.0121526, z: 0.9942456}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6048496334941282508}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2498024745786126775
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3059838646154103429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 1
+  halfSize:
+    x: 0.04
+    y: 0.04
+    z: 0.04
+--- !u!114 &4899884215123148710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3059838646154103429}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 7
+  colliderType: 2
+  halfSize:
+    x: 0.04
+    y: 0.04
+    z: 0.04
+--- !u!1 &4234834745102053757
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4579186334680026729}
+  - component: {fileID: 2703809353310126172}
+  - component: {fileID: 6338571583094256532}
+  m_Layer: 0
+  m_Name: Hurt/Hitboxes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4579186334680026729
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4234834745102053757}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.9704434, y: -0.06991657, z: 0.15177351, w: 0.17411502}
+  m_LocalPosition: {x: -0.0001, y: 0.1896, z: 0.0018}
+  m_LocalScale: {x: 0.99481136, y: 1.0144336, z: 0.9908916}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3349955061783454147}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2703809353310126172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4234834745102053757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 1
+  halfSize:
+    x: 0.05
+    y: 0.05
+    z: 0.05
+--- !u!114 &6338571583094256532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4234834745102053757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 2
+  halfSize:
+    x: 0.05
+    y: 0.05
+    z: 0.05
+--- !u!1 &4525074385060816027
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2846259901180450172}
+  - component: {fileID: 1190422526504072268}
+  - component: {fileID: 5246844810486022813}
+  m_Layer: 0
+  m_Name: Hurt/Hitboxes (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2846259901180450172
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4525074385060816027}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.015121245, y: -0.013789907, z: 0.00020854961, w: 0.99979055}
+  m_LocalPosition: {x: -0.0001, y: 0.1281, z: 0.0039}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 400554872627469931}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1190422526504072268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4525074385060816027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 1
+  halfSize:
+    x: 0.08
+    y: 0.08
+    z: 0.08
+--- !u!114 &5246844810486022813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4525074385060816027}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 2
+  halfSize:
+    x: 0.08
+    y: 0.08
+    z: 0.08
+--- !u!1 &4978997305782540251
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5539572536717564427}
+  - component: {fileID: 5190536397661228751}
+  - component: {fileID: 2910389006188187492}
+  m_Layer: 0
+  m_Name: Hurt/Hitboxes (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5539572536717564427
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4978997305782540251}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.824648, y: -0.08128567, z: -0.11726388, w: 0.5473551}
+  m_LocalPosition: {x: -0.0599, y: 0.0235, z: 0.0136}
+  m_LocalScale: {x: 0.99997044, y: 1.0051498, z: 0.99491996}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4238326397969378039}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5190536397661228751
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4978997305782540251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 1
+  halfSize:
+    x: 0.08
+    y: 0.08
+    z: 0.08
+--- !u!114 &2910389006188187492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4978997305782540251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 2
+  halfSize:
+    x: 0.08
+    y: 0.08
+    z: 0.08
+--- !u!1 &5374105253560620058
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8858916515644433285}
+  - component: {fileID: 462349441569158861}
+  - component: {fileID: 7051274810002907489}
+  m_Layer: 0
+  m_Name: Hurt/Hitboxes (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8858916515644433285
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5374105253560620058}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.824648, y: -0.08128567, z: -0.11726388, w: 0.5473551}
+  m_LocalPosition: {x: 0.0625, y: -0.0157, z: 0.0138}
+  m_LocalScale: {x: 0.99997044, y: 1.0051498, z: 0.99491996}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4238326397969378039}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &462349441569158861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5374105253560620058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 1
+  halfSize:
+    x: 0.08
+    y: 0.08
+    z: 0.08
+--- !u!114 &7051274810002907489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5374105253560620058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 2
+  halfSize:
+    x: 0.08
+    y: 0.08
+    z: 0.08
+--- !u!1 &5767387939273733520
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7005805863808136662}
+  - component: {fileID: 734430286507157591}
+  - component: {fileID: 9107121127263025974}
+  m_Layer: 0
+  m_Name: Hurt/Hitboxes (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7005805863808136662
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5767387939273733520}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.9002036, y: 0.016286235, z: 0.11295739, w: 0.42024857}
+  m_LocalPosition: {x: -0.0112, y: 0.3644, z: 0.0259}
+  m_LocalScale: {x: 0.9950564, y: 1.006392, z: 0.99854493}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2179587064450007972}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &734430286507157591
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5767387939273733520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 1
+  halfSize:
+    x: 0.04
+    y: 0.04
+    z: 0.04
+--- !u!114 &9107121127263025974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5767387939273733520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 2
+  halfSize:
+    x: 0.04
+    y: 0.04
+    z: 0.04
+--- !u!1 &6199503202751227438
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4302334383386633932}
+  - component: {fileID: 3195379029810988223}
+  - component: {fileID: 2776376610391845387}
+  m_Layer: 0
+  m_Name: Hurt/Hitboxes (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4302334383386633932
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6199503202751227438}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.99156, y: 0.07868407, z: 0.10034845, w: 0.023407312}
+  m_LocalPosition: {x: 0.0192, y: 0.2706, z: 0.006}
+  m_LocalScale: {x: 0.99359095, y: 1.0121526, z: 0.9942456}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6048496334941282508}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3195379029810988223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6199503202751227438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 1
+  halfSize:
+    x: 0.04
+    y: 0.04
+    z: 0.04
+--- !u!114 &2776376610391845387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6199503202751227438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 8
+  colliderType: 2
+  halfSize:
+    x: 0.04
+    y: 0.04
+    z: 0.04
+--- !u!1 &6309458690493852978
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1738908137866145025}
+  - component: {fileID: 6067356002362304810}
+  - component: {fileID: 6352621349865963860}
+  m_Layer: 0
+  m_Name: Hurt/Hitboxes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1738908137866145025
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6309458690493852978}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.9002036, y: 0.016286235, z: 0.11295739, w: 0.42024857}
+  m_LocalPosition: {x: -0.0056, y: 0.1734, z: -0.0073}
+  m_LocalScale: {x: 0.9950564, y: 1.006392, z: 0.99854493}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2179587064450007972}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6067356002362304810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6309458690493852978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 1
+  halfSize:
+    x: 0.05
+    y: 0.05
+    z: 0.05
+--- !u!114 &6352621349865963860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6309458690493852978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 2
+  halfSize:
+    x: 0.05
+    y: 0.05
+    z: 0.05
+--- !u!1 &6445986526282937953
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3088360861414161403}
+  - component: {fileID: 5635123758638904298}
+  - component: {fileID: 135459745715231887}
+  m_Layer: 0
+  m_Name: Hurt/Hitboxes (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3088360861414161403
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6445986526282937953}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.20337246, y: -0.061023146, z: -0.04119136, w: 0.97632945}
+  m_LocalPosition: {x: 0.0756, y: 0.2247, z: 0.0096}
+  m_LocalScale: {x: 0.9999702, y: 1.0051498, z: 0.99492}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5861820830753710211}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5635123758638904298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6445986526282937953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 1
+  halfSize:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+--- !u!114 &135459745715231887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6445986526282937953}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 2
+  halfSize:
+    x: 0.1
+    y: 0.1
+    z: 0.1
+--- !u!1 &7385080167351998871
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5890297756094761843}
+  - component: {fileID: 6027686302215331779}
+  - component: {fileID: 6397355273408115777}
+  m_Layer: 0
+  m_Name: Hurt/Hitboxes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5890297756094761843
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7385080167351998871}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.9873919, y: 0.09043188, z: -0.11388081, w: 0.062534295}
+  m_LocalPosition: {x: -0.005956536, y: 0.06610274, z: 0.031180222}
+  m_LocalScale: {x: 0.998415, y: 1.0034615, z: 0.9979538}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5334754369899873067}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6027686302215331779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7385080167351998871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 1
+  halfSize:
+    x: 0.04
+    y: 0.04
+    z: 0.04
+--- !u!114 &6397355273408115777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7385080167351998871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 3
+  colliderType: 2
+  halfSize:
+    x: 0.04
+    y: 0.04
+    z: 0.04
+--- !u!1 &7459875526161375091
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4360243116913299630}
+  - component: {fileID: 3767434509231332676}
+  - component: {fileID: 2050179361462169732}
+  m_Layer: 0
+  m_Name: Hurt/Hitboxes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4360243116913299630
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7459875526161375091}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.9503613, y: -0.042372987, z: 0.20443302, w: 0.23070532}
+  m_LocalPosition: {x: 0.0049, y: 0.0588, z: 0.0253}
+  m_LocalScale: {x: 0.9962587, y: 1.0159789, z: 0.98759353}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7275220445710150187}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3767434509231332676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7459875526161375091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 1
+  halfSize:
+    x: 0.04
+    y: 0.04
+    z: 0.04
+--- !u!114 &2050179361462169732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7459875526161375091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 5
+  colliderType: 2
+  halfSize:
+    x: 0.04
+    y: 0.04
+    z: 0.04
+--- !u!1 &7520137032998276208
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6571534291750237948}
+  - component: {fileID: 9108528853816660427}
+  - component: {fileID: 855807789264863984}
+  m_Layer: 0
+  m_Name: Hurt/Hitboxes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6571534291750237948
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7520137032998276208}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.99156, y: 0.07868407, z: 0.10034845, w: 0.023407312}
+  m_LocalPosition: {x: -0.0037, y: 0.1021, z: 0.0213}
+  m_LocalScale: {x: 0.99359095, y: 1.0121526, z: 0.9942456}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6048496334941282508}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9108528853816660427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7520137032998276208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 1
+  halfSize:
+    x: 0.04
+    y: 0.04
+    z: 0.04
+--- !u!114 &855807789264863984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7520137032998276208}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 2
+  halfSize:
+    x: 0.04
+    y: 0.04
+    z: 0.04
+--- !u!1 &8140412481058186031
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6081756141935450733}
+  - component: {fileID: 2747466930037395757}
+  - component: {fileID: 6657396828588746103}
+  m_Layer: 0
+  m_Name: Hurt/Hitboxes (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6081756141935450733
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8140412481058186031}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.15513891, y: -0.98121333, z: -0.112715006, w: -0.021161485}
+  m_LocalPosition: {x: -0.0035, y: 0.1381, z: 0.0194}
+  m_LocalScale: {x: 0.9903258, y: 1.0248008, z: 0.9850599}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7575496845532037160}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2747466930037395757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8140412481058186031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 1
+  halfSize:
+    x: 0.05
+    y: 0.05
+    z: 0.05
+--- !u!114 &6657396828588746103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8140412481058186031}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 2
+  halfSize:
+    x: 0.05
+    y: 0.05
+    z: 0.05
+--- !u!1 &8568536083974517455
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5218787605706784180}
+  - component: {fileID: 7998245340112093784}
+  - component: {fileID: 995599256408307884}
+  m_Layer: 0
+  m_Name: Hurt/Hitboxes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5218787605706784180
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8568536083974517455}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.20220579, y: -0.8942632, z: -0.33617678, w: 0.21538666}
+  m_LocalPosition: {x: -0.0057584457, y: 0.10216685, z: -0.00450275}
+  m_LocalScale: {x: 0.99864966, y: 0.9999319, z: 1.0014117}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8374346506903160618}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7998245340112093784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8568536083974517455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 1
+  halfSize:
+    x: 0.05
+    y: 0.05
+    z: 0.05
+--- !u!114 &995599256408307884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8568536083974517455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 2
+  colliderType: 2
+  halfSize:
+    x: 0.05
+    y: 0.05
+    z: 0.05
+--- !u!1 &8738189819546646467
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2335246398248325217}
+  - component: {fileID: 2724546261358546486}
+  - component: {fileID: 5863545966600680623}
+  m_Layer: 0
+  m_Name: Hurt/Hitboxes
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2335246398248325217
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8738189819546646467}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.16676363, y: -0.39746314, z: -0.9023373, w: 0.0007068664}
+  m_LocalPosition: {x: 0.0016, y: 0.1262, z: 0.0284}
+  m_LocalScale: {x: 0.9894565, y: 1.0043876, z: 1.0059478}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8868399875263442891}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2724546261358546486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8738189819546646467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 1
+  halfSize:
+    x: 0.06
+    y: 0.06
+    z: 0.06
+--- !u!114 &5863545966600680623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8738189819546646467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 2
+  halfSize:
+    x: 0.06
+    y: 0.06
+    z: 0.06
+--- !u!1 &9028411201499099730
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7278526893733028904}
+  - component: {fileID: 2492877399648640170}
+  - component: {fileID: 8356023353830162501}
+  m_Layer: 0
+  m_Name: Hurt/Hitboxes (5)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7278526893733028904
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9028411201499099730}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.97368, y: -0.0047113826, z: 0.2140457, w: -0.078163385}
+  m_LocalPosition: {x: -0.0012, y: 0.2691, z: 0.0055}
+  m_LocalScale: {x: 0.9922929, y: 1.0220993, z: 0.9858616}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8224969967234592272}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2492877399648640170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9028411201499099730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 1
+  halfSize:
+    x: 0.04
+    y: 0.04
+    z: 0.04
+--- !u!114 &8356023353830162501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9028411201499099730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 10
+  colliderType: 2
+  halfSize:
+    x: 0.04
+    y: 0.04
+    z: 0.04
+--- !u!1 &9082360168801992226
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7779191609280063116}
+  - component: {fileID: 6361562879687447294}
+  - component: {fileID: 3373059390144799479}
+  m_Layer: 0
+  m_Name: Hurt/Hitboxes (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7779191609280063116
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9082360168801992226}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.97368, y: -0.0047113826, z: 0.2140457, w: -0.078163385}
+  m_LocalPosition: {x: 0.0001, y: 0.1734, z: 0.0192}
+  m_LocalScale: {x: 0.9922929, y: 1.0220993, z: 0.9858616}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8224969967234592272}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6361562879687447294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9082360168801992226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 0
+  colliderType: 1
+  halfSize:
+    x: 0.04
+    y: 0.04
+    z: 0.04
+--- !u!114 &3373059390144799479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9082360168801992226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  id: 9
+  colliderType: 2
+  halfSize:
+    x: 0.04
+    y: 0.04
+    z: 0.04
 --- !u!1001 &2263460401487238819
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -471,7 +2403,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: f56bd06238713cb4fbae175ea8d17357,
         type: 3}
       propertyPath: m_Name
-      value: dummy block out
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 1430163872569033345, guid: f56bd06238713cb4fbae175ea8d17357,
         type: 3}
@@ -532,6 +2464,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -121.5927
+      objectReference: {fileID: 0}
+    - target: {fileID: 2520153037589921872, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2520153037589921872, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2520153037589921872, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.002
       objectReference: {fileID: 0}
     - target: {fileID: 2520153037589921872, guid: f56bd06238713cb4fbae175ea8d17357,
         type: 3}
@@ -625,18 +2572,53 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5519722510425405039, guid: f56bd06238713cb4fbae175ea8d17357,
         type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.000024327055
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519722510425405039, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.23797189
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519722510425405039, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.00025231068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519722510425405039, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9151043
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519722510425405039, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.40295735
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519722510425405039, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.0062435525
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519722510425405039, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.0130545655
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519722510425405039, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 71.09295
+      value: 132.468
       objectReference: {fileID: 0}
     - target: {fileID: 5519722510425405039, guid: f56bd06238713cb4fbae175ea8d17357,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 1.883276
+      value: 179.923
       objectReference: {fileID: 0}
     - target: {fileID: 5519722510425405039, guid: f56bd06238713cb4fbae175ea8d17357,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -0.014980137
+      value: 181.601
       objectReference: {fileID: 0}
     - target: {fileID: 5558780815620914668, guid: f56bd06238713cb4fbae175ea8d17357,
         type: 3}
@@ -655,18 +2637,53 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6152400788126111112, guid: f56bd06238713cb4fbae175ea8d17357,
         type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.0000014329387
+      objectReference: {fileID: 0}
+    - target: {fileID: 6152400788126111112, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.18303886
+      objectReference: {fileID: 0}
+    - target: {fileID: 6152400788126111112, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.000025197083
+      objectReference: {fileID: 0}
+    - target: {fileID: 6152400788126111112, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.99264646
+      objectReference: {fileID: 0}
+    - target: {fileID: 6152400788126111112, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.0140074575
+      objectReference: {fileID: 0}
+    - target: {fileID: 6152400788126111112, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.09542811
+      objectReference: {fileID: 0}
+    - target: {fileID: 6152400788126111112, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.073145784
+      objectReference: {fileID: 0}
+    - target: {fileID: 6152400788126111112, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -76.60963
+      value: 2.394
       objectReference: {fileID: 0}
     - target: {fileID: 6152400788126111112, guid: f56bd06238713cb4fbae175ea8d17357,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 25.10656
+      value: 10.811
       objectReference: {fileID: 0}
     - target: {fileID: 6152400788126111112, guid: f56bd06238713cb4fbae175ea8d17357,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -28.237833
+      value: -8.202
       objectReference: {fileID: 0}
     - target: {fileID: 6360432895406044996, guid: f56bd06238713cb4fbae175ea8d17357,
         type: 3}
@@ -732,6 +2749,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.0000020215093
+      objectReference: {fileID: 0}
+    - target: {fileID: 7876122459140356275, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.0000000018626451
+      objectReference: {fileID: 0}
+    - target: {fileID: 7876122459140356275, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.23791975
+      objectReference: {fileID: 0}
+    - target: {fileID: 7876122459140356275, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.0000000018626451
       objectReference: {fileID: 0}
     - target: {fileID: 7876122459140356275, guid: f56bd06238713cb4fbae175ea8d17357,
         type: 3}
@@ -855,7 +2887,119 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2718171248758586452, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8858916515644433285}
+    - targetCorrespondingSourceObject: {fileID: 2718171248758586452, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5539572536717564427}
+    - targetCorrespondingSourceObject: {fileID: -9127072559893113593, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1738908137866145025}
+    - targetCorrespondingSourceObject: {fileID: -9127072559893113593, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5535785285345492940}
+    - targetCorrespondingSourceObject: {fileID: -9127072559893113593, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7005805863808136662}
+    - targetCorrespondingSourceObject: {fileID: 5519722510425405039, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6571534291750237948}
+    - targetCorrespondingSourceObject: {fileID: 5519722510425405039, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9109130181298855452}
+    - targetCorrespondingSourceObject: {fileID: 5519722510425405039, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4302334383386633932}
+    - targetCorrespondingSourceObject: {fileID: 6152400788126111112, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5890297756094761843}
+    - targetCorrespondingSourceObject: {fileID: 6152400788126111112, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4880991007956951868}
+    - targetCorrespondingSourceObject: {fileID: 3536455314332235616, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4579186334680026729}
+    - targetCorrespondingSourceObject: {fileID: 3536455314332235616, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1064448232984729368}
+    - targetCorrespondingSourceObject: {fileID: 3536455314332235616, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1020454937910794131}
+    - targetCorrespondingSourceObject: {fileID: 7876122459140356275, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2484104482038171146}
+    - targetCorrespondingSourceObject: {fileID: 7876122459140356275, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7779191609280063116}
+    - targetCorrespondingSourceObject: {fileID: 7876122459140356275, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7278526893733028904}
+    - targetCorrespondingSourceObject: {fileID: -315345100870173560, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4360243116913299630}
+    - targetCorrespondingSourceObject: {fileID: -315345100870173560, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5881755907832575349}
+    - targetCorrespondingSourceObject: {fileID: 8606713579289776443, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7996797310738642940}
+    - targetCorrespondingSourceObject: {fileID: -700029363859958133, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6081756141935450733}
+    - targetCorrespondingSourceObject: {fileID: 452845707996361441, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8062086100944522671}
+    - targetCorrespondingSourceObject: {fileID: 7240538661865748840, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2335246398248325217}
+    - targetCorrespondingSourceObject: {fileID: 8476774781526831030, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8323476969023513008}
+    - targetCorrespondingSourceObject: {fileID: -1486527654978891383, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5218787605706784180}
+    - targetCorrespondingSourceObject: {fileID: -3589311989668628960, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3088360861414161403}
+    - targetCorrespondingSourceObject: {fileID: -3589311989668628960, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1369534706077477508}
+    - targetCorrespondingSourceObject: {fileID: -7285025709699086136, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1637596137181952630}
+    - targetCorrespondingSourceObject: {fileID: -7285025709699086136, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2846259901180450172}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f56bd06238713cb4fbae175ea8d17357,
         type: 3}
@@ -870,6 +3014,12 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2143912250880875692}
   m_SourcePrefab: {fileID: 100100000, guid: f56bd06238713cb4fbae175ea8d17357, type: 3}
+--- !u!4 &400554872627469931 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -7285025709699086136, guid: f56bd06238713cb4fbae175ea8d17357,
+    type: 3}
+  m_PrefabInstance: {fileID: 2263460401487238819}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1416387510803786738 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f56bd06238713cb4fbae175ea8d17357,
@@ -892,10 +3042,10 @@ MonoBehaviour:
   moveSetSO: {fileID: 11400000, guid: 0fef3c80fa41e8e49a9cb3b36f9bc920, type: 2}
   stateMachine:
     state:
-      StanceState: 0
+      GroundState: 0
       MovementState: 0
       CombatState: 0
-    TimeStop: 0
+    HitStop: 0
     Recovery: 0
     HitStun: 0
     BlockStun: 0
@@ -934,8 +3084,6 @@ MonoBehaviour:
     currentSequence:
       Attack:
         AnimationName: 
-        GeneratedAnimHash: 0
-        Lunge: 0
         Damage: 0
         Knockback: 0
         Level: 0
@@ -944,22 +3092,25 @@ MonoBehaviour:
           Startup: 0
           Active: 0
           Recovery: 0
-          CancelWindow: 0
+          CancelWindow:
+            x: 0
+            y: 0
           HitStun: 0
           BlockStun: 0
-          CounterHitStun: 0
+          CounterHitBonus: 0
           HitStop: 0
           BlockStop: 0
         Input:
           AttackFlags: 0
           DirectionFlag: 0
         StringTransitions: []
+        GeneratedAnimHash: 0
         TotalAttackDuration: 0
         AdvantageOnHit: 0
         AdvantageOnBlock: 0
-        AdvantageOnCounter: 0
       State: 0
       NextStateDelay: 0
+    isSequenceActive: 0
   inputRouter: {fileID: 0}
 --- !u!95 &7838189496623482593
 Animator:
@@ -995,3 +3146,87 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 257d248b96c1dc740a4a46ee0bcf9141, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInputRouter
+--- !u!4 &1810933015063405634 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 452845707996361441, guid: f56bd06238713cb4fbae175ea8d17357,
+    type: 3}
+  m_PrefabInstance: {fileID: 2263460401487238819}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &2179587064450007972 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -9127072559893113593, guid: f56bd06238713cb4fbae175ea8d17357,
+    type: 3}
+  m_PrefabInstance: {fileID: 2263460401487238819}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3349955061783454147 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3536455314332235616, guid: f56bd06238713cb4fbae175ea8d17357,
+    type: 3}
+  m_PrefabInstance: {fileID: 2263460401487238819}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4238326397969378039 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2718171248758586452, guid: f56bd06238713cb4fbae175ea8d17357,
+    type: 3}
+  m_PrefabInstance: {fileID: 2263460401487238819}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5334754369899873067 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6152400788126111112, guid: f56bd06238713cb4fbae175ea8d17357,
+    type: 3}
+  m_PrefabInstance: {fileID: 2263460401487238819}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5861820830753710211 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -3589311989668628960, guid: f56bd06238713cb4fbae175ea8d17357,
+    type: 3}
+  m_PrefabInstance: {fileID: 2263460401487238819}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &6048496334941282508 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5519722510425405039, guid: f56bd06238713cb4fbae175ea8d17357,
+    type: 3}
+  m_PrefabInstance: {fileID: 2263460401487238819}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7275220445710150187 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -315345100870173560, guid: f56bd06238713cb4fbae175ea8d17357,
+    type: 3}
+  m_PrefabInstance: {fileID: 2263460401487238819}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7500847813011851160 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8606713579289776443, guid: f56bd06238713cb4fbae175ea8d17357,
+    type: 3}
+  m_PrefabInstance: {fileID: 2263460401487238819}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7575496845532037160 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -700029363859958133, guid: f56bd06238713cb4fbae175ea8d17357,
+    type: 3}
+  m_PrefabInstance: {fileID: 2263460401487238819}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7695210296254282005 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8476774781526831030, guid: f56bd06238713cb4fbae175ea8d17357,
+    type: 3}
+  m_PrefabInstance: {fileID: 2263460401487238819}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8224969967234592272 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7876122459140356275, guid: f56bd06238713cb4fbae175ea8d17357,
+    type: 3}
+  m_PrefabInstance: {fileID: 2263460401487238819}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8374346506903160618 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -1486527654978891383, guid: f56bd06238713cb4fbae175ea8d17357,
+    type: 3}
+  m_PrefabInstance: {fileID: 2263460401487238819}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8868399875263442891 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7240538661865748840, guid: f56bd06238713cb4fbae175ea8d17357,
+    type: 3}
+  m_PrefabInstance: {fileID: 2263460401487238819}
+  m_PrefabAsset: {fileID: 0}
