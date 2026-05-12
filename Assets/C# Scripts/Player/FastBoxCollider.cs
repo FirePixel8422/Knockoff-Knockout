@@ -8,7 +8,6 @@ public class FastBoxCollider : MonoBehaviour
 
     [SerializeField] private ColliderType colliderType;
     [SerializeField] private float3 halfSize = new float3(1);
-    [SerializeField] private float3 offset;
     
     public int Id => id;
     public ColliderType Type => colliderType;
@@ -16,7 +15,7 @@ public class FastBoxCollider : MonoBehaviour
     /// <returns>Lightweight converted collider as AABB with IsActive state</returns>
     public HitBoxAABB GetAABB()
     {
-        float3 center = (float3)transform.position + offset;
+        float3 center = (float3)transform.position;
 
         return new HitBoxAABB(isActiveAndEnabled, center - halfSize, center + halfSize);
     }
@@ -37,7 +36,7 @@ public class FastBoxCollider : MonoBehaviour
             ColliderType.Hurtbox => HURTBOX_COLOR,
             ColliderType.None or _ => INVALID_COLOR,
         };
-        Gizmos.DrawWireMesh(GlobalMeshes.Cube, (float3)transform.position + offset, Quaternion.identity, Size);
+        Gizmos.DrawWireMesh(GlobalMeshes.Cube, transform.position, Quaternion.identity, Size);
     }
 #endif
 }
