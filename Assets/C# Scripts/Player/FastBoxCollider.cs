@@ -37,7 +37,7 @@ public class FastBoxCollider : MonoBehaviour
             ColliderType.Hurtbox => HURTBOX_COLOR,
             ColliderType.None or _ => INVALID_COLOR,
         };
-        Gizmos.DrawWireMesh(GlobalMeshes.Cube, transform.position, Quaternion.identity, Size);
+        Gizmos.DrawWireMesh(GlobalMeshes.Cube, transform.position + offset, Quaternion.identity, Size);
     }
 #endif
 }
