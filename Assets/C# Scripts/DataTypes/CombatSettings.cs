@@ -6,6 +6,7 @@
 public struct CombatSettings
 {
     public Parry Parry;
+    public Fighter Fighter;
 
 #if UNITY_EDITOR
     public void UpdateDebugData()
@@ -37,4 +38,11 @@ public struct Parry
     [EditorReadOnly] public int AdvantageOnParry;
     [EditorReadOnly] public int AdvantageOnMiss;
 #endif
+}
+
+[System.Serializable]
+public struct Fighter
+{
+    public float MoveSpeed;
+    public float MoveSnappyness;
 }

@@ -9,48 +9,50 @@ public struct AttackSequence
 {
     public AttackData Attack;
 
-    public AttackProgressionState State;
+    public CombatState State;
     public int NextStateDelay;
 
 
     public AttackSequence(AttackData attack)
     {
         Attack = attack;
-        State = AttackProgressionState.Startup;
+        State = CombatState.AttackStartup;
         NextStateDelay = Attack.FrameData.Startup;
     }
 
-    /// <summary>
-    /// Tick down <see cref="NextStateDelay"/> and update to next state accordingly. Returns whether sequence has finished
-    /// </summary>
-    public void TickUpdate(out bool isSequenceStillActive)
+
+    public bool TickUpdateState(out CombatState newState)
     {
         NextStateDelay -= 1;
 
-        if (NextStateDelay == 0)
+        if (NextStateDelay > 0)
         {
-            (State, NextStateDelay) = State switch
-            {
-                AttackProgressionState.Startup => 
-                    (AttackProgressionState.Active, Attack.FrameData.Active),
-
-                AttackProgressionState.Active => 
-                    (AttackProgressionState.Recovery, Attack.FrameData.Recovery),
-
-                AttackProgressionState.Recovery or _ => 
-                    (AttackProgressionState.Ended, 0),
-            };
+            newState = default;
+            return false;
         }
 
-        isSequenceStillActive = State != AttackProgressionState.Ended;
+        (State, NextStateDelay) = State switch
+        {
+            CombatState.AttackStartup =>
+                (CombatState.AttackActive, Attack.FrameData.Active),
+
+            CombatState.AttackActive =>
+                (CombatState.Recovering, Attack.FrameData.Recovery),
+
+            CombatState.Recovering or _ =>
+                (CombatState.Idle, 0),
+        };
+
+        newState = State;
+        return true;
     }
 
     /// <summary>
     /// End the sequence instantly.
     /// </summary>
-    public void InteruptAttack()
+    public void Interrupt()
     {
-        State = AttackProgressionState.Ended;
+        State = CombatState.Idle;
         NextStateDelay = 0;
     }
 }

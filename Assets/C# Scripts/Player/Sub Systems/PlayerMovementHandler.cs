@@ -11,16 +11,24 @@ public class PlayerMovementHandler
     private readonly PlayerStateMachine stateMachine;
     private readonly Transform transform;
 
+    private readonly float moveSpeed;
+    private readonly float moveSnappyness;
+
     private Vector3 targetFighterPosition;
+    private Vector3 lastMoveDir;
+    public Vector3 LastMoveDir => lastMoveDir;
 
 
-    public PlayerMovementHandler(PlayerInputHandler inputHandler, PlayerStateMachine stateMachine, Transform transform)
+    public PlayerMovementHandler(PlayerStateMachine stateMachine, PlayerInputHandler inputHandler, Transform transform)
     {
-        this.inputHandler = inputHandler;
         this.stateMachine = stateMachine;
+        this.inputHandler = inputHandler;
 
         this.transform = transform;
         targetFighterPosition = transform.position;
+
+        moveSpeed = GameRules.CombatSettings.Fighter.MoveSpeed;
+        moveSnappyness = GameRules.CombatSettings.Fighter.MoveSnappyness;
     }
 
 
@@ -29,24 +37,54 @@ public class PlayerMovementHandler
     /// </summary>
     public void TickUpdateMovement()
     {
+        lastMoveDir = Vector3.zero;
+
+        // If fighter sidesteps, set fighter in standing stance and sidestepping movement state
+        if (false && inputHandler.TryReadSideStep(out bool isSideStepUp))
+        {
+            DebugLogger.Log("SideStep " + (isSideStepUp ? "Up" : "Down"));
+            stateMachine.SetStanceState(StanceState.Standing);
+            stateMachine.SetMovementState(MovementState.SideStepping);
+            stateMachine.Recovery += 10;
+            return;
+        }
+
         DirectionInput cdirFlag = inputHandler.GetCurrentDirection();
 
-        (MovementState movementState, Vector3 addedMovement) = cdirFlag switch
+        // If fighter crouchesm set fighter in crouching stance and idle movement state
+        if (cdirFlag == DirectionInput.Down)
         {
-            DirectionInput.Left =>
-                (MovementState.Retreating, -transform.right * GlobalGameData.TICK_TIME * 12),
+            stateMachine.SetStanceState(StanceState.Crouching);
+            stateMachine.SetMovementState(MovementState.Idle);
+            return;
+        }
 
+        // If fighter is not crouching or sidestepping he is moving in standing stance state
+        stateMachine.SetStanceState(StanceState.Standing);
 
-            DirectionInput.Right =>
-                (MovementState.Pushing, transform.right * GlobalGameData.TICK_TIME * 12),
+        if (cdirFlag == DirectionInput.Left)
+        {
+            stateMachine.SetMovementState(MovementState.Retreating);
+            MovePlayer(-moveSpeed * GlobalGameData.TICK_TIME * CameraManager.Instance.GetForwardDir(transform));
+        }
+        else if (cdirFlag == DirectionInput.Right)
+        {
+            stateMachine.SetMovementState(MovementState.Pushing);
+            MovePlayer(moveSpeed * GlobalGameData.TICK_TIME * CameraManager.Instance.GetForwardDir(transform));
+        }
+        else if (cdirFlag == DirectionInput.Neutral)
+        {
+            stateMachine.SetMovementState(MovementState.Idle);
+        }
+    }
+    public void MovePlayer(Vector3 addedMovement)
+    {
+        lastMoveDir = addedMovement.normalized;
 
-            _ =>
-                (MovementState.Idle, Vector3.zero),
-        };
-        stateMachine.SetMovementState(movementState);
+        targetFighterPosition += addedMovement;
     }
     public void OnUpdate()
     {
-        transform.position = Vector3.Lerp(transform.position, targetFighterPosition, 12 * Time.deltaTime);
+        transform.position = Vector3.Lerp(transform.position, targetFighterPosition, moveSnappyness * Time.deltaTime);
     }
 }

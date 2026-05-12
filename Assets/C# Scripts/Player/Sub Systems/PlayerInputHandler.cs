@@ -1,5 +1,4 @@
-﻿using Unity.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 /// <summary>
@@ -8,7 +7,7 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerInputHandler
 {
-    [ReadOnly, SerializeField] private AttackData[] moveSet;
+    [EditorReadOnly, SerializeField] private AttackData[] moveSet;
     [EditorReadOnly, SerializeField] private InputBufferHandler bufferHandler;
 
 
@@ -113,10 +112,10 @@ public class PlayerInputHandler
 [System.Serializable]
 public class InputBufferHandler
 {
-    [SerializeField] private FrameInput[] inputBuffer = new FrameInput[GlobalGameData.INPUT_BUFFER_SIZE];
+    [EditorReadOnly, SerializeField] private FrameInput[] inputBuffer = new FrameInput[GlobalGameData.INPUT_BUFFER_SIZE];
     private int index;
 
-    [SerializeField] private FrameInput cRawInput;
+    [EditorReadOnly, SerializeField] private FrameInput cRawInput;
 
     public DirectionInput GetCurrentDirection() => cRawInput.DirectionFlag;
 
@@ -205,15 +204,17 @@ public class InputBufferHandler
         return moveStrength;
     }
 
-    private const int SIDE_STEP_MAX_HOLD_TICKS = 6;
-
     public bool TestSideStep(out bool isSideStepUp)
     {
         int dirHeldTickCount = 0;
         DirectionInput activeDir = DirectionInput.Neutral;
 
         int bufferIndex = index;
-        bufferIndex.DecrementSmart(GlobalGameData.INPUT_BUFFER_SIZE);
+        if (inputBuffer[bufferIndex].DirectionFlag != DirectionInput.Neutral)
+        {
+            isSideStepUp = false;
+            return false;
+        }
 
         // Loop over whole buffer starting from current index all the way back to it
         for (int i = 0; i < GlobalGameData.INPUT_BUFFER_SIZE; i++)
@@ -234,18 +235,17 @@ public class InputBufferHandler
             else if (currentDir == DirectionInput.Neutral)
             {
                 // Check if dir was held long enough, but not too long for it to be considered a sidestep
-                if (dirHeldTickCount > 0 && dirHeldTickCount <= SIDE_STEP_MAX_HOLD_TICKS)
+                if (dirHeldTickCount > 0 && dirHeldTickCount <= GlobalGameData.SIDE_STEP_MAX_HOLD_TICKS)
                 {
                     isSideStepUp = activeDir == DirectionInput.Up;
                     return true;
                 }
 
-                // If no sidestep input was decided, reset dirHeldTickCount
                 dirHeldTickCount = 0;
                 activeDir = DirectionInput.Neutral;
             }
 
-            bufferIndex.DecrementSmart(GlobalGameData.INPUT_BUFFER_SIZE);
+            bufferIndex.IncrementSmart(GlobalGameData.INPUT_BUFFER_SIZE);
         }
 
         isSideStepUp = false;

@@ -4,7 +4,7 @@
 /// <summary>
 /// State describing the movement behaviour of the fighter.
 /// </summary>
-public enum MovementState
+public enum MovementState : byte
 {
     /// <summary>
     /// Fighter is not moving

@@ -15,37 +15,40 @@ public class PlayerAttackHandler
     private readonly PlayerColliderHandler colliderHandler;
 
     [SerializeField] private AttackSequence currentSequence;
-    [SerializeField] private bool isSequenceActive;
     public AttackData CurrentActiveAttack => currentSequence.Attack;
 
 
-    public PlayerAttackHandler(PlayerInputHandler inputHandler, PlayerStateMachine stateMachine, PlayerColliderHandler colliderHandler)
+    public PlayerAttackHandler(PlayerStateMachine stateMachine, PlayerInputHandler inputHandler, PlayerColliderHandler colliderHandler)
     {
-        this.inputHandler = inputHandler;
         this.stateMachine = stateMachine;
+        this.inputHandler = inputHandler;
         this.colliderHandler = colliderHandler;
     }
 
 
-    #region AttackIntersection and Attack Result Handling
+    #region Attack Hit Detection and Impact
 
     /// <summary>
-    ///If any move is active from this fighter (attacker perpective), check collision between any active hurtboxes with the opponents hitboxes.
+    /// Check if any move is active from this fighter (attacker perpective), check collision between any active hurtboxes with the opponents hitboxes.
     /// </summary>
-    public bool CheckAttackIntersection(PlayerController target, out AttackResult attackResult)
+    public bool CheckAttackIntersection(PlayerController target, out AttackData activeAttack)
     {
-        attackResult = AttackResult.Missed;
-        if (stateMachine.State.CombatState != CombatState.AttackActive) return false;
+        activeAttack = CurrentActiveAttack;
+        colliderHandler.EnableTargetHurtBoxes(activeAttack.HurtBoxIds);
 
-        // Check if any opponent hitbix is hit
-        if (CollisionUtils.CheckAABBIntersection(target.ColliderHandler.HitBoxes, colliderHandler.HurtBoxes))
-        {
-            // hit opponent and send Attack Level (Low/Mid/High)
-            attackResult = target.OnAttackImpact(CurrentActiveAttack.Level);
-            return true;
-        }
+        // Check if any opponent hitbox is hit
+        return CollisionUtils.CheckAABBIntersection(target.ColliderHandler.HitBoxAABBs, colliderHandler.HurtBoxAABBs);
+    }
 
-        return false;
+    /// <summary>
+    /// Called when this fighter gets stunned by a parry or an attack
+    /// </summary>
+    public void OnStunned()
+    {
+        // When fighter gets stunned by an attack, clear their input buffer to avoid unintended buffered inputs after hitstun wears off.
+        // This to ensure the player doesnt accidentally do a buffer spammed move that makes them even more vulnerable after getting hit.
+        inputHandler.ClearInputBuffer();
+        currentSequence.Interrupt();
     }
 
     // Mental/Logic Notes:
@@ -59,12 +62,16 @@ public class PlayerAttackHandler
     // And so when fighter releases down before next tick, they are considered standing in that next tick.
     //
     // When an attack is inputted, on the next frame it gets executed, that tick counts towards the attacks duration (That tick is the first tick of the attack startup).
+    //
+    // When an attack connects, instantly advance from active to recovery state.
 
     /// <summary>
-    /// Get <see cref="AttackResult"/> based on what type of attack hit the defender in what state
+    /// Get <see cref="AttackResult"/> based on what type of attack hit this fighter (defender perspective) in what state
     /// </summary>
-    public static AttackResult GetAttackResult(AttackLevel attackType, FighterState defenderState)
+    public AttackResult GetInboundAttackResult(AttackLevel attackType)
     {
+        FighterState defenderState = stateMachine.State;
+
         // If the defender is in an active parry
         if (defenderState.CombatState == CombatState.ParryHigh)
         {
@@ -88,7 +95,7 @@ public class PlayerAttackHandler
         }
 
         // If defender is crouching, they blocks lows, duck highs but lose to mids
-        if (defenderState.GroundState == StanceState.Crouching)
+        if (defenderState.StanceState == StanceState.Crouching)
         {
             return attackType switch
             {
@@ -97,12 +104,13 @@ public class PlayerAttackHandler
 
                 AttackLevel.High =>
                     AttackResult.Missed,
+
                 _ =>
                     AttackResult.Hit,
             };
         }
         // If defender is standing
-        if (defenderState.GroundState == StanceState.Standing)
+        if (defenderState.StanceState == StanceState.Standing)
         {
             return defenderState.MovementState switch
             {
@@ -134,20 +142,30 @@ public class PlayerAttackHandler
     /// </summary>
     public void TickUpdateAttackSequence()
     {
+        bool isSequenceActive = currentSequence.State != CombatState.Idle;
+
         if (isSequenceActive)
         {
-            currentSequence.TickUpdate(out bool isStillActive);
-            isSequenceActive = isStillActive;
+            // Tick attack sequence
+            if (currentSequence.TickUpdateState(out CombatState newState))
+            {
+                stateMachine.SetCombatState(currentSequence.State);
 
-            if (isStillActive) return;
+                if (newState == CombatState.AttackActive)
+                {
+                    colliderHandler.EnableTargetHurtBoxes(CurrentActiveAttack.HurtBoxIds);
+                }
+            }
+            return;
         }
 
-        TryCreateNewAttackSequence();
-    }
-    private void TryCreateNewAttackSequence()
-    {
+        // If input for an attack was found in inputbuffer, start an attack sequence
         if (inputHandler.TryReadAttack(out AttackData targetAttack))
         {
+            DebugLogger.Log(targetAttack.AnimationName);
+            stateMachine.PlayAnimation(targetAttack.GeneratedAnimHash, 2);
+            stateMachine.SetCombatState(CombatState.AttackStartup);
+
             currentSequence = new AttackSequence(targetAttack);
         }
     }

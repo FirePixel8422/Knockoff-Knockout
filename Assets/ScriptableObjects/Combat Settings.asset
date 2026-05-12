@@ -22,3 +22,6 @@ MonoBehaviour:
       TotalParryDuration: 36
       AdvantageOnParry: 18
       AdvantageOnMiss: -22
+    Fighter:
+      MoveSpeed: 4
+      MoveSnappyness: 15

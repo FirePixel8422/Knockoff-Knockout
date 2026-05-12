@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -10,11 +11,13 @@ using UnityEngine.InputSystem;
 public class PlayerManager : FrameTickUpdateMB
 {
     public static PlayerManager Instance { get; private set; }
-    private void Awake() => Instance = this;
 
 
     [SerializeField] private PlayerController[] players;
     [SerializeField] private Color[] playerColors;
+    public PlayerController[] Players => players;
+    public Color[] PlayerColors => playerColors;
+
 
     [SerializeField] private GamepadRumbleParameters onJoinRumble;
 
@@ -26,24 +29,11 @@ public class PlayerManager : FrameTickUpdateMB
     public bool LogInputDeviceChanges => logInputDeviceChanges;
 #endif
 
-    public Color[] PlayerColors => playerColors;
 
-
-    //public Color GetPlayerColor(PlayerInputBinder binder)
-    //{
-    //    int playerId = 0;
-    //    foreach (var kvp in binderToRouterMap)
-    //    {
-    //        if (kvp.Key == binder)
-    //        {
-    //            return playerColors[playerId];
-    //        }
-    //        playerId += 1;
-    //    }
-
-    //    DebugLogger.LogWarning("Player color reqeust failed. Requester '" + binder.name + "' isnt registered");
-    //    return default;
-    //}
+    private void Awake()
+    {
+        Instance = this;
+    }
 
 
     #region Player Join/Leave Callbacks
@@ -116,6 +106,19 @@ public class PlayerManager : FrameTickUpdateMB
             kvp.Key.Unbind();
         }
         binderToRouterMap.Clear();
+    }
+
+
+    protected override void OnUpdate()
+    {
+        if (MatchManager.Instance.GamePaused) return;
+
+        for (int i = 0; i < GlobalGameData.MAX_PLAYERS; i++)
+        {
+            players[i].OnUpdate();
+        }
+
+        PlayerSpacingManager.Instance.OnUpdate();
     }
 
 

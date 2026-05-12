@@ -4,7 +4,7 @@
 /// <summary>
 /// State describing the stance of the fighter.
 /// </summary>
-public enum CombatState
+public enum CombatState : byte
 {
     /// <summary>
     /// Fighter is just chilling (Also used as null state, no state)

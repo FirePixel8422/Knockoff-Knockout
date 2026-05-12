@@ -121,13 +121,13 @@ MonoBehaviour:
     m_ActionName: 'Gameplay/Button 2[/DualShock4GamepadHID/buttonNorth,/DualShock4GamepadHID1/buttonNorth]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6434227901280912075}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 2166894028991553487}
+        m_TargetAssemblyTypeName: PlayerInputBinder, Assembly-CSharp
+        m_MethodName: OnButton3
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -137,13 +137,13 @@ MonoBehaviour:
     m_ActionName: 'Gameplay/Button 3[/DualShock4GamepadHID/buttonSouth,/DualShock4GamepadHID1/buttonSouth]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6434227901280912075}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 2166894028991553487}
+        m_TargetAssemblyTypeName: PlayerInputBinder, Assembly-CSharp
+        m_MethodName: OnButton4
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -153,13 +153,13 @@ MonoBehaviour:
     m_ActionName: 'Gameplay/Button 4[/DualShock4GamepadHID/buttonEast,/DualShock4GamepadHID1/buttonEast]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6434227901280912075}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 2166894028991553487}
+        m_TargetAssemblyTypeName: PlayerInputBinder, Assembly-CSharp
+        m_MethodName: OnButton5
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -169,13 +169,13 @@ MonoBehaviour:
     m_ActionName: 'Gameplay/Button 5[/DualShock4GamepadHID/rightShoulder,/DualShock4GamepadHID1/rightShoulder]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6434227901280912075}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 2166894028991553487}
+        m_TargetAssemblyTypeName: PlayerInputBinder, Assembly-CSharp
+        m_MethodName: OnButton6
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -185,13 +185,13 @@ MonoBehaviour:
     m_ActionName: 'Gameplay/Button 6[/DualShock4GamepadHID/rightTrigger,/DualShock4GamepadHID1/rightTrigger]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6434227901280912075}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 2166894028991553487}
+        m_TargetAssemblyTypeName: PlayerInputBinder, Assembly-CSharp
+        m_MethodName: OnButton7
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -201,13 +201,13 @@ MonoBehaviour:
     m_ActionName: 'Gameplay/Button 7[/DualShock4GamepadHID/leftShoulder,/DualShock4GamepadHID1/leftShoulder]'
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6434227901280912075}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 2166894028991553487}
+        m_TargetAssemblyTypeName: PlayerInputBinder, Assembly-CSharp
+        m_MethodName: OnButton8
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
