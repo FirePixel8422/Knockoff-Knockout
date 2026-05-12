@@ -67,7 +67,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8358bc8e5f0fe054894d16bd8838a1d0, type: 2}
+  - {fileID: 2100000, guid: 9923e560ab7602e4e9a17e049dd34650, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -103,12 +103,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
-  id: 0
+  id: 1
   colliderType: 2
-  size:
-    x: 0.5
-    y: 0.5
-    z: 0.5
+  halfSize:
+    x: 0.25
+    y: 0.25
+    z: 0.25
 --- !u!1 &8383564846585285421
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,7 +180,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8358bc8e5f0fe054894d16bd8838a1d0, type: 2}
+  - {fileID: 2100000, guid: 9923e560ab7602e4e9a17e049dd34650, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -220,14 +220,10 @@ MonoBehaviour:
   moveSetSO: {fileID: 11400000, guid: 0fef3c80fa41e8e49a9cb3b36f9bc920, type: 2}
   stateMachine:
     State:
-      GroundState: 0
+      StanceState: 0
       MovementState: 0
       CombatState: 0
-    bufferedState:
-      GroundState: 0
-      MovementState: 0
-      CombatState: 0
-    HitStop: 0
+    TimeStop: 0
     Recovery: 0
     HitStun: 0
     BlockStun: 0
@@ -262,11 +258,11 @@ MonoBehaviour:
       cRawInput:
         AttackFlags: 0
         DirectionFlag: 0
-    dir: {x: 0, y: 0}
   attackHandler:
     currentSequence:
       Attack:
         AnimationName: 
+        Lunge: 0
         Damage: 0
         Knockback: 0
         Level: 0
@@ -275,12 +271,10 @@ MonoBehaviour:
           Startup: 0
           Active: 0
           Recovery: 0
-          CancelWindow:
-            x: 0
-            y: 0
+          CancelWindow: 0
           HitStun: 0
           BlockStun: 0
-          CounterHitBonus: 0
+          CounterHitStun: 0
           HitStop: 0
           BlockStop: 0
         Input:
@@ -291,9 +285,10 @@ MonoBehaviour:
         TotalAttackDuration: 0
         AdvantageOnHit: 0
         AdvantageOnBlock: 0
+        AdvantageOnCounter: 0
       State: 0
       NextStateDelay: 0
-    sequenceActive: 0
+  inputRouter: {fileID: 0}
 --- !u!114 &7012654021298077395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,10 +303,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
   id: 0
   colliderType: 1
-  size:
-    x: 0.85
-    y: 1.8
-    z: 0.85
+  halfSize:
+    x: 0.5
+    y: 1
+    z: 0.5
 --- !u!95 &9196834861683052340
 Animator:
   serializedVersion: 7
@@ -346,4 +341,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 257d248b96c1dc740a4a46ee0bcf9141, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInputRouter
-  isAssigned: 0
