@@ -8,7 +8,7 @@ public class FastBoxCollider : MonoBehaviour
 
     [SerializeField] private ColliderType colliderType;
     [SerializeField] private float3 halfSize = new float3(1);
-    [SerializeField] private float3 offset = new float3(1);
+    [SerializeField] private float3 offset;
     
     public int Id => id;
     public ColliderType Type => colliderType;

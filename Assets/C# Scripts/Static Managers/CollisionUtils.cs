@@ -1,5 +1,6 @@
 ﻿using Unity.Mathematics;
 using Unity.Burst;
+using Unity.Collections;
 
 
 /// <summary>
@@ -12,34 +13,29 @@ public static class CollisionUtils
     /// Called through attacker <see cref="PlayerController"/> every tick (60fps) while any hurtbox is still active
     /// </summary>
     /// <returns>True if ANY collision between any collider of <paramref name="groupA"/> with <paramref name="groupB"/> was found</returns>
-    public static bool CheckAABBIntersection(FastBoxCollider[] groupA, FastBoxCollider[] groupB)
+    [BurstCompile]
+    public static bool CheckAABBIntersection(in NativeArray<HitBoxAABB> groupA, in NativeArray<HitBoxAABB> groupB)
     {
-        int groupA_Count = groupA.Length;
-        int groupB_Count = groupB.Length;
+        int groupACount = groupA.Length;
+        int groupBCount = groupB.Length;
 
-        // Get Target HitBox AABBs
-        AABB[] GroupA_AABBs = new AABB[groupA_Count];
-        for (int i = 0; i < groupA_Count; i++)
-        {
-            GroupA_AABBs[i] = groupA[i].GetAABB();
-        }
-        // Get Player HurtBox AABBs
-        AABB[] GroupB_AABBs = new AABB[groupB_Count];
-        for (int i = 0; i < groupB_Count; i++)
-        {
-            GroupB_AABBs[i] = groupB[i].GetAABB();
-        }
+        HitBoxAABB hitboxA;
+        HitBoxAABB hitboxB;
 
-        for (int i = 0; i < groupA_Count; i++)
+        for (int a = 0; a < groupACount; a++)
         {
-            if (!groupA[i].isActiveAndEnabled) continue;
+            hitboxA = groupA[a];
 
-            for (int j = 0; j < groupB_Count; j++)
+            if (!hitboxA.IsActive) continue;
+
+            for (int b = 0; b < groupBCount; b++)
             {
-                if (!groupB[i].isActiveAndEnabled) continue;
+                hitboxB = groupB[b];
 
-                // Any hit?
-                if (TestAABB(in GroupA_AABBs[i], in GroupB_AABBs[j]))
+                if (!hitboxB.IsActive) continue;
+
+                // Check for a box intersection
+                if (TestAABB(in hitboxA, in hitboxB))
                 {
                     return true;
                 }
@@ -50,7 +46,7 @@ public static class CollisionUtils
     }
 
     [BurstCompile]
-    private static bool TestAABB(in AABB a, in AABB b)
+    private static bool TestAABB(in HitBoxAABB a, in HitBoxAABB b)
     {
         return math.all(a.Min <= b.Max) && math.all(a.Max >= b.Min);
     }
