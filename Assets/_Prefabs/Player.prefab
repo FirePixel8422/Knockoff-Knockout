@@ -45,9 +45,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
   halfSize:
-    x: 0.1
-    y: 0.1
-    z: 0.1
+    x: 0.15
+    y: 0.15
+    z: 0.15
+  SkipNextGizmoDraw: 0
 --- !u!1 &679404655205308566
 GameObject:
   m_ObjectHideFlags: 0
@@ -93,9 +94,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
   halfSize:
-    x: 0.1
-    y: 0.1
-    z: 0.1
+    x: 0.15
+    y: 0.15
+    z: 0.15
+  SkipNextGizmoDraw: 0
 --- !u!1 &1083334587766134051
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,9 +143,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
   halfSize:
-    x: 0.1
-    y: 0.1
-    z: 0.1
+    x: 0.15
+    y: 0.15
+    z: 0.15
+  SkipNextGizmoDraw: 0
 --- !u!1 &1433784681900069911
 GameObject:
   m_ObjectHideFlags: 0
@@ -190,9 +193,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
   halfSize:
-    x: 0.08
-    y: 0.08
-    z: 0.08
+    x: 0.12
+    y: 0.12
+    z: 0.12
+  SkipNextGizmoDraw: 0
 --- !u!114 &9220936876393295978
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,9 +210,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FastHurtBox
   halfSize:
-    x: 0.07
-    y: 0.07
-    z: 0.07
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  SkipNextGizmoDraw: 0
   id: 1
 --- !u!1 &2017989821624995675
 GameObject:
@@ -255,9 +260,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
   halfSize:
-    x: 0.1
-    y: 0.1
-    z: 0.1
+    x: 0.15
+    y: 0.15
+    z: 0.15
+  SkipNextGizmoDraw: 0
 --- !u!1 &2700037843374795817
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,9 +310,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
   halfSize:
-    x: 0.09
-    y: 0.09
-    z: 0.09
+    x: 0.15
+    y: 0.15
+    z: 0.15
+  SkipNextGizmoDraw: 0
 --- !u!114 &7793673818144359985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,9 +327,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FastHurtBox
   halfSize:
-    x: 0.08
-    y: 0.08
-    z: 0.08
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  SkipNextGizmoDraw: 0
   id: 4
 --- !u!1 &2755472557945903614
 GameObject:
@@ -369,74 +377,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
   halfSize:
-    x: 0.14
-    y: 0.14
-    z: 0.14
---- !u!1 &3059838646154103429
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 9109130181298855452}
-  - component: {fileID: 2498024745786126775}
-  - component: {fileID: 4899884215123148710}
-  m_Layer: 0
-  m_Name: Hitboxes (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &9109130181298855452
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3059838646154103429}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.99156, y: 0.07868407, z: 0.10034845, w: 0.023407312}
-  m_LocalPosition: {x: 0.0032, y: 0.1289, z: 0.0343}
-  m_LocalScale: {x: 0.99359095, y: 1.0121526, z: 0.9942456}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6048496334941282508}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2498024745786126775
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3059838646154103429}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
-  halfSize:
-    x: 0.1
-    y: 0.1
-    z: 0.1
---- !u!114 &4899884215123148710
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3059838646154103429}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
-  halfSize:
-    x: 0.07
-    y: 0.07
-    z: 0.07
+    x: 0.15
+    y: 0.15
+    z: 0.15
+  SkipNextGizmoDraw: 0
 --- !u!1 &5374105253560620058
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,9 +426,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
   halfSize:
-    x: 0.15
-    y: 0.15
-    z: 0.15
+    x: 0.2
+    y: 0.2
+    z: 0.2
+  SkipNextGizmoDraw: 0
 --- !u!1 &5767387939273733520
 GameObject:
   m_ObjectHideFlags: 0
@@ -530,9 +475,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
   halfSize:
-    x: 0.1
-    y: 0.1
-    z: 0.1
+    x: 0.15
+    y: 0.15
+    z: 0.15
+  SkipNextGizmoDraw: 0
 --- !u!1 &6199503202751227438
 GameObject:
   m_ObjectHideFlags: 0
@@ -579,9 +525,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
   halfSize:
-    x: 0.1
-    y: 0.1
-    z: 0.1
+    x: 0.15
+    y: 0.15
+    z: 0.15
+  SkipNextGizmoDraw: 0
 --- !u!114 &6264356842152197209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -595,9 +542,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FastHurtBox
   halfSize:
-    x: 0.07
-    y: 0.07
-    z: 0.07
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  SkipNextGizmoDraw: 0
   id: 6
 --- !u!1 &6445986526282937953
 GameObject:
@@ -644,9 +592,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
   halfSize:
-    x: 0.2
-    y: 0.2
-    z: 0.2
+    x: 0.25
+    y: 0.25
+    z: 0.25
+  SkipNextGizmoDraw: 0
 --- !u!1 &7385080167351998871
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,9 +642,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
   halfSize:
-    x: 0.08
-    y: 0.08
-    z: 0.08
+    x: 0.15
+    y: 0.15
+    z: 0.15
+  SkipNextGizmoDraw: 0
 --- !u!114 &8663879553239511212
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -709,9 +659,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FastHurtBox
   halfSize:
-    x: 0.06
-    y: 0.06
-    z: 0.06
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  SkipNextGizmoDraw: 0
   id: 5
 --- !u!1 &7459875526161375091
 GameObject:
@@ -759,9 +710,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
   halfSize:
-    x: 0.08
-    y: 0.08
-    z: 0.08
+    x: 0.15
+    y: 0.15
+    z: 0.15
+  SkipNextGizmoDraw: 0
 --- !u!114 &4046124334857041437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -775,9 +727,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FastHurtBox
   halfSize:
-    x: 0.06
-    y: 0.06
-    z: 0.06
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  SkipNextGizmoDraw: 0
   id: 7
 --- !u!1 &8140412481058186031
 GameObject:
@@ -825,9 +778,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
   halfSize:
-    x: 0.09
-    y: 0.09
-    z: 0.09
+    x: 0.12
+    y: 0.12
+    z: 0.12
+  SkipNextGizmoDraw: 0
 --- !u!114 &136948562137605713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -841,9 +795,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FastHurtBox
   halfSize:
-    x: 0.08
-    y: 0.08
-    z: 0.08
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  SkipNextGizmoDraw: 0
   id: 2
 --- !u!1 &8568536083974517455
 GameObject:
@@ -891,9 +846,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
   halfSize:
-    x: 0.09
-    y: 0.09
-    z: 0.09
+    x: 0.12
+    y: 0.12
+    z: 0.12
+  SkipNextGizmoDraw: 0
 --- !u!114 &1967503502380130977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -907,9 +863,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FastHurtBox
   halfSize:
-    x: 0.08
-    y: 0.08
-    z: 0.08
+    x: 0.1
+    y: 0.1
+    z: 0.1
+  SkipNextGizmoDraw: 0
   id: 3
 --- !u!1 &8738189819546646467
 GameObject:
@@ -956,9 +913,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
   halfSize:
-    x: 0.1
-    y: 0.1
-    z: 0.1
+    x: 0.15
+    y: 0.15
+    z: 0.15
+  SkipNextGizmoDraw: 0
 --- !u!1 &9028411201499099730
 GameObject:
   m_ObjectHideFlags: 0
@@ -1005,9 +963,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
   halfSize:
-    x: 0.1
-    y: 0.1
-    z: 0.1
+    x: 0.15
+    y: 0.15
+    z: 0.15
+  SkipNextGizmoDraw: 0
 --- !u!114 &1549866108398919920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1021,58 +980,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FastHurtBox
   halfSize:
-    x: 0.08
-    y: 0.08
-    z: 0.08
-  id: 8
---- !u!1 &9082360168801992226
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 7779191609280063116}
-  - component: {fileID: 6361562879687447294}
-  m_Layer: 0
-  m_Name: Hitboxes (4)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &7779191609280063116
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9082360168801992226}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.97368, y: -0.0047113826, z: 0.2140457, w: -0.078163385}
-  m_LocalPosition: {x: 0.0028, y: 0.1097, z: 0.0291}
-  m_LocalScale: {x: 0.9922929, y: 1.0220993, z: 0.9858616}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8224969967234592272}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6361562879687447294
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9082360168801992226}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
-  halfSize:
     x: 0.1
     y: 0.1
     z: 0.1
+  SkipNextGizmoDraw: 0
+  id: 8
 --- !u!1001 &2263460401487238819
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2044,10 +1956,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5519722510425405039, guid: f56bd06238713cb4fbae175ea8d17357,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 9109130181298855452}
-    - targetCorrespondingSourceObject: {fileID: 5519722510425405039, guid: f56bd06238713cb4fbae175ea8d17357,
-        type: 3}
-      insertIndex: -1
       addedObject: {fileID: 4302334383386633932}
     - targetCorrespondingSourceObject: {fileID: 6152400788126111112, guid: f56bd06238713cb4fbae175ea8d17357,
         type: 3}
@@ -2061,10 +1969,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1020454937910794131}
-    - targetCorrespondingSourceObject: {fileID: 7876122459140356275, guid: f56bd06238713cb4fbae175ea8d17357,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7779191609280063116}
     - targetCorrespondingSourceObject: {fileID: 7876122459140356275, guid: f56bd06238713cb4fbae175ea8d17357,
         type: 3}
       insertIndex: -1
