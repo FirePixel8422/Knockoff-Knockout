@@ -11,8 +11,6 @@ public class AttackDataTester : MonoBehaviour
     [SerializeField] private Transform targetPlayer;
     [InlineSO, SerializeField] private AttackSO targetData;
 
-    private FastBoxCollider[] hurtBoxes;
-
 
 
     private void OnDrawGizmos()
@@ -22,17 +20,17 @@ public class AttackDataTester : MonoBehaviour
 
         HashSet<int> ids = new HashSet<int>(targetData.Value.HurtBoxIds);
 
-        FastBoxCollider[] all = targetPlayer.GetComponentsInChildren<FastBoxCollider>(true);
+        FastHurtBox[] hurtBoxes = targetPlayer.GetComponentsInChildren<FastHurtBox>(true);
+        List<FastHurtBox> filtered = new List<FastHurtBox>(hurtBoxes.Length);
 
-        List<FastBoxCollider> filtered = new List<FastBoxCollider>(all.Length);
-
-        for (int i = 0; i < all.Length; i++)
+        for (int i = 0; i < hurtBoxes.Length; i++)
         {
-            FastBoxCollider box = all[i];
+            FastHurtBox box = hurtBoxes[i];
 
-            if (box.Type == ColliderType.Hurtbox && ids.Contains(box.Id))
+            if (ids.Contains(box.Id))
             {
                 filtered.Add(box);
+                box.SkipNextGizmoDraw = true;
             }
         }
 
@@ -40,13 +38,13 @@ public class AttackDataTester : MonoBehaviour
         EditorUtility.SetDirty(targetData);
 
         float t = Mathf.PingPong((float)EditorApplication.timeSinceStartup, 1f);
-        Color c = Color.Lerp(Color.purple, Color.orange, t);
+        Color c = Color.Lerp(Color.purple, Color.blue, t);
 
         Gizmos.color = c;
 
         for (int i = 0; i < hurtBoxes.Length; i++)
         {
-            FastBoxCollider box = hurtBoxes[i];
+            FastHurtBox box = hurtBoxes[i];
 
             Gizmos.DrawWireMesh(GlobalMeshes.Cube, box.transform.position, Quaternion.identity, box.Size);
             Gizmos.DrawWireMesh(GlobalMeshes.Cube, box.transform.position, Quaternion.identity, box.Size * 1.025f);

@@ -9,62 +9,31 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerColliderHandler
 {
-    private readonly FastBoxCollider[] hitBoxes;
-    private readonly FastBoxCollider[] hurtBoxes;
+    private readonly FastHitBox[] hitBoxes;
+    private readonly FastHurtBox[] hurtBoxes;
     private readonly int hitBoxCount;
     private readonly int hurtBoxCount;
 
     private NativeArray<HitBoxAABB> hitBoxAABBs;
-    private NativeArray<HitBoxAABB> hurtBoxAABBs;
+    private NativeArray<HurtBoxAABB> hurtBoxAABBs;
     public NativeArray<HitBoxAABB> HitBoxAABBs => hitBoxAABBs;
-    public NativeArray<HitBoxAABB> HurtBoxAABBs => hurtBoxAABBs;
+    public NativeArray<HurtBoxAABB> HurtBoxAABBs => hurtBoxAABBs;
 
     private readonly HashSet<int> activeHurtBoxIds = new HashSet<int>();
 
 
     public PlayerColliderHandler(Transform playerRoot)
     {
-        FastBoxCollider[] colliders = playerRoot.GetComponentsInChildren<FastBoxCollider>(true);
+        hitBoxes = playerRoot.GetComponentsInChildren<FastHitBox>(true);
+        hurtBoxes = playerRoot.GetComponentsInChildren<FastHurtBox>(true);
 
-        int colliderCount = colliders.Length;
-        hitBoxCount = 0;
-        hurtBoxCount = 0;
-
-        // Get HitBox and HurtBox Counts
-        for (int i = 0; i < colliderCount; i++)
-        {
-            if (colliders[i].Type == ColliderType.Hitbox)
-            {
-                hitBoxCount += 1;
-            }
-            else if (colliders[i].Type == ColliderType.Hurtbox)
-            {
-                hurtBoxCount += 1;
-            }
-        }
-
-        hitBoxes = new FastBoxCollider[hitBoxCount];
-        hurtBoxes = new FastBoxCollider[hurtBoxCount];
+        hitBoxCount = hitBoxes.Length;
+        hurtBoxCount = hurtBoxes.Length;
 
         hitBoxAABBs = new NativeArray<HitBoxAABB>(hitBoxCount, Allocator.Persistent);
-        hurtBoxAABBs = new NativeArray<HitBoxAABB>(hurtBoxCount, Allocator.Persistent);
-
-        int hitBoxId = 0;
-        int hurtBoxId = 0;
-
-        // Store HitBox and HurtBoxs
-        for (int i = 0; i < colliderCount; i++)
-        {
-            if (colliders[i].Type == ColliderType.Hitbox)
-            {
-                hitBoxes[hitBoxId++] = colliders[i];
-            }
-            else if (colliders[i].Type == ColliderType.Hurtbox)
-            {
-                hurtBoxes[hurtBoxId++] = colliders[i];
-            }
-        }
+        hurtBoxAABBs = new NativeArray<HurtBoxAABB>(hurtBoxCount, Allocator.Persistent);
     }
+
     ~PlayerColliderHandler()
     {
         hitBoxAABBs.Dispose();
@@ -79,7 +48,7 @@ public class PlayerColliderHandler
         int idCount = ids.Length;
         activeHurtBoxIds.Clear();
 
-        for (int i = 0; i < ids.Length; i++)
+        for (int i = 0; i < idCount; i++)
         {
             activeHurtBoxIds.Add(ids[i]);
         }
@@ -105,7 +74,7 @@ public class PlayerColliderHandler
     {
         for (int i = 0; i < hurtBoxCount; i++)
         {
-            hurtBoxAABBs[i] = hurtBoxes[i].GetAABB();
+            hurtBoxAABBs[i] = hurtBoxes[i].GetHurtBoxAABB();
         }
     }
     /// <summary>
@@ -115,7 +84,7 @@ public class PlayerColliderHandler
     {
         for (int i = 0; i < hitBoxCount; i++)
         {
-            hitBoxAABBs[i] = hitBoxes[i].GetAABB();
+            hitBoxAABBs[i] = hitBoxes[i].GetHitBoxAABB();
         }
     }
 

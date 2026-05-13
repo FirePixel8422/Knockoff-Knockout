@@ -11,6 +11,7 @@ using UnityEngine.InputSystem;
 public class PlayerManager : FrameTickUpdateMB
 {
     public static PlayerManager Instance { get; private set; }
+    private void Awake() => Instance = this;
 
 
     [SerializeField] private PlayerController[] players;
@@ -28,12 +29,6 @@ public class PlayerManager : FrameTickUpdateMB
     [SerializeField] private bool logInputDeviceChanges = true;
     public bool LogInputDeviceChanges => logInputDeviceChanges;
 #endif
-
-
-    private void Awake()
-    {
-        Instance = this;
-    }
 
 
     #region Player Join/Leave Callbacks
@@ -118,6 +113,7 @@ public class PlayerManager : FrameTickUpdateMB
             players[i].OnUpdate();
         }
 
+        // Update systems after players.
         PlayerSpacingManager.Instance.OnUpdate();
     }
 

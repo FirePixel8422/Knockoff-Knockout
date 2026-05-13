@@ -4,7 +4,7 @@ using Unity.Collections;
 
 
 /// <summary>
-/// Static class with utility methods to check intersections (collision) between generated AABBs from the custom <see cref="FastBoxCollider"/> class
+/// Static class with utility methods to check intersections (collision) between generated AABBs from the custom <see cref="FastHitBox"/> class
 /// </summary>
 [BurstCompile]
 public static class CollisionUtils
@@ -14,19 +14,17 @@ public static class CollisionUtils
     /// </summary>
     /// <returns>True if ANY collision between any collider of <paramref name="groupA"/> with <paramref name="groupB"/> was found</returns>
     [BurstCompile]
-    public static bool CheckAABBIntersection(in NativeArray<HitBoxAABB> groupA, in NativeArray<HitBoxAABB> groupB)
+    public static bool CheckAABBIntersection(in NativeArray<HitBoxAABB> groupA, in NativeArray<HurtBoxAABB> groupB)
     {
         int groupACount = groupA.Length;
         int groupBCount = groupB.Length;
 
         HitBoxAABB hitboxA;
-        HitBoxAABB hitboxB;
+        HurtBoxAABB hitboxB;
 
         for (int a = 0; a < groupACount; a++)
         {
             hitboxA = groupA[a];
-
-            if (!hitboxA.IsActive) continue;
 
             for (int b = 0; b < groupBCount; b++)
             {
@@ -46,7 +44,7 @@ public static class CollisionUtils
     }
 
     [BurstCompile]
-    private static bool TestAABB(in HitBoxAABB a, in HitBoxAABB b)
+    private static bool TestAABB(in HitBoxAABB a, in HurtBoxAABB b)
     {
         return math.all(a.Min <= b.Max) && math.all(a.Max >= b.Min);
     }

@@ -51,6 +51,24 @@ public class ControllerAssigner : UpdateMonoBehaviour
     }
     public void EndControllerAssignment()
     {
+        foreach (var kvp in deviceToIdMap)
+        {
+            int deviceId = kvp.Value;
+            PlayerInput playerInput = PlayerInput.GetPlayerByIndex(deviceId);
+
+            if (!playerInput.TryGetComponent(out PlayerInputBinder binder))
+            {
+                DebugLogger.LogError("PlayerInputBinder not found for player " + deviceId, PlayerManager.Instance.LogInputDeviceChanges);
+                return;
+            }
+
+            int fighterId = playerFighterSlotIds[deviceId];
+            if (fighterId != UNASSIGNED_FIGHTER_SLOT_ID)
+            {
+                PlayerManager.Instance.BindPlayerInput(binder, fighterSlotToFighterId[fighterId]);
+            }
+        }
+
         MatchManager.Instance.UnPauseGame();
         uiRoot.SetActive(false);
     }
@@ -85,6 +103,7 @@ public class ControllerAssigner : UpdateMonoBehaviour
         playerInput.actions["Direction"].performed += OnDirection;
         playerInput.actions["Direction"].canceled += OnDirection;
         playerInput.actions["Start"].performed += OnStart;
+        playerInput.actions["Menu Confirm"].performed += OnMenuConfirm;
 
         playerInput.SwitchCurrentActionMap("Gameplay");
         playerInput.actions.FindActionMap("Misc").Enable();
@@ -107,6 +126,7 @@ public class ControllerAssigner : UpdateMonoBehaviour
             playerInput.actions["Direction"].performed -= OnDirection;
             playerInput.actions["Direction"].canceled -= OnDirection;
             playerInput.actions["Start"].performed -= OnStart;
+            playerInput.actions["Menu Confirm"].performed -= OnMenuConfirm;
 
             UpdateAllowPlayerJoinState();
 
@@ -170,29 +190,26 @@ public class ControllerAssigner : UpdateMonoBehaviour
 
         if (uiRoot.activeInHierarchy)
         {
-            foreach (var kvp in deviceToIdMap)
-            {
-                int deviceId = kvp.Value;
-                PlayerInput playerInput = PlayerInput.GetPlayerByIndex(deviceId);
-
-                if (!playerInput.TryGetComponent(out PlayerInputBinder binder))
-                {
-                    DebugLogger.LogError("PlayerInputBinder not found for player " + deviceId, PlayerManager.Instance.LogInputDeviceChanges);
-                    return;
-                }
-
-                int fighterId = playerFighterSlotIds[deviceId];
-                if (fighterId != UNASSIGNED_FIGHTER_SLOT_ID)
-                {
-                    PlayerManager.Instance.BindPlayerInput(binder, fighterSlotToFighterId[fighterId]);
-                }
-            }
             EndControllerAssignment();
         }
         else
         {
             StartControllerAssignment();
         }
+    }
+    private void OnMenuConfirm(InputAction.CallbackContext ctx)
+    {
+        // Return if assign meny isnt active
+        if (!uiRoot.activeInHierarchy) return;
+
+        InputDevice device = ctx.control.device;
+        if (!deviceToIdMap.ContainsKey(device))
+        {
+            DebugLogger.LogError("Player id not found for device " + device.name);
+            return;
+        }
+
+        EndControllerAssignment();
     }
 
     #endregion
@@ -303,6 +320,7 @@ public class ControllerAssigner : UpdateMonoBehaviour
             playerInput.actions["Direction"].performed -= OnDirection;
             playerInput.actions["Direction"].canceled -= OnDirection;
             playerInput.actions["Start"].performed -= OnStart;
+            playerInput.actions["Menu Confirm"].performed -= OnMenuConfirm;
         }
     }
 
