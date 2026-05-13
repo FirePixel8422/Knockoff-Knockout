@@ -9,11 +9,15 @@ public struct AttackData
 #endif
     [EditorReadOnly] public int GeneratedAnimHash;
 
-    public float Lunge;
+    [Header("Damage for hitting the move, hit/block knockback and does knockdown?")]
     public float Damage;
-    public float Knockback;
+    public float HitKB, BlockKB;
+    public bool DoesKnockDown;
 
-    [Header("Is the attack a low, mid or high and what hitboxes does it use")]
+    [Header("Lunge distance in meters and startup frame index")]
+    public Lunge Lunge;
+
+    [Header("Is the attack a low, mid or high and what hurtboxes does it use")]
     public AttackLevel Level;
     public int[] HurtBoxIds;
 
@@ -24,17 +28,17 @@ public struct AttackData
 
 #if UNITY_EDITOR
     [Header("Usefull Info")]
-    [EditorReadOnly] public int TotalAttackDuration;
-    [EditorReadOnly] public int AdvantageOnHit;
-    [EditorReadOnly] public int AdvantageOnBlock;
-    [EditorReadOnly] public int AdvantageOnCounter;
+    [EditorReadOnly] public string TotalAttackDuration;
+    [EditorReadOnly] public string AdvantageOnHit;
+    [EditorReadOnly] public string AdvantageOnBlock;
+    [EditorReadOnly] public string AdvantageOnCounter;
 
     public void UpdateDebugData()
     {
-        TotalAttackDuration = FrameData.Startup + FrameData.Active + FrameData.Recovery;
-        AdvantageOnHit = FrameData.HitStun - FrameData.Recovery;
-        AdvantageOnBlock = FrameData.BlockStun - FrameData.Recovery;
-        AdvantageOnCounter = FrameData.CounterHitStun - FrameData.Recovery;
+        TotalAttackDuration = (FrameData.Startup + FrameData.Active + FrameData.Recovery).ToString();
+        AdvantageOnHit = (FrameData.HitStun - FrameData.Recovery).ToString("+0;-0;0");
+        AdvantageOnBlock = (FrameData.BlockStun - FrameData.Recovery).ToString("+0;-0;0");
+        AdvantageOnCounter = (FrameData.CounterStun - FrameData.Recovery).ToString("+0;-0;0");
     }
 #endif
 }
@@ -58,7 +62,7 @@ public struct FrameData
     [Header("Move (Attack) 'OnHit', 'OnBlock' and 'OnCounter' Stun")]
     public int HitStun;
     public int BlockStun;
-    public int CounterHitStun;
+    public int CounterStun;
 
     [Header("Move (Attack) HitStop and BlockStop for dramatic effect when connecting it")]
     public int HitStop;

@@ -14,27 +14,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AttackSO
   Value:
     AnimationName: Jab
-    Damage: 1
-    Knockback: 0
+    GeneratedAnimHash: 1561758614
+    Damage: 10
+    HitKB: 0.05
+    BlockKB: 0.02
+    DoesKnockDown: 0
+    Lunge:
+      Distance: 0
+      StartWindow: 0
     Level: 1
     HurtBoxIds: 01000000
     FrameData:
       Startup: 12
       Active: 2
       Recovery: 14
-      CancelWindow:
-        x: 0
-        y: 0
-      HitStun: 20
+      CancelWindow: 0
+      HitStun: 16
       BlockStun: 12
-      CounterHitBonus: 0
-      HitStop: 8
-      BlockStop: 4
+      CounterStun: 22
+      HitStop: 0
+      BlockStop: 0
     Input:
       AttackFlags: 1
       DirectionFlag: 3
     StringTransitions: []
-    GeneratedAnimHash: 1561758614
     TotalAttackDuration: 28
-    AdvantageOnHit: 6
+    AdvantageOnHit: +2
     AdvantageOnBlock: -2
+    AdvantageOnCounter: +8

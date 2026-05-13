@@ -15,26 +15,30 @@ MonoBehaviour:
   Value:
     AnimationName: OverHead
     GeneratedAnimHash: -410435135
-    Lunge: 0
-    Damage: 1
-    Knockback: 0
-    Level: 2
-    HurtBoxIds: 
+    Damage: 30
+    HitKB: 1
+    BlockKB: 0.4
+    DoesKnockDown: 1
+    Lunge:
+      Distance: 0
+      StartWindow: 0
+    Level: 1
+    HurtBoxIds: 03000000
     FrameData:
-      Startup: 10
-      Active: 2
-      Recovery: 40
+      Startup: 18
+      Active: 3
+      Recovery: 28
       CancelWindow: 0
-      HitStun: 20
+      HitStun: 46
       BlockStun: 14
-      CounterHitStun: 0
-      HitStop: 8
-      BlockStop: 4
+      CounterStun: 50
+      HitStop: 0
+      BlockStop: 0
     Input:
       AttackFlags: 2
       DirectionFlag: 0
     StringTransitions: []
-    TotalAttackDuration: 52
-    AdvantageOnHit: -20
-    AdvantageOnBlock: -26
-    AdvantageOnCounter: -40
+    TotalAttackDuration: 49
+    AdvantageOnHit: +18
+    AdvantageOnBlock: -14
+    AdvantageOnCounter: +22
