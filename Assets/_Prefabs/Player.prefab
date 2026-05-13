@@ -1,55 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &126971433549659608
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1357852715577626544}
-  - component: {fileID: 6388775629773110502}
-  m_Layer: 0
-  m_Name: Hitboxes (3)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1357852715577626544
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 126971433549659608}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.20337246, y: -0.061023146, z: -0.04119136, w: 0.97632945}
-  m_LocalPosition: {x: -0.003, y: 0.112, z: -0.006}
-  m_LocalScale: {x: 0.9999702, y: 1.0051498, z: 0.99492}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5861820830753710211}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6388775629773110502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 126971433549659608}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
-  id: 0
-  colliderType: 1
-  halfSize:
-    x: 0.1
-    y: 0.1
-    z: 0.1
 --- !u!1 &205786206344463953
 GameObject:
   m_ObjectHideFlags: 0
@@ -76,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 205786206344463953}
   serializedVersion: 2
   m_LocalRotation: {x: -0.9704434, y: -0.06991657, z: 0.15177351, w: 0.17411502}
-  m_LocalPosition: {x: -0.0014, y: 0.2806, z: 0.0224}
+  m_LocalPosition: {x: 0.011, y: 0.184, z: -0.0005}
   m_LocalScale: {x: 0.99481136, y: 1.0144336, z: 0.9908916}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -97,78 +47,9 @@ MonoBehaviour:
   id: 0
   colliderType: 1
   halfSize:
-    x: 0.05
-    y: 0.05
-    z: 0.05
---- !u!1 &541666469780598962
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2484104482038171146}
-  - component: {fileID: 5792183800912991332}
-  - component: {fileID: 8061272877048436767}
-  m_Layer: 0
-  m_Name: Hurt/Hitboxes (3)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2484104482038171146
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 541666469780598962}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.97368, y: -0.0047113826, z: 0.2140457, w: -0.078163385}
-  m_LocalPosition: {x: 0.001, y: 0.0905, z: 0.0261}
-  m_LocalScale: {x: 0.9922929, y: 1.0220993, z: 0.9858616}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8224969967234592272}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5792183800912991332
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 541666469780598962}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
-  id: 0
-  colliderType: 1
-  halfSize:
-    x: 0.04
-    y: 0.04
-    z: 0.04
---- !u!114 &8061272877048436767
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 541666469780598962}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
-  id: 0
-  colliderType: 2
-  halfSize:
-    x: 0.04
-    y: 0.04
-    z: 0.04
+    x: 0.1
+    y: 0.1
+    z: 0.1
 --- !u!1 &679404655205308566
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,9 +97,9 @@ MonoBehaviour:
   id: 0
   colliderType: 1
   halfSize:
-    x: 0.06
-    y: 0.06
-    z: 0.06
+    x: 0.1
+    y: 0.1
+    z: 0.1
 --- !u!1 &1083334587766134051
 GameObject:
   m_ObjectHideFlags: 0
@@ -245,7 +126,7 @@ Transform:
   m_GameObject: {fileID: 1083334587766134051}
   serializedVersion: 2
   m_LocalRotation: {x: -0.9002036, y: 0.016286235, z: 0.11295739, w: 0.42024857}
-  m_LocalPosition: {x: -0.0082, y: 0.2711, z: 0.011}
+  m_LocalPosition: {x: -0.0022, y: 0.1886, z: 0.013}
   m_LocalScale: {x: 0.9950564, y: 1.006392, z: 0.99854493}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -266,9 +147,9 @@ MonoBehaviour:
   id: 0
   colliderType: 1
   halfSize:
-    x: 0.05
-    y: 0.05
-    z: 0.05
+    x: 0.1
+    y: 0.1
+    z: 0.1
 --- !u!1 &1433784681900069911
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,9 +198,9 @@ MonoBehaviour:
   id: 0
   colliderType: 1
   halfSize:
-    x: 0.05
-    y: 0.05
-    z: 0.05
+    x: 0.08
+    y: 0.08
+    z: 0.08
 --- !u!114 &7810750877378977884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -335,128 +216,9 @@ MonoBehaviour:
   id: 1
   colliderType: 2
   halfSize:
-    x: 0.05
-    y: 0.05
-    z: 0.05
---- !u!1 &1838327128640715377
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1369534706077477508}
-  - component: {fileID: 2212816535420253503}
-  m_Layer: 0
-  m_Name: Hitboxes (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1369534706077477508
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1838327128640715377}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.20337246, y: -0.061023146, z: -0.04119136, w: 0.97632945}
-  m_LocalPosition: {x: -0.1029, y: 0.2245, z: -0.0172}
-  m_LocalScale: {x: 0.9999702, y: 1.0051498, z: 0.99492}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5861820830753710211}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2212816535420253503
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1838327128640715377}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
-  id: 0
-  colliderType: 1
-  halfSize:
-    x: 0.1
-    y: 0.1
-    z: 0.1
---- !u!1 &1950137262941009252
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4880991007956951868}
-  - component: {fileID: 1482556522969607278}
-  - component: {fileID: 6487566701642240116}
-  m_Layer: 0
-  m_Name: Hurt/Hitboxes (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4880991007956951868
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1950137262941009252}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.9873919, y: 0.09043188, z: -0.11388081, w: 0.062534295}
-  m_LocalPosition: {x: -0.0013052381, y: 0.105330475, z: -0.036276072}
-  m_LocalScale: {x: 0.998415, y: 1.0034615, z: 0.9979538}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 5334754369899873067}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1482556522969607278
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1950137262941009252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
-  id: 0
-  colliderType: 1
-  halfSize:
-    x: 0.03
-    y: 0.03
-    z: 0.03
---- !u!114 &6487566701642240116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1950137262941009252}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
-  id: 4
-  colliderType: 2
-  halfSize:
-    x: 0.03
-    y: 0.03
-    z: 0.03
+    x: 0.07
+    y: 0.07
+    z: 0.07
 --- !u!1 &2017989821624995675
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,7 +245,7 @@ Transform:
   m_GameObject: {fileID: 2017989821624995675}
   serializedVersion: 2
   m_LocalRotation: {x: -0.9704434, y: -0.06991657, z: 0.15177351, w: 0.17411502}
-  m_LocalPosition: {x: -0.018, y: 0.3685, z: 0.0267}
+  m_LocalPosition: {x: -0.0188, y: 0.3774, z: 0.0302}
   m_LocalScale: {x: 0.99481136, y: 1.0144336, z: 0.9908916}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -504,78 +266,9 @@ MonoBehaviour:
   id: 0
   colliderType: 1
   halfSize:
-    x: 0.04
-    y: 0.04
-    z: 0.04
---- !u!1 &2675079706172739851
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5881755907832575349}
-  - component: {fileID: 1042693658361113750}
-  - component: {fileID: 5536059049450380653}
-  m_Layer: 0
-  m_Name: Hurt/Hitboxes (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5881755907832575349
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2675079706172739851}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.9503613, y: -0.042372987, z: 0.20443302, w: 0.23070532}
-  m_LocalPosition: {x: 0.0011, y: 0.1026, z: -0.0325}
-  m_LocalScale: {x: 0.9962587, y: 1.0159789, z: 0.98759353}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7275220445710150187}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1042693658361113750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2675079706172739851}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
-  id: 0
-  colliderType: 1
-  halfSize:
-    x: 0.03
-    y: 0.03
-    z: 0.03
---- !u!114 &5536059049450380653
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2675079706172739851}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
-  id: 6
-  colliderType: 2
-  halfSize:
-    x: 0.03
-    y: 0.03
-    z: 0.03
+    x: 0.1
+    y: 0.1
+    z: 0.1
 --- !u!1 &2700037843374795817
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,9 +317,9 @@ MonoBehaviour:
   id: 0
   colliderType: 1
   halfSize:
-    x: 0.05
-    y: 0.05
-    z: 0.05
+    x: 0.09
+    y: 0.09
+    z: 0.09
 --- !u!114 &7865675011088483979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -639,12 +332,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
-  id: 0
+  id: 4
   colliderType: 2
   halfSize:
-    x: 0.05
-    y: 0.05
-    z: 0.05
+    x: 0.08
+    y: 0.08
+    z: 0.08
 --- !u!1 &2755472557945903614
 GameObject:
   m_ObjectHideFlags: 0
@@ -671,7 +364,7 @@ Transform:
   m_GameObject: {fileID: 2755472557945903614}
   serializedVersion: 2
   m_LocalRotation: {x: 0.015121245, y: -0.013789907, z: 0.00020854961, w: 0.99979055}
-  m_LocalPosition: {x: -0, y: 0.0364, z: 0.0011}
+  m_LocalPosition: {x: 0, y: 0.101, z: 0.003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -692,9 +385,9 @@ MonoBehaviour:
   id: 0
   colliderType: 1
   halfSize:
-    x: 0.08
-    y: 0.08
-    z: 0.08
+    x: 0.14
+    y: 0.14
+    z: 0.14
 --- !u!1 &3059838646154103429
 GameObject:
   m_ObjectHideFlags: 0
@@ -722,7 +415,7 @@ Transform:
   m_GameObject: {fileID: 3059838646154103429}
   serializedVersion: 2
   m_LocalRotation: {x: -0.99156, y: 0.07868407, z: 0.10034845, w: 0.023407312}
-  m_LocalPosition: {x: 0.0075, y: 0.184, z: 0.014}
+  m_LocalPosition: {x: 0.0032, y: 0.1289, z: 0.0343}
   m_LocalScale: {x: 0.99359095, y: 1.0121526, z: 0.9942456}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -743,9 +436,9 @@ MonoBehaviour:
   id: 0
   colliderType: 1
   halfSize:
-    x: 0.04
-    y: 0.04
-    z: 0.04
+    x: 0.1
+    y: 0.1
+    z: 0.1
 --- !u!114 &4899884215123148710
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -758,162 +451,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
-  id: 7
+  id: 9
   colliderType: 2
   halfSize:
-    x: 0.04
-    y: 0.04
-    z: 0.04
---- !u!1 &4234834745102053757
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4579186334680026729}
-  - component: {fileID: 2703809353310126172}
-  m_Layer: 0
-  m_Name: Hitboxes
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4579186334680026729
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4234834745102053757}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.9704434, y: -0.06991657, z: 0.15177351, w: 0.17411502}
-  m_LocalPosition: {x: -0.0001, y: 0.1896, z: 0.0018}
-  m_LocalScale: {x: 0.99481136, y: 1.0144336, z: 0.9908916}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 3349955061783454147}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2703809353310126172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4234834745102053757}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
-  id: 0
-  colliderType: 1
-  halfSize:
-    x: 0.05
-    y: 0.05
-    z: 0.05
---- !u!1 &4525074385060816027
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2846259901180450172}
-  - component: {fileID: 1190422526504072268}
-  m_Layer: 0
-  m_Name: Hitboxes (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2846259901180450172
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4525074385060816027}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.015121245, y: -0.013789907, z: 0.00020854961, w: 0.99979055}
-  m_LocalPosition: {x: -0.0001, y: 0.1281, z: 0.0039}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 400554872627469931}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1190422526504072268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4525074385060816027}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
-  id: 0
-  colliderType: 1
-  halfSize:
-    x: 0.08
-    y: 0.08
-    z: 0.08
---- !u!1 &4978997305782540251
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5539572536717564427}
-  - component: {fileID: 5190536397661228751}
-  m_Layer: 0
-  m_Name: Hitboxes (2)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5539572536717564427
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4978997305782540251}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0.824648, y: -0.08128567, z: -0.11726388, w: 0.5473551}
-  m_LocalPosition: {x: -0.0599, y: 0.0235, z: 0.0136}
-  m_LocalScale: {x: 0.99997044, y: 1.0051498, z: 0.99491996}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4238326397969378039}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5190536397661228751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4978997305782540251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
-  id: 0
-  colliderType: 1
-  halfSize:
-    x: 0.08
-    y: 0.08
-    z: 0.08
+    x: 0.07
+    y: 0.07
+    z: 0.07
 --- !u!1 &5374105253560620058
 GameObject:
   m_ObjectHideFlags: 0
@@ -940,7 +483,7 @@ Transform:
   m_GameObject: {fileID: 5374105253560620058}
   serializedVersion: 2
   m_LocalRotation: {x: 0.824648, y: -0.08128567, z: -0.11726388, w: 0.5473551}
-  m_LocalPosition: {x: 0.0625, y: -0.0157, z: 0.0138}
+  m_LocalPosition: {x: 0.0052, y: 0, z: 0.02}
   m_LocalScale: {x: 0.99997044, y: 1.0051498, z: 0.99491996}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -961,9 +504,9 @@ MonoBehaviour:
   id: 0
   colliderType: 1
   halfSize:
-    x: 0.08
-    y: 0.08
-    z: 0.08
+    x: 0.15
+    y: 0.15
+    z: 0.15
 --- !u!1 &5767387939273733520
 GameObject:
   m_ObjectHideFlags: 0
@@ -1011,9 +554,9 @@ MonoBehaviour:
   id: 0
   colliderType: 1
   halfSize:
-    x: 0.04
-    y: 0.04
-    z: 0.04
+    x: 0.1
+    y: 0.1
+    z: 0.1
 --- !u!1 &6199503202751227438
 GameObject:
   m_ObjectHideFlags: 0
@@ -1062,9 +605,9 @@ MonoBehaviour:
   id: 0
   colliderType: 1
   halfSize:
-    x: 0.04
-    y: 0.04
-    z: 0.04
+    x: 0.1
+    y: 0.1
+    z: 0.1
 --- !u!114 &2776376610391845387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1077,62 +620,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
-  id: 8
+  id: 10
   colliderType: 2
   halfSize:
-    x: 0.04
-    y: 0.04
-    z: 0.04
---- !u!1 &6309458690493852978
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1738908137866145025}
-  - component: {fileID: 6067356002362304810}
-  m_Layer: 0
-  m_Name: Hitboxes
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1738908137866145025
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6309458690493852978}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.9002036, y: 0.016286235, z: 0.11295739, w: 0.42024857}
-  m_LocalPosition: {x: -0.0056, y: 0.1734, z: -0.0073}
-  m_LocalScale: {x: 0.9950564, y: 1.006392, z: 0.99854493}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2179587064450007972}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6067356002362304810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6309458690493852978}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
-  id: 0
-  colliderType: 1
-  halfSize:
-    x: 0.05
-    y: 0.05
-    z: 0.05
+    x: 0.07
+    y: 0.07
+    z: 0.07
 --- !u!1 &6445986526282937953
 GameObject:
   m_ObjectHideFlags: 0
@@ -1159,7 +652,7 @@ Transform:
   m_GameObject: {fileID: 6445986526282937953}
   serializedVersion: 2
   m_LocalRotation: {x: 0.20337246, y: -0.061023146, z: -0.04119136, w: 0.97632945}
-  m_LocalPosition: {x: 0.0756, y: 0.2247, z: 0.0096}
+  m_LocalPosition: {x: -0.0018, y: 0.1721, z: -0.0246}
   m_LocalScale: {x: 0.9999702, y: 1.0051498, z: 0.99492}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1180,9 +673,9 @@ MonoBehaviour:
   id: 0
   colliderType: 1
   halfSize:
-    x: 0.1
-    y: 0.1
-    z: 0.1
+    x: 0.2
+    y: 0.2
+    z: 0.2
 --- !u!1 &7385080167351998871
 GameObject:
   m_ObjectHideFlags: 0
@@ -1210,7 +703,7 @@ Transform:
   m_GameObject: {fileID: 7385080167351998871}
   serializedVersion: 2
   m_LocalRotation: {x: -0.9873919, y: 0.09043188, z: -0.11388081, w: 0.062534295}
-  m_LocalPosition: {x: -0.005956536, y: 0.06610274, z: 0.031180222}
+  m_LocalPosition: {x: 0.0029, y: 0.0787, z: 0.0029}
   m_LocalScale: {x: 0.998415, y: 1.0034615, z: 0.9979538}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1231,9 +724,9 @@ MonoBehaviour:
   id: 0
   colliderType: 1
   halfSize:
-    x: 0.04
-    y: 0.04
-    z: 0.04
+    x: 0.08
+    y: 0.08
+    z: 0.08
 --- !u!114 &6397355273408115777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1246,12 +739,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
-  id: 3
+  id: 5
   colliderType: 2
   halfSize:
-    x: 0.04
-    y: 0.04
-    z: 0.04
+    x: 0.06
+    y: 0.06
+    z: 0.06
 --- !u!1 &7459875526161375091
 GameObject:
   m_ObjectHideFlags: 0
@@ -1279,7 +772,7 @@ Transform:
   m_GameObject: {fileID: 7459875526161375091}
   serializedVersion: 2
   m_LocalRotation: {x: -0.9503613, y: -0.042372987, z: 0.20443302, w: 0.23070532}
-  m_LocalPosition: {x: 0.0049, y: 0.0588, z: 0.0253}
+  m_LocalPosition: {x: -0.0131, y: 0.093, z: -0.0024}
   m_LocalScale: {x: 0.9962587, y: 1.0159789, z: 0.98759353}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1300,9 +793,9 @@ MonoBehaviour:
   id: 0
   colliderType: 1
   halfSize:
-    x: 0.04
-    y: 0.04
-    z: 0.04
+    x: 0.08
+    y: 0.08
+    z: 0.08
 --- !u!114 &2050179361462169732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1315,81 +808,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
-  id: 5
+  id: 7
   colliderType: 2
   halfSize:
-    x: 0.04
-    y: 0.04
-    z: 0.04
---- !u!1 &7520137032998276208
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 6571534291750237948}
-  - component: {fileID: 9108528853816660427}
-  - component: {fileID: 855807789264863984}
-  m_Layer: 0
-  m_Name: Hitboxes
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &6571534291750237948
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7520137032998276208}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0.99156, y: 0.07868407, z: 0.10034845, w: 0.023407312}
-  m_LocalPosition: {x: -0.0037, y: 0.1021, z: 0.0213}
-  m_LocalScale: {x: 0.99359095, y: 1.0121526, z: 0.9942456}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 6048496334941282508}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9108528853816660427
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7520137032998276208}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
-  id: 0
-  colliderType: 1
-  halfSize:
-    x: 0.04
-    y: 0.04
-    z: 0.04
---- !u!114 &855807789264863984
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7520137032998276208}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
-  id: 0
-  colliderType: 2
-  halfSize:
-    x: 0.04
-    y: 0.04
-    z: 0.04
+    x: 0.06
+    y: 0.06
+    z: 0.06
 --- !u!1 &8140412481058186031
 GameObject:
   m_ObjectHideFlags: 0
@@ -1438,9 +862,9 @@ MonoBehaviour:
   id: 0
   colliderType: 1
   halfSize:
-    x: 0.05
-    y: 0.05
-    z: 0.05
+    x: 0.09
+    y: 0.09
+    z: 0.09
 --- !u!114 &6657396828588746103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1453,12 +877,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
-  id: 0
+  id: 2
   colliderType: 2
   halfSize:
-    x: 0.05
-    y: 0.05
-    z: 0.05
+    x: 0.08
+    y: 0.08
+    z: 0.08
 --- !u!1 &8568536083974517455
 GameObject:
   m_ObjectHideFlags: 0
@@ -1507,9 +931,9 @@ MonoBehaviour:
   id: 0
   colliderType: 1
   halfSize:
-    x: 0.05
-    y: 0.05
-    z: 0.05
+    x: 0.09
+    y: 0.09
+    z: 0.09
 --- !u!114 &995599256408307884
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1522,12 +946,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
-  id: 2
+  id: 3
   colliderType: 2
   halfSize:
-    x: 0.05
-    y: 0.05
-    z: 0.05
+    x: 0.08
+    y: 0.08
+    z: 0.08
 --- !u!1 &8738189819546646467
 GameObject:
   m_ObjectHideFlags: 0
@@ -1575,9 +999,9 @@ MonoBehaviour:
   id: 0
   colliderType: 1
   halfSize:
-    x: 0.06
-    y: 0.06
-    z: 0.06
+    x: 0.1
+    y: 0.1
+    z: 0.1
 --- !u!1 &9028411201499099730
 GameObject:
   m_ObjectHideFlags: 0
@@ -1626,9 +1050,9 @@ MonoBehaviour:
   id: 0
   colliderType: 1
   halfSize:
-    x: 0.04
-    y: 0.04
-    z: 0.04
+    x: 0.1
+    y: 0.1
+    z: 0.1
 --- !u!114 &8356023353830162501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1641,12 +1065,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
-  id: 10
+  id: 12
   colliderType: 2
   halfSize:
-    x: 0.04
-    y: 0.04
-    z: 0.04
+    x: 0.08
+    y: 0.08
+    z: 0.08
 --- !u!1 &9082360168801992226
 GameObject:
   m_ObjectHideFlags: 0
@@ -1674,7 +1098,7 @@ Transform:
   m_GameObject: {fileID: 9082360168801992226}
   serializedVersion: 2
   m_LocalRotation: {x: -0.97368, y: -0.0047113826, z: 0.2140457, w: -0.078163385}
-  m_LocalPosition: {x: 0.0001, y: 0.1734, z: 0.0192}
+  m_LocalPosition: {x: 0.0028, y: 0.1097, z: 0.0291}
   m_LocalScale: {x: 0.9922929, y: 1.0220993, z: 0.9858616}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1695,9 +1119,9 @@ MonoBehaviour:
   id: 0
   colliderType: 1
   halfSize:
-    x: 0.04
-    y: 0.04
-    z: 0.04
+    x: 0.1
+    y: 0.1
+    z: 0.1
 --- !u!114 &3373059390144799479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1710,12 +1134,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
-  id: 9
+  id: 11
   colliderType: 2
   halfSize:
-    x: 0.04
-    y: 0.04
-    z: 0.04
+    x: 0.08
+    y: 0.08
+    z: 0.08
 --- !u!1001 &2263460401487238819
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2676,14 +2100,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 8858916515644433285}
-    - targetCorrespondingSourceObject: {fileID: 2718171248758586452, guid: f56bd06238713cb4fbae175ea8d17357,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5539572536717564427}
-    - targetCorrespondingSourceObject: {fileID: -9127072559893113593, guid: f56bd06238713cb4fbae175ea8d17357,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1738908137866145025}
     - targetCorrespondingSourceObject: {fileID: -9127072559893113593, guid: f56bd06238713cb4fbae175ea8d17357,
         type: 3}
       insertIndex: -1
@@ -2692,10 +2108,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 7005805863808136662}
-    - targetCorrespondingSourceObject: {fileID: 5519722510425405039, guid: f56bd06238713cb4fbae175ea8d17357,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 6571534291750237948}
     - targetCorrespondingSourceObject: {fileID: 5519722510425405039, guid: f56bd06238713cb4fbae175ea8d17357,
         type: 3}
       insertIndex: -1
@@ -2708,14 +2120,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5890297756094761843}
-    - targetCorrespondingSourceObject: {fileID: 6152400788126111112, guid: f56bd06238713cb4fbae175ea8d17357,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4880991007956951868}
-    - targetCorrespondingSourceObject: {fileID: 3536455314332235616, guid: f56bd06238713cb4fbae175ea8d17357,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4579186334680026729}
     - targetCorrespondingSourceObject: {fileID: 3536455314332235616, guid: f56bd06238713cb4fbae175ea8d17357,
         type: 3}
       insertIndex: -1
@@ -2724,10 +2128,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1020454937910794131}
-    - targetCorrespondingSourceObject: {fileID: 7876122459140356275, guid: f56bd06238713cb4fbae175ea8d17357,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2484104482038171146}
     - targetCorrespondingSourceObject: {fileID: 7876122459140356275, guid: f56bd06238713cb4fbae175ea8d17357,
         type: 3}
       insertIndex: -1
@@ -2740,10 +2140,6 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 4360243116913299630}
-    - targetCorrespondingSourceObject: {fileID: -315345100870173560, guid: f56bd06238713cb4fbae175ea8d17357,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5881755907832575349}
     - targetCorrespondingSourceObject: {fileID: 8606713579289776443, guid: f56bd06238713cb4fbae175ea8d17357,
         type: 3}
       insertIndex: -1
@@ -2772,22 +2168,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 3088360861414161403}
-    - targetCorrespondingSourceObject: {fileID: -3589311989668628960, guid: f56bd06238713cb4fbae175ea8d17357,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1357852715577626544}
-    - targetCorrespondingSourceObject: {fileID: -3589311989668628960, guid: f56bd06238713cb4fbae175ea8d17357,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1369534706077477508}
     - targetCorrespondingSourceObject: {fileID: -7285025709699086136, guid: f56bd06238713cb4fbae175ea8d17357,
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1637596137181952630}
-    - targetCorrespondingSourceObject: {fileID: -7285025709699086136, guid: f56bd06238713cb4fbae175ea8d17357,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2846259901180450172}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f56bd06238713cb4fbae175ea8d17357,
         type: 3}
