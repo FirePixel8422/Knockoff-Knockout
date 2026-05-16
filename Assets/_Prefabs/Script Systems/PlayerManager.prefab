@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 6978140392595444865}
   - component: {fileID: 3434964988577358994}
   - component: {fileID: 3131196938505597103}
+  - component: {fileID: 2927089515979286600}
+  - component: {fileID: 175857497043824878}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Untagged
@@ -51,7 +53,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   playerColors:
-  - {r: 0.99215686, g: 0.53333336, b: 0.39607844, a: 1}
+  - {r: 1, g: 0.40784314, b: 0.3372549, a: 1}
   - {r: 0.32941177, g: 0.75686276, b: 1, a: 1}
   onJoinRumble:
     Duration: 0.25
@@ -157,3 +159,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MatchManager
   gamePaused: 0
+--- !u!114 &2927089515979286600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 970020629409918045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e270ac8f0a5448428380e40923db2bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraManager
+  playerTransforms: []
+  mainCam: {fileID: 0}
+--- !u!114 &175857497043824878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 970020629409918045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad311cf720d730843a4a256c74bd44db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerSpacingManager
+  maxPushRange: 0.8
+  moveDirImpact: 0.25
+  pushStrengthMultiplier: 0.05
+  players:
+  - {fileID: 0}
+  - {fileID: 0}

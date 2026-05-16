@@ -108,13 +108,17 @@ public class PlayerManager : FrameTickUpdateMB
     {
         if (MatchManager.Instance.GamePaused) return;
 
+        float deltaTime = Time.deltaTime;
+
         for (int i = 0; i < GlobalGameData.MAX_PLAYERS; i++)
         {
-            players[i].OnUpdate();
+            players[i].OnUpdate(deltaTime);
         }
 
         // Update systems after players.
         PlayerSpacingManager.Instance.OnUpdate();
+
+        HUDManager.Instance.UpdateUI(deltaTime);
     }
 
 

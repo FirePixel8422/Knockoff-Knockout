@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Unity.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -18,6 +19,7 @@ namespace Fire_Pixel.Utility
         private static event Action Update;
         private static event Action TickUpdate;
 
+        private static event Action ApplicationQuit;
         private static event Action LateApplicationQuit;
 #pragma warning restore IDE1006
 
@@ -40,6 +42,7 @@ namespace Fire_Pixel.Utility
         {
             Update = null;
             TickUpdate = null;
+            ApplicationQuit = null;
             LateApplicationQuit = null;
 
             delayedCallbacks?.Clear();
@@ -86,7 +89,11 @@ namespace Fire_Pixel.Utility
         #endregion
 
 
-        public static void CreateLateApplicationQuitCallback(Action action)
+        public static void RegisterApplicationQuitCallback(Action action)
+        {
+            ApplicationQuit += action;
+        }
+        public static void RegisterLateApplicationQuitCallback(Action action)
         {
             LateApplicationQuit += action;
         }
@@ -176,7 +183,7 @@ namespace Fire_Pixel.Utility
 
                 // Frame Tick (Up to 5 times per frame for catchup)
                 cCatchUpTicks = 0;
-                frameTimeAccumulator += Time.unscaledDeltaTime;
+                frameTimeAccumulator += Time.deltaTime;
 
                 while (frameTimeAccumulator >= GlobalGameData.TICK_TIME)
                 {
@@ -202,13 +209,14 @@ namespace Fire_Pixel.Utility
 
             private void OnApplicationQuit()
             {
+                ApplicationQuit?.Invoke();
                 quitting = true;
             }
             private void OnDestroy()
             {
                 CallbackScheduler.Update = null;
                 CallbackScheduler.TickUpdate = null;
-                CallbackScheduler.LateApplicationQuit = null;
+                CallbackScheduler.ApplicationQuit = null;
             }
         }
     }

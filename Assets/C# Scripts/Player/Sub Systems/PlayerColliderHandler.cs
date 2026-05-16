@@ -87,12 +87,4 @@ public class PlayerColliderHandler
             hitBoxAABBs[i] = hitBoxes[i].GetHitBoxAABB();
         }
     }
-
-
-#if UNITY_EDITOR
-    public void DebugLoadColliders(Transform playerRoot)
-    {
-
-    }
-#endif
 }

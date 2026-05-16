@@ -7,6 +7,9 @@
 [System.Serializable]
 public class PlayerStateMachine
 {
+    private readonly Animator anim;
+    private readonly bool isRightPlayer;
+
     [SerializeField] private FighterState state;
     public FighterState State => state;
     public void SetStanceState(StanceState newState) => state.StanceState = newState;
@@ -24,22 +27,30 @@ public class PlayerStateMachine
         State.MovementState == MovementState.Dashing ||
         State.MovementState == MovementState.SideStepping;
 
-    private readonly Animator anim;
 
-    private readonly int crouchingAnimationHash = Animator.StringToHash("Crouching");
-    private readonly int idleAnimationHash = Animator.StringToHash("Idle");
-    private readonly int retreatAnimationHash = Animator.StringToHash("Retreat");
-    private readonly int pushAnimationHash = Animator.StringToHash("Push");
-    private readonly int dashAnimationHash = Animator.StringToHash("Dash");
-    private readonly int sideStepAnimationHash = Animator.StringToHash("SideStep");
-    private int currentAnimationHash;
+    private readonly int standingHurtAnimHash = Animator.StringToHash("StandingHurt");
+    private readonly int crouchingHurtAnimHash = Animator.StringToHash("CrouchingHurt");
+
+    private readonly int standingBlockAnimHash = Animator.StringToHash("StandingBlock");
+    private readonly int crouchingBlockAnimHash = Animator.StringToHash("CrouchingBlock");
+
+    private readonly int crouchingAnimHash = Animator.StringToHash("Crouching");
+    private readonly int idleAnimHash = Animator.StringToHash("Idle");
+    private readonly int retreatAnimHash = Animator.StringToHash("Retreat");
+
+    private readonly int pushAnimHash = Animator.StringToHash("Push");
+    private readonly int dashAnimHash = Animator.StringToHash("Dash");
+    private readonly int sideStepAnimHash = Animator.StringToHash("SideStep");
+    private int currentAnimHash;
 
 
-    public PlayerStateMachine(Transform playerRoot)
+    public PlayerStateMachine(Transform playerRoot, bool isRightPlayer)
     {
         anim = playerRoot.GetComponent<Animator>();
         anim.enabled = false;
+        this.isRightPlayer = isRightPlayer;
     }
+
 
     /// <summary>
     /// Resolve attack connection on both attacker and defender, with <paramref name="isDefender"/> as a filter flag
@@ -49,6 +60,7 @@ public class PlayerStateMachine
         switch (result)
         {
             case AttackResult.Parried:
+
                 TimeStop = GameRules.CombatSettings.Parry.HitStop;
                 if (!isDefender)
                 {
@@ -62,17 +74,28 @@ public class PlayerStateMachine
                 TimeStop = attack.FrameData.HitStop;
                 if (isDefender)
                 {
-                    attackHandler.OnStunned();
+                    PlayAnimation(attack.Level == AttackLevel.Low ?
+                        crouchingHurtAnimHash :
+                        standingHurtAnimHash);
+
                     HitStun = result == AttackResult.CounterHit ?
-                        attack.FrameData.CounterHitStun :
+                        attack.FrameData.CounterStun :
                         attack.FrameData.HitStun;
+
+                    HUDManager.Instance.GetPlayerUIModule(isRightPlayer).HealthBar.TakeDamage(attack.Damage);
+                    attackHandler.OnStunned();
                 }
                 break;
 
             case AttackResult.StandingBlocked or AttackResult.LowBlocked:
-                TimeStop += attack.FrameData.BlockStop;
+
+                TimeStop = attack.FrameData.BlockStop;
                 if (isDefender)
                 {
+                    PlayAnimation(result == AttackResult.StandingBlocked ?
+                        standingBlockAnimHash :
+                        crouchingBlockAnimHash);
+                    
                     BlockStun = attack.FrameData.BlockStun;
                 }
                 break;
@@ -93,6 +116,19 @@ public class PlayerStateMachine
 
             SetCombatState(CombatState.HitStun);
         }
+        else if (BlockStun > 0)
+        {
+            SetCombatState(CombatState.BlockStun);
+        }
+    }
+
+
+    /// <summary>
+    /// Advance current animation by <paramref name="tickAdvanceCount"/> amount of ticks
+    /// </summary>
+    public void TickAdvanceAnimation(int tickAdvanceCount)
+    {
+        anim.Update(GlobalGameData.TICK_TIME * tickAdvanceCount);
     }
 
     /// <summary>
@@ -124,19 +160,19 @@ public class PlayerStateMachine
             int frameBlend;
             if (State.StanceState == StanceState.Crouching)
             {
-                animHash = crouchingAnimationHash;
+                animHash = crouchingAnimHash;
                 frameBlend = 3;
             }
             else
             {
                 (animHash, frameBlend) = State.MovementState switch
                 {
-                    MovementState.Idle => (idleAnimationHash, 6),
-                    MovementState.Retreating => (retreatAnimationHash, 3),
+                    MovementState.Idle => (idleAnimHash, 6),
+                    MovementState.Retreating => (retreatAnimHash, 3),
 
-                    MovementState.Pushing => (pushAnimationHash, 3),
-                    MovementState.Dashing => (dashAnimationHash, 5),
-                    MovementState.SideStepping => (sideStepAnimationHash, 5),
+                    MovementState.Pushing => (pushAnimHash, 3),
+                    MovementState.Dashing => (dashAnimHash, 5),
+                    MovementState.SideStepping => (sideStepAnimHash, 5),
 
                     _ => (Animator.StringToHash("Missing"), -1),
                 };
@@ -148,11 +184,12 @@ public class PlayerStateMachine
         anim.speed = 1;
         anim.Update(GlobalGameData.TICK_TIME);
     }
+    
     public void PlayAnimation(int animHash, int transitionFrames = 0, int layer = 0)
     {
-        if (currentAnimationHash == animHash) return;
+        if (currentAnimHash == animHash) return;
 
-        currentAnimationHash = animHash;
+        currentAnimHash = animHash;
 
         if (transitionFrames == 0)
         {

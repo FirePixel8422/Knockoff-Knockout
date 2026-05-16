@@ -1,5 +1,5 @@
-﻿using UnityEngine;
-
+﻿using Fire_Pixel.Utility;
+using UnityEngine;
 
 
 /// <summary>
@@ -13,5 +13,10 @@ public class DataInitializer : MonoBehaviour
     private void Awake()
     {
         GameRules.SetGameRules(combatSettingsSO.Value);
+
+        CallbackScheduler.RegisterApplicationQuitCallback(() =>
+        {
+            GameRules.Reset();
+        });
     }
 }

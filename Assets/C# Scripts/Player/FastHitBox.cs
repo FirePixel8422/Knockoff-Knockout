@@ -21,6 +21,7 @@ public class FastHitBox : MonoBehaviour
     public float3 Size => halfSize * 2;
 
     public bool SkipNextGizmoDraw;
+    public bool DrawGizmos;
 
     private static readonly Color INVALID_COLOR = new Color(0.6f, 0.2f, 1, 0.5f);
     private static readonly Color HITBOX_COLOR = new Color(0.25f, 0.85f, 0.5f, 0.15f);
@@ -28,6 +29,8 @@ public class FastHitBox : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        if (!DrawGizmos) return;
+
         if (SkipNextGizmoDraw)
         {
             SkipNextGizmoDraw = false;

@@ -1,11 +1,8 @@
-﻿using System.ComponentModel;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 /// <summary>
-/// Sub Player system handler class that is responsible for performinmg and tracking attack states.
+/// Sub Player system handler class that is responsible for performing and tracking attack states.
 /// </summary>
 [System.Serializable]
 public class PlayerAttackHandler
@@ -34,21 +31,9 @@ public class PlayerAttackHandler
     public bool CheckAttackIntersection(PlayerController target, out AttackData activeAttack)
     {
         activeAttack = CurrentActiveAttack;
-        colliderHandler.EnableTargetHurtBoxes(activeAttack.HurtBoxIds);
 
         // Check if any opponent hitbox is hit
         return CollisionUtils.CheckAABBIntersection(target.ColliderHandler.HitBoxAABBs, colliderHandler.HurtBoxAABBs);
-    }
-
-    /// <summary>
-    /// Called when this fighter gets stunned by a parry or an attack
-    /// </summary>
-    public void OnStunned()
-    {
-        // When fighter gets stunned by an attack, clear their input buffer to avoid unintended buffered inputs after hitstun wears off.
-        // This to ensure the player doesnt accidentally do a buffer spammed move that makes them even more vulnerable after getting hit.
-        inputHandler.ClearInputBuffer();
-        currentSequence.Interrupt();
     }
 
     // Mental/Logic Notes:
@@ -138,7 +123,7 @@ public class PlayerAttackHandler
 
 
     /// <summary>
-    /// Tick down active attack sequence or try creating a new one if there is no active on anymore.
+    /// Tick down active attack sequence or try creating a new one if there is no active on anymore. (PostTickUpdate)
     /// </summary>
     public void TickUpdateAttackSequence()
     {
@@ -155,6 +140,10 @@ public class PlayerAttackHandler
                 {
                     colliderHandler.EnableTargetHurtBoxes(CurrentActiveAttack.HurtBoxIds);
                 }
+                else if (newState == CombatState.Recovering)
+                {
+                    colliderHandler.DisableAllHurtBoxes();
+                }
             }
             return;
         }
@@ -162,11 +151,32 @@ public class PlayerAttackHandler
         // If input for an attack was found in inputbuffer, start an attack sequence
         if (inputHandler.TryReadAttack(out AttackData targetAttack))
         {
-            DebugLogger.Log(targetAttack.AnimationName);
             stateMachine.PlayAnimation(targetAttack.GeneratedAnimHash, 2);
             stateMachine.SetCombatState(CombatState.AttackStartup);
 
             currentSequence = new AttackSequence(targetAttack);
         }
+    }
+    
+    /// <summary>
+    /// Called by the <see cref="PlayerController"/> when the current active attack hits a target.
+    /// </summary>
+    public void OnActiveAttackConnected()
+    {
+        int activeTicksLeft = currentSequence.EndAttackActiveState();
+
+        stateMachine.TickAdvanceAnimation(activeTicksLeft);
+        stateMachine.SetCombatState(CombatState.Recovering);
+    }
+
+    /// <summary>
+    /// Called when this fighter gets stunned by a parry or an attack
+    /// </summary>
+    public void OnStunned()
+    {
+        // When fighter gets stunned by an attack, clear their input buffer to avoid unintended buffered inputs after hitstun wears off.
+        // This to ensure the player doesnt accidentally do a buffer spammed move that makes them even more vulnerable after getting hit.
+        inputHandler.ClearInputBuffer();
+        currentSequence.Interrupt();
     }
 }

@@ -43,6 +43,7 @@ public struct Parry
 [System.Serializable]
 public struct Fighter
 {
+    public float StartHealth;
     public float MoveSpeed;
     public float MoveSnappyness;
 }

@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private PlayerController opponent;
     [SerializeField] private AttackMoveSetSO moveSetSO;
+    [SerializeField] private bool isRightPlayer;
 
     [SerializeField] private PlayerStateMachine stateMachine;
     [SerializeField] private PlayerInputHandler inputHandler;
@@ -23,25 +24,54 @@ public class PlayerController : MonoBehaviour
     public PlayerInputRouter InputRouter => inputRouter;
 
 
-    private void Awake()
+
+#if UNITY_EDITOR
+    [SerializeField] private bool drawHitBoxGizmos;
+    [SerializeField] private bool drawHurtBoxGizmos;
+
+    private void OnValidate()
     {
-        colliderHandler = new PlayerColliderHandler(transform);
+        FastHitBox[] playerHitBoxes = GetComponentsInChildren<FastHitBox>(true);
 
-        inputHandler = new PlayerInputHandler(moveSetSO.GetAttacksArray());
-        stateMachine = new PlayerStateMachine(transform);
-
-        movementHandler = new PlayerMovementHandler(stateMachine, inputHandler, transform);
-        attackHandler = new PlayerAttackHandler(stateMachine, inputHandler, colliderHandler);
-
-        if (TryGetComponent(out inputRouter))
+        int hitBoxCount = playerHitBoxes.Length;
+        for (int i = 0; i < hitBoxCount; i++)
         {
-            inputRouter.Init(inputHandler);
+            FastHitBox hitBox = playerHitBoxes[i];
+            if (hitBox is FastHurtBox hurtBox)
+            {
+                hurtBox.DrawGizmos = drawHurtBoxGizmos;
+            }
+            else
+            {
+                hitBox.DrawGizmos = drawHitBoxGizmos;
+            }
         }
     }
+#endif
 
-    public void OnUpdate()
+
+    private void Awake()
     {
-        movementHandler.OnUpdate();
+        GameRules.PostRulesInitialized += () =>
+        {
+            colliderHandler = new PlayerColliderHandler(transform);
+
+            inputHandler = new PlayerInputHandler(moveSetSO.GetAttacksArray());
+            stateMachine = new PlayerStateMachine(transform, isRightPlayer);
+
+            movementHandler = new PlayerMovementHandler(stateMachine, inputHandler, transform, isRightPlayer);
+            attackHandler = new PlayerAttackHandler(stateMachine, inputHandler, colliderHandler);
+
+            if (TryGetComponent(out inputRouter))
+            {
+                inputRouter.Init(inputHandler);
+            }
+        };
+    }
+
+    public void OnUpdate(float deltaTime)
+    {
+        movementHandler.OnUpdate(deltaTime);
     }
 
     public void PreTickUpdate()
@@ -59,7 +89,11 @@ public class PlayerController : MonoBehaviour
         // Check if a possible active attack hit the opponent. (attackers perspective)
         if (attackHandler.CheckAttackIntersection(opponent, out AttackData activeAttack))
         {
+            attackHandler.OnActiveAttackConnected();
+
             AttackResult result = opponent.attackHandler.GetInboundAttackResult(activeAttack.Level);
+
+            //DebugLogger.Log("hit: " + result);
 
             stateMachine.ResolveAttack(activeAttack, result, attackHandler, false);
             opponent.stateMachine.ResolveAttack(activeAttack, result, opponent.attackHandler, true);

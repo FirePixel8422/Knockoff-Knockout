@@ -10,6 +10,7 @@ public class PlayerMovementHandler
     private readonly PlayerInputHandler inputHandler;
     private readonly PlayerStateMachine stateMachine;
     private readonly Transform transform;
+    private readonly bool isRightPlayer;
 
     private readonly float moveSpeed;
     private readonly float moveSnappyness;
@@ -19,12 +20,13 @@ public class PlayerMovementHandler
     public Vector3 LastMoveDir => lastMoveDir;
 
 
-    public PlayerMovementHandler(PlayerStateMachine stateMachine, PlayerInputHandler inputHandler, Transform transform)
+    public PlayerMovementHandler(PlayerStateMachine stateMachine, PlayerInputHandler inputHandler, Transform transform, bool isRightPlayer)
     {
         this.stateMachine = stateMachine;
         this.inputHandler = inputHandler;
-
         this.transform = transform;
+        this.isRightPlayer = isRightPlayer;
+
         targetFighterPosition = transform.position;
 
         moveSpeed = GameRules.CombatSettings.Fighter.MoveSpeed;
@@ -64,12 +66,12 @@ public class PlayerMovementHandler
 
         if (cdirFlag == DirectionInput.Left)
         {
-            stateMachine.SetMovementState(MovementState.Retreating);
+            stateMachine.SetMovementState(isRightPlayer ? MovementState.Pushing : MovementState.Retreating);
             MovePlayer(-moveSpeed * GlobalGameData.TICK_TIME * CameraManager.Instance.GetForwardDir(transform));
         }
         else if (cdirFlag == DirectionInput.Right)
         {
-            stateMachine.SetMovementState(MovementState.Pushing);
+            stateMachine.SetMovementState(isRightPlayer ? MovementState.Retreating : MovementState.Pushing);
             MovePlayer(moveSpeed * GlobalGameData.TICK_TIME * CameraManager.Instance.GetForwardDir(transform));
         }
         else if (cdirFlag == DirectionInput.Neutral)
@@ -83,8 +85,8 @@ public class PlayerMovementHandler
 
         targetFighterPosition += addedMovement;
     }
-    public void OnUpdate()
+    public void OnUpdate(float deltaTime)
     {
-        transform.position = Vector3.Lerp(transform.position, targetFighterPosition, moveSnappyness * Time.deltaTime);
+        transform.position = Vector3.Lerp(transform.position, targetFighterPosition, moveSnappyness * deltaTime);
     }
 }
