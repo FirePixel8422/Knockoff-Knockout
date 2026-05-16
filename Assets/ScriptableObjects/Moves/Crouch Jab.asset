@@ -29,7 +29,7 @@ MonoBehaviour:
       Active: 2
       Recovery: 14
       CancelWindow: 0
-      HitStun: 16
+      HitStun: 14
       BlockStun: 12
       CounterStun: 22
       HitStop: 0
@@ -39,6 +39,6 @@ MonoBehaviour:
       DirectionFlag: 3
     StringTransitions: []
     TotalAttackDuration: 28
-    AdvantageOnHit: +2
+    AdvantageOnHit: 0
     AdvantageOnBlock: -2
     AdvantageOnCounter: +8

@@ -23,5 +23,6 @@ MonoBehaviour:
       AdvantageOnParry: 18
       AdvantageOnMiss: -22
     Fighter:
-      MoveSpeed: 4
+      StartHealth: 200
+      MoveSpeed: 3
       MoveSnappyness: 15
