@@ -14,15 +14,33 @@ public class PlayerSpacingManager : MonoBehaviour
     [SerializeField] private float moveDirImpact = 0.5f;
     [SerializeField] private float pushStrengthMultiplier = 1;
 
-    [EditorReadOnly, SerializeField] private PlayerController[] players;
+    private PlayerController[] players;
 
 
-    
+#if UNITY_EDITOR
+    [SerializeField] private bool drawPushSphereGizmos;
+
+    private void OnDrawGizmos()
+    {
+        if (!drawPushSphereGizmos) return;
+
+        PlayerManager playerManager = this.FindObjectOfType<PlayerManager>();
+
+        Transform playerA = playerManager.Players[0].transform;
+        Transform playerB = playerManager.Players[1].transform;
+
+        Gizmos.color = playerManager.PlayerColors[0];
+        Gizmos.DrawSphere(playerA.position, maxPushRange * 0.5f);
+
+        Gizmos.color = playerManager.PlayerColors[1];
+        Gizmos.DrawSphere(playerB.position, maxPushRange * 0.5f);
+    }
+#endif
+
     private void Start()
     {
         players = PlayerManager.Instance.Players;
     }
-
 
     public void OnUpdate()
     {

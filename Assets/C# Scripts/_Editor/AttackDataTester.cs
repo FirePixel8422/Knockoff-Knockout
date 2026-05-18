@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
+
 /// <summary>
 /// Editor utility MB to quickly visualize what hurtBoxes are assigned in AttackData.HurtBoxIds.
 /// </summary>
@@ -38,9 +39,7 @@ public class AttackDataTester : MonoBehaviour
         EditorUtility.SetDirty(targetData);
 
         float t = Mathf.PingPong((float)EditorApplication.timeSinceStartup, 1f);
-        Color c = Color.Lerp(Color.purple, Color.blue, t);
-
-        Gizmos.color = c;
+        Gizmos.color = Color.Lerp(Color.purple, Color.blue, t);
 
         for (int i = 0; i < hurtBoxes.Length; i++)
         {

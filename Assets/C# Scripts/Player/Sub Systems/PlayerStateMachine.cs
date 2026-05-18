@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 
 /// <summary>
@@ -8,24 +9,31 @@
 public class PlayerStateMachine
 {
     private readonly Animator anim;
-    private readonly bool isRightPlayer;
 
-    [SerializeField] private FighterState state;
+    [EditorReadOnly, SerializeField] private FighterState state;
+    [EditorReadOnly, SerializeField] private FighterState nextState;
     public FighterState State => state;
     public void SetStanceState(StanceState newState) => state.StanceState = newState;
     public void SetMovementState(MovementState newState) => state.MovementState = newState;
     public void SetCombatState(CombatState newState) => state.CombatState = newState;
 
 
-    [EditorReadOnly] public int TimeStop;
-    [EditorReadOnly] public int Recovery;
-    [EditorReadOnly] public int HitStun;
-    [EditorReadOnly] public int BlockStun;
+    [EditorReadOnly, SerializeField] private int TimeStop;
+    [EditorReadOnly, SerializeField] private int Recovery;
+    [EditorReadOnly, SerializeField] private int HitStun;
+    [EditorReadOnly, SerializeField] private int BlockStun;
 
     public bool IsInActionLock =>
-        State.CombatState != CombatState.Idle ||
-        State.MovementState == MovementState.Dashing ||
-        State.MovementState == MovementState.SideStepping;
+        state.CombatState != CombatState.Idle ||
+        state.MovementState == MovementState.Dashing ||
+        state.MovementState == MovementState.SideStepping;
+    public bool IsStunned =>
+        state.CombatState == CombatState.HitStun ||
+        state.CombatState == CombatState.BlockStun;
+
+    public Action OnStunned;
+    public Action<float> OnDamageTaken;
+    public Action<float> OnKnockbackTaken;
 
 
     private readonly int standingHurtAnimHash = Animator.StringToHash("StandingHurt");
@@ -44,18 +52,18 @@ public class PlayerStateMachine
     private int currentAnimHash;
 
 
-    public PlayerStateMachine(Transform playerRoot, bool isRightPlayer)
+    public PlayerStateMachine(Transform playerRoot)
     {
         anim = playerRoot.GetComponent<Animator>();
         anim.enabled = false;
-        this.isRightPlayer = isRightPlayer;
     }
+    private PlayerStateMachine() { }
 
 
     /// <summary>
     /// Resolve attack connection on both attacker and defender, with <paramref name="isDefender"/> as a filter flag
     /// </summary>
-    public void ResolveAttack(AttackData attack, AttackResult result, PlayerAttackHandler attackHandler, bool isDefender)
+    public void ResolveAttack(AttackData attack, AttackResult result, bool isDefender)
     {
         switch (result)
         {
@@ -64,7 +72,8 @@ public class PlayerStateMachine
                 TimeStop = GameRules.CombatSettings.Parry.HitStop;
                 if (!isDefender)
                 {
-                    attackHandler.OnStunned();
+                    OnStunned?.Invoke();
+
                     HitStun = GameRules.CombatSettings.Parry.HitStun;
                 }
                 break;
@@ -74,6 +83,10 @@ public class PlayerStateMachine
                 TimeStop = attack.FrameData.HitStop;
                 if (isDefender)
                 {
+                    OnStunned?.Invoke();
+                    OnDamageTaken?.Invoke(attack.Damage);
+                    OnKnockbackTaken?.Invoke(attack.HitKb);
+
                     PlayAnimation(attack.Level == AttackLevel.Low ?
                         crouchingHurtAnimHash :
                         standingHurtAnimHash);
@@ -81,9 +94,6 @@ public class PlayerStateMachine
                     HitStun = result == AttackResult.CounterHit ?
                         attack.FrameData.CounterStun :
                         attack.FrameData.HitStun;
-
-                    HUDManager.Instance.GetPlayerUIModule(isRightPlayer).HealthBar.TakeDamage(attack.Damage);
-                    attackHandler.OnStunned();
                 }
                 break;
 
@@ -92,6 +102,9 @@ public class PlayerStateMachine
                 TimeStop = attack.FrameData.BlockStop;
                 if (isDefender)
                 {
+                    OnStunned?.Invoke();
+                    OnKnockbackTaken?.Invoke(attack.BlockKb);
+
                     PlayAnimation(result == AttackResult.StandingBlocked ?
                         standingBlockAnimHash :
                         crouchingBlockAnimHash);
@@ -124,14 +137,6 @@ public class PlayerStateMachine
 
 
     /// <summary>
-    /// Advance current animation by <paramref name="tickAdvanceCount"/> amount of ticks
-    /// </summary>
-    public void TickAdvanceAnimation(int tickAdvanceCount)
-    {
-        anim.Update(GlobalGameData.TICK_TIME * tickAdvanceCount);
-    }
-
-    /// <summary>
     /// Update animator and tick down stun states
     /// </summary>
     public void TickUpdate()
@@ -147,25 +152,25 @@ public class PlayerStateMachine
         HitStun = Mathf.Clamp(HitStun - 1, 0, int.MaxValue);
         BlockStun = Mathf.Clamp(BlockStun - 1, 0, int.MaxValue);
 
-        // If player was stunned or recovering and just recovered, set state to buffered state
+        // If player was stunned or recovering and just recovered, set combat state to idle
         if (HitStun == 0 && BlockStun == 0 && Recovery == 0 &&
-            (State.CombatState == CombatState.HitStun || State.CombatState == CombatState.BlockStun))
+            (state.CombatState == CombatState.HitStun || state.CombatState == CombatState.BlockStun))
         {
             SetCombatState(CombatState.Idle);
         }
 
-        if (IsInActionLock == false)
+        if (!IsInActionLock)
         {
             int animHash;
             int frameBlend;
-            if (State.StanceState == StanceState.Crouching)
+            if (state.StanceState == StanceState.Crouching)
             {
                 animHash = crouchingAnimHash;
                 frameBlend = 3;
             }
             else
             {
-                (animHash, frameBlend) = State.MovementState switch
+                (animHash, frameBlend) = state.MovementState switch
                 {
                     MovementState.Idle => (idleAnimHash, 6),
                     MovementState.Retreating => (retreatAnimHash, 3),
@@ -184,7 +189,10 @@ public class PlayerStateMachine
         anim.speed = 1;
         anim.Update(GlobalGameData.TICK_TIME);
     }
-    
+    /// <summary>
+    /// Play animation by <paramref name="animHash"/> blend from previous animation for <paramref name="transitionFrames"/> ticks.
+    /// Skips if new animation is the same as current one.
+    /// </summary>
     public void PlayAnimation(int animHash, int transitionFrames = 0, int layer = 0)
     {
         if (currentAnimHash == animHash) return;
@@ -199,5 +207,12 @@ public class PlayerStateMachine
         {
             anim.CrossFadeInFixedTime(animHash, transitionFrames * GlobalGameData.TICK_TIME, layer);
         }
+    }
+    /// <summary>
+    /// Advance current animation by <paramref name="tickAdvanceCount"/> amount of ticks
+    /// </summary>
+    public void TickAdvanceAnimation(int tickAdvanceCount)
+    {
+        anim.Update(GlobalGameData.TICK_TIME * tickAdvanceCount);
     }
 }

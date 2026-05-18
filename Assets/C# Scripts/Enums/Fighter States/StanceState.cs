@@ -1,6 +1,5 @@
 ﻿
 
-
 /// <summary>
 /// State describing the stance of the fighter, standing or crouched
 /// </summary>

@@ -27,11 +27,14 @@ public class PlayerMovementHandler
         this.transform = transform;
         this.isRightPlayer = isRightPlayer;
 
+        stateMachine.OnKnockbackTaken += TakeKnockback;
+
         targetFighterPosition = transform.position;
 
         moveSpeed = GameRules.CombatSettings.Fighter.MoveSpeed;
         moveSnappyness = GameRules.CombatSettings.Fighter.MoveSnappyness;
     }
+    private PlayerMovementHandler() { }
 
 
     /// <summary>
@@ -47,7 +50,7 @@ public class PlayerMovementHandler
             DebugLogger.Log("SideStep " + (isSideStepUp ? "Up" : "Down"));
             stateMachine.SetStanceState(StanceState.Standing);
             stateMachine.SetMovementState(MovementState.SideStepping);
-            stateMachine.Recovery += 10;
+            //stateMachine.Recovery += 10;
             return;
         }
 
@@ -67,12 +70,12 @@ public class PlayerMovementHandler
         if (cdirFlag == DirectionInput.Left)
         {
             stateMachine.SetMovementState(isRightPlayer ? MovementState.Pushing : MovementState.Retreating);
-            MovePlayer(-moveSpeed * GlobalGameData.TICK_TIME * CameraManager.Instance.GetForwardDir(transform));
+            MovePlayer(-moveSpeed * GlobalGameData.TICK_TIME * CameraManager.Instance.GetForwardDir());
         }
         else if (cdirFlag == DirectionInput.Right)
         {
             stateMachine.SetMovementState(isRightPlayer ? MovementState.Retreating : MovementState.Pushing);
-            MovePlayer(moveSpeed * GlobalGameData.TICK_TIME * CameraManager.Instance.GetForwardDir(transform));
+            MovePlayer(moveSpeed * GlobalGameData.TICK_TIME * CameraManager.Instance.GetForwardDir());
         }
         else if (cdirFlag == DirectionInput.Neutral)
         {
@@ -84,6 +87,10 @@ public class PlayerMovementHandler
         lastMoveDir = addedMovement.normalized;
 
         targetFighterPosition += addedMovement;
+    }
+    private void TakeKnockback(float kb)
+    {
+        MovePlayer(CameraManager.Instance.GetForwardDir() * (isRightPlayer ? kb : -kb));
     }
     public void OnUpdate(float deltaTime)
     {

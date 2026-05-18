@@ -1,6 +1,5 @@
 ﻿
 
-
 /// <summary>
 /// State describing the movement behaviour of the fighter.
 /// </summary>

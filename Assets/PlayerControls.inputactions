@@ -313,39 +313,6 @@
                 },
                 {
                     "name": "",
-                    "id": "118b9c10-bb10-4d37-9b74-18cce1988868",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Menu Confirm",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "84236f18-f2a2-4925-8d0f-b0ffb84b759f",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Menu Confirm",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "7348128d-c133-4d89-a567-219dd965499b",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Menu Confirm",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "540ba637-479c-478f-b934-c2edafbee8cd",
                     "path": "<Gamepad>/buttonWest",
                     "interactions": "",
@@ -369,11 +336,6 @@
                     "isOR": false
                 }
             ]
-        },
-        {
-            "name": "Keyboard&Mouse",
-            "bindingGroup": "Keyboard&Mouse",
-            "devices": []
         }
     ]
 }

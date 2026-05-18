@@ -20,7 +20,10 @@ public class PlayerAttackHandler
         this.stateMachine = stateMachine;
         this.inputHandler = inputHandler;
         this.colliderHandler = colliderHandler;
+
+        stateMachine.OnStunned += OnStunned;
     }
+    private PlayerAttackHandler() { }
 
 
     #region Attack Hit Detection and Impact
@@ -58,13 +61,13 @@ public class PlayerAttackHandler
         FighterState defenderState = stateMachine.State;
 
         // If the defender is in an active parry
-        if (defenderState.CombatState == CombatState.ParryHigh)
+        if (defenderState.CombatState == CombatState.ParryHighActive)
         {
             return attackType == AttackLevel.High
                 ? AttackResult.Parried
                 : AttackResult.Hit;
         }
-        if (defenderState.CombatState == CombatState.ParryLow)
+        if (defenderState.CombatState == CombatState.ParryLowActive)
         {
             return attackType == AttackLevel.Low
                 ? AttackResult.Parried
@@ -74,7 +77,7 @@ public class PlayerAttackHandler
         // If defender cant block or the incoming attack is unblockable, the defender gets hit OR interrupted
         if ((defenderState.CanBlock() == false) || attackType == AttackLevel.Unblockable)
         {
-            return defenderState.CombatState == CombatState.AttackStartup ?
+            return defenderState.CombatState == CombatState.ActionStartup ?
                 AttackResult.CounterHit :
                 AttackResult.Hit;
         }
@@ -127,14 +130,14 @@ public class PlayerAttackHandler
     /// </summary>
     public void TickUpdateAttackSequence()
     {
-        bool isSequenceActive = currentSequence.State != CombatState.Idle;
-
-        if (isSequenceActive)
+        if (currentSequence.IsActive)
         {
-            // Tick attack sequence
-            if (currentSequence.TickUpdateState(out CombatState newState))
+            // TickUpdate attack sequence
+            bool stateChanged = currentSequence.TickUpdateState(out CombatState newState);
+
+            if (stateChanged)
             {
-                stateMachine.SetCombatState(currentSequence.State);
+                stateMachine.SetCombatState(newState);
 
                 if (newState == CombatState.AttackActive)
                 {
@@ -152,7 +155,7 @@ public class PlayerAttackHandler
         if (inputHandler.TryReadAttack(out AttackData targetAttack))
         {
             stateMachine.PlayAnimation(targetAttack.GeneratedAnimHash, 2);
-            stateMachine.SetCombatState(CombatState.AttackStartup);
+            stateMachine.SetCombatState(CombatState.ActionStartup);
 
             currentSequence = new AttackSequence(targetAttack);
         }

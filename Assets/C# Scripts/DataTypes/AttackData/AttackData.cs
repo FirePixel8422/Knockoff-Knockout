@@ -8,23 +8,32 @@ public struct AttackData
     public string AnimationName;
 #endif
     [EditorReadOnly] public int GeneratedAnimHash;
+    public FrameInput Input;
 
     [Header("Damage for hitting the move, hit/block knockback and does knockdown?")]
     public float Damage;
-    public float HitKB, BlockKB;
-    public bool DoesKnockDown;
+    public float HitKb, BlockKb;
+    public bool DoesKnockdown;
 
     [Header("Lunge distance in meters and startup frame index")]
-    public Lunge Lunge;
+    public LungeData Lunge;
 
     [Header("Is the attack a low, mid or high and what hurtboxes does it use")]
     public AttackLevel Level;
     public int[] HurtBoxIds;
 
     public FrameData FrameData;
-    public FrameInput Input;
+    public StringTransition[] StringTransitions;
 
-    public StringTransitions[] StringTransitions;
+    public void BakeAllCurves()
+    {
+        //Lunge.BakeAllCurves();
+    }
+    public readonly void Dispose()
+    {
+        Lunge.Dispose();
+    }
+
 
 #if UNITY_EDITOR
     [Header("Usefull Info")]
@@ -41,37 +50,4 @@ public struct AttackData
         AdvantageOnCounter = (FrameData.CounterStun - FrameData.Recovery).ToString("+0;-0;0");
     }
 #endif
-}
-
-[System.Serializable]
-public struct Lunge
-{
-    public float Distance;
-    public int StartWindow;
-}
-
-[System.Serializable]
-public struct FrameData
-{
-    [Header("Move (Attack) Startup, Duration, Recovery and Cancel Window")]
-    public int Startup;
-    public int Active;
-    public int Recovery;
-    public int CancelWindow;
-
-    [Header("Move (Attack) 'OnHit', 'OnBlock' and 'OnCounter' Stun")]
-    public int HitStun;
-    public int BlockStun;
-    public int CounterStun;
-
-    [Header("Move (Attack) HitStop and BlockStop for dramatic effect when connecting it")]
-    public int HitStop;
-    public int BlockStop;
-}
-
-[System.Serializable]
-public struct StringTransitions
-{
-    public AttackSO TargetMove;
-    public int frameSkipCount;
 }

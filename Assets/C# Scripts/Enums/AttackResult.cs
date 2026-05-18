@@ -1,6 +1,5 @@
 ﻿
 
-
 /// <summary>
 /// Result of the defender when hit by a move (attack)
 /// </summary>

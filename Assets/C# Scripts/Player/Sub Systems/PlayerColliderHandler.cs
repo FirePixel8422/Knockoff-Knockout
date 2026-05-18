@@ -33,6 +33,7 @@ public class PlayerColliderHandler
         hitBoxAABBs = new NativeArray<HitBoxAABB>(hitBoxCount, Allocator.Persistent);
         hurtBoxAABBs = new NativeArray<HurtBoxAABB>(hurtBoxCount, Allocator.Persistent);
     }
+    private PlayerColliderHandler() { }
 
     ~PlayerColliderHandler()
     {

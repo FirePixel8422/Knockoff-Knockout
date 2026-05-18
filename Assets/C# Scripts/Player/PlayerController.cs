@@ -13,13 +13,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerStateMachine stateMachine;
     [SerializeField] private PlayerInputHandler inputHandler;
 
+    [SerializeField] private PlayerColliderHandler colliderHandler;
+    [SerializeField] private PlayerHealthHandler healthHandler;
+
     [SerializeField] private PlayerAttackHandler attackHandler;
     [SerializeField] private PlayerMovementHandler movementHandler;
 
-    [SerializeField] private PlayerColliderHandler colliderHandler;
     [EditorReadOnly, SerializeField] private PlayerInputRouter inputRouter;
 
     public PlayerColliderHandler ColliderHandler => colliderHandler;
+    public PlayerHealthHandler HealthHandler => healthHandler;
     public PlayerMovementHandler MovementHandler => movementHandler;
     public PlayerInputRouter InputRouter => inputRouter;
 
@@ -54,10 +57,11 @@ public class PlayerController : MonoBehaviour
     {
         GameRules.PostRulesInitialized += () =>
         {
-            colliderHandler = new PlayerColliderHandler(transform);
+            stateMachine = new PlayerStateMachine(transform);
+            inputHandler = new PlayerInputHandler(moveSetSO.GetAsDataArray());
 
-            inputHandler = new PlayerInputHandler(moveSetSO.GetAttacksArray());
-            stateMachine = new PlayerStateMachine(transform, isRightPlayer);
+            colliderHandler = new PlayerColliderHandler(transform);
+            healthHandler = new PlayerHealthHandler(stateMachine.OnDamageTaken);
 
             movementHandler = new PlayerMovementHandler(stateMachine, inputHandler, transform, isRightPlayer);
             attackHandler = new PlayerAttackHandler(stateMachine, inputHandler, colliderHandler);
@@ -95,17 +99,22 @@ public class PlayerController : MonoBehaviour
 
             //DebugLogger.Log("hit: " + result);
 
-            stateMachine.ResolveAttack(activeAttack, result, attackHandler, false);
-            opponent.stateMachine.ResolveAttack(activeAttack, result, opponent.attackHandler, true);
+            stateMachine.ResolveAttack(activeAttack, result, false);
+            opponent.stateMachine.ResolveAttack(activeAttack, result, true);
         }
     }
     public void PostTickUpdate()
     {
-        // Check if player is allowed to do an action before attack tickupdate
-        attackHandler.TickUpdateAttackSequence();
+        bool wasInActionRecovery = stateMachine.State.CombatState == CombatState.Recovering;
+
+        if (!stateMachine.IsStunned)
+        {
+            // TickUpdate attack (updating a seq or reading the input buffer for a new attack)
+            attackHandler.TickUpdateAttackSequence();
+        }
         
-        // And check it again after attack tickupdate
-        if (!stateMachine.IsInActionLock)
+        // If fighter is not action locked and didnt start a new attack, check for movement input
+        if (!wasInActionRecovery && !stateMachine.IsInActionLock)
         {
             movementHandler.TickUpdateMovement();
         }

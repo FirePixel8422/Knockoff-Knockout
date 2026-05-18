@@ -1,7 +1,6 @@
 ﻿
 
 
-
 [System.Serializable]
 public struct FrameInput
 {

@@ -2,7 +2,7 @@
 using UnityEngine;
 
 
-[Serializable]
+[System.Serializable]
 public struct EnumStructArray<TEnum, TValue> where TEnum : Enum
 {
     [SerializeField] private TValue[] values;

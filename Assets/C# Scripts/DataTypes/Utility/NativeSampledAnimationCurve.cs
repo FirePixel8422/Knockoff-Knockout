@@ -3,7 +3,6 @@ using Unity.Collections;
 using Unity.Mathematics;
 using UnityEngine;
 
-
 /// <summary>
 /// Wrapper for AnimationCurve that allows sampling at a fixed number of points, making Evaluate() much cheaper.
 /// </summary>
@@ -13,9 +12,6 @@ public struct NativeSampledAnimationCurve
 {
     [Header("Curve HAS to start at 0 time")]
     [SerializeField] private AnimationCurve curve;
-
-    [Header("Curve X this value is what gets baked into the curve output")]
-    [SerializeField] private float valueMultiplier;
 
     [Header("More samples = more accurate, but more memory usage")]
     [Range(2, 500)]
@@ -42,7 +38,7 @@ public struct NativeSampledAnimationCurve
         }
         if (sampleCount == 2)
         {
-            DebugLogger.LogWarning("WHY THE FUCK IS SAMPLE COUNT 2!");
+            DebugLogger.LogWarning("Sample Count == 2, The intended curve is a flat line???");
             return;
         }
 #endif
@@ -54,7 +50,7 @@ public struct NativeSampledAnimationCurve
         for (int i = 0; i < sampleCount; i++)
         {
             float t = (float)i / (sampleCount - 1) * Length;
-            bakedCurve[i] = curve.Evaluate(t) * valueMultiplier;
+            bakedCurve[i] = curve.Evaluate(t);
         }
     }
 
@@ -93,13 +89,7 @@ public struct NativeSampledAnimationCurve
     {
         curve = AnimationCurve.Linear(1, 1, 0, 0),
         Length = 1,
-        valueMultiplier = 1,
         sampleCount = 50,
     };
-
-
-    public void Dispose()
-    {
-        bakedCurve.DisposeIfCreated();
-    }
+    public readonly void DisposeIfCreated() => bakedCurve.DisposeIfCreated();
 }

@@ -9,11 +9,7 @@ public class HUDManager : MonoBehaviour
     public static HUDManager Instance { get; private set; }
 
 
-    [SerializeField] private PlayerUIModules[] modules;
-    public PlayerUIModules GetPlayerUIModule(bool isRightPlayer)
-    {
-        return isRightPlayer ? modules[1] : modules[0];
-    }
+    [SerializeField] private PlayerUIModule[] modules;
 
 
     private void Awake()
@@ -22,9 +18,18 @@ public class HUDManager : MonoBehaviour
 
         GameRules.PostRulesInitialized += () =>
         {
+            FighterSettings fighterSettings = GameRules.CombatSettings.Fighter;
+
+            PlayerController targetPlayer;
+            PlayerUIModule targetUIModule;
+
             for (int i = 0; i < GlobalGameData.MAX_PLAYERS; i++)
             {
-                modules[i].HealthBar.Init();
+                targetPlayer = PlayerManager.Instance.Players[i];
+                targetUIModule = modules[i];
+
+                targetUIModule.HealthBar.Init(fighterSettings.StartHealth);
+                targetPlayer.HealthHandler.OnHealthChanged += modules[i].HealthBar.OnHealthChanged;
             }
         };
     }
@@ -42,7 +47,7 @@ public class HUDManager : MonoBehaviour
 
 
 [System.Serializable]
-public struct PlayerUIModules
+public class PlayerUIModule
 {
-    public HealthBarController HealthBar;
+    public HealthBarUIController HealthBar;
 }

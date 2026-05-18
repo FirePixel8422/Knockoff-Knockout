@@ -16,6 +16,7 @@ public class PlayerInputHandler
         this.moveSet = moveSet;
         bufferHandler = new InputBufferHandler();
     }
+    private PlayerInputHandler() { }
 
     
     #region Player Input Callbacks

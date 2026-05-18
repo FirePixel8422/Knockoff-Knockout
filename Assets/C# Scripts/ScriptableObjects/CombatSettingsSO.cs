@@ -7,6 +7,7 @@ public class CombatSettingsSO : ScriptableObject
 {
     public CombatSettings Value;
 
+
     private void OnValidate()
     {
         Value.UpdateDebugData();

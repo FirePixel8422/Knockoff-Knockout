@@ -1,6 +1,5 @@
 ﻿
 
-
 /// <summary>
 /// State describing the stance of the fighter.
 /// </summary>
@@ -19,7 +18,7 @@ public enum CombatState : byte
     /// <summary>
     /// Fighter is in the startup frames of an attack animation
     /// </summary>
-    AttackStartup,
+    ActionStartup,
     /// <summary>
     /// Fighter is in the active frames of an attack animation
     /// </summary>
@@ -37,10 +36,10 @@ public enum CombatState : byte
     /// <summary>
     /// Fighter is in the active frames of a ParryLow animation
     /// </summary>
-    ParryLow,
+    ParryLowActive,
 
     /// <summary>
     /// Fighter is in the active frames of a ParryHigh animation
     /// </summary>
-    ParryHigh,
+    ParryHighActive,
 }

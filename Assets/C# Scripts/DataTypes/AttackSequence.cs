@@ -1,7 +1,5 @@
-﻿
+﻿using Unity.Mathematics;
 
-
-using Unity.Mathematics;
 
 /// <summary>
 /// Datatype containing the current state of an attack and providing interaction with it with 
@@ -9,17 +7,19 @@ using Unity.Mathematics;
 [System.Serializable]
 public struct AttackSequence
 {
-    public AttackData Attack;
+    private AttackData attack;
+    public readonly AttackData Attack => attack;
 
-    public CombatState State;
-    public int NextStateDelay;
+    private CombatState state;
+    private int nextStateDelay;
+    public readonly bool IsActive => state != CombatState.Idle;
 
 
     public AttackSequence(AttackData attack)
     {
-        Attack = attack;
-        State = CombatState.AttackStartup;
-        NextStateDelay = Attack.FrameData.Startup;
+        this.attack = attack;
+        state = CombatState.ActionStartup;
+        nextStateDelay = attack.FrameData.Startup;
     }
 
     /// <summary>
@@ -28,17 +28,17 @@ public struct AttackSequence
     /// <returns>True on state change. Then outputs <paramref name="newState"/></returns>
     public bool TickUpdateState(out CombatState newState)
     {
-        NextStateDelay -= 1;
+        nextStateDelay -= 1;
 
-        if (NextStateDelay > 0)
+        if (nextStateDelay > 0)
         {
             newState = default;
             return false;
         }
 
-        (State, NextStateDelay) = State switch
+        (state, nextStateDelay) = state switch
         {
-            CombatState.AttackStartup =>
+            CombatState.ActionStartup =>
                 (CombatState.AttackActive, Attack.FrameData.Active),
 
             CombatState.AttackActive =>
@@ -48,20 +48,20 @@ public struct AttackSequence
                 (CombatState.Idle, 0),
         };
 
-        newState = State;
+        newState = state;
         return true;
     }
 
     /// <summary>
-    /// Called by the <see cref="PlayerAttackHandler"/>  when the current active attack hits a target.
+    /// Called by the <see cref="PlayerAttackHandler"/> when the current active attack hits a target.
     /// Instantly set state progression from <see cref="CombatState.AttackActive"/> to the <see cref="CombatState.Recovering"/>.
     /// (State will be applied in <see cref="PlayerController.PostTickUpdate"/>)
     /// </summary>
     /// <returns>The amount of ticks left that the attack would have been active for</returns>
     public int EndAttackActiveState()
     {
-        int activeTicksLeft = math.max(NextStateDelay - 1, 0);
-        NextStateDelay = 0;
+        int activeTicksLeft = math.max(nextStateDelay - 1, 0);
+        nextStateDelay = 0;
         return activeTicksLeft;
     }
 
@@ -71,7 +71,7 @@ public struct AttackSequence
     /// </summary>
     public void Interrupt()
     {
-        State = CombatState.Idle;
-        NextStateDelay = 0;
+        state = CombatState.Idle;
+        nextStateDelay = 0;
     }
 }

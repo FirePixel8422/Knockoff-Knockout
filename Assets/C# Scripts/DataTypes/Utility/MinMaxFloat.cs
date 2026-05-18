@@ -1,6 +1,5 @@
 
 
-
 /// <summary>
 /// A lightweight struct that holds a float min and float max.
 /// </summary>

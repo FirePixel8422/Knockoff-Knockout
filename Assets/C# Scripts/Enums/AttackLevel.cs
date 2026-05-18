@@ -1,7 +1,6 @@
 
 
 
-
 public enum AttackLevel : byte
 {
     Low,
