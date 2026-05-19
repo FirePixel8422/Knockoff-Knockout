@@ -13,8 +13,13 @@ MonoBehaviour:
   m_Name: LowKick
   m_EditorClassIdentifier: Assembly-CSharp::AttackSO
   Value:
-    AnimationName: LowKick
-    GeneratedAnimHash: 859106820
+    animationName: LowKick
+    blendIn: 3
+    blendOut: 5
+    GeneratedAnimData:
+      Hash: 859106820
+      BlendIn: 3
+      BlendOut: 5
     Input:
       AttackFlags: 4
       DirectionFlag: 3

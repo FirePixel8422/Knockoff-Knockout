@@ -13,8 +13,13 @@ MonoBehaviour:
   m_Name: Jab
   m_EditorClassIdentifier: Assembly-CSharp::AttackSO
   Value:
-    AnimationName: Jab
-    GeneratedAnimHash: 1561758614
+    animationName: Jab
+    blendIn: 2
+    blendOut: 5
+    GeneratedAnimData:
+      Hash: 1561758614
+      BlendIn: 2
+      BlendOut: 5
     Input:
       AttackFlags: 1
       DirectionFlag: 0

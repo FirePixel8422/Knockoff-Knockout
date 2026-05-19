@@ -13,8 +13,13 @@ MonoBehaviour:
   m_Name: Crouch Jab
   m_EditorClassIdentifier: Assembly-CSharp::AttackSO
   Value:
-    AnimationName: CrouchJab
-    GeneratedAnimHash: 1260756234
+    animationName: CrouchJab
+    blendIn: 2
+    blendOut: 5
+    GeneratedAnimData:
+      Hash: 1260756234
+      BlendIn: 2
+      BlendOut: 5
     Input:
       AttackFlags: 1
       DirectionFlag: 3
