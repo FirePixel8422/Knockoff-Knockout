@@ -15,13 +15,22 @@ MonoBehaviour:
   Value:
     AnimationName: Jab
     GeneratedAnimHash: 1561758614
+    Input:
+      AttackFlags: 1
+      DirectionFlag: 0
     Damage: 10
-    HitKB: 0.05
-    BlockKB: 0.02
-    DoesKnockDown: 0
+    HitKb: 0.1
+    BlockKb: 0.05
+    DoesKnockdown: 0
     Lunge:
-      Distance: 0
-      StartWindow: 0
+      Curve:
+        curve:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        sampleCount: 2
     Level: 2
     HurtBoxIds: 01000000
     FrameData:
@@ -34,9 +43,6 @@ MonoBehaviour:
       CounterStun: 22
       HitStop: 0
       BlockStop: 0
-    Input:
-      AttackFlags: 1
-      DirectionFlag: 0
     StringTransitions: []
     TotalAttackDuration: 24
     AdvantageOnHit: +6

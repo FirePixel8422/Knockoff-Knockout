@@ -13,16 +13,25 @@ MonoBehaviour:
   m_Name: Crouch Jab
   m_EditorClassIdentifier: Assembly-CSharp::AttackSO
   Value:
-    AnimationName: Jab
-    GeneratedAnimHash: 1561758614
+    AnimationName: CrouchJab
+    GeneratedAnimHash: 1260756234
+    Input:
+      AttackFlags: 1
+      DirectionFlag: 3
     Damage: 10
-    HitKB: 0.05
-    BlockKB: 0.02
-    DoesKnockDown: 0
+    HitKb: 0.15
+    BlockKb: 0.05
+    DoesKnockdown: 0
     Lunge:
-      Distance: 0
-      StartWindow: 0
-    Level: 1
+      Curve:
+        curve:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        sampleCount: 2
+    Level: 0
     HurtBoxIds: 01000000
     FrameData:
       Startup: 12
@@ -34,10 +43,9 @@ MonoBehaviour:
       CounterStun: 22
       HitStop: 0
       BlockStop: 0
-    Input:
-      AttackFlags: 1
-      DirectionFlag: 3
-    StringTransitions: []
+    StringTransitions:
+    - TargetMove: {fileID: 0}
+      frameSkipCount: 0
     TotalAttackDuration: 28
     AdvantageOnHit: 0
     AdvantageOnBlock: -2

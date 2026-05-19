@@ -15,13 +15,22 @@ MonoBehaviour:
   Value:
     AnimationName: LowKick
     GeneratedAnimHash: 859106820
+    Input:
+      AttackFlags: 4
+      DirectionFlag: 3
     Damage: 12
-    HitKB: 0.08
-    BlockKB: 0.03
-    DoesKnockDown: 0
+    HitKb: 0.1
+    BlockKb: 0.05
+    DoesKnockdown: 0
     Lunge:
-      Distance: 0
-      StartWindow: 0
+      Curve:
+        curve:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        sampleCount: 2
     Level: 0
     HurtBoxIds: 0700000008000000
     FrameData:
@@ -34,9 +43,6 @@ MonoBehaviour:
       CounterStun: 22
       HitStop: 0
       BlockStop: 0
-    Input:
-      AttackFlags: 4
-      DirectionFlag: 3
     StringTransitions: []
     TotalAttackDuration: 34
     AdvantageOnHit: -2
