@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 911606236322704357}
   - component: {fileID: 6692424567934986843}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: BlueTeam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.1719472, g: 0.5674741, b: 0.7924528, a: 0.88235295}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -339,7 +339,7 @@ GameObject:
   - component: {fileID: 1974781002548139457}
   - component: {fileID: 3656248914180908259}
   m_Layer: 5
-  m_Name: Image
+  m_Name: RedTeam
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -385,7 +385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.78616345, g: 0.23010823, b: 0.16563806, a: 0.88235295}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -410,15 +410,55 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4089884187650930766}
     m_Modifications:
+    - target: {fileID: 657110107588433852, guid: b774a143fd4f5b4478d0ca51537545bd,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1268767260374395339, guid: b774a143fd4f5b4478d0ca51537545bd,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1268767260374395339, guid: b774a143fd4f5b4478d0ca51537545bd,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1268767260374395339, guid: b774a143fd4f5b4478d0ca51537545bd,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1527364959616004094, guid: b774a143fd4f5b4478d0ca51537545bd,
         type: 3}
       propertyPath: m_Name
       value: BG
       objectReference: {fileID: 0}
+    - target: {fileID: 5103237343563930363, guid: b774a143fd4f5b4478d0ca51537545bd,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6861553400081600066, guid: b774a143fd4f5b4478d0ca51537545bd,
         type: 3}
       propertyPath: m_Type
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6861553400081600066, guid: b774a143fd4f5b4478d0ca51537545bd,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6861553400081600066, guid: b774a143fd4f5b4478d0ca51537545bd,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6861553400081600066, guid: b774a143fd4f5b4478d0ca51537545bd,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6861553400081600066, guid: b774a143fd4f5b4478d0ca51537545bd,
         type: 3}
