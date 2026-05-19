@@ -53,10 +53,10 @@ public class PlayerSpacingManager : MonoBehaviour
         float pushStrength = math.saturate(playerDist / maxPushRange) * pushStrengthMultiplier;
 
         Vector3 moveDirA = players[0].MovementHandler.LastMoveDir;
-        Vector3 pushDirA = playerPosA - playerPosB;
+        Vector3 pushDirA = (playerPosA - playerPosB).normalized;
         Vector3 targetPushA = Vector3.Lerp(pushDirA, moveDirA, moveDirImpact);
 
-        Vector3 pushDirB = playerPosB - playerPosA;
+        Vector3 pushDirB = (playerPosB - playerPosA).normalized;
         Vector3 moveDirB = players[1].MovementHandler.LastMoveDir;
         Vector3 targetPushB = Vector3.Lerp(pushDirB, moveDirB, moveDirImpact);
 

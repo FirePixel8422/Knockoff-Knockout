@@ -1,4 +1,5 @@
 ﻿using System;
+using Unity.Mathematics;
 using UnityEngine;
 
 
@@ -36,21 +37,7 @@ public class PlayerStateMachine
     public Action<float> OnDamageTaken;
     public Action<float> OnKnockbackTaken;
 
-
-    private readonly int standingHurtAnimHash = Animator.StringToHash("StandingHurt");
-    private readonly int crouchingHurtAnimHash = Animator.StringToHash("CrouchingHurt");
-
-    private readonly int standingBlockAnimHash = Animator.StringToHash("StandingBlock");
-    private readonly int crouchingBlockAnimHash = Animator.StringToHash("CrouchingBlock");
-
-    private readonly int crouchingAnimHash = Animator.StringToHash("Crouching");
-    private readonly int idleAnimHash = Animator.StringToHash("Idle");
-    private readonly int retreatAnimHash = Animator.StringToHash("Retreat");
-
-    private readonly int pushAnimHash = Animator.StringToHash("Push");
-    private readonly int dashAnimHash = Animator.StringToHash("Dash");
-    private readonly int sideStepAnimHash = Animator.StringToHash("SideStep");
-    private int currentAnimHash;
+    [EditorReadOnly, SerializeField] private AnimData currentAnimData;
 
 
     public PlayerStateMachine(Transform playerRoot)
@@ -88,9 +75,27 @@ public class PlayerStateMachine
                     OnDamageTaken?.Invoke(attack.Damage);
                     OnKnockbackTaken?.Invoke(attack.HitKb);
 
-                    PlayAnimation(attack.Level == AttackLevel.Low ?
-                        crouchingHurtAnimHash :
-                        standingHurtAnimHash);
+                    AnimData animData = state.StanceState switch
+                    {
+                        StanceState.Crouching => attack.Level switch
+                        {
+                            AttackLevel.Low => 
+                                AnimHashes.Hurt.CrouchingLow,
+                            _ => 
+                                AnimHashes.Hurt.CrouchingHigh,
+                        },
+                        StanceState.Standing => attack.Level switch
+                        {
+                            AttackLevel.Low => 
+                                AnimHashes.Hurt.StandingLow,
+                            _ =>
+                                AnimHashes.Hurt.StandingHigh,
+                        },
+
+                        _ => AnimHashes.Missing,
+                    };
+
+                    PlayAnimation(animData);
 
                     HitStun = result == AttackResult.CounterHit ?
                         attack.FrameData.CounterStun :
@@ -107,9 +112,9 @@ public class PlayerStateMachine
                     OnKnockbackTaken?.Invoke(attack.BlockKb);
 
                     PlayAnimation(result == AttackResult.StandingBlocked ?
-                        standingBlockAnimHash :
-                        crouchingBlockAnimHash);
-                    
+                        AnimHashes.Block.Standing :
+                        AnimHashes.Block.Crouching);
+
                     BlockStun = attack.FrameData.BlockStun;
                 }
                 break;
@@ -122,6 +127,7 @@ public class PlayerStateMachine
         {
             Recovery = attack.FrameData.Recovery;
         }
+
         if (HitStun > 0)
         {
             // When HitStunned, Reset BlockStun and Recovery
@@ -162,53 +168,56 @@ public class PlayerStateMachine
 
         if (!IsInActionLock)
         {
-            int animHash;
-            int frameBlend;
+            AnimData animData;
+
             if (state.StanceState == StanceState.Crouching)
             {
-                animHash = crouchingAnimHash;
-                frameBlend = 3;
+                animData = AnimHashes.Movement.Crouching;
             }
             else
             {
-                (animHash, frameBlend) = state.MovementState switch
+                animData = state.MovementState switch
                 {
-                    MovementState.Idle => (idleAnimHash, 6),
-                    MovementState.Retreating => (retreatAnimHash, 3),
+                    MovementState.Idle => AnimHashes.Movement.Idle,
+                    MovementState.Retreating => AnimHashes.Movement.Retreat,
 
-                    MovementState.Pushing => (pushAnimHash, 3),
-                    MovementState.Dashing => (dashAnimHash, 5),
-                    MovementState.SideStepping => (sideStepAnimHash, 5),
+                    MovementState.Pushing => AnimHashes.Movement.Push,
+                    MovementState.Dashing => AnimHashes.Movement.Dash,
+                    MovementState.SideStepping => AnimHashes.Movement.SideStep,
 
-                    _ => (Animator.StringToHash("Missing"), -1),
+                    _ => AnimHashes.Missing,
                 };
             }
 
-            PlayAnimation(animHash, frameBlend);
+            PlayAnimation(animData);
         }
 
         anim.speed = 1;
         anim.Update(GlobalGameData.TICK_TIME);
     }
+
     /// <summary>
     /// Play animation by <paramref name="animHash"/> blend from previous animation for <paramref name="transitionFrames"/> ticks.
     /// Skips if new animation is the same as current one.
     /// </summary>
-    public void PlayAnimation(int animHash, int transitionFrames = 0, int layer = 0)
+    public void PlayAnimation(AnimData animData)
     {
-        if (currentAnimHash == animHash) return;
+        if (currentAnimData.Hash == animData.Hash) return;
 
-        currentAnimHash = animHash;
+        AnimData prevAnimData = currentAnimData;
+        currentAnimData = animData;
 
-        if (transitionFrames == 0)
+        if (animData.BlendIn == 0)
         {
-            anim.PlayInFixedTime(animHash, layer);
+            anim.PlayInFixedTime(animData.Hash);
         }
         else
         {
-            anim.CrossFadeInFixedTime(animHash, transitionFrames * GlobalGameData.TICK_TIME, layer);
+            float blendTime = math.min(prevAnimData.BlendOut, currentAnimData.BlendIn) * GlobalGameData.TICK_TIME;
+            anim.CrossFadeInFixedTime(animData.Hash, blendTime);
         }
     }
+
     /// <summary>
     /// Advance current animation by <paramref name="tickAdvanceCount"/> amount of ticks
     /// </summary>

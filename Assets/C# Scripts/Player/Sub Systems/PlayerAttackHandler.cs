@@ -156,7 +156,7 @@ public class PlayerAttackHandler
         // If input for an attack was found in inputbuffer, start an attack sequence
         if (inputHandler.TryReadAttack(out AttackData targetAttack))
         {
-            stateMachine.PlayAnimation(targetAttack.GeneratedAnimHash, 2);
+            stateMachine.PlayAnimation(targetAttack.GeneratedAnimData);
             stateMachine.SetCombatState(CombatState.ActionStartup);
 
             currentSequence = new AttackSequence(targetAttack);

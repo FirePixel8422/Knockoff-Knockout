@@ -5,9 +5,12 @@
 public struct AttackData
 {
 #if UNITY_EDITOR
-    public string AnimationName;
+    public string animationName;
+    public int blendIn;
+    public int blendOut;
 #endif
-    [EditorReadOnly] public int GeneratedAnimHash;
+    [EditorReadOnly] public AnimData GeneratedAnimData;
+
     public FrameInput Input;
 
     [Header("Damage for hitting the move, hit/block knockback and does knockdown?")]
@@ -44,6 +47,8 @@ public struct AttackData
 
     public void UpdateDebugData()
     {
+        GeneratedAnimData = new AnimData(animationName, blendIn, blendOut);
+
         TotalAttackDuration = (FrameData.Startup + FrameData.Active + FrameData.Recovery).ToString();
         AdvantageOnHit = (FrameData.HitStun - FrameData.Recovery).ToString("+0;-0;0");
         AdvantageOnBlock = (FrameData.BlockStun - FrameData.Recovery).ToString("+0;-0;0");

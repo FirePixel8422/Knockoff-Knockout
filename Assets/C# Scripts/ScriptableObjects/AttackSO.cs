@@ -10,7 +10,6 @@ public class AttackSO : ScriptableObject
 
     private void OnValidate()
     {
-        Value.GeneratedAnimHash = Animator.StringToHash(Value.AnimationName);
         Value.UpdateDebugData();
     }
 }
