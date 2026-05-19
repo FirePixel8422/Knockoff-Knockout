@@ -16,7 +16,7 @@ public class HUDManager : MonoBehaviour
     {
         Instance = this;
 
-        GameRules.PostRulesInitialized += () =>
+        PlayerManager.PostPlayersInitialized += () =>
         {
             FighterSettings fighterSettings = GameRules.CombatSettings.Fighter;
 
@@ -29,7 +29,7 @@ public class HUDManager : MonoBehaviour
                 targetUIModule = modules[i];
 
                 targetUIModule.HealthBar.Init(fighterSettings.StartHealth);
-                targetPlayer.HealthHandler.OnHealthChanged += modules[i].HealthBar.OnHealthChanged;
+                targetPlayer.HealthHandler.OnHealthChanged += targetUIModule.HealthBar.OnHealthChanged;
             }
         };
     }

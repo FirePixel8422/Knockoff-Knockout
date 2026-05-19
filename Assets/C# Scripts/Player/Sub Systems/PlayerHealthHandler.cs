@@ -11,7 +11,7 @@ public class PlayerHealthHandler
     public Action<float> OnHealthChanged;
 
 
-    public PlayerHealthHandler(Action<float> onDamageTaken)
+    public PlayerHealthHandler(ref Action<float> onDamageTaken)
     {
         health = GameRules.CombatSettings.Fighter.StartHealth;
 
@@ -23,6 +23,6 @@ public class PlayerHealthHandler
     public void TakeDamage(float damage)
     {
         health = math.max(0, health - damage);
-        OnHealthChanged.Invoke(health);
+        OnHealthChanged?.Invoke(health);
     }
 }

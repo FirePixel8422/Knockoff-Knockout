@@ -67,7 +67,7 @@ public class PlayerInputHandler
     /// <summary>
     /// Reset all buffer inputs to default values
     /// </summary>
-    public void ClearInputBuffer() => bufferHandler.ClearBuffer();
+    public void ClearInputBuffer(bool keepActiveDirection = true) => bufferHandler.ClearBuffer(keepActiveDirection);
 
     /// <summary>
     /// Check all moves to see if input buffer correlates to one
@@ -151,13 +151,20 @@ public class InputBufferHandler
     /// <summary>
     /// Reset all buffer inputs to default values
     /// </summary>
-    public void ClearBuffer()
+    public void ClearBuffer(bool keepActiveDirection = true)
     {
         for (int i = 0; i < GlobalGameData.INPUT_BUFFER_SIZE; i++)
         {
             inputBuffer[i] = new FrameInput();
         }
-        cRawInput = new FrameInput();
+        if (keepActiveDirection)
+        {
+            cRawInput.AttackFlags = AttackInputFlags.None;
+        }
+        else
+        {
+            cRawInput = new FrameInput();
+        }
     }
 
     #endregion

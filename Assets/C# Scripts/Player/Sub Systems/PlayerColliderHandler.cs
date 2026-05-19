@@ -14,10 +14,10 @@ public class PlayerColliderHandler
     private readonly int hitBoxCount;
     private readonly int hurtBoxCount;
 
-    private NativeArray<HitBoxAABB> hitBoxAABBs;
-    private NativeArray<HurtBoxAABB> hurtBoxAABBs;
-    public NativeArray<HitBoxAABB> HitBoxAABBs => hitBoxAABBs;
-    public NativeArray<HurtBoxAABB> HurtBoxAABBs => hurtBoxAABBs;
+    private NativeArray<HitBoxOBB> hitBoxAABBs;
+    private NativeArray<HurtBoxOBB> hurtBoxAABBs;
+    public NativeArray<HitBoxOBB> HitBoxOBBs => hitBoxAABBs;
+    public NativeArray<HurtBoxOBB> HurtBoxOBBs => hurtBoxAABBs;
 
     private readonly HashSet<int> activeHurtBoxIds = new HashSet<int>();
 
@@ -30,8 +30,10 @@ public class PlayerColliderHandler
         hitBoxCount = hitBoxes.Length;
         hurtBoxCount = hurtBoxes.Length;
 
-        hitBoxAABBs = new NativeArray<HitBoxAABB>(hitBoxCount, Allocator.Persistent);
-        hurtBoxAABBs = new NativeArray<HurtBoxAABB>(hurtBoxCount, Allocator.Persistent);
+        hitBoxAABBs = new NativeArray<HitBoxOBB>(hitBoxCount, Allocator.Persistent);
+        hurtBoxAABBs = new NativeArray<HurtBoxOBB>(hurtBoxCount, Allocator.Persistent);
+
+        DisableAllHurtBoxes();
     }
     private PlayerColliderHandler() { }
 
@@ -42,7 +44,7 @@ public class PlayerColliderHandler
     }
 
     /// <summary>
-    /// Set HurtBox AABBs active states.
+    /// Set HurtBox AABBs active states. (Does not recalculate internal collider struct array)
     /// </summary>
     public void EnableTargetHurtBoxes(int[] ids)
     {
@@ -57,7 +59,6 @@ public class PlayerColliderHandler
         {
             hurtBoxes[i].enabled = activeHurtBoxIds.Contains(hurtBoxes[i].Id);
         }
-        RecalculateHurtBoxes();
     }
     public void DisableAllHurtBoxes()
     {
@@ -65,17 +66,16 @@ public class PlayerColliderHandler
         {
             hurtBoxes[i].enabled = false;
         }
-        RecalculateHurtBoxes();
     }
 
     /// <summary>
     /// Recalculate Hurtbox AABBs from collider transforms and active states.
     /// </summary>
-    private void RecalculateHurtBoxes()
+    public void RecalculateHurtBoxes()
     {
         for (int i = 0; i < hurtBoxCount; i++)
         {
-            hurtBoxAABBs[i] = hurtBoxes[i].GetHurtBoxAABB();
+            hurtBoxAABBs[i] = hurtBoxes[i].GetHurtBoxOBB();
         }
     }
     /// <summary>
@@ -85,7 +85,7 @@ public class PlayerColliderHandler
     {
         for (int i = 0; i < hitBoxCount; i++)
         {
-            hitBoxAABBs[i] = hitBoxes[i].GetHitBoxAABB();
+            hitBoxAABBs[i] = hitBoxes[i].GetHitBoxOBB();
         }
     }
 }

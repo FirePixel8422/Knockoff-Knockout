@@ -4,35 +4,36 @@ using UnityEngine;
 
 public class FastHurtBox : FastHitBox
 {
-    [SerializeField] private int id;
+    [SerializeField] private int id = -1;
     
     public int Id => id;
     public override ColliderType Type => ColliderType.Hurtbox;
 
 
-    /// <returns>Lightweight converted collider as HurtBoxAABB with IsActive state</returns>
-    public HurtBoxAABB GetHurtBoxAABB()
+    /// <returns>Lightweight converted collider as HurtBoxOBB with IsActive state</returns>
+    public HurtBoxOBB GetHurtBoxOBB()
     {
-        float3 center = (float3)transform.position;
+        transform.GetPositionAndRotation(out Vector3 center, out Quaternion rotation);
 
-        return new HurtBoxAABB(isActiveAndEnabled, center - halfSize, center + halfSize);
+        return new HurtBoxOBB(isActiveAndEnabled, center, halfSize, rotation);
     }
 }
 
 
 [System.Serializable]
-public struct HurtBoxAABB
+public struct HurtBoxOBB
 {
     private readonly byte activeFlag;
     public readonly bool IsActive => activeFlag == 1;
+    public float3 Center;
+    public float3 Extents;
+    public quaternion Rotation;
 
-    public float3 Min;
-    public float3 Max;
-
-    public HurtBoxAABB(bool active, float3 min, float3 max)
+    public HurtBoxOBB(bool active, float3 center, float3 extents, quaternion rotation)
     {
         activeFlag = (byte)(active ? 1 : 0);
-        Min = min;
-        Max = max;
+        Center = center;
+        Extents = extents;
+        Rotation = rotation;
     }
 }

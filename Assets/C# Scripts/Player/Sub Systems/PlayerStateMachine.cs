@@ -23,6 +23,7 @@ public class PlayerStateMachine
     [EditorReadOnly, SerializeField] private int HitStun;
     [EditorReadOnly, SerializeField] private int BlockStun;
 
+    public bool IsTimeStopped => TimeStop > 0;
     public bool IsInActionLock =>
         state.CombatState != CombatState.Idle ||
         state.MovementState == MovementState.Dashing ||

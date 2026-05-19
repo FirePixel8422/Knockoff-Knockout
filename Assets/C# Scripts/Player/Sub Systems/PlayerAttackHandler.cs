@@ -35,8 +35,10 @@ public class PlayerAttackHandler
     {
         activeAttack = CurrentActiveAttack;
 
+        colliderHandler.RecalculateHurtBoxes();
+
         // Check if any opponent hitbox is hit
-        return CollisionUtils.CheckAABBIntersection(target.ColliderHandler.HitBoxAABBs, colliderHandler.HurtBoxAABBs);
+        return CollisionUtils.CheckIntersection(target.ColliderHandler.HitBoxOBBs, colliderHandler.HurtBoxOBBs);
     }
 
     // Mental/Logic Notes:

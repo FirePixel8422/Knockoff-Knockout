@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Diagnostics;
+using UnityEngine;
 
 
 /// <summary>
@@ -53,33 +54,34 @@ public class PlayerController : MonoBehaviour
 #endif
 
 
-    private void Awake()
+    public void Init()
     {
-        GameRules.PostRulesInitialized += () =>
+        stateMachine = new PlayerStateMachine(transform);
+        inputHandler = new PlayerInputHandler(moveSetSO.GetAsDataArray());
+
+        colliderHandler = new PlayerColliderHandler(transform);
+        healthHandler = new PlayerHealthHandler(ref stateMachine.OnDamageTaken);
+
+        movementHandler = new PlayerMovementHandler(stateMachine, inputHandler, transform, isRightPlayer);
+        attackHandler = new PlayerAttackHandler(stateMachine, inputHandler, colliderHandler);
+
+        if (TryGetComponent(out inputRouter))
         {
-            stateMachine = new PlayerStateMachine(transform);
-            inputHandler = new PlayerInputHandler(moveSetSO.GetAsDataArray());
-
-            colliderHandler = new PlayerColliderHandler(transform);
-            healthHandler = new PlayerHealthHandler(stateMachine.OnDamageTaken);
-
-            movementHandler = new PlayerMovementHandler(stateMachine, inputHandler, transform, isRightPlayer);
-            attackHandler = new PlayerAttackHandler(stateMachine, inputHandler, colliderHandler);
-
-            if (TryGetComponent(out inputRouter))
-            {
-                inputRouter.Init(inputHandler);
-            }
-        };
+            inputRouter.Init(inputHandler);
+        }
     }
 
     public void OnUpdate(float deltaTime)
     {
+        if (stateMachine.IsTimeStopped) return;
+
         movementHandler.OnUpdate(deltaTime);
     }
 
     public void PreTickUpdate()
     {
+        if (stateMachine.IsTimeStopped) return;
+
         // Push all collected inputs into tick buffer.
         inputHandler.CollectInputs();
 
@@ -87,6 +89,8 @@ public class PlayerController : MonoBehaviour
     }
     public void TickUpdate()
     {
+        if (stateMachine.IsTimeStopped) return;
+
         // If player is not in the attack active state, return
         if (stateMachine.State.CombatState != CombatState.AttackActive) return;
 
@@ -105,18 +109,21 @@ public class PlayerController : MonoBehaviour
     }
     public void PostTickUpdate()
     {
-        bool wasInActionRecovery = stateMachine.State.CombatState == CombatState.Recovering;
+        if (!stateMachine.IsTimeStopped)
+        {
+            bool wasInActionRecovery = stateMachine.State.CombatState == CombatState.Recovering;
 
-        if (!stateMachine.IsStunned)
-        {
-            // TickUpdate attack (updating a seq or reading the input buffer for a new attack)
-            attackHandler.TickUpdateAttackSequence();
-        }
-        
-        // If fighter is not action locked and didnt start a new attack, check for movement input
-        if (!wasInActionRecovery && !stateMachine.IsInActionLock)
-        {
-            movementHandler.TickUpdateMovement();
+            if (!stateMachine.IsStunned)
+            {
+                // TickUpdate attack (updating a seq or reading the input buffer for a new attack)
+                attackHandler.TickUpdateAttackSequence();
+            }
+
+            // If fighter is not action locked and didnt start a new attack, check for movement input
+            if (!wasInActionRecovery && !stateMachine.IsInActionLock)
+            {
+                movementHandler.TickUpdateMovement();
+            }
         }
 
         // Tick down stuns and recovery

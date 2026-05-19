@@ -14,7 +14,7 @@ public class PlayerInputRouter : MonoBehaviour
 
     public void OnInputDeviceLost()
     {
-        playerInputHandler.ClearInputBuffer();
+        playerInputHandler.ClearInputBuffer(false);
     }
 
     public void OnDirection(Vector2 dirVec)

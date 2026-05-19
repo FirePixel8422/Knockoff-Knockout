@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Fire_Pixel.Utility;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -10,7 +11,7 @@ using UnityEngine.InputSystem;
 public class PlayerManager : FrameTickUpdateMB
 {
     public static PlayerManager Instance { get; private set; }
-    private void Awake() => Instance = this;
+    public static OneTimeAction PostPlayersInitialized { get; set; } = new OneTimeAction();
 
 
     [SerializeField] private PlayerController[] players;
@@ -28,6 +29,22 @@ public class PlayerManager : FrameTickUpdateMB
     [SerializeField] private bool logInputDeviceChanges = true;
     public bool LogInputDeviceChanges => logInputDeviceChanges;
 #endif
+
+
+    private void Awake()
+    {
+        Instance = this;
+
+        GameRules.PostRulesInitialized += () =>
+        {
+            for (int i = 0; i < GlobalGameData.MAX_PLAYERS; i++)
+            {
+                players[i].Init();
+            }
+
+            PostPlayersInitialized?.Invoke();
+        };
+    }
 
 
     #region Player Join/Leave Callbacks
@@ -87,9 +104,6 @@ public class PlayerManager : FrameTickUpdateMB
         }
     }
 
-    #endregion
-
-
     /// <summary>
     /// Unbind all bound active input module (binders) from their players (drivers).
     /// </summary>
@@ -102,6 +116,10 @@ public class PlayerManager : FrameTickUpdateMB
         binderToRouterMap.Clear();
     }
 
+    #endregion
+
+
+    #region TickUpdate and Update
 
     protected override void OnUpdate()
     {
@@ -138,5 +156,13 @@ public class PlayerManager : FrameTickUpdateMB
         {
             players[i].PostTickUpdate();
         }
+    }
+
+    #endregion
+
+
+    private void OnDestroy()
+    {
+        PostPlayersInitialized = new OneTimeAction();
     }
 }

@@ -8,12 +8,12 @@ public class FastHitBox : MonoBehaviour
     
     public virtual ColliderType Type => ColliderType.Hitbox;
 
-    /// <returns>Lightweight converted collider as HitBoxAABB with IsActive state</returns>
-    public HitBoxAABB GetHitBoxAABB()
+    /// <returns>Lightweight converted collider as HitBoxOBB with IsActive state</returns>
+    public HitBoxOBB GetHitBoxOBB()
     {
-        float3 center = (float3)transform.position;
+        transform.GetPositionAndRotation(out Vector3 pos, out Quaternion rot);
 
-        return new HitBoxAABB(center - halfSize, center + halfSize);
+        return new HitBoxOBB(pos, halfSize, rot);
     }
 
 
@@ -43,20 +43,23 @@ public class FastHitBox : MonoBehaviour
             ColliderType.Hurtbox => HURTBOX_COLOR,
             ColliderType.None or _ => INVALID_COLOR,
         };
-        Gizmos.DrawWireMesh(GlobalMeshes.Cube, transform.position, Quaternion.identity, Size);
+        transform.GetPositionAndRotation(out Vector3 pos, out Quaternion rot);
+        Gizmos.DrawWireMesh(GlobalMeshes.Cube, pos, rot, Size);
     }
 #endif
 }
 
 [System.Serializable]
-public struct HitBoxAABB
+public struct HitBoxOBB
 {
-    public float3 Min;
-    public float3 Max;
+    public float3 Center;
+    public float3 Extents;
+    public quaternion Rotation;
 
-    public HitBoxAABB(float3 min, float3 max)
+    public HitBoxOBB(float3 center, float3 extents, quaternion rotation)
     {
-        Min = min;
-        Max = max;
+        Center = center;
+        Extents = extents;
+        Rotation = rotation;
     }
 }
