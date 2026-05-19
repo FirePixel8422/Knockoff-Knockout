@@ -17,9 +17,9 @@ MonoBehaviour:
     blendIn: 3
     blendOut: 5
     GeneratedAnimData:
-      Hash: -410435135
-      BlendIn: 3
-      BlendOut: 5
+      <Hash>k__BackingField: -410435135
+      <BlendIn>k__BackingField: 3
+      <BlendOut>k__BackingField: 5
     Input:
       AttackFlags: 2
       DirectionFlag: 0
@@ -64,7 +64,7 @@ MonoBehaviour:
           m_RotationOrder: 4
         sampleCount: 2
     Level: 1
-    HurtBoxIds: 0300000004000000
+    HurtBoxIds: 0300000000000000
     FrameData:
       Startup: 18
       Active: 3
