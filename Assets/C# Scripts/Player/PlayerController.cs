@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
         healthHandler = new PlayerHealthHandler(ref stateMachine.OnDamageTaken);
 
         movementHandler = new PlayerMovementHandler(stateMachine, inputHandler, transform, isRightPlayer);
-        attackHandler = new PlayerAttackHandler(stateMachine, inputHandler, colliderHandler);
+        attackHandler = new PlayerAttackHandler(stateMachine, inputHandler, colliderHandler, movementHandler);
 
         if (TryGetComponent(out inputRouter))
         {

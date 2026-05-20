@@ -30,7 +30,7 @@ public struct AttackData
 
     public void BakeAllCurves()
     {
-        //Lunge.BakeAllCurves();
+        Lunge.BakeAllCurves();
     }
     public readonly void Dispose()
     {

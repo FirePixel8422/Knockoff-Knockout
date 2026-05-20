@@ -10,16 +10,20 @@ public class PlayerAttackHandler
     private readonly PlayerInputHandler inputHandler;
     private readonly PlayerStateMachine stateMachine;
     private readonly PlayerColliderHandler colliderHandler;
+    private readonly PlayerMovementHandler movementHandler;
 
-    [SerializeField] private AttackSequence currentSequence;
-    public AttackData CurrentActiveAttack => currentSequence.Attack;
+    [SerializeField] private ActionSequence<CombatState> currentSequence;
+    public AttackData ActiveAttack;
 
 
-    public PlayerAttackHandler(PlayerStateMachine stateMachine, PlayerInputHandler inputHandler, PlayerColliderHandler colliderHandler)
+    public PlayerAttackHandler(PlayerStateMachine stateMachine, PlayerInputHandler inputHandler, PlayerColliderHandler colliderHandler, PlayerMovementHandler movementHandler)
     {
         this.stateMachine = stateMachine;
         this.inputHandler = inputHandler;
         this.colliderHandler = colliderHandler;
+        this.movementHandler = movementHandler;
+
+        currentSequence = new ActionSequence<CombatState>((CombatState.Idle, 0));
 
         stateMachine.OnStunned += OnStunned;
     }
@@ -33,7 +37,7 @@ public class PlayerAttackHandler
     /// </summary>
     public bool CheckAttackIntersection(PlayerController target, out AttackData activeAttack)
     {
-        activeAttack = CurrentActiveAttack;
+        activeAttack = ActiveAttack;
 
         colliderHandler.RecalculateHurtBoxes();
 
@@ -135,7 +139,16 @@ public class PlayerAttackHandler
         if (currentSequence.IsActive)
         {
             // TickUpdate attack sequence
-            bool stateChanged = currentSequence.TickUpdateState(out CombatState newState);
+            bool stateChanged = currentSequence.TickUpdateState(out CombatState newState, out int elapsedSequenceTicks);
+
+            LungeData lungeData = ActiveAttack.Lunge;
+            if (lungeData.Power != 0 && elapsedSequenceTicks <= lungeData.Curve.Length)
+            {
+                float prevLunge = lungeData.Curve.Evaluate(elapsedSequenceTicks - 1);
+                float currentLunge = lungeData.Curve.Evaluate(elapsedSequenceTicks);
+
+                movementHandler.AddForce((currentLunge - prevLunge) * lungeData.Power);
+            }
 
             if (stateChanged)
             {
@@ -143,7 +156,7 @@ public class PlayerAttackHandler
 
                 if (newState == CombatState.AttackActive)
                 {
-                    colliderHandler.EnableTargetHurtBoxes(CurrentActiveAttack.HurtBoxIds);
+                    colliderHandler.EnableTargetHurtBoxes(ActiveAttack.HurtBoxIds);
                 }
                 else if (newState == CombatState.Recovering)
                 {
@@ -156,10 +169,16 @@ public class PlayerAttackHandler
         // If input for an attack was found in inputbuffer, start an attack sequence
         if (inputHandler.TryReadAttack(out AttackData targetAttack))
         {
+            ActiveAttack = targetAttack;
+
             stateMachine.PlayAnimation(targetAttack.GeneratedAnimData);
             stateMachine.SetCombatState(CombatState.ActionStartup);
 
-            currentSequence = new AttackSequence(targetAttack);
+            currentSequence = new ActionSequence<CombatState>(
+                (CombatState.ActionStartup, targetAttack.FrameData.Startup),
+                (CombatState.AttackActive, targetAttack.FrameData.Active),
+                (CombatState.Recovering, targetAttack.FrameData.Recovery),
+                (CombatState.Idle, 0));
         }
     }
     
@@ -168,7 +187,7 @@ public class PlayerAttackHandler
     /// </summary>
     public void OnActiveAttackConnected()
     {
-        int activeTicksLeft = currentSequence.EndAttackActiveState();
+        int activeTicksLeft = currentSequence.AdvanceState();
 
         stateMachine.TickAdvanceAnimation(activeTicksLeft);
         stateMachine.SetCombatState(CombatState.Recovering);
@@ -182,6 +201,6 @@ public class PlayerAttackHandler
         // When fighter gets stunned by an attack, clear their input buffer to avoid unintended buffered inputs after hitstun wears off.
         // This to ensure the player doesnt accidentally do a buffer spammed move that makes them even more vulnerable after getting hit.
         inputHandler.ClearInputBuffer();
-        currentSequence.Interrupt();
+        currentSequence.Cancel();
     }
 }

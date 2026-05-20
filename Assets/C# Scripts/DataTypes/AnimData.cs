@@ -7,14 +7,10 @@
 [System.Serializable]
 public struct AnimData
 {
-    [field: SerializeField]
-    public int Hash { get; private set; }
+    public int Hash;
 
-    [field: SerializeField]
-    public int BlendIn { get; private set; }
-
-    [field: SerializeField]
-    public int BlendOut { get; private set; }
+    public int BlendIn;
+    public int BlendOut;
 
     public AnimData(string animName, int blendIn, int blendOut)
     {

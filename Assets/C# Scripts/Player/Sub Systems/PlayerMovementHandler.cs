@@ -92,6 +92,10 @@ public class PlayerMovementHandler
     {
         MovePlayer(CameraManager.Instance.GetForwardDir() * (isRightPlayer ? kb : -kb));
     }
+    public void AddForce(float amount)
+    {
+        MovePlayer(CameraManager.Instance.GetForwardDir() * (isRightPlayer ? -amount : amount));
+    }
     public void OnUpdate(float deltaTime)
     {
         transform.position = Vector3.Lerp(transform.position, targetFighterPosition, moveSnappyness * deltaTime);

@@ -17,6 +17,14 @@ public class PlayerInputHandler
         bufferHandler = new InputBufferHandler();
     }
     private PlayerInputHandler() { }
+    ~PlayerInputHandler()
+    {
+        int attackCount = moveSet.Length;
+        for (int i = 0; i < attackCount; i++)
+        {
+            moveSet[i].Dispose();
+        }
+    }
 
     
     #region Player Input Callbacks
