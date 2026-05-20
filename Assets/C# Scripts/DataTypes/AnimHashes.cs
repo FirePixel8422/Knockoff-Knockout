@@ -30,8 +30,11 @@ public static class AnimHashes
         public static readonly AnimData Retreat = new AnimData("Retreat", 3, 3);
         public static readonly AnimData Push = new AnimData("Push", 3, 3);
 
-        public static readonly AnimData Dash = new AnimData("Dash", 3, 3);
-        public static readonly AnimData SideStep = new AnimData("SideStep", 3, 3);
+        public static readonly AnimData DashBack = new AnimData("DashBack", 3, 3);
+        public static readonly AnimData DashForward = new AnimData("DashForward", 3, 3);
+
+        public static readonly AnimData SideStepDown = new AnimData("SideStepDown", 3, 3);
+        public static readonly AnimData SideStepUp = new AnimData("SideStepUp", 3, 3);
     }
 
     public static readonly AnimData Missing = new AnimData("Missing", 0, 0);

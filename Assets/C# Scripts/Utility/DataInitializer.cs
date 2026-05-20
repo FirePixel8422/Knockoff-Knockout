@@ -12,7 +12,7 @@ public class DataInitializer : MonoBehaviour
 
     private void Awake()
     {
-        GameRules.SetGameRules(combatSettingsSO.Value);
+        GameRules.SetGameRules(combatSettingsSO.GetValue());
 
         CallbackScheduler.RegisterApplicationQuitCallback(() =>
         {

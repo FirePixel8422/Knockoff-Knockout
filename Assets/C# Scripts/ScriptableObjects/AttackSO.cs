@@ -6,10 +6,12 @@ using UnityEngine;
 public class AttackSO : ScriptableObject
 {
     public AttackData Value;
-    
 
+
+#if UNITY_EDITOR
     private void OnValidate()
     {
         Value.UpdateDebugData();
     }
+#endif
 }

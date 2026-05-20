@@ -18,12 +18,27 @@ public enum MovementState : byte
     /// Fighter is walking towards opponent
     /// </summary>
     Pushing,
+
     /// <summary>
-    /// Fighter is dashing towards or away from opponent
+    /// Fighter is dashing away from opponent
     /// </summary>
-    Dashing,
+    DashingBack,
     /// <summary>
-    /// Fighter is sidestepping into the foreground or background
+    /// Fighter is dashing towards opponent
     /// </summary>
-    SideStepping,
+    DashingForward,
+
+    /// <summary>
+    /// Fighter is sidestepping into the foreground
+    /// </summary>
+    SideSteppingDown,
+    /// <summary>
+    /// Fighter is sidestepping into the background
+    /// </summary>
+    SideSteppingUp,
+
+    /// <summary>
+    /// Fighter is recovering from a moveAction (Dash/Sidestep)
+    /// </summary>
+    Recovery,
 }

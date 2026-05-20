@@ -1,5 +1,4 @@
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 
 public class CameraManager : MonoBehaviour
@@ -9,11 +8,14 @@ public class CameraManager : MonoBehaviour
 
 
     private Transform[] playerTransforms;
-    private Camera mainCam;
     public Vector3 GetPlayerCenter() => (playerTransforms[0].position + playerTransforms[1].position) * 0.5f;
 
 
+    [SerializeField] private Transform viewCenterTransform;
     [SerializeField] private float cameraLerpSpeed;
+
+    [SerializeField] private float maxPlayerSpacing;
+    [SerializeField] private float arenaRadius;
 
 
 #if UNITY_EDITOR
@@ -42,6 +44,7 @@ public class CameraManager : MonoBehaviour
 
         Gizmos.color = Color.white;
         Gizmos.DrawWireMesh(GlobalMeshes.Cube, center, rotation, new Vector3(0.35f, 0.01f, 0.35f));
+        Gizmos.DrawWireSphere(Vector3.zero, arenaRadius);
     }
 #endif
 
@@ -53,6 +56,44 @@ public class CameraManager : MonoBehaviour
         {
             playerTransforms[i] = PlayerManager.Instance.Players[i].transform;
         }
+    }
+
+    public void UpdateCamera(float deltaTime)
+    {
+        viewCenterTransform.position = Vector3.Lerp(viewCenterTransform.position, GetPlayerCenter(), cameraLerpSpeed * deltaTime);
+    }
+
+    public Vector3 ClampMovementToCameraBounds(Vector3 currentPosition, Vector3 addedMovement)
+    {
+        Vector3 center = GetPlayerCenter();
+
+        Vector3 targetPosition = currentPosition + addedMovement;
+
+        float halfSpacing = maxPlayerSpacing * 0.5f;
+
+        // ---------- PLAYER SPACING CONSTRAINT ----------
+        Vector3 offsetFromCenter = targetPosition - center;
+        offsetFromCenter.y = 0;
+
+        if (offsetFromCenter.sqrMagnitude > halfSpacing * halfSpacing)
+        {
+            Vector3 dir = offsetFromCenter.normalized;
+            targetPosition = center + dir * halfSpacing;
+            targetPosition.y = currentPosition.y;
+        }
+
+        // ---------- ARENA SPHERE CONSTRAINT ----------
+        Vector3 fromArenaCenter = targetPosition;
+        fromArenaCenter.y = 0;
+
+        if (fromArenaCenter.sqrMagnitude > arenaRadius * arenaRadius)
+        {
+            Vector3 dir = fromArenaCenter.normalized;
+            targetPosition = dir * arenaRadius;
+            targetPosition.y = currentPosition.y;
+        }
+
+        return targetPosition;
     }
 
     public Vector3 GetForwardDir()

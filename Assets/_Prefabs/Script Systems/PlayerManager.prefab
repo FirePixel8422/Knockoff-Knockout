@@ -136,9 +136,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   controllerSlotPositions:
-  - -400
+  - -350
   - 0
-  - 400
+  - 350
   fighterSlotToFighterId: 00000000ffffffff01000000
   animationLerp: 12
   onSelectPlayerRumble:
@@ -171,8 +171,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e270ac8f0a5448428380e40923db2bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraManager
-  playerTransforms: []
-  mainCam: {fileID: 0}
+  viewCenterTransform: {fileID: 0}
+  cameraLerpSpeed: 4
+  maxPlayerSpacing: 6.75
+  arenaRadius: 5
+  drawCameraGizmos: 1
 --- !u!114 &175857497043824878
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -186,8 +189,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSpacingManager
   maxPushRange: 0.8
-  moveDirImpact: 0.25
+  moveDirImpact: 0.1
   pushStrengthMultiplier: 0.05
-  players:
-  - {fileID: 0}
-  - {fileID: 0}
+  drawPushSphereGizmos: 0

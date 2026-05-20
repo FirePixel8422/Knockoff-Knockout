@@ -77,6 +77,16 @@ public class PlayerInputHandler
     /// </summary>
     public void ClearInputBuffer(bool keepActiveDirection = true) => bufferHandler.ClearBuffer(keepActiveDirection);
 
+    #endregion
+    
+
+    #region Input Reading From InputBuffer
+
+    /// <summary>
+    /// Get latest direction input from buffer
+    /// </summary>
+    public DirectionInput GetCurrentDirection() => bufferHandler.GetCurrentDirection();
+
     /// <summary>
     /// Check all moves to see if input buffer correlates to one
     /// </summary>
@@ -89,7 +99,7 @@ public class PlayerInputHandler
         int moveSetLength = moveSet.Length;
         for (int i = 0; i < moveSetLength; i++)
         {
-            attackStrength = bufferHandler.TestInput(moveSet[i].Input);
+            attackStrength = bufferHandler.TestAttack(moveSet[i].Input);
 
             if (attackStrength <= bestAttackStrength)
                 continue;
@@ -106,14 +116,14 @@ public class PlayerInputHandler
     }
 
     /// <summary>
-    /// Check if there is a sidestep input in the buffer, if so return it as 
+    /// Check if there is a sidestep input in the buffer, if so return true and dash direction as bool <paramref name="isSideStepUp"/>
     /// </summary>
-    /// <returns></returns>
     public bool TryReadSideStep(out bool isSideStepUp) => bufferHandler.TestSideStep(out isSideStepUp);
+
     /// <summary>
-    /// Get latest direction input from buffer
+    /// Check if there is a dash input in the buffer, if so return true and dash direction as bool <paramref name="isDashForward"/>
     /// </summary>
-    public DirectionInput GetCurrentDirection() => bufferHandler.GetCurrentDirection();
+    public bool TryReadDash(out bool isDashForward) => bufferHandler.TestDash(out isDashForward);
 
     #endregion
 }
@@ -178,17 +188,16 @@ public class InputBufferHandler
     #endregion
 
 
-    /// <summary>
-    /// Check if input is found in buffer for inputted move their Keybinds (FrameInput)
-    /// </summary>
-    public int TestInput(FrameInput targetInput)
+    #region Input Reading
+
+    public int TestAttack(FrameInput targetInput)
     {
         int moveStrength = 0;
         int bufferIndex = index;
         bufferIndex.DecrementSmart(GlobalGameData.INPUT_BUFFER_SIZE);
 
         // Loop over whole buffer starting from current index all the way back to it
-        for (int i = 0; i < GlobalGameData.INPUT_BUFFER_SIZE; i++)
+        for (int i = 0; i < GlobalGameData.ATTACK_BUFFER_SIZE; i++)
         {
             // Check if buffered input contains the same attack buttons, if not > next buffer input
             if (!inputBuffer[bufferIndex].AttackFlags.HasFlag(targetInput.AttackFlags))
@@ -204,7 +213,7 @@ public class InputBufferHandler
             }
 
             int dirIndex = bufferIndex;
-            for (int j = 0; j < 1 + GlobalGameData.DIRECTION_BUFFER_WINDOW; j++)
+            for (int i2 = 0; i2 < 1 + GlobalGameData.DIRECTION_BUFFER_WINDOW; i2++)
             {
                 // Check into the past of the buffer for X frames for if the target attacks direction is found
                 if (inputBuffer[dirIndex].DirectionFlag == targetInput.DirectionFlag)
@@ -267,4 +276,44 @@ public class InputBufferHandler
         isSideStepUp = false;
         return false;
     }
+
+    public bool TestDash(out bool isDashRight)
+    {
+        DirectionInput firstTap = DirectionInput.Neutral;
+        int firstTapTick = -1;
+
+        for (int i = 1; i <= GlobalGameData.DASH_MAX_GAP_TICKS; i++)
+        {
+            int idx = (index - i + GlobalGameData.INPUT_BUFFER_SIZE) % GlobalGameData.INPUT_BUFFER_SIZE;
+            int prevIdx = (idx - 1 + GlobalGameData.INPUT_BUFFER_SIZE) % GlobalGameData.INPUT_BUFFER_SIZE;
+
+            DirectionInput current = inputBuffer[idx].DirectionFlag;
+            DirectionInput prev = inputBuffer[prevIdx].DirectionFlag;
+
+            bool isPress =
+                (current == DirectionInput.Left || current == DirectionInput.Right) &&
+                current != prev;
+
+            if (!isPress)
+                continue;
+
+            if (firstTap == DirectionInput.Neutral)
+            {
+                firstTap = current;
+                firstTapTick = i;
+                continue;
+            }
+
+            if (current == firstTap)
+            {
+                isDashRight = current == DirectionInput.Right;
+                return true;
+            }
+        }
+
+        isDashRight = false;
+        return false;
+    }
+
+    #endregion
 }

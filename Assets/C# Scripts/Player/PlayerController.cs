@@ -100,8 +100,6 @@ public class PlayerController : MonoBehaviour
 
             AttackResult result = opponent.attackHandler.GetInboundAttackResult(activeAttack.Level);
 
-            //DebugLogger.Log("hit: " + result);
-
             stateMachine.ResolveAttack(activeAttack, result, false);
             opponent.stateMachine.ResolveAttack(activeAttack, result, true);
         }
@@ -115,14 +113,12 @@ public class PlayerController : MonoBehaviour
             if (!stateMachine.IsStunned)
             {
                 // TickUpdate attack (updating a seq or reading the input buffer for a new attack)
-                attackHandler.TickUpdateAttackSequence();
+                attackHandler.TickUpdateAttackSequence(stateMachine.IsInActionLock);
             }
 
-            // If fighter is not action locked and didnt start a new attack, check for movement input
-            if (!wasInActionRecovery && !stateMachine.IsInActionLock)
-            {
-                movementHandler.TickUpdateMovement();
-            }
+            // TickUpdate any active movement action and read movement input IF player wont be actionlocked next frame
+            bool isActionLocked = wasInActionRecovery || stateMachine.IsInActionLock;
+            movementHandler.TickUpdateMovement(isActionLocked);
         }
 
         // Tick down stuns and recovery

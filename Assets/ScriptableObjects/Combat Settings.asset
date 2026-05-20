@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2cf2ffb60d47cb43adc4803ee655188, type: 3}
   m_Name: Combat Settings
   m_EditorClassIdentifier: Assembly-CSharp::CombatSettingsSO
-  Value:
+  value:
+    Fighter:
+      StartHealth: 200
+      MoveSpeed: 3
+      MoveSnappyness: 25
     Parry:
       Startup: 12
       Active: 2
@@ -22,7 +26,63 @@ MonoBehaviour:
       TotalParryDuration: 36
       AdvantageOnParry: 18
       AdvantageOnMiss: -22
-    Fighter:
-      StartHealth: 200
-      MoveSpeed: 3
-      MoveSnappyness: 15
+    SideStep:
+      Duration: 12
+      Recovery: 13
+      Curve:
+        curve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: -0
+            outSlope: -0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.99873257
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        sampleCount: 50
+      Rotation: 55
+    Dash:
+      Duration: 16
+      Recovery: 0
+      Curve:
+        curve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 0.8
+            value: 1
+            inSlope: 0.014977638
+            outSlope: 0.014977638
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.11026609
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        sampleCount: 50
+      Power: 1.25

@@ -17,9 +17,9 @@ MonoBehaviour:
     blendIn: 3
     blendOut: 5
     GeneratedAnimData:
-      <Hash>k__BackingField: 859106820
-      <BlendIn>k__BackingField: 3
-      <BlendOut>k__BackingField: 5
+      Hash: 859106820
+      BlendIn: 3
+      BlendOut: 5
     Input:
       AttackFlags: 4
       DirectionFlag: 3
@@ -31,11 +31,33 @@ MonoBehaviour:
       Curve:
         curve:
           serializedVersion: 2
-          m_Curve: []
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: -0.0006721981
+            outSlope: -0.0006721981
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.9923954
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0.000036617694
+            outSlope: 0.000036617694
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.3231937
+            outWeight: 0.9994418
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        sampleCount: 2
+        sampleCount: 50
+      Window:
+        x: 8
+        y: 12
+      Power: 0.1
     Level: 0
     HurtBoxIds: 0700000000000000
     FrameData:

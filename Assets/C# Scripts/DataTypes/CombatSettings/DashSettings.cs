@@ -1,11 +1,13 @@
-﻿using Unity.Mathematics;
+﻿
 
 
 [System.Serializable]
-public struct LungeData
+public struct DashSettings
 {
+    public int Duration;
+    public int Recovery;
+
     public NativeSampledAnimationCurve Curve;
-    public int2 Window;
     public float Power;
 
     public void BakeAllCurves() => Curve.Bake();

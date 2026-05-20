@@ -27,8 +27,10 @@ public class PlayerStateMachine
     public bool IsTimeStopped => TimeStop > 0;
     public bool IsInActionLock =>
         state.CombatState != CombatState.Idle ||
-        state.MovementState == MovementState.Dashing ||
-        state.MovementState == MovementState.SideStepping;
+        state.MovementState == MovementState.DashingBack ||
+        state.MovementState == MovementState.DashingForward ||
+        state.MovementState == MovementState.SideSteppingUp ||
+        state.MovementState == MovementState.SideSteppingDown;
     public bool IsStunned =>
         state.CombatState == CombatState.HitStun ||
         state.CombatState == CombatState.BlockStun;
@@ -182,8 +184,6 @@ public class PlayerStateMachine
                     MovementState.Retreating => AnimHashes.Movement.Retreat,
 
                     MovementState.Pushing => AnimHashes.Movement.Push,
-                    MovementState.Dashing => AnimHashes.Movement.Dash,
-                    MovementState.SideStepping => AnimHashes.Movement.SideStep,
 
                     _ => AnimHashes.Missing,
                 };

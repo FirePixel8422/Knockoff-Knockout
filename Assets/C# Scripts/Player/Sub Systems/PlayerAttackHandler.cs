@@ -12,7 +12,7 @@ public class PlayerAttackHandler
     private readonly PlayerColliderHandler colliderHandler;
     private readonly PlayerMovementHandler movementHandler;
 
-    [SerializeField] private ActionSequence<CombatState> currentSequence;
+    private ActionSequence<CombatState> currentSequence;
     public AttackData ActiveAttack;
 
 
@@ -80,6 +80,12 @@ public class PlayerAttackHandler
                 : AttackResult.Hit;
         }
 
+        // If defender is crouching, auto miss any incomming high
+        if (defenderState.StanceState == StanceState.Crouching && attackType == AttackLevel.High)
+        {
+            return AttackResult.Missed;
+        }
+
         // If defender cant block or the incoming attack is unblockable, the defender gets hit OR interrupted
         if ((defenderState.CanBlock() == false) || attackType == AttackLevel.Unblockable)
         {
@@ -134,38 +140,53 @@ public class PlayerAttackHandler
     /// <summary>
     /// Tick down active attack sequence or try creating a new one if there is no active on anymore. (PostTickUpdate)
     /// </summary>
-    public void TickUpdateAttackSequence()
+    public void TickUpdateAttackSequence(bool isActionLocked)
     {
         if (currentSequence.IsActive)
         {
-            // TickUpdate attack sequence
-            bool stateChanged = currentSequence.TickUpdateState(out CombatState newState, out int elapsedSequenceTicks);
-
-            LungeData lungeData = ActiveAttack.Lunge;
-            if (lungeData.Power != 0 && elapsedSequenceTicks <= lungeData.Curve.Length)
-            {
-                float prevLunge = lungeData.Curve.Evaluate(elapsedSequenceTicks - 1);
-                float currentLunge = lungeData.Curve.Evaluate(elapsedSequenceTicks);
-
-                movementHandler.AddForce((currentLunge - prevLunge) * lungeData.Power);
-            }
-
-            if (stateChanged)
-            {
-                stateMachine.SetCombatState(newState);
-
-                if (newState == CombatState.AttackActive)
-                {
-                    colliderHandler.EnableTargetHurtBoxes(ActiveAttack.HurtBoxIds);
-                }
-                else if (newState == CombatState.Recovering)
-                {
-                    colliderHandler.DisableAllHurtBoxes();
-                }
-            }
+            UpdateActiveAttackAction();
             return;
         }
+        if(isActionLocked) return;
 
+        TryReadAttackInput();
+    }
+
+    /// <summary>
+    /// TickUpdate active attack sequence and send state changes to the <see cref="PlayerStateMachine"/>. Also handle lunge movement if active attack has lunge data.
+    /// </summary>
+    private void UpdateActiveAttackAction()
+    {
+        if (currentSequence.TickUpdateState(out CombatState newState, out int elapsedSequenceTicks))
+        {
+            stateMachine.SetCombatState(newState);
+
+            if (newState == CombatState.AttackActive)
+            {
+                colliderHandler.EnableTargetHurtBoxes(ActiveAttack.HurtBoxIds);
+            }
+            else if (newState == CombatState.Recovering)
+            {
+                colliderHandler.DisableAllHurtBoxes();
+            }
+        }
+
+        LungeData lungeData = ActiveAttack.Lunge;
+        if (lungeData.Power != 0 &&
+            elapsedSequenceTicks >= lungeData.Window.x &&
+            elapsedSequenceTicks <= lungeData.Window.y)
+        {
+            float t = (elapsedSequenceTicks - lungeData.Window.x) / (float)(lungeData.Window.y - lungeData.Window.x);
+            float tPrev = (elapsedSequenceTicks - 1 - lungeData.Window.x) / (float)(lungeData.Window.y - lungeData.Window.x);
+
+            float prevLunge = lungeData.Curve.Evaluate(tPrev);
+            float currentLunge = lungeData.Curve.Evaluate(t);
+
+            movementHandler.AddForce((currentLunge - prevLunge) * lungeData.Power);
+        }
+    }
+    private void TryReadAttackInput()
+    {
         // If input for an attack was found in inputbuffer, start an attack sequence
         if (inputHandler.TryReadAttack(out AttackData targetAttack))
         {
@@ -181,7 +202,7 @@ public class PlayerAttackHandler
                 (CombatState.Idle, 0));
         }
     }
-    
+
     /// <summary>
     /// Called by the <see cref="PlayerController"/> when the current active attack hits a target.
     /// </summary>

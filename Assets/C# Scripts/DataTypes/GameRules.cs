@@ -13,6 +13,7 @@ public static class GameRules
     public static void Reset()
     {
         PostRulesInitialized = new OneTimeAction();
+        CombatSettings.Dispose();
     }
     public static void SetGameRules(CombatSettings combatSettings)
     {

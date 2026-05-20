@@ -136,6 +136,7 @@ public class PlayerManager : FrameTickUpdateMB
         PlayerSpacingManager.Instance.OnUpdate();
 
         HUDManager.Instance.UpdateUI(deltaTime);
+        CameraManager.Instance.UpdateCamera(deltaTime);
     }
 
 
