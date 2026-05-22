@@ -495,9 +495,9 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: rig|SideStep.L
-      takeName: rig|SideStep.L
-      internalID: -4194017440197173928
+      name: rig|SideStep.Down
+      takeName: rig|SideStep.Down
+      internalID: -1252820687879711486
       firstFrame: 0
       lastFrame: 28
       wrapMode: 0
@@ -524,9 +524,9 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: rig|SideStep.R
-      takeName: rig|SideStep.R
-      internalID: 3817847310261942992
+      name: rig|SideStep.Up
+      takeName: rig|SideStep.Up
+      internalID: -7456316121924552442
       firstFrame: 0
       lastFrame: 28
       wrapMode: 0
