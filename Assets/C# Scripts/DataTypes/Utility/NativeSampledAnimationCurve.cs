@@ -3,6 +3,7 @@ using Unity.Collections;
 using Unity.Mathematics;
 using UnityEngine;
 
+
 /// <summary>
 /// Wrapper for AnimationCurve that allows sampling at a fixed number of points, making Evaluate() much cheaper.
 /// </summary>
@@ -18,11 +19,6 @@ public struct NativeSampledAnimationCurve
     [SerializeField] private int sampleCount;
 
     private NativeArray<float> bakedCurve;
-
-    /// <summary>
-    /// Length in Time of the curve (time of last key)
-    /// </summary>
-    public float Length { get; private set; }
 
 
     /// <summary>
@@ -45,11 +41,9 @@ public struct NativeSampledAnimationCurve
 
         bakedCurve = new NativeArray<float>(sampleCount, Allocator.Persistent);
 
-        Length = curve[curve.keys.Length - 1].time;
-
         for (int i = 0; i < sampleCount; i++)
         {
-            float t = (float)i / (sampleCount - 1) * Length;
+            float t = (float)i / (sampleCount - 1);
             bakedCurve[i] = curve.Evaluate(t);
         }
     }
@@ -67,7 +61,7 @@ public struct NativeSampledAnimationCurve
         }
 #endif
 
-        return EvaluateWithBurst(bakedCurve, sampleCount, time / Length);
+        return EvaluateWithBurst(bakedCurve, sampleCount, time);
     }
 
     /// <summary>
@@ -88,7 +82,6 @@ public struct NativeSampledAnimationCurve
     public static NativeSampledAnimationCurve Default => new NativeSampledAnimationCurve()
     {
         curve = AnimationCurve.Linear(1, 1, 0, 0),
-        Length = 1,
         sampleCount = 50,
     };
     public readonly void DisposeIfCreated() => bakedCurve.DisposeIfCreated();

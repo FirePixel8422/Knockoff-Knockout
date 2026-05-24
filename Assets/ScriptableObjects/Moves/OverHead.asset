@@ -23,9 +23,11 @@ MonoBehaviour:
     Input:
       AttackFlags: 2
       DirectionFlag: 0
-    Damage: 30
+    Stance: 0
+    Level: 1
+    Damage: 25
     HitKb: 1
-    BlockKb: 0.2
+    BlockKb: 0.1
     DoesKnockdown: 1
     Lunge:
       Curve:
@@ -58,7 +60,6 @@ MonoBehaviour:
         x: 8
         y: 14
       Power: 0.25
-    Level: 1
     HurtBoxIds: 0300000000000000
     FrameData:
       Startup: 18

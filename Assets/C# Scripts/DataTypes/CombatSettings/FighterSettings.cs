@@ -5,6 +5,7 @@
 public struct FighterSettings
 {
     public float StartHealth;
-    public float MoveSpeed;
+    public float PushingSpeed;
+    public float RetreatingSpeed;
     public float MoveSnappyness;
 }

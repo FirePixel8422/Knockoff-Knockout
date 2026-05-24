@@ -12,7 +12,7 @@ public struct ActionSequence<TEnum>
     private int currentStateId;
     private int nextStateDelay;
     private int elapsedTicks;
-    public bool IsActive => currentStateId != stateSequence.Length - 1;
+    public readonly bool IsActive => currentStateId != stateSequence.Length - 1;
 
 
     public ActionSequence(params (TEnum State, int Duration)[] stateSequence)

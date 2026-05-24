@@ -25,10 +25,17 @@ public class PlayerStateMachine
     [EditorReadOnly, SerializeField] private int BlockStun;
 
     public bool IsTimeStopped => TimeStop > 0;
-    public bool IsInActionLock =>
-        state.CombatState != CombatState.Idle ||
+    public bool IsInCombatLock =>
+        state.CombatState != CombatState.Idle;
+    public bool IsInMoveLock =>
+        IsInCombatLock ||
+        state.MovementState == MovementState.Recovery;
+    public bool IsInDashLock =>
+        IsInCombatLock ||
         state.MovementState == MovementState.DashingBack ||
-        state.MovementState == MovementState.DashingForward ||
+        state.MovementState == MovementState.DashingForward;
+    public bool IsInSideStepLock =>
+        IsInCombatLock ||
         state.MovementState == MovementState.SideSteppingUp ||
         state.MovementState == MovementState.SideSteppingDown;
     public bool IsStunned =>
@@ -168,7 +175,7 @@ public class PlayerStateMachine
             SetCombatState(CombatState.Idle);
         }
 
-        if (!IsInActionLock)
+        if (!IsInMoveLock)
         {
             AnimData animData;
 

@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿
 
+
+using System.Diagnostics;
 
 /// <summary>
 /// Sub Player system handler class that is responsible for performing and tracking attack states.
@@ -182,7 +184,7 @@ public class PlayerAttackHandler
             float prevLunge = lungeData.Curve.Evaluate(tPrev);
             float currentLunge = lungeData.Curve.Evaluate(t);
 
-            movementHandler.AddForce((currentLunge - prevLunge) * lungeData.Power);
+            movementHandler.AddForwardForce((currentLunge - prevLunge) * lungeData.Power);
         }
     }
     private void TryReadAttackInput()
@@ -193,7 +195,9 @@ public class PlayerAttackHandler
             ActiveAttack = targetAttack;
 
             stateMachine.PlayAnimation(targetAttack.GeneratedAnimData);
+
             stateMachine.SetCombatState(CombatState.ActionStartup);
+            stateMachine.SetStanceState(targetAttack.Stance);
 
             currentSequence = new ActionSequence<CombatState>(
                 (CombatState.ActionStartup, targetAttack.FrameData.Startup),

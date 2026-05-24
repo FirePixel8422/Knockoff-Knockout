@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.Collections;
+using UnityEngine;
 
 
 
@@ -10,7 +11,7 @@ public class AttackMoveSetSO : ScriptableObject
     /// <summary>
     /// Get all attack as <see cref="AttackData"/> copies and bake all data into it
     /// </summary>
-    public AttackData[] GetAsDataArray()
+    public AttackData[] GetBakedDataArray()
     {
         int moveCount = Attacks.Length;
         AttackData[] attacksArray = new AttackData[moveCount];
@@ -22,4 +23,20 @@ public class AttackMoveSetSO : ScriptableObject
         }
         return attacksArray;
     }
+
+
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        int moveCount = Attacks.Length;
+        for (int i = 0; i < moveCount; i++)
+        {
+            if (Attacks[i] == null)
+            {
+                DebugLogger.LogError($"One of the attacks in {name} is null");
+                return;
+            }
+        }
+    }
+#endif
 }

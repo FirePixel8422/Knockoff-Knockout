@@ -23,8 +23,10 @@ MonoBehaviour:
     Input:
       AttackFlags: 1
       DirectionFlag: 3
-    Damage: 10
-    HitKb: 0.15
+    Stance: 1
+    Level: 0
+    Damage: 8
+    HitKb: 0.1
     BlockKb: 0.05
     DoesKnockdown: 0
     Lunge:
@@ -58,7 +60,6 @@ MonoBehaviour:
         x: 6
         y: 9
       Power: 0.075
-    Level: 0
     HurtBoxIds: 000000000100000002000000
     FrameData:
       Startup: 12
@@ -70,9 +71,7 @@ MonoBehaviour:
       CounterStun: 22
       HitStop: 0
       BlockStop: 0
-    StringTransitions:
-    - TargetMove: {fileID: 0}
-      frameSkipCount: 0
+    StringTransitions: []
     TotalAttackDuration: 28
     AdvantageOnHit: 0
     AdvantageOnBlock: -2

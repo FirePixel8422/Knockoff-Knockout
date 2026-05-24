@@ -14,10 +14,10 @@ public static class GlobalGameData
     public const float TICK_TIME = 1f / 60;
     public const int MAX_TICK_CATCH_UP = 5;
 
-    public const int INPUT_BUFFER_SIZE = 16;
+    public const int INPUT_BUFFER_SIZE = 20;
     public const int ATTACK_BUFFER_SIZE = 10;
 
     public const int DIRECTION_BUFFER_WINDOW = 2;
     public const int SIDE_STEP_MAX_HOLD_TICKS = 7;
-    public const int DASH_MAX_GAP_TICKS = 12;
+    public const int DASH_MAX_GAP_TICKS = 18;
 }

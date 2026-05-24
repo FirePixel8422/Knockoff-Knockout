@@ -10,20 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b862d7d41f8e184187976caf926811d, type: 3}
-  m_Name: Jab
+  m_Name: LegSweep
   m_EditorClassIdentifier: Assembly-CSharp::AttackSO
   Value:
-    animationName: Jab
-    blendIn: 2
+    animationName: LegSweep
+    blendIn: 3
     blendOut: 5
     GeneratedAnimData:
-      Hash: 1561758614
-      BlendIn: 2
+      Hash: 1487380032
+      BlendIn: 3
       BlendOut: 5
     Input:
-      AttackFlags: 1
+      AttackFlags: 8
       DirectionFlag: 0
-    Damage: 8
+    Stance: 0
+    Level: 0
+    Damage: 12
     HitKb: 0.1
     BlockKb: 0.05
     DoesKnockdown: 0
@@ -55,23 +57,22 @@ MonoBehaviour:
           m_RotationOrder: 4
         sampleCount: 50
       Window:
-        x: 5
-        y: 7
-      Power: 0.1
-    Level: 2
-    HurtBoxIds: 000000000100000002000000
+        x: 8
+        y: 12
+      Power: 0.075
+    HurtBoxIds: 0700000000000000
     FrameData:
-      Startup: 10
+      Startup: 16
       Active: 2
-      Recovery: 12
-      CancelWindow: 4
+      Recovery: 24
+      CancelWindow: 0
       HitStun: 22
-      BlockStun: 14
-      CounterStun: 22
+      BlockStun: 18
+      CounterStun: 26
       HitStop: 0
       BlockStop: 0
     StringTransitions: []
-    TotalAttackDuration: 24
-    AdvantageOnHit: +10
-    AdvantageOnBlock: +2
-    AdvantageOnCounter: +10
+    TotalAttackDuration: 42
+    AdvantageOnHit: -2
+    AdvantageOnBlock: -6
+    AdvantageOnCounter: +2

@@ -15,8 +15,9 @@ MonoBehaviour:
   value:
     Fighter:
       StartHealth: 200
-      MoveSpeed: 3
-      MoveSnappyness: 25
+      PushingSpeed: 2.25
+      RetreatingSpeed: 1.35
+      MoveSnappyness: 18
     Parry:
       Startup: 12
       Active: 2
@@ -58,7 +59,8 @@ MonoBehaviour:
       Rotation: 55
     Dash:
       Duration: 16
-      Recovery: 0
+      Startup: 6
+      Recovery: 10
       Curve:
         curve:
           serializedVersion: 2
@@ -73,7 +75,16 @@ MonoBehaviour:
             inWeight: 0
             outWeight: 0
           - serializedVersion: 3
-            time: 0.8
+            time: 0.35000718
+            value: 0.44566447
+            inSlope: 2.1811142
+            outSlope: 2.1811142
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.088866524
+          - serializedVersion: 3
+            time: 1
             value: 1
             inSlope: 0.014977638
             outSlope: 0.014977638
@@ -85,4 +96,5 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         sampleCount: 50
-      Power: 1.25
+      BackDashPower: 2
+      ForwardDashPower: 3

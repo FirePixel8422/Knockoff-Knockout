@@ -22,8 +22,10 @@ MonoBehaviour:
       BlendOut: 5
     Input:
       AttackFlags: 4
-      DirectionFlag: 3
-    Damage: 12
+      DirectionFlag: 0
+    Stance: 0
+    Level: 0
+    Damage: 10
     HitKb: 0.1
     BlockKb: 0.05
     DoesKnockdown: 0
@@ -58,7 +60,6 @@ MonoBehaviour:
         x: 8
         y: 12
       Power: 0.1
-    Level: 0
     HurtBoxIds: 0700000000000000
     FrameData:
       Startup: 14

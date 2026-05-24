@@ -12,6 +12,9 @@ public struct AttackData
     [EditorReadOnly] public AnimData GeneratedAnimData;
 
     public FrameInput Input;
+    [Header("In what stance is the fighter during the attack and is it a low, mid or high")]
+    public StanceState Stance;
+    public AttackLevel Level;
 
     [Header("Damage for hitting the move, hit/block knockback and does knockdown?")]
     public float Damage;
@@ -21,8 +24,6 @@ public struct AttackData
     [Header("Lunge distance in meters and startup frame index")]
     public LungeData Lunge;
 
-    [Header("Is the attack a low, mid or high and what hurtboxes does it use")]
-    public AttackLevel Level;
     public int[] HurtBoxIds;
 
     public FrameData FrameData;

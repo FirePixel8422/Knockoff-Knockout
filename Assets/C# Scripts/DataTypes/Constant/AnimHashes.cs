@@ -23,18 +23,18 @@ public static class AnimHashes
 
     public static class Movement
     {
-        public static readonly AnimData Crouching = new AnimData("Crouching", 3, 3);
+        public static readonly AnimData Crouching = new AnimData("Crouching", 8, 5);
 
-        public static readonly AnimData Idle = new AnimData("Idle", 3, 3);
+        public static readonly AnimData Idle = new AnimData("Idle", 15, 5);
 
-        public static readonly AnimData Retreat = new AnimData("Retreat", 3, 3);
-        public static readonly AnimData Push = new AnimData("Push", 3, 3);
+        public static readonly AnimData Retreat = new AnimData("Retreat", 3, 7);
+        public static readonly AnimData Push = new AnimData("Push", 3, 10);
 
-        public static readonly AnimData DashBack = new AnimData("DashBack", 3, 3);
-        public static readonly AnimData DashForward = new AnimData("DashForward", 3, 3);
+        public static readonly AnimData DashBack = new AnimData("DashBack", 3, 5);
+        public static readonly AnimData DashForward = new AnimData("DashForward", 3, 5);
 
-        public static readonly AnimData SideStepDown = new AnimData("SideStepDown", 3, 3);
-        public static readonly AnimData SideStepUp = new AnimData("SideStepUp", 3, 3);
+        public static readonly AnimData SideStepDown = new AnimData("SideStepDown", 3, 5);
+        public static readonly AnimData SideStepUp = new AnimData("SideStepUp", 3, 5);
     }
 
     public static readonly AnimData Missing = new AnimData("Missing", 0, 0);

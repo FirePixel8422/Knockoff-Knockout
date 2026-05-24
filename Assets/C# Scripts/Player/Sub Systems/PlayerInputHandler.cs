@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Unity.Collections;
 
 
 /// <summary>
@@ -200,7 +201,7 @@ public class InputBufferHandler
         for (int i = 0; i < GlobalGameData.ATTACK_BUFFER_SIZE; i++)
         {
             // Check if buffered input contains the same attack buttons, if not > next buffer input
-            if (!inputBuffer[bufferIndex].AttackFlags.HasFlag(targetInput.AttackFlags))
+            if ((inputBuffer[bufferIndex].AttackFlags & targetInput.AttackFlags) == 0)
             {
                 bufferIndex.DecrementSmart(GlobalGameData.INPUT_BUFFER_SIZE);
                 continue;

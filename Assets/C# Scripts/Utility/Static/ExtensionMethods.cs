@@ -601,6 +601,17 @@ public static class ExtensionMethods
 
 
     /// <summary>
+    /// Evaluates the change in curve value between <paramref name="prevTime"/> and <paramref name="time"/>.
+    /// </summary>
+    public static float EvaluateDelta(this NativeSampledAnimationCurve curve, float prevTime, float time)
+    {
+        float prev = curve.Evaluate(prevTime);
+        float current = curve.Evaluate(time);
+
+        return current - prev;
+    }
+
+    /// <summary>
     /// Try finding an action by name, returns true if found, false if not. Outputs the found action
     /// </summary>
     public static bool TryFindAction(this InputActionAsset actionAsset, string actionName, out InputAction action)

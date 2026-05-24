@@ -9,11 +9,11 @@ public enum MovementState : byte
     /// Fighter is not moving
     /// </summary>
     Idle,
+
     /// <summary>
     /// Fighter is walking away from opponent
     /// </summary>
     Retreating,
-
     /// <summary>
     /// Fighter is walking towards opponent
     /// </summary>
