@@ -14,7 +14,7 @@ public class PlayerSpacingManager : MonoBehaviour
     [SerializeField] private float moveDirImpact = 0.5f;
     [SerializeField] private float pushStrengthMultiplier = 1;
 
-    private PlayerController[] players;
+    private PlayerMovementHandler[] playerMoveHandlers;
 
 
 #if UNITY_EDITOR
@@ -39,28 +39,32 @@ public class PlayerSpacingManager : MonoBehaviour
 
     private void Start()
     {
-        players = PlayerManager.Instance.Players;
+        playerMoveHandlers = new PlayerMovementHandler[GlobalGameData.MAX_PLAYERS];
+        for (int i = 0; i < GlobalGameData.MAX_PLAYERS; i++)
+        {
+            playerMoveHandlers[i] = PlayerManager.Instance.Players[i].MovementHandler;
+        }
     }
 
     public void OnUpdate()
     {
-        Vector3 playerPosA = players[0].transform.position;
-        Vector3 playerPosB = players[1].transform.position;
+        Vector3 playerPosA = playerMoveHandlers[0].CurrentTransformPos;
+        Vector3 playerPosB = playerMoveHandlers[1].CurrentTransformPos;
 
         float playerDist = Vector3.Distance(playerPosA, playerPosB);
         if (playerDist >= maxPushRange) return;
 
         float pushStrength = math.saturate(playerDist / maxPushRange) * pushStrengthMultiplier;
 
-        Vector3 moveDirA = players[0].MovementHandler.LastMoveDir;
+        Vector3 moveDirA = playerMoveHandlers[0].LastMoveDir;
         Vector3 pushDirA = (playerPosA - playerPosB).normalized;
         Vector3 targetPushA = Vector3.Lerp(pushDirA, moveDirA, moveDirImpact);
 
         Vector3 pushDirB = (playerPosB - playerPosA).normalized;
-        Vector3 moveDirB = players[1].MovementHandler.LastMoveDir;
+        Vector3 moveDirB = playerMoveHandlers[1].LastMoveDir;
         Vector3 targetPushB = Vector3.Lerp(pushDirB, moveDirB, moveDirImpact);
 
-        players[0].MovementHandler.MovePlayer(targetPushA * pushStrength);
-        players[1].MovementHandler.MovePlayer(targetPushB * pushStrength);
+        playerMoveHandlers[0].MovePlayer(targetPushA * pushStrength);
+        playerMoveHandlers[1].MovePlayer(targetPushB * pushStrength);
     }
 }

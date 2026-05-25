@@ -13,36 +13,49 @@ public class HealthBarUIController
     [SerializeField] private float comboDelay, comboLerp;
 
     [EditorReadOnly, SerializeField] private float maxHealth;
-    [EditorReadOnly, SerializeField] private float health;
+
+    private FloatLerpState health01;
+    private FloatLerpState combo01;
 
     private float applyComboDamageBarTime;
-    private float appliedHealth;
+
+    private bool isIdle;
+    private bool isComboApplied;
+    private const float EPSILON = 0.001f;
 
 
 
     public void Init(float startHealth)
     {
         maxHealth = startHealth;
-        health = startHealth;
+
+        health01 = new FloatLerpState(1, 1);
+        combo01 = new FloatLerpState(1, 1);
     }
 
     public void OnHealthChanged(float newHealth)
     {
-        health = newHealth;
+        health01.Target = newHealth / maxHealth;
         applyComboDamageBarTime = Time.time + comboDelay;
+
+        isComboApplied = false;
+        isIdle = false;
     }
 
     public void OnUpdate(float deltaTime, float globalTime)
     {
-        float healthBar01 = Mathf.Lerp(healthBar.fillAmount, health / maxHealth, healthLerp * deltaTime);
-        healthBar.fillAmount = healthBar01;
+        if (isIdle) return;
 
-        if (globalTime > applyComboDamageBarTime)
+        healthBar.fillAmount = health01.Lerp(healthLerp * deltaTime);
+
+        if (!isComboApplied && globalTime > applyComboDamageBarTime)
         {
-            appliedHealth = health;
+            combo01.Target = health01.Current;
+            isComboApplied = true;
         }
 
-        float comboDamageBar01 = Mathf.Lerp(comboDamageBar.fillAmount, appliedHealth / maxHealth, comboLerp * deltaTime);
-        comboDamageBar.fillAmount = comboDamageBar01;
+        comboDamageBar.fillAmount = combo01.Lerp(comboLerp * deltaTime);
+
+        isIdle = isComboApplied && health01.IsCompleted(EPSILON) && combo01.IsCompleted(EPSILON);
     }
 }

@@ -4,11 +4,10 @@ using UnityEngine;
 public class CameraManager : MonoBehaviour
 {
     public static CameraManager Instance { get; private set; }
-    private void Awake() => Instance = this;
 
 
-    private Transform[] playerTransforms;
-    public Vector3 GetPlayerCenter() => (playerTransforms[0].position + playerTransforms[1].position) * 0.5f;
+    private PlayerMovementHandler[] playerMoveHandlers;
+    public Vector3 GetPlayerCenter() => (playerMoveHandlers[0].CurrentTransformPos + playerMoveHandlers[1].CurrentTransformPos) * 0.5f;
 
 
     [SerializeField] private Transform viewCenterTransform;
@@ -16,6 +15,8 @@ public class CameraManager : MonoBehaviour
 
     [SerializeField] private float maxPlayerSpacing;
     [SerializeField] private float arenaRadius;
+
+    private Vector3LerpState viewPositionState;
 
 
 #if UNITY_EDITOR
@@ -49,18 +50,29 @@ public class CameraManager : MonoBehaviour
 #endif
 
 
-    private void Start()
+    private void Awake()
     {
-        playerTransforms = new Transform[GlobalGameData.MAX_PLAYERS];
-        for (int i = 0; i < GlobalGameData.MAX_PLAYERS; i++)
+        Instance = this;
+
+        viewPositionState = new Vector3LerpState(viewCenterTransform.position, viewCenterTransform.position);
+
+        PlayerManager.PostPlayersInitialized += () =>
         {
-            playerTransforms[i] = PlayerManager.Instance.Players[i].transform;
-        }
+            playerMoveHandlers = new PlayerMovementHandler[GlobalGameData.MAX_PLAYERS];
+            for (int i = 0; i < GlobalGameData.MAX_PLAYERS; i++)
+            {
+                playerMoveHandlers[i] = PlayerManager.Instance.Players[i].MovementHandler;
+            }
+        };
     }
 
     public void UpdateCamera(float deltaTime)
     {
-        viewCenterTransform.position = Vector3.Lerp(viewCenterTransform.position, GetPlayerCenter(), cameraLerpSpeed * deltaTime);
+        viewPositionState.Target = GetPlayerCenter();
+
+        if (viewPositionState.IsCompleted(0.01f)) return;
+
+        viewCenterTransform.position = viewPositionState.Lerp(cameraLerpSpeed * deltaTime);
     }
 
     public Vector3 ClampMovementToCameraBounds(Vector3 currentPosition, Vector3 addedMovement)
@@ -98,8 +110,8 @@ public class CameraManager : MonoBehaviour
 
     public Vector3 GetForwardDir()
     {
-        Vector3 self = playerTransforms[0].position;
-        Vector3 other = playerTransforms[1].position;
+        Vector3 self = playerMoveHandlers[0].CurrentTransformPos;
+        Vector3 other = playerMoveHandlers[1].CurrentTransformPos;
 
         Vector3 dir = other - self;
         dir.y = 0;

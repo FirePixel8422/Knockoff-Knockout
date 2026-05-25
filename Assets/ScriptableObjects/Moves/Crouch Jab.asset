@@ -62,17 +62,17 @@ MonoBehaviour:
       Power: 0.075
     HurtBoxIds: 000000000100000002000000
     FrameData:
-      Startup: 12
+      Startup: 10
       Active: 2
-      Recovery: 14
+      Recovery: 12
       CancelWindow: 0
-      HitStun: 14
-      BlockStun: 12
-      CounterStun: 22
+      HitStun: 18
+      BlockStun: 8
+      CounterStun: 24
       HitStop: 0
       BlockStop: 0
     StringTransitions: []
-    TotalAttackDuration: 28
-    AdvantageOnHit: 0
-    AdvantageOnBlock: -2
-    AdvantageOnCounter: +8
+    TotalAttackDuration: 24
+    AdvantageOnHit: +6
+    AdvantageOnBlock: -4
+    AdvantageOnCounter: +12

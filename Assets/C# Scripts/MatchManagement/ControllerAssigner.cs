@@ -13,6 +13,7 @@ public class ControllerAssigner : UpdateMonoBehaviour
 
 
     [SerializeField] private GameObject uiRoot;
+    private bool isUIActive;
 
     [SerializeField] private Image[] controllerImages;
     [SerializeField] private float[] controllerSlotPositions;
@@ -43,6 +44,7 @@ public class ControllerAssigner : UpdateMonoBehaviour
         MatchManager.Instance.PauseGame();
         PlayerManager.Instance.UnbindAllPlayerInput();
         uiRoot.SetActive(true);
+        isUIActive = true;
 
         for (int i = 0; i < GlobalGameData.MAX_PLAYERS; i++)
         {
@@ -71,6 +73,7 @@ public class ControllerAssigner : UpdateMonoBehaviour
 
         MatchManager.Instance.UnPauseGame();
         uiRoot.SetActive(false);
+        isUIActive = false;
     }
 
     #endregion
@@ -163,7 +166,7 @@ public class ControllerAssigner : UpdateMonoBehaviour
 
     private void OnDirection(InputAction.CallbackContext ctx)
     {
-        if (!uiRoot.activeInHierarchy) return;
+        if (!isUIActive) return;
 
         if (!deviceToIdMap.TryGetValue(ctx.control.device, out int playerId))
         {   
@@ -188,7 +191,7 @@ public class ControllerAssigner : UpdateMonoBehaviour
             return;
         }
 
-        if (uiRoot.activeInHierarchy)
+        if (isUIActive)
         {
             EndControllerAssignment();
         }
@@ -200,7 +203,7 @@ public class ControllerAssigner : UpdateMonoBehaviour
     private void OnMenuConfirm(InputAction.CallbackContext ctx)
     {
         // Return if assign meny isnt active
-        if (!uiRoot.activeInHierarchy) return;
+        if (!isUIActive) return;
 
         InputDevice device = ctx.control.device;
         if (!deviceToIdMap.ContainsKey(device))
@@ -278,6 +281,8 @@ public class ControllerAssigner : UpdateMonoBehaviour
 
     protected override void OnUpdate()
     {
+        if (!isUIActive) return;
+
         for (int i = 0; i < GlobalGameData.MAX_PLAYERS; i++)
         {
             Vector3 currentPos = controllerImages[i].rectTransform.localPosition;

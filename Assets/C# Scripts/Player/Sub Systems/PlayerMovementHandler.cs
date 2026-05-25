@@ -19,7 +19,9 @@ public class PlayerMovementHandler
     private readonly SideStepSettings sideStepSettings;
     private readonly DashSettings dashSettings;
 
-    private Vector3 targetFighterPosition;
+    private Vector3LerpState positionState;
+    public Vector3 CurrentTransformPos => positionState.Current;
+
     private Vector3 lastMoveDir;
     public Vector3 LastMoveDir => lastMoveDir;
 
@@ -38,7 +40,7 @@ public class PlayerMovementHandler
         stateMachine.OnKnockbackTaken += AddKnockBack;
         stateMachine.OnStunned += OnStunned;
 
-        targetFighterPosition = transform.position;
+        positionState = new Vector3LerpState(transform.position, transform.position);
 
         pushingSpeed = GameRules.CombatSettings.Fighter.PushingSpeed;
         retreatingSpeed = GameRules.CombatSettings.Fighter.RetreatingSpeed;
@@ -239,11 +241,13 @@ public class PlayerMovementHandler
     {
         lastMoveDir = addedMovement.normalized;
 
-        targetFighterPosition = CameraManager.Instance.ClampMovementToCameraBounds(targetFighterPosition, addedMovement);
+        positionState.Target = CameraManager.Instance.ClampMovementToCameraBounds(positionState.Target, addedMovement);
     }
-    // Lerp currentFighterPosition to targetFighterPosition
+    /// <summary>
+    /// Lerp currentTransformPos to targetTransformPos and update transform position
+    /// </summary>
     public void OnUpdate(float deltaTime)
     {
-        transform.position = Vector3.Lerp(transform.position, targetFighterPosition, moveSnappyness * deltaTime);
+        transform.position = positionState.Lerp(moveSnappyness * deltaTime);
     }
 }
