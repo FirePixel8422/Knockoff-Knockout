@@ -5,13 +5,20 @@ using UnityEngine;
 public class FastHitBox : MonoBehaviour
 {
     [SerializeField] protected float3 halfSize = new float3(1);
-    
+
+    [EditorReadOnly, SerializeField] protected Transform cachedTransform;
     public virtual ColliderType Type => ColliderType.Hitbox;
 
-    /// <returns>Lightweight converted collider as HitBoxOBB with IsActive state</returns>
+
+    private void Awake()
+    {
+        cachedTransform = transform;
+    }
+
+    /// <returns>Lightweight converted collider as HitBoxOBB</returns>
     public HitBoxOBB GetHitBoxOBB()
     {
-        transform.GetPositionAndRotation(out Vector3 pos, out Quaternion rot);
+        cachedTransform.GetPositionAndRotation(out Vector3 pos, out Quaternion rot);
 
         return new HitBoxOBB(pos, halfSize, rot);
     }

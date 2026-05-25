@@ -5,9 +5,9 @@
 /// Class datatype containing the current state of an action and providing interaction with it with
 /// </summary>
 [System.Serializable]
-public struct ActionSequence<TEnum>
+public struct ActionSequenceTimeline<TEnum>
 {
-    private readonly (TEnum State, int Duration)[] stateSequence;
+    private readonly StateSequence<TEnum> stateSequence;
 
     private int currentStateId;
     private int nextStateDelay;
@@ -15,9 +15,9 @@ public struct ActionSequence<TEnum>
     public readonly bool IsActive => currentStateId != stateSequence.Length - 1;
 
 
-    public ActionSequence(params (TEnum State, int Duration)[] stateSequence)
+    public ActionSequenceTimeline(StateSequence<TEnum> newSequence)
     {
-        this.stateSequence = stateSequence;
+        stateSequence = newSequence;
 
         currentStateId = 0;
         nextStateDelay = stateSequence[0].Duration;

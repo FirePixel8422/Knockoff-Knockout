@@ -4,7 +4,7 @@
 /// <summary>
 /// Static class acting as a container, holding all fighter animation hashes (not attacks though)
 /// </summary>
-public static class AnimHashes
+public static class GlobalAnimHashes
 {
     public static class Hurt
     {
@@ -13,6 +13,9 @@ public static class AnimHashes
 
         public static readonly AnimData CrouchingLow = new AnimData("CrouchingLowHurt", 0, 5);
         public static readonly AnimData CrouchingHigh = new AnimData("CrouchingHighHurt", 0, 5);
+
+        public static readonly AnimData KnockedDownLow = new AnimData("KnockedDownLowHurt", 0, 5);
+        public static readonly AnimData KnockedDownHigh = new AnimData("KnockedDownHighHurt", 0, 5);
     }
 
     public static class Block
@@ -23,7 +26,7 @@ public static class AnimHashes
 
     public static class Movement
     {
-        public static readonly AnimData Crouching = new AnimData("Crouching", 8, 5);
+        public static readonly AnimData Crouching = new AnimData("Crouching", 6, 5);
 
         public static readonly AnimData Idle = new AnimData("Idle", 15, 5);
 

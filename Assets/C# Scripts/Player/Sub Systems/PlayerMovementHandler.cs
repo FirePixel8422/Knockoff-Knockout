@@ -23,7 +23,9 @@ public class PlayerMovementHandler
     private Vector3 lastMoveDir;
     public Vector3 LastMoveDir => lastMoveDir;
 
-    private ActionSequence<MovementState> currentSequence;
+    private ActionSequenceTimeline<MovementState> activeSequenceTimeline;
+    private StateSequence<MovementState> sideStepSequence;
+    private StateSequence<MovementState> dashSequence;
 
 
     public PlayerMovementHandler(PlayerStateMachine stateMachine, PlayerInputHandler inputHandler, Transform transform, bool isLeftPlayer)
@@ -45,7 +47,17 @@ public class PlayerMovementHandler
         sideStepSettings = GameRules.CombatSettings.SideStep;
         dashSettings = GameRules.CombatSettings.Dash;
 
-        currentSequence = new ActionSequence<MovementState>((MovementState.Idle, 0));
+        activeSequenceTimeline = new ActionSequenceTimeline<MovementState>(new ((MovementState.Idle, 0)));
+
+        sideStepSequence = new StateSequence<MovementState>(
+            (MovementState.SideSteppingDown, sideStepSettings.Duration),
+            (MovementState.Recovery, sideStepSettings.Recovery),
+            (MovementState.Idle, 0));
+
+        dashSequence = new StateSequence<MovementState>(
+            (MovementState.DashingBack, dashSettings.Startup),
+            (MovementState.Recovery, dashSettings.Recovery),
+            (MovementState.Idle, 0));
     }
     private PlayerMovementHandler() { }
 
@@ -57,7 +69,7 @@ public class PlayerMovementHandler
     {
         lastMoveDir = Vector3.zero;
 
-        if (currentSequence.IsActive)
+        if (activeSequenceTimeline.IsActive)
         {
             UpdateActiveMoveAction();
             return;
@@ -73,7 +85,7 @@ public class PlayerMovementHandler
     private void UpdateActiveMoveAction()
     {
         // Update sequence and check state change
-        if (currentSequence.TickUpdateState(out MovementState newState, out int elapsedSequenceTicks))
+        if (activeSequenceTimeline.TickUpdateState(out MovementState newState, out int elapsedSequenceTicks))
         {
             stateMachine.SetMovementState(newState);
 
@@ -116,7 +128,7 @@ public class PlayerMovementHandler
             stateMachine.SetMovementState(targetSideStep);
             stateMachine.SetCombatState(CombatState.ActionStartup);
 
-            currentSequence = new ActionSequence<MovementState>(
+            currentActionSequence = new ActionSequence<MovementState>(
                 (targetSideStep, sideStepSettings.Duration),
                 (MovementState.Recovery, sideStepSettings.Recovery),
                 (MovementState.Idle, 0));
@@ -134,10 +146,7 @@ public class PlayerMovementHandler
             stateMachine.SetMovementState(targetDash);
             stateMachine.SetCombatState(CombatState.ActionStartup);
 
-            currentSequence = new ActionSequence<MovementState>(
-                (targetDash, dashSettings.Startup),
-                (MovementState.Recovery, dashSettings.Recovery),
-                (MovementState.Idle, 0));
+            activeSequenceTimeline = new ActionSequenceTimeline<MovementState>(dashSequence);
 
             UpdateMoveActionAnimation(targetDash);
 
@@ -199,13 +208,13 @@ public class PlayerMovementHandler
     {
         AnimData animData = actionState switch
         {
-            MovementState.DashingBack => AnimHashes.Movement.DashBack,
-            MovementState.DashingForward => AnimHashes.Movement.DashForward,
+            MovementState.DashingBack => GlobalAnimHashes.Movement.DashBack,
+            MovementState.DashingForward => GlobalAnimHashes.Movement.DashForward,
 
-            MovementState.SideSteppingDown => AnimHashes.Movement.SideStepDown,
-            MovementState.SideSteppingUp => AnimHashes.Movement.SideStepUp,
+            MovementState.SideSteppingDown => GlobalAnimHashes.Movement.SideStepDown,
+            MovementState.SideSteppingUp => GlobalAnimHashes.Movement.SideStepUp,
 
-            _ => AnimHashes.Missing
+            _ => GlobalAnimHashes.Missing
         };
         stateMachine.PlayAnimation(animData);
     }
@@ -213,7 +222,7 @@ public class PlayerMovementHandler
 
     private void OnStunned()
     {
-        currentSequence.Cancel();
+        activeSequenceTimeline.Cancel();
         stateMachine.SetCombatState(CombatState.Idle);
         stateMachine.SetMovementState(MovementState.Idle);
     }

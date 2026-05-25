@@ -84,24 +84,22 @@ public class PlayerStateMachine
                     OnDamageTaken?.Invoke(attack.Damage);
                     OnKnockbackTaken?.Invoke(attack.HitKb);
 
+                    bool isAttackLow = attack.Level == AttackLevel.Low;
                     AnimData animData = state.StanceState switch
                     {
-                        StanceState.Crouching => attack.Level switch
-                        {
-                            AttackLevel.Low => 
-                                AnimHashes.Hurt.CrouchingLow,
-                            _ => 
-                                AnimHashes.Hurt.CrouchingHigh,
-                        },
-                        StanceState.Standing => attack.Level switch
-                        {
-                            AttackLevel.Low => 
-                                AnimHashes.Hurt.StandingLow,
-                            _ =>
-                                AnimHashes.Hurt.StandingHigh,
-                        },
+                        StanceState.Standing => isAttackLow ?
+                            GlobalAnimHashes.Hurt.StandingLow :
+                            GlobalAnimHashes.Hurt.StandingHigh,
 
-                        _ => AnimHashes.Missing,
+                        StanceState.Crouching => isAttackLow ?
+                            GlobalAnimHashes.Hurt.CrouchingLow :
+                            GlobalAnimHashes.Hurt.CrouchingHigh,
+
+                        StanceState.KnockedDown => isAttackLow ?
+                            GlobalAnimHashes.Hurt.KnockedDownLow :
+                            GlobalAnimHashes.Hurt.KnockedDownHigh,
+
+                        _ => GlobalAnimHashes.Missing,
                     };
 
                     PlayAnimation(animData);
@@ -121,8 +119,8 @@ public class PlayerStateMachine
                     OnKnockbackTaken?.Invoke(attack.BlockKb);
 
                     PlayAnimation(result == AttackResult.StandingBlocked ?
-                        AnimHashes.Block.Standing :
-                        AnimHashes.Block.Crouching);
+                        GlobalAnimHashes.Block.Standing :
+                        GlobalAnimHashes.Block.Crouching);
 
                     BlockStun = attack.FrameData.BlockStun;
                 }
@@ -181,18 +179,18 @@ public class PlayerStateMachine
 
             if (state.StanceState == StanceState.Crouching)
             {
-                animData = AnimHashes.Movement.Crouching;
+                animData = GlobalAnimHashes.Movement.Crouching;
             }
             else
             {
                 animData = state.MovementState switch
                 {
-                    MovementState.Idle => AnimHashes.Movement.Idle,
-                    MovementState.Retreating => AnimHashes.Movement.Retreat,
+                    MovementState.Idle => GlobalAnimHashes.Movement.Idle,
+                    MovementState.Retreating => GlobalAnimHashes.Movement.Retreat,
 
-                    MovementState.Pushing => AnimHashes.Movement.Push,
+                    MovementState.Pushing => GlobalAnimHashes.Movement.Push,
 
-                    _ => AnimHashes.Missing,
+                    _ => GlobalAnimHashes.Missing,
                 };
             }
 

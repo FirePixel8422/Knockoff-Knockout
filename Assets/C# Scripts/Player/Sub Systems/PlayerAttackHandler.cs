@@ -1,7 +1,6 @@
 ﻿
 
 
-using System.Diagnostics;
 
 /// <summary>
 /// Sub Player system handler class that is responsible for performing and tracking attack states.
@@ -14,7 +13,9 @@ public class PlayerAttackHandler
     private readonly PlayerColliderHandler colliderHandler;
     private readonly PlayerMovementHandler movementHandler;
 
-    private ActionSequence<CombatState> currentSequence;
+    private ActionSequenceTimeline<CombatState> activeSequenceTimeline;
+    private StateSequence<CombatState> attackSequence;
+
     public AttackData ActiveAttack;
 
 
@@ -25,7 +26,12 @@ public class PlayerAttackHandler
         this.colliderHandler = colliderHandler;
         this.movementHandler = movementHandler;
 
-        currentSequence = new ActionSequence<CombatState>((CombatState.Idle, 0));
+        activeSequenceTimeline = new ActionSequenceTimeline<CombatState>(new ((CombatState.Idle, 0)));
+        attackSequence = new StateSequence<CombatState>(
+            (CombatState.ActionStartup, 0),
+            (CombatState.AttackActive, 0),
+            (CombatState.Recovering, 0),
+            (CombatState.Idle, 0));
 
         stateMachine.OnStunned += OnStunned;
     }
@@ -144,7 +150,7 @@ public class PlayerAttackHandler
     /// </summary>
     public void TickUpdateAttackSequence(bool isActionLocked)
     {
-        if (currentSequence.IsActive)
+        if (activeSequenceTimeline.IsActive)
         {
             UpdateActiveAttackAction();
             return;
@@ -159,7 +165,7 @@ public class PlayerAttackHandler
     /// </summary>
     private void UpdateActiveAttackAction()
     {
-        if (currentSequence.TickUpdateState(out CombatState newState, out int elapsedSequenceTicks))
+        if (activeSequenceTimeline.TickUpdateState(out CombatState newState, out int elapsedSequenceTicks))
         {
             stateMachine.SetCombatState(newState);
 
@@ -199,11 +205,11 @@ public class PlayerAttackHandler
             stateMachine.SetCombatState(CombatState.ActionStartup);
             stateMachine.SetStanceState(targetAttack.Stance);
 
-            currentSequence = new ActionSequence<CombatState>(
-                (CombatState.ActionStartup, targetAttack.FrameData.Startup),
-                (CombatState.AttackActive, targetAttack.FrameData.Active),
-                (CombatState.Recovering, targetAttack.FrameData.Recovery),
-                (CombatState.Idle, 0));
+            attackSequence.Sequence[0] = (CombatState.ActionStartup, targetAttack.FrameData.Startup);
+            attackSequence.Sequence[1] = (CombatState.AttackActive, targetAttack.FrameData.Active);
+            attackSequence.Sequence[2] = (CombatState.Recovering, targetAttack.FrameData.Recovery);
+
+            activeSequenceTimeline = new ActionSequenceTimeline<CombatState>(attackSequence);
         }
     }
 
@@ -212,7 +218,7 @@ public class PlayerAttackHandler
     /// </summary>
     public void OnActiveAttackConnected()
     {
-        int activeTicksLeft = currentSequence.AdvanceState();
+        int activeTicksLeft = activeSequenceTimeline.AdvanceState();
 
         stateMachine.TickAdvanceAnimation(activeTicksLeft);
         stateMachine.SetCombatState(CombatState.Recovering);
@@ -226,6 +232,6 @@ public class PlayerAttackHandler
         // When fighter gets stunned by an attack, clear their input buffer to avoid unintended buffered inputs after hitstun wears off.
         // This to ensure the player doesnt accidentally do a buffer spammed move that makes them even more vulnerable after getting hit.
         inputHandler.ClearInputBuffer();
-        currentSequence.Cancel();
+        activeSequenceTimeline.Cancel();
     }
 }

@@ -13,7 +13,7 @@ public class FastHurtBox : FastHitBox
     /// <returns>Lightweight converted collider as HurtBoxOBB with IsActive state</returns>
     public HurtBoxOBB GetHurtBoxOBB()
     {
-        transform.GetPositionAndRotation(out Vector3 center, out Quaternion rotation);
+        cachedTransform.GetPositionAndRotation(out Vector3 center, out Quaternion rotation);
 
         return new HurtBoxOBB(isActiveAndEnabled, center, halfSize, rotation);
     }
