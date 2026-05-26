@@ -48,6 +48,7 @@ MonoBehaviour:
     x: 0.15
     y: 0.15
     z: 0.15
+  cachedTransform: {fileID: 0}
   SkipNextGizmoDraw: 0
   DrawGizmos: 0
 --- !u!1 &679404655205308566
@@ -98,6 +99,7 @@ MonoBehaviour:
     x: 0.15
     y: 0.15
     z: 0.15
+  cachedTransform: {fileID: 0}
   SkipNextGizmoDraw: 0
   DrawGizmos: 0
 --- !u!1 &1083334587766134051
@@ -148,6 +150,7 @@ MonoBehaviour:
     x: 0.15
     y: 0.15
     z: 0.15
+  cachedTransform: {fileID: 0}
   SkipNextGizmoDraw: 0
   DrawGizmos: 0
 --- !u!1 &1433784681900069911
@@ -199,6 +202,7 @@ MonoBehaviour:
     x: 0.12
     y: 0.12
     z: 0.12
+  cachedTransform: {fileID: 0}
   SkipNextGizmoDraw: 0
   DrawGizmos: 0
 --- !u!114 &9220936876393295978
@@ -217,6 +221,7 @@ MonoBehaviour:
     x: 0.1
     y: 0.1
     z: 0.1
+  cachedTransform: {fileID: 0}
   SkipNextGizmoDraw: 0
   DrawGizmos: 0
   id: 1
@@ -268,6 +273,7 @@ MonoBehaviour:
     x: 0.15
     y: 0.15
     z: 0.15
+  cachedTransform: {fileID: 0}
   SkipNextGizmoDraw: 0
   DrawGizmos: 0
 --- !u!1 &2700037843374795817
@@ -319,6 +325,7 @@ MonoBehaviour:
     x: 0.15
     y: 0.15
     z: 0.15
+  cachedTransform: {fileID: 0}
   SkipNextGizmoDraw: 0
   DrawGizmos: 0
 --- !u!114 &7793673818144359985
@@ -337,6 +344,7 @@ MonoBehaviour:
     x: 0.1
     y: 0.1
     z: 0.1
+  cachedTransform: {fileID: 0}
   SkipNextGizmoDraw: 0
   DrawGizmos: 0
   id: 4
@@ -388,6 +396,7 @@ MonoBehaviour:
     x: 0.15
     y: 0.15
     z: 0.15
+  cachedTransform: {fileID: 0}
   SkipNextGizmoDraw: 0
   DrawGizmos: 0
 --- !u!1 &5374105253560620058
@@ -438,6 +447,7 @@ MonoBehaviour:
     x: 0.2
     y: 0.2
     z: 0.2
+  cachedTransform: {fileID: 0}
   SkipNextGizmoDraw: 0
   DrawGizmos: 0
 --- !u!1 &5767387939273733520
@@ -488,6 +498,7 @@ MonoBehaviour:
     x: 0.15
     y: 0.15
     z: 0.15
+  cachedTransform: {fileID: 0}
   SkipNextGizmoDraw: 0
   DrawGizmos: 0
 --- !u!1 &6199503202751227438
@@ -536,9 +547,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
   halfSize:
-    x: 0.15
-    y: 0.15
-    z: 0.15
+    x: 0.125
+    y: 0.125
+    z: 0.125
+  cachedTransform: {fileID: 0}
   SkipNextGizmoDraw: 0
   DrawGizmos: 0
 --- !u!114 &6264356842152197209
@@ -557,6 +569,7 @@ MonoBehaviour:
     x: 0.1
     y: 0.1
     z: 0.1
+  cachedTransform: {fileID: 0}
   SkipNextGizmoDraw: 0
   DrawGizmos: 0
   id: 6
@@ -609,6 +622,7 @@ MonoBehaviour:
     x: 0.25
     y: 0.25
     z: 0.25
+  cachedTransform: {fileID: 0}
   SkipNextGizmoDraw: 0
   DrawGizmos: 0
 --- !u!114 &8410926819732464781
@@ -627,6 +641,7 @@ MonoBehaviour:
     x: 0.25
     y: 0.25
     z: 0.25
+  cachedTransform: {fileID: 0}
   SkipNextGizmoDraw: 0
   DrawGizmos: 0
   id: 0
@@ -676,9 +691,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
   halfSize:
-    x: 0.15
-    y: 0.15
-    z: 0.15
+    x: 0.125
+    y: 0.125
+    z: 0.125
+  cachedTransform: {fileID: 0}
   SkipNextGizmoDraw: 0
   DrawGizmos: 0
 --- !u!114 &8663879553239511212
@@ -697,6 +713,7 @@ MonoBehaviour:
     x: 0.1
     y: 0.1
     z: 0.1
+  cachedTransform: {fileID: 0}
   SkipNextGizmoDraw: 0
   DrawGizmos: 0
   id: 5
@@ -746,9 +763,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
   halfSize:
-    x: 0.15
-    y: 0.15
-    z: 0.15
+    x: 0.125
+    y: 0.125
+    z: 0.125
+  cachedTransform: {fileID: 0}
   SkipNextGizmoDraw: 0
   DrawGizmos: 0
 --- !u!114 &4046124334857041437
@@ -767,6 +785,7 @@ MonoBehaviour:
     x: 0.1
     y: 0.1
     z: 0.1
+  cachedTransform: {fileID: 0}
   SkipNextGizmoDraw: 0
   DrawGizmos: 0
   id: 7
@@ -819,6 +838,7 @@ MonoBehaviour:
     x: 0.12
     y: 0.12
     z: 0.12
+  cachedTransform: {fileID: 0}
   SkipNextGizmoDraw: 0
   DrawGizmos: 0
 --- !u!114 &136948562137605713
@@ -837,6 +857,7 @@ MonoBehaviour:
     x: 0.1
     y: 0.1
     z: 0.1
+  cachedTransform: {fileID: 0}
   SkipNextGizmoDraw: 0
   DrawGizmos: 0
   id: 2
@@ -889,6 +910,7 @@ MonoBehaviour:
     x: 0.12
     y: 0.12
     z: 0.12
+  cachedTransform: {fileID: 0}
   SkipNextGizmoDraw: 0
   DrawGizmos: 0
 --- !u!114 &1967503502380130977
@@ -907,6 +929,7 @@ MonoBehaviour:
     x: 0.1
     y: 0.1
     z: 0.1
+  cachedTransform: {fileID: 0}
   SkipNextGizmoDraw: 0
   DrawGizmos: 0
   id: 3
@@ -958,6 +981,7 @@ MonoBehaviour:
     x: 0.15
     y: 0.15
     z: 0.15
+  cachedTransform: {fileID: 0}
   SkipNextGizmoDraw: 0
   DrawGizmos: 0
 --- !u!1 &9028411201499099730
@@ -1006,9 +1030,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
   halfSize:
-    x: 0.15
-    y: 0.15
-    z: 0.15
+    x: 0.125
+    y: 0.125
+    z: 0.125
+  cachedTransform: {fileID: 0}
   SkipNextGizmoDraw: 0
   DrawGizmos: 0
 --- !u!114 &1549866108398919920
@@ -1027,6 +1052,7 @@ MonoBehaviour:
     x: 0.1
     y: 0.1
     z: 0.1
+  cachedTransform: {fileID: 0}
   SkipNextGizmoDraw: 0
   DrawGizmos: 0
   id: 8
@@ -2124,7 +2150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
   opponent: {fileID: 0}
   moveSetSO: {fileID: 11400000, guid: 0fef3c80fa41e8e49a9cb3b36f9bc920, type: 2}
-  isRightPlayer: 0
+  isLeftPlayer: 0
   stateMachine:
     state:
       StanceState: 0
@@ -2187,6 +2213,8 @@ MonoBehaviour:
       Input:
         AttackFlags: 0
         DirectionFlag: 0
+      Stance: 0
+      Level: 0
       Damage: 0
       HitKb: 0
       BlockKb: 0
@@ -2204,7 +2232,6 @@ MonoBehaviour:
           x: 0
           y: 0
         Power: 0
-      Level: 0
       HurtBoxIds: 
       FrameData:
         Startup: 0
@@ -2221,9 +2248,6 @@ MonoBehaviour:
       AdvantageOnHit: 
       AdvantageOnBlock: 
       AdvantageOnCounter: 
-  movementHandler:
-    pushingSpeed: 0
-    retreatingSpeed: 0
   inputRouter: {fileID: 0}
   drawHitBoxGizmos: 0
   drawHurtBoxGizmos: 0

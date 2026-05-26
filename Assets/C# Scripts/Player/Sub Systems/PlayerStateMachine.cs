@@ -147,6 +147,8 @@ public class PlayerStateMachine
         {
             SetCombatState(CombatState.BlockStun);
         }
+
+        DebugLogger.Log(State.CombatState);
     }
 
 
@@ -157,7 +159,6 @@ public class PlayerStateMachine
     {
         if (TimeStop > 0)
         {
-            anim.speed = 0;
             TimeStop -= 1;
             return;
         }
@@ -197,7 +198,6 @@ public class PlayerStateMachine
             PlayAnimation(animData);
         }
 
-        anim.speed = 1;
         anim.Update(GlobalGameData.TICK_TIME);
     }
 

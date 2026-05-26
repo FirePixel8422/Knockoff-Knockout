@@ -69,8 +69,8 @@ MonoBehaviour:
       HitStun: 48
       BlockStun: 14
       CounterStun: 50
-      HitStop: 8
-      BlockStop: 4
+      HitStop: 0
+      BlockStop: 0
     StringTransitions: []
     TotalAttackDuration: 49
     AdvantageOnHit: +20

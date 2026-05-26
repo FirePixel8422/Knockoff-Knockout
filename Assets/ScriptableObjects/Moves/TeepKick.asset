@@ -26,8 +26,8 @@ MonoBehaviour:
     Stance: 0
     Level: 1
     Damage: 15
-    HitKb: 0.3
-    BlockKb: 0.1
+    HitKb: 0.5
+    BlockKb: 0.25
     DoesKnockdown: 0
     Lunge:
       Curve:
@@ -57,14 +57,14 @@ MonoBehaviour:
           m_RotationOrder: 4
         sampleCount: 50
       Window:
-        x: 8
-        y: 12
-      Power: 0.1
+        x: 2
+        y: 8
+      Power: 0.5
     HurtBoxIds: 0700000000000000
     FrameData:
       Startup: 16
       Active: 2
-      Recovery: 18
+      Recovery: 22
       CancelWindow: 0
       HitStun: 22
       BlockStun: 20
@@ -72,7 +72,7 @@ MonoBehaviour:
       HitStop: 0
       BlockStop: 0
     StringTransitions: []
-    TotalAttackDuration: 36
-    AdvantageOnHit: +4
-    AdvantageOnBlock: +2
-    AdvantageOnCounter: +12
+    TotalAttackDuration: 40
+    AdvantageOnHit: 0
+    AdvantageOnBlock: -2
+    AdvantageOnCounter: +8

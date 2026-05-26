@@ -22,7 +22,7 @@ MonoBehaviour:
       BlendOut: 5
     Input:
       AttackFlags: 4
-      DirectionFlag: 0
+      DirectionFlag: 3
     Stance: 0
     Level: 0
     Damage: 10
