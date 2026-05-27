@@ -10,25 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b862d7d41f8e184187976caf926811d, type: 3}
-  m_Name: Jab
+  m_Name: Crouching LegSweep
   m_EditorClassIdentifier: Assembly-CSharp::AttackSO
   Value:
-    animationName: Jab
-    blendIn: 2
+    animationName: CrouchingLegSweep
+    blendIn: 3
     blendOut: 5
     GeneratedAnimData:
-      Hash: 1561758614
-      BlendIn: 2
+      Hash: -1680302147
+      BlendIn: 3
       BlendOut: 5
     Input:
-      AttackFlags: 1
-      DirectionFlag: 0
+      AttackFlags: 8
+      DirectionFlag: 3
     Stance: 0
-    Level: 2
-    Damage: 8
-    HitKb: 0.1
-    BlockKb: 0.05
-    DoesKnockdown: 0
+    Level: 0
+    Damage: 22
+    HitKb: 0.7
+    BlockKb: 0.3
+    DoesKnockdown: 1
     Lunge:
       Curve:
         curve:
@@ -57,26 +57,22 @@ MonoBehaviour:
           m_RotationOrder: 4
         sampleCount: 50
       Window:
-        x: 5
-        y: 7
-      Power: 0.1
-    HurtBoxIds: 000000000100000002000000
+        x: 15
+        y: 24
+      Power: 0.2
+    HurtBoxIds: 0700000000000000
     FrameData:
-      Startup: 10
-      Active: 2
-      Recovery: 12
-      CancelWindow: 4
-      HitStun: 20
-      BlockStun: 14
-      CounterStun: 24
+      Startup: 24
+      Active: 3
+      Recovery: 30
+      CancelWindow: 0
+      HitStun: 44
+      BlockStun: 12
+      CounterStun: 26
       HitStop: 0
       BlockStop: 0
-    StringTransitions:
-    - TargetMove: {fileID: 11400000}
-      frameSkipCount: 4
-    - TargetMove: {fileID: 11400000, guid: 12df6c9c1c2a2f74e869e75a49fbb133, type: 2}
-      frameSkipCount: 4
-    TotalAttackDuration: 24
-    AdvantageOnHit: +8
-    AdvantageOnBlock: +2
-    AdvantageOnCounter: +12
+    StringTransitions: []
+    TotalAttackDuration: 57
+    AdvantageOnHit: +14
+    AdvantageOnBlock: -18
+    AdvantageOnCounter: -4
