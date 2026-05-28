@@ -11,7 +11,7 @@ using UnityEngine;
 [System.Serializable]
 public struct NativeSampledAnimationCurve
 {
-    [Header("Curve HAS to start at 0 time")]
+    [Header("Curve HAS to go from 0 to 1 time")]
     [SerializeField] private AnimationCurve curve;
 
     [Header("More samples = more accurate, but more memory usage")]

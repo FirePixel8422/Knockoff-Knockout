@@ -14,7 +14,7 @@ public struct CombatSettings
         SideStep.BakeAllCurves();
         Dash.BakeAllCurves();
     }
-    public void Dispose()
+    public readonly void Dispose()
     {
         SideStep.Dispose();
         Dash.Dispose();

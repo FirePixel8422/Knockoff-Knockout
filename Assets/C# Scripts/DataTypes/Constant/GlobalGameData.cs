@@ -18,6 +18,6 @@ public static class GlobalGameData
     public const int ATTACK_BUFFER_SIZE = 10;
 
     public const int DIRECTION_BUFFER_WINDOW = 2;
-    public const int SIDE_STEP_MAX_HOLD_TICKS = 7;
+    public const int SIDE_STEP_MAX_HOLD_TICKS = 10;
     public const int DASH_MAX_GAP_TICKS = 18;
 }

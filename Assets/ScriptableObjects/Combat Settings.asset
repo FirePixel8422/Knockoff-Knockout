@@ -18,6 +18,7 @@ MonoBehaviour:
       PushingSpeed: 2.25
       RetreatingSpeed: 1.5
       MoveSnappyness: 18
+      TurnSnappyness: 10
     Parry:
       Startup: 12
       Active: 2
@@ -28,9 +29,10 @@ MonoBehaviour:
       AdvantageOnParry: 18
       AdvantageOnMiss: -22
     SideStep:
-      Duration: 12
-      Recovery: 13
-      Curve:
+      Duration: 30
+      Startup: 10
+      Recovery: 20
+      DurationCurve:
         curve:
           serializedVersion: 2
           m_Curve:
@@ -46,17 +48,47 @@ MonoBehaviour:
           - serializedVersion: 3
             time: 1
             value: 1
-            inSlope: -0
-            outSlope: -0
+            inSlope: 0.014977638
+            outSlope: 0.014977638
             tangentMode: 0
             weightedMode: 0
-            inWeight: 0.99873257
+            inWeight: 0.11026609
             outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
         sampleCount: 50
-      Rotation: 55
+      PowerCurve:
+        curve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0.75
+            inSlope: 0.45131853
+            outSlope: 0.45131853
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.0608365
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0.1214711
+            outSlope: 0.1214711
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.0747782
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        sampleCount: 50
+      SideStepPower: 4.5
+      ForwardPower: 2.5
+      DistanceRange:
+        min: 0.5
+        max: 3
     Dash:
       Duration: 16
       Startup: 6

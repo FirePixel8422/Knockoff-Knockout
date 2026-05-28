@@ -8,15 +8,18 @@ public class CameraManager : MonoBehaviour
 
     private PlayerMovementHandler[] playerMoveHandlers;
     public Vector3 GetPlayerCenter() => (playerMoveHandlers[0].CurrentTransformPos + playerMoveHandlers[1].CurrentTransformPos) * 0.5f;
+    public float GetPlayerSpacing() => Vector3.Distance(playerMoveHandlers[0].CurrentTransformPos, playerMoveHandlers[1].CurrentTransformPos);
 
 
     [SerializeField] private Transform viewCenterTransform;
-    [SerializeField] private float cameraLerpSpeed;
+    [SerializeField] private float cameraPosLerpSpeed;
+    [SerializeField] private float cameraRotLerpSpeed;
 
     [SerializeField] private float maxPlayerSpacing;
     [SerializeField] private float arenaRadius;
 
     private Vector3LerpState viewPositionState;
+    private QuaternionLerpState viewRotationState;
 
 
 #if UNITY_EDITOR
@@ -55,6 +58,7 @@ public class CameraManager : MonoBehaviour
         Instance = this;
 
         viewPositionState = new Vector3LerpState(viewCenterTransform.position, viewCenterTransform.position);
+        viewRotationState = new QuaternionLerpState(viewCenterTransform.rotation, viewCenterTransform.rotation);
 
         PlayerManager.PostPlayersInitialized += () =>
         {
@@ -69,10 +73,13 @@ public class CameraManager : MonoBehaviour
     public void UpdateCamera(float deltaTime)
     {
         viewPositionState.Target = GetPlayerCenter();
+        viewRotationState.Target = Quaternion.LookRotation(-GetRightDir(), Vector3.up);
 
-        if (viewPositionState.IsCompleted(0.01f)) return;
-
-        viewCenterTransform.position = viewPositionState.Lerp(cameraLerpSpeed * deltaTime);
+        if (!viewPositionState.IsCompleted(0.01f))
+        {
+            viewCenterTransform.position = viewPositionState.Lerp(cameraPosLerpSpeed * deltaTime);
+        }
+        viewCenterTransform.rotation = viewRotationState.Slerp(cameraRotLerpSpeed * deltaTime);
     }
 
     public Vector3 ClampMovementToCameraBounds(Vector3 currentPosition, Vector3 addedMovement)
@@ -117,5 +124,11 @@ public class CameraManager : MonoBehaviour
         dir.y = 0;
 
         return dir.normalized;
+    }
+    public Vector3 GetRightDir()
+    {
+        Vector3 forwardDir = GetForwardDir();
+
+        return Vector3.Cross(Vector3.up, forwardDir).normalized;
     }
 }

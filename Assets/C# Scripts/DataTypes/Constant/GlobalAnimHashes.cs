@@ -55,8 +55,8 @@ public static class GlobalAnimHashes
 
         public static class SideStep
         {
-            public static readonly AnimData Up = new AnimData("SideStepUp", true, 3, 5);
-            public static readonly AnimData Down = new AnimData("SideStepDown", true, 3, 5);
+            public static readonly AnimData Up = new AnimData("SideStepUp", true, 2, 5);
+            public static readonly AnimData Down = new AnimData("SideStepDown", true, 2, 5);
         }
     }
 
