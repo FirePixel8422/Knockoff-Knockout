@@ -34,11 +34,6 @@ public enum CombatState : byte
     BlockStun,
 
     /// <summary>
-    /// Fighter is in stun frame phase on the ground
-    /// </summary>
-    KnockedDown,
-
-    /// <summary>
     /// Fighter is in the active frames of a ParryLow animation
     /// </summary>
     ParryLowActive,

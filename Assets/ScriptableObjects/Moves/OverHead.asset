@@ -18,6 +18,7 @@ MonoBehaviour:
     blendOut: 5
     GeneratedAnimData:
       Hash: -410435135
+      AllowSelfInterrupt: 1
       BlendIn: 3
       BlendOut: 5
     Input:
@@ -26,7 +27,7 @@ MonoBehaviour:
     Stance: 0
     Level: 1
     Damage: 25
-    HitKb: 1
+    HitKb: 1.2
     BlockKb: 0.1
     DoesKnockdown: 1
     Lunge:
@@ -66,13 +67,13 @@ MonoBehaviour:
       Active: 3
       Recovery: 28
       CancelWindow: 0
-      HitStun: 48
+      HitStun: 59
       BlockStun: 14
-      CounterStun: 50
+      CounterStun: 0
       HitStop: 0
       BlockStop: 0
     StringTransitions: []
     TotalAttackDuration: 49
-    AdvantageOnHit: +20
+    AdvantageOnHit: +31
     AdvantageOnBlock: -14
-    AdvantageOnCounter: +22
+    AdvantageOnCounter: -28

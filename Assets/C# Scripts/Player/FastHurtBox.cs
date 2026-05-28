@@ -13,9 +13,14 @@ public class FastHurtBox : FastHitBox
     /// <returns>Lightweight converted collider as HurtBoxOBB with IsActive state</returns>
     public HurtBoxOBB GetHurtBoxOBB()
     {
-        cachedTransform.GetPositionAndRotation(out Vector3 center, out Quaternion rotation);
+        if (!isActiveAndEnabled)
+        {
+            // If collider is inactive, spare some calculations be returning an empty collider struct
+            return HurtBoxOBB.Null;
+        }
 
-        return new HurtBoxOBB(isActiveAndEnabled, center, halfSize, rotation);
+        cachedTransform.GetPositionAndRotation(out Vector3 center, out Quaternion rotation);
+        return new HurtBoxOBB(true, center, halfSize, rotation);
     }
 }
 
@@ -24,7 +29,7 @@ public class FastHurtBox : FastHitBox
 public struct HurtBoxOBB
 {
     private readonly byte activeFlag;
-    public readonly bool IsActive => activeFlag == 1;
+    public readonly bool IsActive => activeFlag != 0;
     public float3 Center;
     public float3 Extents;
     public quaternion Rotation;
@@ -36,4 +41,5 @@ public struct HurtBoxOBB
         Extents = extents;
         Rotation = rotation;
     }
+    public static HurtBoxOBB Null => new HurtBoxOBB();
 }

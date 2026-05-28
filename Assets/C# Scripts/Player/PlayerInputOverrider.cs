@@ -2,13 +2,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class PlayerControllerOverride : FrameTickUpdateMB
+public class PlayerInputOverrider : MonoBehaviour
 {
+    [SerializeField] private OverrideMode mode;
     [SerializeField] private List<FrameInput> inputBuffer = new List<FrameInput>();
+
     private int index;
-
-    [SerializeField] private bool collectInputs;
-
     private FrameInput cRawInput;
 
     private PlayerInputRouter playerInputRouter;
@@ -18,11 +17,8 @@ public class PlayerControllerOverride : FrameTickUpdateMB
     {
         playerInputRouter = GetComponent<PlayerInputRouter>();
 
-        if (collectInputs)
-        {
-            playerInputRouter.DirectionInput += OnDirection;
-            playerInputRouter.AttackInput += OnButtonPressed;
-        }
+        playerInputRouter.DirectionInput += OnDirection;
+        playerInputRouter.AttackInput += OnButtonPressed;
     }
     private void OnDestroy()
     {
@@ -32,7 +28,7 @@ public class PlayerControllerOverride : FrameTickUpdateMB
 
     public void OnDirection(Vector2 dirVec)
     {
-        if (!isActiveAndEnabled) return;
+        if (mode != OverrideMode.Collect) return;
 
         DirectionInput dirInput;
 
@@ -57,26 +53,43 @@ public class PlayerControllerOverride : FrameTickUpdateMB
     }
     public void OnButtonPressed(AttackInputFlags flag)
     {
-        if (!isActiveAndEnabled) return;
+        if (mode != OverrideMode.Collect) return;
 
         cRawInput.AttackFlags |= flag;
     }
 
-    protected override void OnTickUpdate()
+    public void CollectInputs()
     {
-        if (!isActiveAndEnabled) return;
-
-        if (collectInputs)
+        switch (mode)
         {
-            inputBuffer.Add(cRawInput);
-            cRawInput.AttackFlags = AttackInputFlags.None;
-            return;
+            case OverrideMode.None:
+            default:
+                return;
+
+            case OverrideMode.Collect:
+                if (!playerInputRouter.IsAssigned) return;
+                inputBuffer.Add(cRawInput);
+                cRawInput.AttackFlags = AttackInputFlags.None;
+                break;
+
+            case OverrideMode.FirstConstant:
+                if (playerInputRouter.IsAssigned || inputBuffer.Count == 0) return;
+                SendInput(inputBuffer[0]);
+                break;
+
+            case OverrideMode.Playback:
+                if (playerInputRouter.IsAssigned || index == inputBuffer.Count) return;
+                SendInput(inputBuffer[index++]);
+                break;
+            case OverrideMode.PlaybackLoop:
+                if (playerInputRouter.IsAssigned || index == inputBuffer.Count) return;
+                SendInput(inputBuffer[index]);
+                index.IncrementSmart(inputBuffer.Count);
+                break;
         }
-
-        if (index == inputBuffer.Count) return;
-
-        FrameInput input = inputBuffer[index++];
-
+    }
+    private void SendInput(FrameInput input)
+    {
         Vector3 dir = input.DirectionFlag switch
         {
             DirectionInput.Left => Vector2.left,
@@ -88,5 +101,15 @@ public class PlayerControllerOverride : FrameTickUpdateMB
 
         playerInputRouter.OnDirection(dir);
         playerInputRouter.OnButtonPressed(input.AttackFlags);
+    }
+
+
+    private enum OverrideMode
+    {
+        None,
+        Collect,
+        FirstConstant,
+        Playback,
+        PlaybackLoop,
     }
 }

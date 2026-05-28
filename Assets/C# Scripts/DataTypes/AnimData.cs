@@ -8,13 +8,15 @@
 public struct AnimData
 {
     public int Hash;
+    public bool AllowSelfInterrupt;
 
     public int BlendIn;
     public int BlendOut;
 
-    public AnimData(string animName, int blendIn, int blendOut)
+    public AnimData(string animName, bool allowSelfInterrupt, int blendIn, int blendOut)
     {
         Hash = Animator.StringToHash(animName);
+        AllowSelfInterrupt = allowSelfInterrupt;
 
         BlendIn = blendIn;
         BlendOut = blendOut;

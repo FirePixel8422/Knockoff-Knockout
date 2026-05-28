@@ -48,7 +48,7 @@ public struct AttackData
 
     public void UpdateDebugData()
     {
-        GeneratedAnimData = new AnimData(animationName, blendIn, blendOut);
+        GeneratedAnimData = new AnimData(animationName, true, blendIn, blendOut);
 
         TotalAttackDuration = (FrameData.Startup + FrameData.Active + FrameData.Recovery).ToString();
         AdvantageOnHit = (FrameData.HitStun - FrameData.Recovery).ToString("+0;-0;0");

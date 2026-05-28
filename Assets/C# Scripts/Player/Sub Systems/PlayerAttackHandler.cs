@@ -1,7 +1,6 @@
 ﻿
 
 
-
 /// <summary>
 /// Sub Player system handler class that is responsible for performing and tracking attack states.
 /// </summary>
@@ -16,7 +15,7 @@ public class PlayerAttackHandler
     private ActionSequenceTimeline<CombatState> activeSequenceTimeline;
     private StateSequence<CombatState> attackSequence;
 
-    public AttackData ActiveAttack;
+    public AttackData ActiveAttack { get; private set; }
 
 
     public PlayerAttackHandler(PlayerStateMachine stateMachine, PlayerInputHandler inputHandler, PlayerColliderHandler colliderHandler, PlayerMovementHandler movementHandler)
@@ -43,11 +42,9 @@ public class PlayerAttackHandler
     /// <summary>
     /// Check if any move is active from this fighter (attacker perpective), check collision between any active hurtboxes with the opponents hitboxes.
     /// </summary>
-    public bool CheckAttackIntersection(PlayerController target, out AttackData activeAttack)
+    public bool CheckAttackIntersection(PlayerController target)
     {
-        activeAttack = ActiveAttack;
-
-        colliderHandler.RecalculateHurtBoxes();
+        colliderHandler.RecalculateActiveHurtBoxes();
 
         // Check if any opponent hitbox is hit
         return CollisionUtils.CheckIntersection(target.ColliderHandler.HitBoxOBBs, colliderHandler.HurtBoxOBBs);
@@ -70,9 +67,14 @@ public class PlayerAttackHandler
     /// <summary>
     /// Get <see cref="AttackResult"/> based on what type of attack hit this fighter (defender perspective) in what state
     /// </summary>
-    public AttackResult GetInboundAttackResult(AttackLevel attackType)
+    public AttackResult GetInboundAttackResult(AttackLevel attackType, bool doesKnockDown)
     {
         FighterState defenderState = stateMachine.State;
+
+        if (defenderState.StanceState == StanceState.KnockedDown)
+        {
+            doesKnockDown = false;
+        }
 
         // If the defender is in an active parry
         if (defenderState.CombatState == CombatState.ParryHighActive)
@@ -88,18 +90,18 @@ public class PlayerAttackHandler
                 : AttackResult.Hit;
         }
 
-        // If defender is crouching, auto miss any incomming high
-        if (defenderState.StanceState == StanceState.Crouching && attackType == AttackLevel.High)
-        {
-            return AttackResult.Missed;
-        }
-
         // If defender cant block or the incoming attack is unblockable, the defender gets hit OR interrupted
         if ((defenderState.CanBlock() == false) || attackType == AttackLevel.Unblockable)
         {
-            return defenderState.CombatState == CombatState.ActionStartup ?
-                AttackResult.CounterHit :
-                AttackResult.Hit;
+            if (doesKnockDown)
+            {
+                return AttackResult.KnockDown;
+            }
+            if (defenderState.CombatState == CombatState.ActionStartup)
+            {
+                return AttackResult.CounterHit;
+            }
+            return AttackResult.Hit;
         }
 
         // If defender is crouching, they blocks lows, duck highs but lose to mids
@@ -108,12 +110,13 @@ public class PlayerAttackHandler
             return attackType switch
             {
                 AttackLevel.Low =>
-                 AttackResult.LowBlocked,
+                    AttackResult.LowBlocked,
 
                 AttackLevel.High =>
                     AttackResult.Missed,
 
-                _ =>
+                _ => doesKnockDown ?
+                    AttackResult.KnockDown :
                     AttackResult.Hit,
             };
         }
@@ -129,35 +132,39 @@ public class PlayerAttackHandler
                         AttackLevel.Mid or AttackLevel.High =>
                             AttackResult.StandingBlocked,
 
-                        _ =>
+                        _ => doesKnockDown ?
+                            AttackResult.KnockDown :
                             AttackResult.Hit,
                     },
 
-                _ =>
+                _ => doesKnockDown ?
+                    AttackResult.KnockDown :
                     AttackResult.Hit,
             };
         }
 
-        // Should be unreachable, so parry to allow quicker debugging.
-        return AttackResult.Parried;
+        DebugLogger.Log("Gatcha");
+        // Should be unreachable, so "Missed" to allow quicker debugging.
+        return AttackResult.Missed;
     }
 
     #endregion
 
 
     /// <summary>
-    /// Tick down active attack sequence or try creating a new one if there is no active on anymore. (PostTickUpdate)
+    /// Update any active attack action sequence
     /// </summary>
-    public void TickUpdateAttackSequence(bool isActionLocked)
+    public void TickUpdateAttackSequence()
     {
-        if (activeSequenceTimeline.IsActive)
-        {
-            UpdateActiveAttackAction();
-            return;
-        }
-        if(isActionLocked) return;
+        if (!activeSequenceTimeline.IsActive) return;
 
-        TryReadAttackInput();
+        UpdateActiveAttackAction();
+    }
+    public void TickUpdateAttackInput()
+    {
+        if (activeSequenceTimeline.IsActive) return;
+
+        ReadAndApplyNewInput();
     }
 
     /// <summary>
@@ -165,6 +172,7 @@ public class PlayerAttackHandler
     /// </summary>
     private void UpdateActiveAttackAction()
     {
+        // Tick update attack sequence and update colliders based on state changes
         if (activeSequenceTimeline.TickUpdateState(out CombatState newState, out int elapsedSequenceTicks))
         {
             stateMachine.SetCombatState(newState);
@@ -193,24 +201,27 @@ public class PlayerAttackHandler
             movementHandler.AddForwardForce((currentLunge - prevLunge) * lungeData.Power);
         }
     }
-    private void TryReadAttackInput()
+    /// <summary>
+    /// Check if the input buffer holds input that correspond to an attack and if so, start an attack sequence.
+    /// </summary>
+    private void ReadAndApplyNewInput()
     {
         // If input for an attack was found in inputbuffer, start an attack sequence
-        if (inputHandler.TryReadAttack(out AttackData targetAttack))
-        {
-            ActiveAttack = targetAttack;
+        if (!inputHandler.TryReadAttack(out AttackData targetAttack)) return;
 
-            stateMachine.PlayAnimation(targetAttack.GeneratedAnimData);
+        ActiveAttack = targetAttack;
 
-            stateMachine.SetCombatState(CombatState.ActionStartup);
-            stateMachine.SetStanceState(targetAttack.Stance);
+        stateMachine.PlayAnimation(targetAttack.GeneratedAnimData);
 
-            attackSequence.Sequence[0] = (CombatState.ActionStartup, targetAttack.FrameData.Startup);
-            attackSequence.Sequence[1] = (CombatState.AttackActive, targetAttack.FrameData.Active);
-            attackSequence.Sequence[2] = (CombatState.Recovering, targetAttack.FrameData.Recovery);
+        stateMachine.SetCombatState(CombatState.ActionStartup);
+        stateMachine.SetStanceState(targetAttack.Stance);
 
-            activeSequenceTimeline = new ActionSequenceTimeline<CombatState>(attackSequence);
-        }
+        attackSequence.Sequence[0] = (CombatState.ActionStartup, targetAttack.FrameData.Startup);
+        attackSequence.Sequence[1] = (CombatState.AttackActive, targetAttack.FrameData.Active);
+        attackSequence.Sequence[2] = (CombatState.Recovering, targetAttack.FrameData.Recovery);
+        //attackSequence.Sequence[3] = (CombatState.Idle, 0);
+
+        activeSequenceTimeline = new ActionSequenceTimeline<CombatState>(attackSequence);
     }
 
     /// <summary>
@@ -221,7 +232,6 @@ public class PlayerAttackHandler
         int activeTicksLeft = activeSequenceTimeline.AdvanceState();
 
         stateMachine.TickAdvanceAnimation(activeTicksLeft);
-        stateMachine.SetCombatState(CombatState.Recovering);
     }
 
     /// <summary>

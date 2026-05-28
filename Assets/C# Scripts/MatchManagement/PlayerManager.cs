@@ -24,6 +24,8 @@ public class PlayerManager : FrameTickUpdateMB
 
     private readonly Dictionary<PlayerInputBinder, PlayerInputRouter> binderToRouterMap = new(GlobalGameData.MAX_PLAYERS);
 
+    private bool[] playerAttackConnects = new bool[GlobalGameData.MAX_PLAYERS];
+
 
 #if Enable_Debug_Systems
     [SerializeField] private bool logInputDeviceChanges = true;
@@ -151,11 +153,11 @@ public class PlayerManager : FrameTickUpdateMB
         }
         for (int i = 0; i < GlobalGameData.MAX_PLAYERS; i++)
         {
-            players[i].TickUpdate();
+            players[i].TickUpdate(out playerAttackConnects[i]);
         }
         for (int i = 0; i < GlobalGameData.MAX_PLAYERS; i++)
         {
-            players[i].PostTickUpdate();
+            players[i].PostTickUpdate(playerAttackConnects[i]);
         }
     }
 

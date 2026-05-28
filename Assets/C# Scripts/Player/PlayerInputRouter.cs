@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerInputRouter : MonoBehaviour
 {
     private PlayerInputHandler playerInputHandler;
+    public bool IsAssigned;
 
 #if UNITY_EDITOR
     public Action<Vector2> DirectionInput;
@@ -21,6 +22,7 @@ public class PlayerInputRouter : MonoBehaviour
     public void OnInputDeviceLost()
     {
         playerInputHandler.ClearInputBuffer(false);
+        IsAssigned = false;
     }
 
     public void OnDirection(Vector2 dirVec)

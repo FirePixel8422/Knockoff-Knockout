@@ -9,6 +9,7 @@ public enum AttackResult : byte
 
     Hit,
     CounterHit,
+    KnockDown,
 
     StandingBlocked,
     LowBlocked,

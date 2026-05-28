@@ -64,22 +64,26 @@ public class PlayerMovementHandler
     private PlayerMovementHandler() { }
 
 
+
     /// <summary>
-    /// Check for movement input in current tick buffer and resolve it
+    /// Update any active move action sequence
     /// </summary>
-    public void TickUpdateMovement(bool isActionLocked)
+    public void TickUpdateMoveSequence()
     {
         lastMoveDir = Vector3.zero;
 
-        if (activeSequenceTimeline.IsActive)
-        {
-            UpdateActiveMoveAction();
-            return;
-        }
-        if (isActionLocked) return;
+        if (!activeSequenceTimeline.IsActive) return;
 
+        UpdateActiveMoveAction();
+    }
+    /// <summary>
+    /// If the player is not in a move action, check for movement input in current tick buffer and resolve it
+    /// </summary>
+    public void TickUpdateMoveInput()
+    {
         ReadAndApplyNewInput();
     }
+
 
     /// <summary>
     /// TickUpdate active movement sequence and send state changes to the <see cref="PlayerStateMachine"/>. Also updates player transform data based on the type of movement action (Sidestep/Dash).
@@ -119,6 +123,10 @@ public class PlayerMovementHandler
         }
 
     }
+
+    /// <summary>
+    /// Check if the input buffer holds input that correspond to a move action, if so start a move sequence. Otherwise calculaet movement and Move- and Stance-State from directional input.
+    /// </summary>
     private void ReadAndApplyNewInput()
     {
         // If fighter sidesteps, set fighter in standing stance and sidestepping movement state
@@ -155,40 +163,42 @@ public class PlayerMovementHandler
             return;
         }
 
+
         // If fighter doesnt do a special movement action (Sidestep/Dash), check for normal movement input and resolve it
         DirectionInput dirInput = inputHandler.GetCurrentDirection();
         switch (dirInput)
         {
             // Crouch Idle
             case DirectionInput.Down:
-                {
-                    stateMachine.SetStanceState(StanceState.Crouching);
-                    stateMachine.SetMovementState(MovementState.Idle);
-                    break;
-                }
+            {
+                stateMachine.SetStanceState(StanceState.Crouching);
+                stateMachine.SetMovementState(MovementState.Idle);
+                break;
+            }
             // Standing Moving
             case DirectionInput.Left:
             case DirectionInput.Right:
-                {
-                    bool isMovingRight = dirInput == DirectionInput.Right;
-                    GetMovementData(isLeftPlayer, isMovingRight, out MovementState moveDirState, out Vector3 moveDelta);
+            {
+                bool isMovingRight = dirInput == DirectionInput.Right;
+                GetMovementData(isLeftPlayer, isMovingRight, out MovementState moveDirState, out Vector3 moveDelta);
 
-                    stateMachine.SetStanceState(StanceState.Standing);
-                    stateMachine.SetMovementState(moveDirState);
+                stateMachine.SetStanceState(StanceState.Standing);
+                stateMachine.SetMovementState(moveDirState);
 
-                    MovePlayer(moveDelta);
-                    break;
-                }
+                MovePlayer(moveDelta);
+                break;
+            }
             // Standing Idle
             case DirectionInput.Neutral:
-                {
-                    stateMachine.SetStanceState(StanceState.Standing);
-                    stateMachine.SetMovementState(MovementState.Idle);
-                    break;
-                }
+            {
+                stateMachine.SetStanceState(StanceState.Standing);
+                stateMachine.SetMovementState(MovementState.Idle);
+                break;
+            }
             default: break;
         }
     }
+
     /// <summary>
     /// Calculate MoveState and MoveDelta based on if target player is moving forward from his perspective.
     /// </summary>
@@ -210,11 +220,11 @@ public class PlayerMovementHandler
     {
         AnimData animData = actionState switch
         {
-            MovementState.DashingBack => GlobalAnimHashes.Movement.DashBack,
-            MovementState.DashingForward => GlobalAnimHashes.Movement.DashForward,
+            MovementState.DashingBack => GlobalAnimHashes.Movement.Dash.Back,
+            MovementState.DashingForward => GlobalAnimHashes.Movement.Dash.Forward,
 
-            MovementState.SideSteppingDown => GlobalAnimHashes.Movement.SideStepDown,
-            MovementState.SideSteppingUp => GlobalAnimHashes.Movement.SideStepUp,
+            MovementState.SideSteppingDown => GlobalAnimHashes.Movement.SideStep.Down,
+            MovementState.SideSteppingUp => GlobalAnimHashes.Movement.SideStep.Up,
 
             _ => GlobalAnimHashes.Missing
         };

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -21,32 +22,27 @@ public class PlayerStateMachine
 
     [EditorReadOnly, SerializeField] private int TimeStop;
     [EditorReadOnly, SerializeField] private int Recovery;
-    [EditorReadOnly, SerializeField] private int HitStun;
-    [EditorReadOnly, SerializeField] private int BlockStun;
+    [EditorReadOnly, SerializeField] private int Stun;
 
     public bool IsTimeStopped => TimeStop > 0;
+    public bool IsAttackActive =>
+        state.CombatState == CombatState.AttackActive;
     public bool IsInCombatLock =>
         state.CombatState != CombatState.Idle;
     public bool IsInMoveLock =>
         IsInCombatLock ||
         state.MovementState == MovementState.Recovery;
-    public bool IsInDashLock =>
-        IsInCombatLock ||
-        state.MovementState == MovementState.DashingBack ||
-        state.MovementState == MovementState.DashingForward;
-    public bool IsInSideStepLock =>
-        IsInCombatLock ||
-        state.MovementState == MovementState.SideSteppingUp ||
-        state.MovementState == MovementState.SideSteppingDown;
-    public bool IsStunned =>
-        state.CombatState == CombatState.HitStun ||
-        state.CombatState == CombatState.BlockStun;
 
     public Action OnStunned;
     public Action<float> OnDamageTaken;
     public Action<float> OnKnockbackTaken;
 
     [EditorReadOnly, SerializeField] private AnimData currentAnimData;
+
+#if UNITY_EDITOR
+    [SerializeField] private bool doDebugMode;
+    [EditorReadOnly, SerializeField] private List<StateDebugInfo> stateHistory;
+#endif
 
 
     public PlayerStateMachine(Transform playerRoot)
@@ -71,7 +67,35 @@ public class PlayerStateMachine
                 {
                     OnStunned?.Invoke();
 
-                    HitStun = GameRules.CombatSettings.Parry.HitStun;
+                    Stun = GameRules.CombatSettings.Parry.HitStun;
+                }
+                break;
+
+            case AttackResult.KnockDown:
+
+                TimeStop = attack.FrameData.HitStop;
+                if (isDefender)
+                {
+                    OnStunned?.Invoke();
+                    OnDamageTaken?.Invoke(attack.Damage);
+                    OnKnockbackTaken?.Invoke(attack.HitKb);
+
+                    SetStanceState(StanceState.KnockedDown);
+
+                    AnimData animData = attack.Level switch
+                    {
+                        AttackLevel.Low => GlobalAnimHashes.KnockDown.Low,
+                        AttackLevel.Mid => GlobalAnimHashes.KnockDown.Mid,
+                        AttackLevel.High => GlobalAnimHashes.KnockDown.High,
+
+                        _ => GlobalAnimHashes.Missing,
+                    };
+
+                    PlayAnimation(animData);
+
+                    Stun = result == AttackResult.CounterHit ?
+                        attack.FrameData.CounterStun :
+                        attack.FrameData.HitStun;
                 }
                 break;
 
@@ -88,23 +112,19 @@ public class PlayerStateMachine
                     AnimData animData = state.StanceState switch
                     {
                         StanceState.Standing => isAttackLow ?
-                            GlobalAnimHashes.Hurt.StandingLow :
-                            GlobalAnimHashes.Hurt.StandingHigh,
+                            GlobalAnimHashes.Hurt.Standing.Low :
+                            GlobalAnimHashes.Hurt.Standing.MidHigh,
 
                         StanceState.Crouching => isAttackLow ?
-                            GlobalAnimHashes.Hurt.CrouchingLow :
-                            GlobalAnimHashes.Hurt.CrouchingHigh,
-
-                        StanceState.KnockedDown => isAttackLow ?
-                            GlobalAnimHashes.Hurt.KnockedDownLow :
-                            GlobalAnimHashes.Hurt.KnockedDownHigh,
+                            GlobalAnimHashes.Hurt.Crouching.Low :
+                            GlobalAnimHashes.Hurt.Crouching.MidHigh,
 
                         _ => GlobalAnimHashes.Missing,
                     };
 
                     PlayAnimation(animData);
 
-                    HitStun = result == AttackResult.CounterHit ?
+                    Stun = result == AttackResult.CounterHit ?
                         attack.FrameData.CounterStun :
                         attack.FrameData.HitStun;
                 }
@@ -122,7 +142,7 @@ public class PlayerStateMachine
                         GlobalAnimHashes.Block.Standing :
                         GlobalAnimHashes.Block.Crouching);
 
-                    BlockStun = attack.FrameData.BlockStun;
+                    Stun = attack.FrameData.BlockStun;
                 }
                 break;
 
@@ -135,27 +155,24 @@ public class PlayerStateMachine
             Recovery = attack.FrameData.Recovery;
         }
 
-        if (HitStun > 0)
+        if (Stun > 0)
         {
-            // When HitStunned, Reset BlockStun and Recovery
-            BlockStun = 0;
+            // When Stunned, Reset Recovery
             Recovery = 0;
 
-            SetCombatState(CombatState.HitStun);
-        }
-        else if (BlockStun > 0)
-        {
-            SetCombatState(CombatState.BlockStun);
-        }
+            bool isBlockStun =
+                result == AttackResult.StandingBlocked ||
+                result == AttackResult.LowBlocked;
 
-        DebugLogger.Log(State.CombatState);
+            SetCombatState(isBlockStun ? CombatState.BlockStun : CombatState.HitStun);
+        }
     }
 
 
     /// <summary>
-    /// Update animator and tick down stun states
+    /// Tick down stun stat and update state based on stun recovery
     /// </summary>
-    public void TickUpdate()
+    public void TickUpdateStuns()
     {
         if (TimeStop > 0)
         {
@@ -163,17 +180,21 @@ public class PlayerStateMachine
             return;
         }
 
-        Recovery = Mathf.Clamp(Recovery - 1, 0, int.MaxValue);
-        HitStun = Mathf.Clamp(HitStun - 1, 0, int.MaxValue);
-        BlockStun = Mathf.Clamp(BlockStun - 1, 0, int.MaxValue);
-
-        // If player was stunned or recovering and just recovered, set combat state to idle
-        if (HitStun == 0 && BlockStun == 0 && Recovery == 0 &&
+        // If player is no longer stunned this frame, recover
+        if (Stun == 0 &&
             (state.CombatState == CombatState.HitStun || state.CombatState == CombatState.BlockStun))
         {
             SetCombatState(CombatState.Idle);
         }
 
+        Recovery = Mathf.Clamp(Recovery - 1, 0, int.MaxValue);
+        Stun = Mathf.Clamp(Stun - 1, 0, int.MaxValue);
+    }
+    /// <summary>
+    /// Update animator based on current state
+    /// </summary>
+    public void TickUpdateAnimator()
+    {
         if (!IsInMoveLock)
         {
             AnimData animData;
@@ -199,6 +220,13 @@ public class PlayerStateMachine
         }
 
         anim.Update(GlobalGameData.TICK_TIME);
+
+#if UNITY_EDITOR
+        if (doDebugMode)
+        {
+            stateHistory.Add(new StateDebugInfo(state, Stun, Recovery));
+        }
+#endif
     }
 
     /// <summary>
@@ -207,7 +235,13 @@ public class PlayerStateMachine
     /// </summary>
     public void PlayAnimation(AnimData animData)
     {
-        if (currentAnimData.Hash == animData.Hash) return;
+        if (!animData.AllowSelfInterrupt && currentAnimData.Hash == animData.Hash) return;
+
+        if (animData.Hash == GlobalAnimHashes.Missing.Hash)
+        {
+            DebugLogger.LogWarning("Animator: an empty animation was requested, skipping");
+            return;
+        }
 
         AnimData prevAnimData = currentAnimData;
         currentAnimData = animData;
@@ -229,5 +263,28 @@ public class PlayerStateMachine
     public void TickAdvanceAnimation(int tickAdvanceCount)
     {
         anim.Update(GlobalGameData.TICK_TIME * tickAdvanceCount);
+    }
+}
+
+
+[System.Serializable]
+public struct StateDebugInfo
+{
+    [EditorReadOnly, SerializeField] private StanceState stanceState;
+    [EditorReadOnly, SerializeField] private MovementState movementState;
+    [EditorReadOnly, SerializeField] CombatState combatState;
+
+    [EditorReadOnly, SerializeField] private int stun;
+    [EditorReadOnly, SerializeField] private int recovery;
+
+
+    public StateDebugInfo(FighterState state, int stunLeft, int recoveryLeft)
+    {
+        stanceState = state.StanceState;
+        movementState = state.MovementState;
+        combatState = state.CombatState;
+
+        stun = stunLeft;
+        recovery = recoveryLeft;
     }
 }

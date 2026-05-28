@@ -109,7 +109,7 @@ public class PlayerInputHandler
             targetAttack = moveSet[i];
 
             // Perfect input found, no need to continue checking other moves in the moveset
-            if (bestAttackStrength == 3)
+            if (bestAttackStrength == 4)
                 break;
         }
 
@@ -207,7 +207,7 @@ public class InputBufferHandler
                 continue;
             }
 
-            // If button is correct and the to test inputs direction is neutral > award 1/3 points
+            // If button is correct and the to test inputs direction is neutral > award 1/4 points
             if (targetInput.DirectionFlag == DirectionInput.Neutral)
             {
                 moveStrength = 1;
@@ -219,8 +219,8 @@ public class InputBufferHandler
                 // Check into the past of the buffer for X frames for if the target attacks direction is found
                 if (inputBuffer[dirIndex].DirectionFlag == targetInput.DirectionFlag)
                 {
-                    // Exact move was matched with buffer history > award 3/3 points
-                    return 3;
+                    // Exact move was matched with buffer history > award 3/4 points
+                    return targetInput.DirectionFlag == DirectionInput.Neutral ? 3 : 4;
                 }
                 dirIndex.DecrementSmart(GlobalGameData.INPUT_BUFFER_SIZE);
             }

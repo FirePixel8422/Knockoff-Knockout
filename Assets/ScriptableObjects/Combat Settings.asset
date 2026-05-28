@@ -16,7 +16,7 @@ MonoBehaviour:
     Fighter:
       StartHealth: 200
       PushingSpeed: 2.25
-      RetreatingSpeed: 1.35
+      RetreatingSpeed: 1.5
       MoveSnappyness: 18
     Parry:
       Startup: 12
@@ -96,5 +96,5 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         sampleCount: 50
-      BackDashPower: 2
+      BackDashPower: 2.25
       ForwardDashPower: 3

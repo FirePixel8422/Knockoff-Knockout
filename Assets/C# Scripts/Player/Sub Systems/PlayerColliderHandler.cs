@@ -69,9 +69,9 @@ public class PlayerColliderHandler
     }
 
     /// <summary>
-    /// Recalculate Hurtbox OBBs from collider transforms and active states.
+    /// Recalculate active Hurtbox OBBs from collider transforms.
     /// </summary>
-    public void RecalculateHurtBoxes()
+    public void RecalculateActiveHurtBoxes()
     {
         for (int i = 0; i < hurtBoxCount; i++)
         {

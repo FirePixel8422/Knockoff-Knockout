@@ -20,6 +20,8 @@ public class PlayerInputBinder : MonoBehaviour
     public void Bind(PlayerInputRouter router, int playerId)
     {
         playerInputRouter = router;
+        playerInputRouter.IsAssigned = true;
+
         isAssigned = true;
         this.playerId = playerId;
     }

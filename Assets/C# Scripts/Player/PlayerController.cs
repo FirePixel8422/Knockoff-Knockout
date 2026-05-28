@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerMovementHandler movementHandler;
 
     [EditorReadOnly, SerializeField] private PlayerInputRouter inputRouter;
+    [EditorReadOnly, SerializeField] private PlayerInputOverrider inputOverrider;
 
     public PlayerInputHandler InputHandler => inputHandler;
     public PlayerColliderHandler ColliderHandler => colliderHandler;
@@ -69,6 +70,7 @@ public class PlayerController : MonoBehaviour
         {
             inputRouter.Init(inputHandler);
         }
+        inputOverrider = GetComponent<PlayerInputOverrider>();
     }
 
     public void OnUpdate(float deltaTime)
@@ -82,47 +84,60 @@ public class PlayerController : MonoBehaviour
     {
         if (stateMachine.IsTimeStopped) return;
 
+        stateMachine.TickUpdateStuns();
+
         // Push all collected inputs into tick buffer.
+        inputOverrider.CollectInputs();
         inputHandler.CollectInputs();
 
         colliderHandler.RecalculateHitBoxes();
+
+
+        attackHandler.TickUpdateAttackSequence();
+        movementHandler.TickUpdateMoveSequence();
+
+        bool wasInActionRecovery = stateMachine.State.CombatState == CombatState.Recovering;
+        if (!stateMachine.IsInCombatLock)
+        {
+            // TickUpdate attack (updating a seq or reading the input buffer for a new attack)
+            attackHandler.TickUpdateAttackInput();
+        }
+
+        // TickUpdate any active movement action and read movement input IF player wont be actionlocked next frame
+        bool isActionLocked = wasInActionRecovery || stateMachine.IsInCombatLock || stateMachine.IsInMoveLock;
+        if (!isActionLocked)
+        {
+            movementHandler.TickUpdateMoveInput();
+        }
     }
-    public void TickUpdate()
+
+    public void TickUpdate(out bool activeAttackConnected)
     {
+        activeAttackConnected = false;
+
         if (stateMachine.IsTimeStopped) return;
 
         // If player is not in the attack active state, return
-        if (stateMachine.State.CombatState != CombatState.AttackActive) return;
+        if (!stateMachine.IsAttackActive) return;
 
         // Check if a possible active attack hit the opponent. (attackers perspective)
-        if (attackHandler.CheckAttackIntersection(opponent, out AttackData activeAttack))
+        activeAttackConnected = attackHandler.CheckAttackIntersection(opponent);
+    }
+    
+    public void PostTickUpdate(bool activeAttackConnected)
+    {
+        if (activeAttackConnected)
         {
+            AttackData activeAttack = attackHandler.ActiveAttack;
+            AttackResult attackResult = opponent.attackHandler.GetInboundAttackResult(activeAttack.Level, activeAttack.DoesKnockdown);
+
             attackHandler.OnActiveAttackConnected();
 
-            AttackResult result = opponent.attackHandler.GetInboundAttackResult(activeAttack.Level);
-
-            stateMachine.ResolveAttack(activeAttack, result, false);
-            opponent.stateMachine.ResolveAttack(activeAttack, result, true);
-        }
-    }
-    public void PostTickUpdate()
-    {
-        if (!stateMachine.IsTimeStopped)
-        {
-            bool wasInActionRecovery = stateMachine.State.CombatState == CombatState.Recovering;
-
-            if (!stateMachine.IsStunned)
-            {
-                // TickUpdate attack (updating a seq or reading the input buffer for a new attack)
-                attackHandler.TickUpdateAttackSequence(stateMachine.IsInCombatLock);
-            }
-
-            // TickUpdate any active movement action and read movement input IF player wont be actionlocked next frame
-            bool isActionLocked = wasInActionRecovery || stateMachine.IsInCombatLock || stateMachine.IsInMoveLock;
-            movementHandler.TickUpdateMovement(isActionLocked);
+            stateMachine.ResolveAttack(activeAttack, attackResult, false);
+            opponent.stateMachine.ResolveAttack(activeAttack, attackResult, true);
         }
 
         // Tick down stuns and recovery
-        stateMachine.TickUpdate();
+        stateMachine.TickUpdateAnimator();
     }
 }
