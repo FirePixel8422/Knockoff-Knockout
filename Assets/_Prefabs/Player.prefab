@@ -225,6 +225,57 @@ MonoBehaviour:
   SkipNextGizmoDraw: 0
   DrawGizmos: 0
   id: 1
+--- !u!1 &1938959210103132379
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7996169613327547785}
+  - component: {fileID: 618919483566322620}
+  m_Layer: 0
+  m_Name: Hitboxes (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7996169613327547785
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1938959210103132379}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0.059231713, y: -0.14256963, z: -0.0056655672, w: 0.98799473}
+  m_LocalPosition: {x: -0.06, y: -0.63, z: 0.12}
+  m_LocalScale: {x: 0.99997044, y: 1.00515, z: 0.9949205}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 412143172945697420}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &618919483566322620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1938959210103132379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad4868309e61e0a468f274b7535dbf1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FastBoxCollider
+  halfSize:
+    x: 0.15
+    y: 0.15
+    z: 0.15
+  cachedTransform: {fileID: 0}
+  SkipNextGizmoDraw: 0
+  DrawGizmos: 0
 --- !u!1 &2017989821624995675
 GameObject:
   m_ObjectHideFlags: 0
@@ -2112,6 +2163,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 5218787605706784180}
+    - targetCorrespondingSourceObject: {fileID: 1932421604923968559, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7996169613327547785}
     - targetCorrespondingSourceObject: {fileID: -3589311989668628960, guid: f56bd06238713cb4fbae175ea8d17357,
         type: 3}
       insertIndex: -1
@@ -2141,6 +2196,12 @@ PrefabInstance:
 --- !u!4 &400554872627469931 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -7285025709699086136, guid: f56bd06238713cb4fbae175ea8d17357,
+    type: 3}
+  m_PrefabInstance: {fileID: 2263460401487238819}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &412143172945697420 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1932421604923968559, guid: f56bd06238713cb4fbae175ea8d17357,
     type: 3}
   m_PrefabInstance: {fileID: 2263460401487238819}
   m_PrefabAsset: {fileID: 0}
@@ -2176,12 +2237,14 @@ MonoBehaviour:
       CombatState: 0
     TimeStop: 0
     Recovery: 0
-    HitStun: 0
-    BlockStun: 0
+    Stun: 0
     currentAnimData:
       Hash: 0
+      AllowSelfInterrupt: 0
       BlendIn: 0
       BlendOut: 0
+    doDebugMode: 0
+    stateHistory: []
   inputHandler:
     moveSet: []
     bufferHandler:
@@ -2215,54 +2278,8 @@ MonoBehaviour:
         DirectionFlag: 0
   healthHandler:
     health: 0
-  attackHandler:
-    ActiveAttack:
-      animationName: 
-      blendIn: 0
-      blendOut: 0
-      GeneratedAnimData:
-        Hash: 0
-        BlendIn: 0
-        BlendOut: 0
-      Input:
-        AttackFlags: 0
-        DirectionFlag: 0
-      Stance: 0
-      Level: 0
-      Damage: 0
-      HitKb: 0
-      BlockKb: 0
-      DoesKnockdown: 0
-      Lunge:
-        Curve:
-          curve:
-            serializedVersion: 2
-            m_Curve: []
-            m_PreInfinity: 2
-            m_PostInfinity: 2
-            m_RotationOrder: 4
-          sampleCount: 0
-        Window:
-          x: 0
-          y: 0
-        Power: 0
-      HurtBoxIds: 
-      FrameData:
-        Startup: 0
-        Active: 0
-        Recovery: 0
-        CancelWindow: 0
-        HitStun: 0
-        BlockStun: 0
-        CounterStun: 0
-        HitStop: 0
-        BlockStop: 0
-      StringTransitions: []
-      TotalAttackDuration: 
-      AdvantageOnHit: 
-      AdvantageOnBlock: 
-      AdvantageOnCounter: 
   inputRouter: {fileID: 0}
+  inputOverrider: {fileID: 0}
   drawHitBoxGizmos: 0
   drawHurtBoxGizmos: 0
 --- !u!95 &7838189496623482593
@@ -2299,6 +2316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 257d248b96c1dc740a4a46ee0bcf9141, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInputRouter
+  IsAssigned: 0
 --- !u!114 &955034650294576780
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2311,8 +2329,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27ccdd3368717741bd63f362cafe25f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerControllerOverride
+  mode: 0
   inputBuffer: []
-  collectInputs: 0
 --- !u!4 &1810933015063405634 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 452845707996361441, guid: f56bd06238713cb4fbae175ea8d17357,
