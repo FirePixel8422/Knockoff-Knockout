@@ -60,5 +60,8 @@ public static class GlobalAnimHashes
         }
     }
 
+    public static readonly AnimData Wakeup = new AnimData("Wakeup", false, 0, 8);
+    public static readonly int WakeupDuration = 11;
+
     public static readonly AnimData Missing = new AnimData("Missing", false, 0, 0);
 }

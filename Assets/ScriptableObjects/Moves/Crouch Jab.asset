@@ -12,23 +12,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b862d7d41f8e184187976caf926811d, type: 3}
   m_Name: Crouch Jab
   m_EditorClassIdentifier: Assembly-CSharp::AttackSO
+  animationName: CrouchJab
+  blendIn: 2
+  blendOut: 5
   Value:
-    animationName: CrouchJab
-    blendIn: 2
-    blendOut: 5
-    GeneratedAnimData:
-      Hash: 1260756234
-      BlendIn: 2
-      BlendOut: 5
     Input:
       AttackFlags: 1
       DirectionFlag: 3
     Stance: 1
     Level: 0
     Damage: 8
-    HitKb: 0.1
-    BlockKb: 0.05
+    HitKb: 0.15
+    BlockKb: 0.125
     DoesKnockdown: 0
+    FrameData:
+      Startup: 10
+      Active: 2
+      Recovery: 12
+      CancelWindow: 0
+      HitStun: 18
+      BlockStun: 8
+      CounterStun: 24
+      HitStop: 0
+      BlockStop: 0
     Lunge:
       Curve:
         curve:
@@ -60,19 +66,46 @@ MonoBehaviour:
         x: 6
         y: 9
       Power: 0.075
+    Homing:
+      Curve:
+        curve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: -0.0006721981
+            outSlope: -0.0006721981
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.9923954
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0.000036617694
+            outSlope: 0.000036617694
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.3231937
+            outWeight: 0.9994418
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        sampleCount: 50
+      Window:
+        x: 0
+        y: 0
+      TotalHoming: 0
     HurtBoxIds: 000000000100000002000000
-    FrameData:
-      Startup: 10
-      Active: 2
-      Recovery: 12
-      CancelWindow: 0
-      HitStun: 18
-      BlockStun: 8
-      CounterStun: 24
-      HitStop: 0
-      BlockStop: 0
     StringTransitions: []
+    GeneratedAnimData:
+      Hash: 1260756234
+      AllowSelfInterrupt: 1
+      BlendIn: 2
+      BlendOut: 5
     TotalAttackDuration: 24
     AdvantageOnHit: +6
     AdvantageOnBlock: -4
     AdvantageOnCounter: +12
+    AdvantageOnWhiff: -12

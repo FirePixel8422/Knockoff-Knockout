@@ -71,11 +71,6 @@ public class PlayerAttackHandler
     {
         FighterState defenderState = stateMachine.State;
 
-        if (defenderState.StanceState == StanceState.KnockedDown)
-        {
-            doesKnockDown = false;
-        }
-
         // If the defender is in an active parry
         if (defenderState.CombatState == CombatState.ParryHighActive)
         {

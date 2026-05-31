@@ -177,6 +177,8 @@ public class PlayerMovementHandler
             float dist01 = (playerDistance - sideStepSettings.DistanceRange.min) / (sideStepSettings.DistanceRange.max - sideStepSettings.DistanceRange.min);
             currentSideStepPower = sideStepSettings.PowerCurve.Evaluate(dist01);
 
+            RealignFighter();
+
             return;
         }
 
@@ -192,6 +194,9 @@ public class PlayerMovementHandler
             UpdateMoveActionAnimation(targetDash);
 
             sequenceTimeline = new ActionSequenceTimeline<MovementState>(dashSequence);
+
+            RealignFighter();
+
             return;
         }
 
@@ -278,7 +283,7 @@ public class PlayerMovementHandler
     }
     public void AddSidewardForce(float force)
     {
-        MovePlayer(CameraManager.Instance.GetRightDir() * (isLeftPlayer ? force : -force));
+        MovePlayer(CameraManager.Instance.GetRightDir() * force);
     }
 
     /// <summary>

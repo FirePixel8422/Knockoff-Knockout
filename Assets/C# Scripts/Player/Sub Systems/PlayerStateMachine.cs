@@ -195,7 +195,11 @@ public class PlayerStateMachine
     /// </summary>
     public void TickUpdateAnimator()
     {
-        if (!IsInMoveLock)
+        if (state.StanceState == StanceState.KnockedDown && Stun == GlobalAnimHashes.WakeupDuration)
+        {
+            PlayAnimation(GlobalAnimHashes.Wakeup);
+        }
+        else if (!IsInMoveLock)
         {
             AnimData animData;
 

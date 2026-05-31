@@ -232,46 +232,34 @@ public class InputBufferHandler
 
     public bool TestSideStep(out bool isSideStepUp)
     {
-        int dirHeldTickCount = 0;
-        DirectionInput activeDir = DirectionInput.Neutral;
+        DirectionInput firstTap = DirectionInput.Neutral;
 
-        int bufferIndex = index;
-        if (inputBuffer[bufferIndex].DirectionFlag != DirectionInput.Neutral)
+        for (int i = 1; i <= GlobalGameData.MAX_DOUBLE_TAP_TICKS; i++)
         {
-            isSideStepUp = false;
-            return false;
-        }
+            int idx = (index - i + GlobalGameData.INPUT_BUFFER_SIZE) % GlobalGameData.INPUT_BUFFER_SIZE;
+            int prevIdx = (idx - 1 + GlobalGameData.INPUT_BUFFER_SIZE) % GlobalGameData.INPUT_BUFFER_SIZE;
 
-        // Loop over whole buffer starting from current index all the way back to it
-        for (int i = 0; i < GlobalGameData.INPUT_BUFFER_SIZE; i++)
-        {
-            DirectionInput currentDir = inputBuffer[bufferIndex].DirectionFlag;
+            DirectionInput current = inputBuffer[idx].DirectionFlag;
+            DirectionInput prev = inputBuffer[prevIdx].DirectionFlag;
 
-            if (currentDir == DirectionInput.Up || currentDir == DirectionInput.Down)
+            bool isPress =
+                (current == DirectionInput.Up || current == DirectionInput.Down) &&
+                current != prev;
+
+            if (!isPress)
+                continue;
+
+            if (firstTap == DirectionInput.Neutral)
             {
-                // If dir changed compared to previous checked tick, reset dirHeldTickCount to 0
-                if (activeDir != currentDir)
-                {
-                    dirHeldTickCount = 0;
-                    activeDir = currentDir;
-                }
-
-                dirHeldTickCount += 1;
-            }
-            else if (currentDir == DirectionInput.Neutral)
-            {
-                // Check if dir was held long enough, but not too long for it to be considered a sidestep
-                if (dirHeldTickCount > 0 && dirHeldTickCount <= GlobalGameData.SIDE_STEP_MAX_HOLD_TICKS)
-                {
-                    isSideStepUp = activeDir == DirectionInput.Up;
-                    return true;
-                }
-
-                dirHeldTickCount = 0;
-                activeDir = DirectionInput.Neutral;
+                firstTap = current;
+                continue;
             }
 
-            bufferIndex.IncrementSmart(GlobalGameData.INPUT_BUFFER_SIZE);
+            if (current == firstTap)
+            {
+                isSideStepUp = current == DirectionInput.Up;
+                return true;
+            }
         }
 
         isSideStepUp = false;
@@ -281,9 +269,8 @@ public class InputBufferHandler
     public bool TestDash(out bool isDashRight)
     {
         DirectionInput firstTap = DirectionInput.Neutral;
-        int firstTapTick = -1;
 
-        for (int i = 1; i <= GlobalGameData.DASH_MAX_GAP_TICKS; i++)
+        for (int i = 1; i <= GlobalGameData.MAX_DOUBLE_TAP_TICKS; i++)
         {
             int idx = (index - i + GlobalGameData.INPUT_BUFFER_SIZE) % GlobalGameData.INPUT_BUFFER_SIZE;
             int prevIdx = (idx - 1 + GlobalGameData.INPUT_BUFFER_SIZE) % GlobalGameData.INPUT_BUFFER_SIZE;
@@ -301,7 +288,6 @@ public class InputBufferHandler
             if (firstTap == DirectionInput.Neutral)
             {
                 firstTap = current;
-                firstTapTick = i;
                 continue;
             }
 
