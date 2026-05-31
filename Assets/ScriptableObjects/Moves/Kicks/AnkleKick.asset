@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b862d7d41f8e184187976caf926811d, type: 3}
-  m_Name: LegSweep
+  m_Name: AnkleKick
   m_EditorClassIdentifier: Assembly-CSharp::AttackSO
-  animationName: LegSweep
+  animationName: AnkleKick
   blendIn: 3
   blendOut: 5
   Value:
@@ -100,7 +100,7 @@ MonoBehaviour:
     HurtBoxIds: 0700000000000000
     StringTransitions: []
     GeneratedAnimData:
-      Hash: 1487380032
+      Hash: -763940537
       AllowSelfInterrupt: 1
       BlendIn: 3
       BlendOut: 5
