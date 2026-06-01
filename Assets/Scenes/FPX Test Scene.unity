@@ -3396,6 +3396,16 @@ PrefabInstance:
       propertyPath: DrawGizmos
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3303879097378830774, guid: 2c306b11cd47a6646b8d56dd3ec68212,
+        type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.y
+      value: 1.3610904
+      objectReference: {fileID: 0}
+    - target: {fileID: 3303879097378830774, guid: 2c306b11cd47a6646b8d56dd3ec68212,
+        type: 3}
+      propertyPath: m_PropertySheet.m_Vector4f.m_Array.Array.data[0].m_Value.z
+      value: 1.4980392
+      objectReference: {fileID: 0}
     - target: {fileID: 3349955061783454147, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

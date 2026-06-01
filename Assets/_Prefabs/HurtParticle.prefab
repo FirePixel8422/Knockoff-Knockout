@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5848951178372173368}
   - component: {fileID: 5770580114232010880}
   m_Layer: 0
-  m_Name: HitParticle
+  m_Name: HurtParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,7 +56,10 @@ VisualEffect:
     m_Vector3f:
       m_Array: []
     m_Vector4f:
-      m_Array: []
+      m_Array:
+      - m_Value: {x: 1.4980392, y: 0.6771666, z: 0.19455053, w: 0}
+        m_Name: Color
+        m_Overridden: 1
     m_Uint:
       m_Array: []
     m_Int:
