@@ -477,7 +477,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: AnkleKick
+  m_Name: Sliding
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -490,8 +490,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: -5173595142733808976, guid: f56bd06238713cb4fbae175ea8d17357,
-    type: 3}
+  m_Motion: {fileID: 808687424132352564, guid: f56bd06238713cb4fbae175ea8d17357, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b862d7d41f8e184187976caf926811d, type: 3}
-  m_Name: AnkleKick
+  m_Name: Sliding
   m_EditorClassIdentifier: Assembly-CSharp::AttackSO
-  animationName: AnkleKick
+  animationName: Sliding
   blendIn: 3
   blendOut: 5
   Value:
@@ -26,13 +26,13 @@ MonoBehaviour:
     BlockKb: 0.2
     DoesKnockdown: 0
     FrameData:
-      Startup: 22
-      Active: 3
+      Startup: 16
+      Active: 4
       Recovery: 30
       CancelWindow: 0
-      HitStun: 22
-      BlockStun: 18
-      CounterStun: 26
+      HitStun: 34
+      BlockStun: 16
+      CounterStun: 40
       HitStop: 0
       BlockStop: 0
     Lunge:
@@ -43,12 +43,12 @@ MonoBehaviour:
           - serializedVersion: 3
             time: 0
             value: 0
-            inSlope: -0.0006721981
-            outSlope: -0.0006721981
+            inSlope: 0.28571427
+            outSlope: 0.28571427
             tangentMode: 0
             weightedMode: 0
             inWeight: 0.9923954
-            outWeight: 0.33333334
+            outWeight: 0.2
           - serializedVersion: 3
             time: 1
             value: 1
@@ -63,9 +63,9 @@ MonoBehaviour:
           m_RotationOrder: 4
         sampleCount: 50
       Window:
-        x: 8
-        y: 12
-      Power: 0.2
+        x: 4
+        y: 20
+      Power: 1
     Homing:
       Curve:
         curve:
@@ -100,12 +100,12 @@ MonoBehaviour:
     HurtBoxIds: 070000000800000000000000
     StringTransitions: []
     GeneratedAnimData:
-      Hash: -763940537
+      Hash: -1078995872
       AllowSelfInterrupt: 1
       BlendIn: 3
       BlendOut: 5
-    TotalAttackDuration: 55
-    AdvantageOnHit: -8
-    AdvantageOnBlock: -12
-    AdvantageOnCounter: -4
+    TotalAttackDuration: 50
+    AdvantageOnHit: +4
+    AdvantageOnBlock: -14
+    AdvantageOnCounter: +10
     AdvantageOnWhiff: -30
