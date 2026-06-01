@@ -8,9 +8,14 @@ public struct Vector3LerpState
     public Vector3 Current;
     public Vector3 Target;
 
-    public Vector3LerpState(Vector3 current, Vector3 target)
+    public Vector3LerpState(Vector3 current)
     {
         Current = current; 
+        Target = current;
+    }
+    public Vector3LerpState(Vector3 current, Vector3 target)
+    {
+        Current = current;
         Target = target;
     }
 

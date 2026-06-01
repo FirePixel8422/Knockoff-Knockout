@@ -57,8 +57,8 @@ public class CameraManager : MonoBehaviour
     {
         Instance = this;
 
-        viewPositionState = new Vector3LerpState(viewCenterTransform.position, viewCenterTransform.position);
-        viewRotationState = new QuaternionLerpState(viewCenterTransform.rotation, viewCenterTransform.rotation);
+        viewPositionState = new Vector3LerpState(viewCenterTransform.position);
+        viewRotationState = new QuaternionLerpState(viewCenterTransform.rotation);
 
         PlayerManager.PostPlayersInitialized += () =>
         {
@@ -75,11 +75,9 @@ public class CameraManager : MonoBehaviour
         viewPositionState.Target = GetPlayerCenter();
         viewRotationState.Target = Quaternion.LookRotation(-GetRightDir(), Vector3.up);
 
-        if (!viewPositionState.IsCompleted(0.01f))
-        {
-            viewCenterTransform.position = viewPositionState.Lerp(cameraPosLerpSpeed * deltaTime);
-        }
-        viewCenterTransform.rotation = viewRotationState.Slerp(cameraRotLerpSpeed * deltaTime);
+        viewCenterTransform.SetPositionAndRotation(
+            viewPositionState.Lerp(cameraPosLerpSpeed * deltaTime),
+            viewRotationState.Slerp(cameraRotLerpSpeed * deltaTime));
     }
 
     public Vector3 ClampMovementToCameraBounds(Vector3 currentPosition, Vector3 addedMovement)

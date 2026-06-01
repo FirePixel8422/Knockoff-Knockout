@@ -8,9 +8,14 @@ public struct QuaternionLerpState
     public Quaternion Current;
     public Quaternion Target;
 
+    public QuaternionLerpState(Quaternion current)
+    {
+        Current = current;
+        Target = current;
+    }
     public QuaternionLerpState(Quaternion current, Quaternion target)
     {
-        Current = current; 
+        Current = current;
         Target = target;
     }
 
