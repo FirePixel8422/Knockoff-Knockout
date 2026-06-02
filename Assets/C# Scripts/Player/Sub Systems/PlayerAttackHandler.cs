@@ -105,7 +105,7 @@ public class PlayerAttackHandler
             return attackType switch
             {
                 AttackLevel.Low =>
-                    AttackResult.LowBlocked,
+                    AttackResult.CrouchBlocked,
 
                 AttackLevel.High =>
                     AttackResult.Missed,

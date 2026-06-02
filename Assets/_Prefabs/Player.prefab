@@ -1188,6 +1188,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b103fa629326ce74ea93c0e239950292, type: 3}
+--- !u!2083052967 &3303879097378830774 stripped
+VisualEffect:
+  m_CorrespondingSourceObject: {fileID: 4607658290604074149, guid: b103fa629326ce74ea93c0e239950292,
+    type: 3}
+  m_PrefabInstance: {fileID: 1308309183414443283}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5488290583781785109 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6774081725965509382, guid: b103fa629326ce74ea93c0e239950292,
@@ -2365,6 +2371,10 @@ MonoBehaviour:
         DirectionFlag: 0
   healthHandler:
     health: 0
+  particleHandler:
+    blockParticle: {fileID: 3303879097378830774}
+    highHurtParticle: {fileID: 3528528915892973427}
+    lowHurtParticle: {fileID: 3437562293156837975}
   inputRouter: {fileID: 0}
   inputOverrider: {fileID: 0}
   drawHitBoxGizmos: 0
@@ -2513,7 +2523,7 @@ PrefabInstance:
     - target: {fileID: 4948671772468424424, guid: 7058184ace447cd4f8cb459ad4ebfba5,
         type: 3}
       propertyPath: m_Name
-      value: HurtParticle
+      value: HighHurtParticle
       objectReference: {fileID: 0}
     - target: {fileID: 7446451887854683244, guid: 7058184ace447cd4f8cb459ad4ebfba5,
         type: 3}
@@ -2576,6 +2586,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 7051647735908753739}
   m_PrefabAsset: {fileID: 0}
+--- !u!2083052967 &3528528915892973427 stripped
+VisualEffect:
+  m_CorrespondingSourceObject: {fileID: 5848951178372173368, guid: 7058184ace447cd4f8cb459ad4ebfba5,
+    type: 3}
+  m_PrefabInstance: {fileID: 7051647735908753739}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9124023099088057455
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2587,7 +2603,7 @@ PrefabInstance:
     - target: {fileID: 4948671772468424424, guid: 7058184ace447cd4f8cb459ad4ebfba5,
         type: 3}
       propertyPath: m_Name
-      value: HurtParticle
+      value: LowHurtParticle
       objectReference: {fileID: 0}
     - target: {fileID: 7446451887854683244, guid: 7058184ace447cd4f8cb459ad4ebfba5,
         type: 3}
@@ -2647,6 +2663,12 @@ PrefabInstance:
 --- !u!4 &1857759186457702403 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7446451887854683244, guid: 7058184ace447cd4f8cb459ad4ebfba5,
+    type: 3}
+  m_PrefabInstance: {fileID: 9124023099088057455}
+  m_PrefabAsset: {fileID: 0}
+--- !u!2083052967 &3437562293156837975 stripped
+VisualEffect:
+  m_CorrespondingSourceObject: {fileID: 5848951178372173368, guid: 7058184ace447cd4f8cb459ad4ebfba5,
     type: 3}
   m_PrefabInstance: {fileID: 9124023099088057455}
   m_PrefabAsset: {fileID: 0}

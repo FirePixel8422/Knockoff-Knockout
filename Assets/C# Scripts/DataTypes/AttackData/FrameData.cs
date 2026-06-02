@@ -14,8 +14,4 @@ public struct FrameData
     public int HitStun;
     public int BlockStun;
     public int CounterStun;
-
-    [Header("Move (Attack) HitStop and BlockStop for dramatic effect when connecting it")]
-    public int HitStop;
-    public int BlockStop;
 }

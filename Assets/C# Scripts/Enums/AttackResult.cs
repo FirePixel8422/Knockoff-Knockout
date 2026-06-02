@@ -12,7 +12,7 @@ public enum AttackResult : byte
     KnockDown,
 
     StandingBlocked,
-    LowBlocked,
+    CrouchBlocked,
 
     Parried,
 }

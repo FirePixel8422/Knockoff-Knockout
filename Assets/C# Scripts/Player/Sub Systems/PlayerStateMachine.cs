@@ -20,11 +20,9 @@ public class PlayerStateMachine
     public void SetCombatState(CombatState newState) => state.CombatState = newState;
 
 
-    [EditorReadOnly, SerializeField] private int TimeStop;
     [EditorReadOnly, SerializeField] private int Recovery;
     [EditorReadOnly, SerializeField] private int Stun;
 
-    public bool IsTimeStopped => TimeStop > 0;
     public bool IsAttackActive =>
         state.CombatState == CombatState.AttackActive;
     public bool IsInCombatLock =>
@@ -33,6 +31,7 @@ public class PlayerStateMachine
         IsInCombatLock ||
         state.MovementState == MovementState.Recovery;
 
+    public Action<AttackData, AttackResult, bool> OnAttackConnected;
     public Action OnStunned;
     public Action<float> OnDamageTaken;
     public Action<float> OnKnockbackTaken;
@@ -58,94 +57,94 @@ public class PlayerStateMachine
     /// </summary>
     public void ResolveAttack(AttackData attack, AttackResult result, bool isDefender)
     {
+        OnAttackConnected?.Invoke(attack, result, isDefender);
+
         switch (result)
         {
             case AttackResult.Parried:
+            {
+                // Skip defender
+                if (isDefender) return;
 
-                TimeStop = GameRules.CombatSettings.Parry.HitStop;
-                if (!isDefender)
-                {
-                    OnStunned?.Invoke();
+                OnStunned?.Invoke();
 
-                    Stun = GameRules.CombatSettings.Parry.HitStun;
-                }
+                Stun = GameRules.CombatSettings.Parry.HitStun;
                 break;
-
+            }
             case AttackResult.KnockDown:
+            {
+                // Skip attacker
+                if (!isDefender) return;
 
-                TimeStop = attack.FrameData.HitStop;
-                if (isDefender)
+                OnStunned?.Invoke();
+                OnDamageTaken?.Invoke(attack.Damage);
+                OnKnockbackTaken?.Invoke(attack.HitKb);
+
+                SetStanceState(StanceState.KnockedDown);
+
+                AnimData animData = attack.Level switch
                 {
-                    OnStunned?.Invoke();
-                    OnDamageTaken?.Invoke(attack.Damage);
-                    OnKnockbackTaken?.Invoke(attack.HitKb);
+                    AttackLevel.Low => GlobalAnimHashes.KnockDown.Low,
+                    AttackLevel.Mid => GlobalAnimHashes.KnockDown.Mid,
+                    AttackLevel.High => GlobalAnimHashes.KnockDown.High,
 
-                    SetStanceState(StanceState.KnockedDown);
+                    _ => GlobalAnimHashes.Missing,
+                };
 
-                    AnimData animData = attack.Level switch
-                    {
-                        AttackLevel.Low => GlobalAnimHashes.KnockDown.Low,
-                        AttackLevel.Mid => GlobalAnimHashes.KnockDown.Mid,
-                        AttackLevel.High => GlobalAnimHashes.KnockDown.High,
+                PlayAnimation(animData);
 
-                        _ => GlobalAnimHashes.Missing,
-                    };
+                Stun = result == AttackResult.CounterHit ?
+                    attack.FrameData.CounterStun :
+                    attack.FrameData.HitStun;
 
-                    PlayAnimation(animData);
-
-                    Stun = result == AttackResult.CounterHit ?
-                        attack.FrameData.CounterStun :
-                        attack.FrameData.HitStun;
-                }
                 break;
-
+            }
             case AttackResult.Hit or AttackResult.CounterHit:
+            {
+                // Skip attacker
+                if (!isDefender) return;
+                
+                OnStunned?.Invoke();
+                OnDamageTaken?.Invoke(attack.Damage);
+                OnKnockbackTaken?.Invoke(attack.HitKb);
 
-                TimeStop = attack.FrameData.HitStop;
-                if (isDefender)
+                bool isAttackLow = attack.Level == AttackLevel.Low;
+                AnimData animData = state.StanceState switch
                 {
-                    OnStunned?.Invoke();
-                    OnDamageTaken?.Invoke(attack.Damage);
-                    OnKnockbackTaken?.Invoke(attack.HitKb);
+                    StanceState.Standing => isAttackLow ?
+                        GlobalAnimHashes.Hurt.Standing.Low :
+                        GlobalAnimHashes.Hurt.Standing.MidHigh,
 
-                    bool isAttackLow = attack.Level == AttackLevel.Low;
-                    AnimData animData = state.StanceState switch
-                    {
-                        StanceState.Standing => isAttackLow ?
-                            GlobalAnimHashes.Hurt.Standing.Low :
-                            GlobalAnimHashes.Hurt.Standing.MidHigh,
+                    StanceState.Crouching => isAttackLow ?
+                        GlobalAnimHashes.Hurt.Crouching.Low :
+                        GlobalAnimHashes.Hurt.Crouching.MidHigh,
 
-                        StanceState.Crouching => isAttackLow ?
-                            GlobalAnimHashes.Hurt.Crouching.Low :
-                            GlobalAnimHashes.Hurt.Crouching.MidHigh,
+                    _ => GlobalAnimHashes.Missing,
+                };
 
-                        _ => GlobalAnimHashes.Missing,
-                    };
+                PlayAnimation(animData);
 
-                    PlayAnimation(animData);
-
-                    Stun = result == AttackResult.CounterHit ?
-                        attack.FrameData.CounterStun :
-                        attack.FrameData.HitStun;
-                }
+                Stun = result == AttackResult.CounterHit ?
+                    attack.FrameData.CounterStun :
+                    attack.FrameData.HitStun;
+                
                 break;
+            }
+            case AttackResult.StandingBlocked or AttackResult.CrouchBlocked:
+            {
+                // Skip attacker
+                if (!isDefender) return;
 
-            case AttackResult.StandingBlocked or AttackResult.LowBlocked:
+                OnStunned?.Invoke();
+                OnKnockbackTaken?.Invoke(attack.BlockKb);
 
-                TimeStop = attack.FrameData.BlockStop;
-                if (isDefender)
-                {
-                    OnStunned?.Invoke();
-                    OnKnockbackTaken?.Invoke(attack.BlockKb);
+                PlayAnimation(result == AttackResult.StandingBlocked ?
+                    GlobalAnimHashes.Block.Standing :
+                    GlobalAnimHashes.Block.Crouching);
 
-                    PlayAnimation(result == AttackResult.StandingBlocked ?
-                        GlobalAnimHashes.Block.Standing :
-                        GlobalAnimHashes.Block.Crouching);
-
-                    Stun = attack.FrameData.BlockStun;
-                }
+                Stun = attack.FrameData.BlockStun;
                 break;
-
+            }
             default:
                 break;
         }
@@ -162,7 +161,7 @@ public class PlayerStateMachine
 
             bool isBlockStun =
                 result == AttackResult.StandingBlocked ||
-                result == AttackResult.LowBlocked;
+                result == AttackResult.CrouchBlocked;
 
             SetCombatState(isBlockStun ? CombatState.BlockStun : CombatState.HitStun);
         }
@@ -174,12 +173,6 @@ public class PlayerStateMachine
     /// </summary>
     public void TickUpdateStuns()
     {
-        if (TimeStop > 0)
-        {
-            TimeStop -= 1;
-            return;
-        }
-
         // If player is no longer stunned this frame, recover
         if (Stun == 0 &&
             (state.CombatState == CombatState.HitStun || state.CombatState == CombatState.BlockStun))

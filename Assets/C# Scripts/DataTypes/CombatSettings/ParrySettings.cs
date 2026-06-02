@@ -12,9 +12,6 @@ public struct ParrySettings
     [Header("(Parry) 'OnParry' stun")]
     public int HitStun;
 
-    [Header("(Parry) HitStop for dramatic effect 'OnParry'")]
-    public int HitStop;
-
 #if UNITY_EDITOR
     [Header("Usefull Info")]
     [EditorReadOnly] public int TotalParryDuration;

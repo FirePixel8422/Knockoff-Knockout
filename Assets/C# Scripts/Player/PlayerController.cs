@@ -16,8 +16,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PlayerColliderHandler colliderHandler;
     [SerializeField] private PlayerHealthHandler healthHandler;
 
-    [SerializeField] private PlayerAttackHandler attackHandler;
     [SerializeField] private PlayerMovementHandler movementHandler;
+    [SerializeField] private PlayerAttackHandler attackHandler;
+
+    [SerializeField] private PlayerParticleHandler particleHandler;
 
     [EditorReadOnly, SerializeField] private PlayerInputRouter inputRouter;
     [EditorReadOnly, SerializeField] private PlayerInputOverrider inputOverrider;
@@ -66,6 +68,8 @@ public class PlayerController : MonoBehaviour
         movementHandler = new PlayerMovementHandler(stateMachine, inputHandler, transform, isLeftPlayer);
         attackHandler = new PlayerAttackHandler(stateMachine, inputHandler, colliderHandler, movementHandler);
 
+        particleHandler.Init(ref stateMachine.OnAttackConnected);
+
         if (TryGetComponent(out inputRouter))
         {
             inputRouter.Init(inputHandler);
@@ -75,15 +79,11 @@ public class PlayerController : MonoBehaviour
 
     public void OnUpdate(float deltaTime)
     {
-        if (stateMachine.IsTimeStopped) return;
-
         movementHandler.OnUpdate(deltaTime);
     }
 
     public void PreTickUpdate()
     {
-        if (stateMachine.IsTimeStopped) return;
-
         stateMachine.TickUpdateStuns();
 
         // Push all collected inputs into tick buffer.
@@ -114,8 +114,6 @@ public class PlayerController : MonoBehaviour
     public void TickUpdate(out bool activeAttackConnected)
     {
         activeAttackConnected = false;
-
-        if (stateMachine.IsTimeStopped) return;
 
         // If player is not in the attack active state, return
         if (!stateMachine.IsAttackActive) return;
