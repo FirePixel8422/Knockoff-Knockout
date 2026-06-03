@@ -579,7 +579,7 @@ PrefabInstance:
     - target: {fileID: 955034650294576780, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
       propertyPath: mode
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 955034650294576780, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
@@ -589,7 +589,7 @@ PrefabInstance:
     - target: {fileID: 955034650294576780, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
       propertyPath: inputBuffer.Array.size
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 955034650294576780, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
@@ -619,7 +619,7 @@ PrefabInstance:
     - target: {fileID: 955034650294576780, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
       propertyPath: inputBuffer.Array.data[1].DirectionFlag
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 955034650294576780, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
@@ -1914,12 +1914,12 @@ PrefabInstance:
     - target: {fileID: 462349441569158861, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
       propertyPath: DrawGizmos
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 618919483566322620, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
       propertyPath: DrawGizmos
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 703079866649212308, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
@@ -1939,7 +1939,7 @@ PrefabInstance:
     - target: {fileID: 734430286507157591, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
       propertyPath: DrawGizmos
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 764141283317090996, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
@@ -3759,7 +3759,7 @@ PrefabInstance:
     - target: {fileID: 1574238758459273528, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
       propertyPath: DrawGizmos
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1663440604651676670, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
@@ -3904,7 +3904,7 @@ PrefabInstance:
     - target: {fileID: 2492877399648640170, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
       propertyPath: DrawGizmos
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2644408227704400518, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
@@ -3924,7 +3924,7 @@ PrefabInstance:
     - target: {fileID: 2724546261358546486, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
       propertyPath: DrawGizmos
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2728653723363755857, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
@@ -3944,7 +3944,7 @@ PrefabInstance:
     - target: {fileID: 2747466930037395757, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
       propertyPath: DrawGizmos
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2749758009055552317, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
@@ -3959,7 +3959,7 @@ PrefabInstance:
     - target: {fileID: 3195379029810988223, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
       propertyPath: DrawGizmos
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3303879097378830774, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
@@ -3989,7 +3989,7 @@ PrefabInstance:
     - target: {fileID: 3363543592361418941, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
       propertyPath: DrawGizmos
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3391273059587464415, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
@@ -4024,7 +4024,7 @@ PrefabInstance:
     - target: {fileID: 3767434509231332676, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
       propertyPath: DrawGizmos
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4116413435444457565, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
@@ -4714,7 +4714,7 @@ PrefabInstance:
     - target: {fileID: 4964369094200513010, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
       propertyPath: DrawGizmos
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5128932824844181991, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
@@ -4764,7 +4764,7 @@ PrefabInstance:
     - target: {fileID: 5635123758638904298, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
       propertyPath: DrawGizmos
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5861820830753710211, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
@@ -4799,7 +4799,7 @@ PrefabInstance:
     - target: {fileID: 6027686302215331779, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
       propertyPath: DrawGizmos
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6048496334941282508, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
@@ -4819,7 +4819,7 @@ PrefabInstance:
     - target: {fileID: 6098792166017571923, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
       propertyPath: DrawGizmos
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6299184145716423354, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
@@ -4869,7 +4869,7 @@ PrefabInstance:
     - target: {fileID: 7102855956738101009, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
       propertyPath: DrawGizmos
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7121816983755127441, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
@@ -4879,7 +4879,7 @@ PrefabInstance:
     - target: {fileID: 7151240385439087908, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
       propertyPath: DrawGizmos
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7194011227725542217, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
@@ -4944,7 +4944,7 @@ PrefabInstance:
     - target: {fileID: 7423551084806506838, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
       propertyPath: DrawGizmos
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7425542740368637815, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
@@ -5004,7 +5004,7 @@ PrefabInstance:
     - target: {fileID: 7998245340112093784, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
       propertyPath: DrawGizmos
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8000820596318267725, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
