@@ -7,7 +7,7 @@ namespace Fire_Pixel.Utility
     /// Container that stores an <see cref="Action"/> which can be subscribed to and is invoked only once.
     /// If subscribed to after invoke already happened, call the subscriber instantly
     /// </summary>
-    public class OneTimeAction
+    public class CompletionAction
     {
         private event Action InternalAction;
         private bool hasExecuted;
@@ -20,7 +20,7 @@ namespace Fire_Pixel.Utility
             InternalAction = null;
             hasExecuted = true;
         }
-        public static OneTimeAction operator +(OneTimeAction e, Action action)
+        public static CompletionAction operator +(CompletionAction e, Action action)
         {
             if (!e.hasExecuted)
             {
@@ -32,7 +32,7 @@ namespace Fire_Pixel.Utility
             }
             return e;
         }
-        public static OneTimeAction operator -(OneTimeAction e, Action action)
+        public static CompletionAction operator -(CompletionAction e, Action action)
         {
             if (!e.hasExecuted)
             {
@@ -45,7 +45,7 @@ namespace Fire_Pixel.Utility
     /// <summary>
     /// Container that stores an <see cref="Action{T}"/> which can be subscribed to and is invoked only once. If subscribed to after invoke already happened, call the subscriber instantly
     /// </summary>
-    public class OneTimeAction<T>
+    public class CompletionAction<T>
     {
         private event Action<T> InternalAction;
         private bool hasExecuted;
@@ -62,7 +62,7 @@ namespace Fire_Pixel.Utility
             hasExecuted = true;
             invokedValue = value;
         }
-        public static OneTimeAction<T> operator +(OneTimeAction<T> e, Action<T> action)
+        public static CompletionAction<T> operator +(CompletionAction<T> e, Action<T> action)
         {
             if (!e.hasExecuted)
             {
@@ -74,7 +74,7 @@ namespace Fire_Pixel.Utility
             }
             return e;
         }
-        public static OneTimeAction<T> operator -(OneTimeAction<T> e, Action<T> action)
+        public static CompletionAction<T> operator -(CompletionAction<T> e, Action<T> action)
         {
             if (!e.hasExecuted)
             {

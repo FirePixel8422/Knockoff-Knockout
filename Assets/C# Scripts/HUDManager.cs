@@ -16,7 +16,7 @@ public class HUDManager : MonoBehaviour
     {
         Instance = this;
 
-        PlayerManager.PostPlayersInitialized += () =>
+        PlayerManager.PlayersInitComplete += () =>
         {
             FighterSettings fighterSettings = GameRules.CombatSettings.Fighter;
 

@@ -11,20 +11,19 @@ using UnityEngine.InputSystem;
 public class PlayerManager : FrameTickUpdateMB
 {
     public static PlayerManager Instance { get; private set; }
-    public static OneTimeAction PostPlayersInitialized { get; set; } = new OneTimeAction();
+    public static CompletionAction PlayersInitComplete { get; set; } = new CompletionAction();
 
 
+    [SerializeField] private AttackMoveSetSO moveSetSO;
     [SerializeField] private PlayerController[] players;
     [SerializeField] private Color[] playerColors;
     public PlayerController[] Players => players;
     public Color[] PlayerColors => playerColors;
 
 
-    [SerializeField] private GamepadRumbleParameters onJoinRumble;
-
     private readonly Dictionary<PlayerInputBinder, PlayerInputRouter> binderToRouterMap = new(GlobalGameData.MAX_PLAYERS);
 
-    private bool[] playerAttackConnects = new bool[GlobalGameData.MAX_PLAYERS];
+    private readonly bool[] playerAttackConnects = new bool[GlobalGameData.MAX_PLAYERS];
 
 
 #if Enable_Debug_Systems
@@ -37,14 +36,14 @@ public class PlayerManager : FrameTickUpdateMB
     {
         Instance = this;
 
-        GameRules.PostRulesInitialized += () =>
+        GameRules.RulesInitComplete += () =>
         {
             for (int i = 0; i < GlobalGameData.MAX_PLAYERS; i++)
             {
-                players[i].Init();
+                players[i].Init(moveSetSO.GetBakedDataArray());
             }
 
-            PostPlayersInitialized?.Invoke();
+            PlayersInitComplete?.Invoke();
         };
     }
 
@@ -98,11 +97,6 @@ public class PlayerManager : FrameTickUpdateMB
         {
             DebugLogger.LogError("No available player slot for '" + binder.name + "' There shouldnt be more binders then routers", logInputDeviceChanges);
             return;
-        }
-
-        if (device != null && device is Gamepad pad)
-        {
-            GamepadRumble.SetRumble(pad, onJoinRumble);
         }
     }
 
@@ -166,6 +160,6 @@ public class PlayerManager : FrameTickUpdateMB
 
     private void OnDestroy()
     {
-        PostPlayersInitialized = new OneTimeAction();
+        PlayersInitComplete = new CompletionAction();
     }
 }

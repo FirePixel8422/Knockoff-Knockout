@@ -60,7 +60,7 @@ public class CameraManager : MonoBehaviour
         viewPositionState = new Vector3LerpState(viewCenterTransform.position);
         viewRotationState = new QuaternionLerpState(viewCenterTransform.rotation);
 
-        PlayerManager.PostPlayersInitialized += () =>
+        PlayerManager.PlayersInitComplete += () =>
         {
             playerMoveHandlers = new PlayerMovementHandler[GlobalGameData.MAX_PLAYERS];
             for (int i = 0; i < GlobalGameData.MAX_PLAYERS; i++)

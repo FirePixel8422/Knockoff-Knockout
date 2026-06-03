@@ -7,7 +7,6 @@
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private PlayerController opponent;
-    [SerializeField] private AttackMoveSetSO moveSetSO;
     [SerializeField] private bool isLeftPlayer;
 
     [SerializeField] private PlayerStateMachine stateMachine;
@@ -57,10 +56,10 @@ public class PlayerController : MonoBehaviour
 #endif
 
 
-    public void Init()
+    public void Init(AttackData[] attackMoveSet)
     {
         stateMachine = new PlayerStateMachine(transform);
-        inputHandler = new PlayerInputHandler(moveSetSO.GetBakedDataArray());
+        inputHandler = new PlayerInputHandler(attackMoveSet);
 
         colliderHandler = new PlayerColliderHandler(transform);
         healthHandler = new PlayerHealthHandler(ref stateMachine.OnDamageTaken);

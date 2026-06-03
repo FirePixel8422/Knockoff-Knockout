@@ -8,21 +8,21 @@ public static class GlobalAnimHashes
 {
     public static class Block
     {
-        public static readonly AnimData Standing = new AnimData("StandingBlock", true, 0, 5);
-        public static readonly AnimData Crouching = new AnimData("CrouchingBlock", true, 0, 5);
+        public static readonly AnimData Standing = new AnimData("StandingBlock", true, 1, 5);
+        public static readonly AnimData Crouching = new AnimData("CrouchingBlock", true, 1, 5);
     }
 
     public static class Hurt
     {
         public static class Standing
         {
-            public static readonly AnimData Low = new AnimData("StandingLowHurt", true, 0, 5);
-            public static readonly AnimData MidHigh = new AnimData("StandingHighHurt", true, 0, 5);
+            public static readonly AnimData Low = new AnimData("StandingLowHurt", true, 2, 5);
+            public static readonly AnimData MidHigh = new AnimData("StandingHighHurt", true, 2, 5);
         }
         public static class Crouching
         {
-            public static readonly AnimData Low = new AnimData("CrouchingLowHurt", true, 0, 5);
-            public static readonly AnimData MidHigh = new AnimData("CrouchingHighHurt", true, 0, 5);
+            public static readonly AnimData Low = new AnimData("CrouchingLowHurt", true, 2, 5);
+            public static readonly AnimData MidHigh = new AnimData("CrouchingHighHurt", true, 2, 5);
         }
         public static class KnockedDown
         {
@@ -33,9 +33,9 @@ public static class GlobalAnimHashes
 
     public static class KnockDown
     {
-        public static readonly AnimData Low = new AnimData("LowKnockDown", true, 2, 5);
-        public static readonly AnimData Mid = new AnimData("MidKnockDown", true, 2, 5);
-        public static readonly AnimData High = new AnimData("HighKnockDown", true, 2, 5);
+        public static readonly AnimData Low = new AnimData("LowKnockDown", true, 8, 5);
+        public static readonly AnimData Mid = new AnimData("MidKnockDown", true, 8, 5);
+        public static readonly AnimData High = new AnimData("HighKnockDown", true, 8, 5);
     }
 
     public static class Movement

@@ -7,18 +7,18 @@
 public static class GameRules
 {
     public static CombatSettings CombatSettings { get; private set; }
-    public static OneTimeAction PostRulesInitialized { get; set; } = new OneTimeAction();
+    public static CompletionAction RulesInitComplete { get; set; } = new CompletionAction();
 
 
     public static void Reset()
     {
-        PostRulesInitialized = new OneTimeAction();
+        RulesInitComplete = new CompletionAction();
         CombatSettings.Dispose();
     }
     public static void SetGameRules(CombatSettings combatSettings)
     {
         CombatSettings = combatSettings;
 
-        PostRulesInitialized?.Invoke();
+        RulesInitComplete?.Invoke();
     }
 }

@@ -20,7 +20,6 @@ public class ControllerAssigner : UpdateMonoBehaviour
     [SerializeField] private int[] fighterSlotToFighterId;
 
     [SerializeField] private float animationLerp;
-    [SerializeField] private GamepadRumbleParameters onSelectPlayerRumble = GamepadRumbleParameters.ShortSoftRumble;
 
     private readonly Vector2[] prevDirInputs = new Vector2[GlobalGameData.MAX_PLAYERS];
     private readonly bool[] usedPlayerIds = new bool[GlobalGameData.MAX_PLAYERS];
@@ -266,14 +265,6 @@ public class ControllerAssigner : UpdateMonoBehaviour
         }
 
         playerFighterSlotIds[playerId] = newSlotId;
-        if (device is Gamepad pad)
-        {
-            GamepadRumble.SetRumble(pad, onSelectPlayerRumble);
-        }
-        else
-        {
-            DebugLogger.Log("nah");
-        }
     }
 
     #endregion
