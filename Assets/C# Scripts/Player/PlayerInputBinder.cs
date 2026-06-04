@@ -3,6 +3,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 
+/// <summary>
+/// MB class recieving playerInput callbacks from an attached <see cref="PlayerInput"/> component.
+/// This input can then be bound to a <see cref="PlayerInputRouter"/> to allow taking control of the fighters.
+/// </summary>
+[RequireComponent(typeof(PlayerInput))]
 public class PlayerInputBinder : MonoBehaviour
 {
     [EditorReadOnly, SerializeField] private PlayerInputRouter playerInputRouter;

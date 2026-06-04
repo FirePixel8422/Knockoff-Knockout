@@ -1,44 +1,37 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 
+/// <summary>
+/// MB class recieving input callbacks through a bound <see cref="PlayerInputBinder"/> component.
+/// </summary>
 public class PlayerInputRouter : MonoBehaviour
 {
-    private PlayerInputHandler playerInputHandler;
+    private PlayerInputHandler inputHandler;
+    private PlayerInputOverrider inputOverrider;
     public bool IsAssigned;
 
-//#if UNITY_EDITOR
-    public Action<Vector2> DirectionInput;
-    public Action<AttackInputFlags> AttackInput;
-//#endif
 
-
-    public void Init(PlayerInputHandler inputHandler)
+    public void Init(PlayerInputHandler inputHandler, PlayerInputOverrider inputOverrider)
     {
-        playerInputHandler = inputHandler;
+        this.inputHandler = inputHandler;
+        this.inputOverrider = inputOverrider;
     }
 
 
     public void OnInputDeviceLost()
     {
-        playerInputHandler.ClearInputBuffer(false);
+        inputHandler.ClearInputBuffer(false);
         IsAssigned = false;
     }
 
     public void OnDirection(Vector2 dirVec)
     {
-        playerInputHandler.OnDirection(dirVec);
-
-//#if UNITY_EDITOR
-        DirectionInput?.Invoke(dirVec);
-//#endif
+        inputHandler.OnDirection(dirVec);
+        inputOverrider.OnDirection(dirVec);
     }
     public void OnButtonPressed(AttackInputFlags flag)
     {
-        playerInputHandler.OnButtonPressed(flag);
-
-//#if UNITY_EDITOR
-        AttackInput?.Invoke(flag);
-//#endif
+        inputHandler.OnButtonPressed(flag);
+        inputOverrider.OnButtonPressed(flag);
     }
 }

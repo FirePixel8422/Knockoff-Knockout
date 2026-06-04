@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     [EditorReadOnly, SerializeField] private PlayerInputRouter inputRouter;
     [EditorReadOnly, SerializeField] private PlayerInputOverrider inputOverrider;
 
-    public PlayerInputHandler InputHandler => inputHandler;
+    public bool IsLeftPlayer => isLeftPlayer;
     public PlayerColliderHandler ColliderHandler => colliderHandler;
     public PlayerHealthHandler HealthHandler => healthHandler;
     public PlayerMovementHandler MovementHandler => movementHandler;
@@ -69,11 +69,10 @@ public class PlayerController : MonoBehaviour
 
         particleHandler.Init(ref stateMachine.OnAttackConnected);
 
-        if (TryGetComponent(out inputRouter))
-        {
-            inputRouter.Init(inputHandler);
-        }
+        inputRouter = GetComponent<PlayerInputRouter>();
         inputOverrider = GetComponent<PlayerInputOverrider>();
+
+        inputRouter.Init(inputHandler, inputOverrider);
     }
 
     public void OnUpdate(float deltaTime)

@@ -588,6 +588,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 955034650294576780, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
+      propertyPath: recordingSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 85eb698c2f9670843b69dcc77aa721bd,
+        type: 2}
+    - target: {fileID: 955034650294576780, guid: 2c306b11cd47a6646b8d56dd3ec68212,
+        type: 3}
       propertyPath: inputBuffer.Array.size
       value: 1
       objectReference: {fileID: 0}
@@ -1979,13 +1985,19 @@ PrefabInstance:
     - target: {fileID: 955034650294576780, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
       propertyPath: mode
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 955034650294576780, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 955034650294576780, guid: 2c306b11cd47a6646b8d56dd3ec68212,
+        type: 3}
+      propertyPath: recordingSO
+      value: 
+      objectReference: {fileID: 11400000, guid: dc3bfb862de9bb943b0b23dcdd80a630,
+        type: 2}
     - target: {fileID: 955034650294576780, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
       propertyPath: inputBuffer.Array.size

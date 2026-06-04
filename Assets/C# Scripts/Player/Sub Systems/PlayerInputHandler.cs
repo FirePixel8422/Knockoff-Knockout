@@ -27,7 +27,7 @@ public class PlayerInputHandler
     }
 
     
-    #region Player Input Callbacks
+    #region Player Input/Overrider Callbacks
 
     /// <summary>
     /// Send button input <paramref name="flag"/> to the input buffer
@@ -61,6 +61,13 @@ public class PlayerInputHandler
         }
 
         bufferHandler.UpdateCurrentDirection(dirInput);
+    }
+    /// <summary>
+    /// Override <paramref name="frameInput"/> in input buffer
+    /// </summary>
+    public void OnInputOverride(FrameInput frameInput)
+    {
+        bufferHandler.UpdateCurrentInput(frameInput);
     }
 
     #endregion
@@ -108,7 +115,7 @@ public class PlayerInputHandler
             targetAttack = moveSet[i];
 
             // Perfect input found, no need to continue checking other moves in the moveset
-            if (bestAttackStrength == 4)
+            if (bestAttackStrength == 3)
                 break;
         }
 
@@ -116,7 +123,7 @@ public class PlayerInputHandler
     }
 
     /// <summary>
-    /// Check if there is a sidestep input in the buffer, if so return true and dash direction as bool <paramref name="isSideStepUp"/>
+    /// Check if there is a sidestep input in the buffer, if so return true and sidestep direction as bool <paramref name="isSideStepUp"/>
     /// </summary>
     public bool TryReadSideStep(out bool isSideStepUp) => bufferHandler.TestSideStep(out isSideStepUp);
 
@@ -139,7 +146,7 @@ public class InputBufferHandler
     public DirectionInput GetCurrentDirection() => cRawInput.DirectionFlag;
 
 
-    #region Buffer Update/Managament
+    #region Input Writing
 
     /// <summary>
     /// Add <paramref name="flag"/> to current tick's buffered attack button inputs
@@ -155,6 +162,18 @@ public class InputBufferHandler
     {
         cRawInput.DirectionFlag = dir;
     }
+    /// <summary>
+    /// Override <paramref name="frameInput"/> in current tick's buffered frameInput
+    /// </summary>
+    public void UpdateCurrentInput(FrameInput frameInput)
+    {
+        cRawInput = frameInput;
+    }
+
+    #endregion
+
+
+    #region Buffer Update/Managament
 
     /// <summary>
     /// Write collected input to buffer
@@ -190,6 +209,9 @@ public class InputBufferHandler
 
     #region Input Reading
 
+    /// <summary>
+    /// Check if attack input '<paramref name="targetInput"/>' is in the input buffer. If so, return 
+    /// </summary>
     public int TestAttack(FrameInput targetInput)
     {
         int moveStrength = 0;
@@ -206,7 +228,7 @@ public class InputBufferHandler
                 continue;
             }
 
-            // If button is correct and the to test inputs direction is neutral > award 1/4 points
+            // If button is correct and targetInput direction is neutral > award 1/3 points
             if (targetInput.DirectionFlag == DirectionInput.Neutral)
             {
                 moveStrength = 1;
@@ -218,8 +240,11 @@ public class InputBufferHandler
                 // Check into the past of the buffer for X frames for if the target attacks direction is found
                 if (inputBuffer[dirIndex].DirectionFlag == targetInput.DirectionFlag)
                 {
-                    // Exact move was matched with buffer history > award 3/4 points
-                    return targetInput.DirectionFlag == DirectionInput.Neutral ? 3 : 4;
+                    // Exact move was matched with buffer history >
+                    // If move is neutral direction > award 2/3 points
+                    // If move is non neutral direction > award 3/3 points
+                    // This so directional moves take execution priority over neutral moves.
+                    return targetInput.DirectionFlag == DirectionInput.Neutral ? 2 : 3;
                 }
                 dirIndex.DecrementSmart(GlobalGameData.INPUT_BUFFER_SIZE);
             }
@@ -229,6 +254,9 @@ public class InputBufferHandler
         return moveStrength;
     }
 
+    /// <summary>
+    /// Check if there is a dash input in the input buffer. (If a directional double tap (Down/Up) taps are within the <see cref="GlobalGameData.MAX_DOUBLE_TAP_TICKS"/> window)
+    /// </summary>
     public bool TestSideStep(out bool isSideStepUp)
     {
         DirectionInput firstTap = DirectionInput.Neutral;
@@ -265,6 +293,10 @@ public class InputBufferHandler
         return false;
     }
 
+
+    /// <summary>
+    /// Check if there is a dash input in the input buffer. (If a directional double tap (Left/Right) taps are within the <see cref="GlobalGameData.MAX_DOUBLE_TAP_TICKS"/> window)
+    /// </summary>
     public bool TestDash(out bool isDashRight)
     {
         DirectionInput firstTap = DirectionInput.Neutral;

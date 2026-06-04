@@ -1,34 +1,30 @@
-using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 
 public class PlayerInputOverrider : MonoBehaviour
 {
     [SerializeField] private OverrideMode mode;
-    [SerializeField] private List<FrameInput> inputBuffer = new List<FrameInput>();
+    [SerializeField] private DummyRecordingSO recordingSO;
 
-    private int index;
-    private FrameInput cRawInput;
+    [EditorReadOnly, SerializeField] private int index;
+    [EditorReadOnly, SerializeField] private FrameInput cRawInput;
 
-    private PlayerInputRouter playerInputRouter;
+    [EditorReadOnly, SerializeField] private PlayerInputRouter playerInputRouter;
+    [EditorReadOnly, SerializeField] private bool isLeftPlayer;
+
+    private bool IsRecording => mode == OverrideMode.Collect;
 
 
     private void Awake()
     {
         playerInputRouter = GetComponent<PlayerInputRouter>();
-
-        playerInputRouter.DirectionInput += OnDirection;
-        playerInputRouter.AttackInput += OnButtonPressed;
-    }
-    private void OnDestroy()
-    {
-        playerInputRouter.DirectionInput -= OnDirection;
-        playerInputRouter.AttackInput -= OnButtonPressed;
+        isLeftPlayer = GetComponent<PlayerController>().IsLeftPlayer;
     }
 
     public void OnDirection(Vector2 dirVec)
     {
-        if (mode != OverrideMode.Collect) return;
+        if (!IsRecording) return;
 
         DirectionInput dirInput;
 
@@ -53,13 +49,16 @@ public class PlayerInputOverrider : MonoBehaviour
     }
     public void OnButtonPressed(AttackInputFlags flag)
     {
-        if (mode != OverrideMode.Collect) return;
+        if (!IsRecording) return;
 
         cRawInput.AttackFlags |= flag;
     }
 
+
     public void CollectInputs()
     {
+        if (recordingSO == null) return;
+
         switch (mode)
         {
             case OverrideMode.None:
@@ -68,32 +67,26 @@ public class PlayerInputOverrider : MonoBehaviour
 
             case OverrideMode.Collect:
                 if (!playerInputRouter.IsAssigned) return;
-                inputBuffer.Add(cRawInput);
+                recordingSO.Timeline.Add(cRawInput);
+                EditorUtility.SetDirty(recordingSO);
                 cRawInput.AttackFlags = AttackInputFlags.None;
                 break;
 
-            case OverrideMode.FirstConstant:
-                if (playerInputRouter.IsAssigned || inputBuffer.Count == 0) return;
-                SendInput(inputBuffer[0]);
-                break;
-
             case OverrideMode.Playback:
-                if (playerInputRouter.IsAssigned || index == inputBuffer.Count) return;
-                SendInput(inputBuffer[index++]);
-                break;
-            case OverrideMode.PlaybackLoop:
-                if (playerInputRouter.IsAssigned || index == inputBuffer.Count) return;
-                SendInput(inputBuffer[index]);
-                index.IncrementSmart(inputBuffer.Count);
+                if (playerInputRouter.IsAssigned || index == recordingSO.Timeline.Count) return;
+                SendInput(recordingSO.Timeline[index]);
+                index.IncrementSmart(recordingSO.Timeline.Count);
                 break;
         }
     }
     private void SendInput(FrameInput input)
     {
+        bool invert = !isLeftPlayer && recordingSO.DoMirrorForRightPlayer;
+
         Vector3 dir = input.DirectionFlag switch
         {
-            DirectionInput.Left => Vector2.left,
-            DirectionInput.Right => Vector2.right,
+            DirectionInput.Left => invert ? Vector2.right : Vector2.left,
+            DirectionInput.Right => invert ? Vector2.left : Vector2.right,
             DirectionInput.Up => Vector2.up,
             DirectionInput.Down => Vector2.down,
             _ => Vector2.zero
@@ -108,8 +101,6 @@ public class PlayerInputOverrider : MonoBehaviour
     {
         None,
         Collect,
-        FirstConstant,
         Playback,
-        PlaybackLoop,
     }
 }
