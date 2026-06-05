@@ -49,17 +49,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0eb69aa07c727b479cf622263cb7d87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerManager
+  moveSetSO: {fileID: 11400000, guid: 0fef3c80fa41e8e49a9cb3b36f9bc920, type: 2}
   players:
   - {fileID: 0}
   - {fileID: 0}
   playerColors:
   - {r: 1, g: 0.40784314, b: 0.3372549, a: 1}
   - {r: 0.32941177, g: 0.75686276, b: 1, a: 1}
-  onJoinRumble:
-    Duration: 0.25
-    LowFreq: 0.75
-    HighFreq: 0.75
-    FadeTime: 0.15
   logInputDeviceChanges: 0
 --- !u!114 &6978140392595444865
 MonoBehaviour:
@@ -141,11 +137,6 @@ MonoBehaviour:
   - 350
   fighterSlotToFighterId: 00000000ffffffff01000000
   animationLerp: 12
-  onSelectPlayerRumble:
-    Duration: 0.15
-    LowFreq: 0.5
-    HighFreq: 0.5
-    FadeTime: 0.15
 --- !u!114 &3131196938505597103
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -172,7 +163,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CameraManager
   viewCenterTransform: {fileID: 0}
-  cameraLerpSpeed: 4
+  cameraPosLerpSpeed: 4
+  cameraRotLerpSpeed: 2.5
   maxPlayerSpacing: 6
   arenaRadius: 10
   drawCameraGizmos: 1
