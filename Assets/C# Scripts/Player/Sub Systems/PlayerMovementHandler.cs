@@ -293,7 +293,7 @@ public class PlayerMovementHandler
     {
         lastMoveDir = addedMovement.normalized;
 
-        positionState.Target = CameraManager.Instance.ClampMovementToCameraBounds(positionState.Target, addedMovement);
+        positionState.Target = CameraManager.Instance.ClampMovementToCameraBounds(positionState.Target, addedMovement, isLeftPlayer);
     }
     /// <summary>
     /// Set the fighters target rotation to be so its looking at the other fighter, which is slerped in OnUpdate()

@@ -16,6 +16,7 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private float cameraRotLerpSpeed;
 
     [SerializeField] private float maxPlayerSpacing;
+    [SerializeField] private float minPlayerSpacing;
     [SerializeField] private float arenaRadius;
 
     private Vector3LerpState viewPositionState;
@@ -49,6 +50,17 @@ public class CameraManager : MonoBehaviour
         Gizmos.color = Color.white;
         Gizmos.DrawWireMesh(GlobalMeshes.Cube, center, rotation, new Vector3(0.35f, 0.01f, 0.35f));
         Gizmos.DrawWireSphere(Vector3.zero, arenaRadius);
+
+
+        if (!Application.isPlaying) return;
+
+        for (int i = 0; i < GlobalGameData.MAX_PLAYERS; i++)
+        {
+            Vector3 pos = playerMoveHandlers[i].CurrentTransformPos;
+            Vector3 opponentPos = playerMoveHandlers[1 - i].CurrentTransformPos;
+
+            Gizmos.DrawWireSphere(pos, Vector3.Distance(pos, opponentPos));
+        }
     }
 #endif
 
@@ -80,15 +92,17 @@ public class CameraManager : MonoBehaviour
             viewRotationState.Slerp(cameraRotLerpSpeed * deltaTime));
     }
 
-    public Vector3 ClampMovementToCameraBounds(Vector3 currentPosition, Vector3 addedMovement)
+    /// <summary>
+    /// Modify <paramref name="currentPosition"/> to respect arena walls, player walls and stay in camera view
+    /// </summary>
+    public Vector3 ClampMovementToCameraBounds(Vector3 currentPosition, Vector3 addedMovement, bool isLeftPlayer)
     {
         Vector3 center = GetPlayerCenter();
-
         Vector3 targetPosition = currentPosition + addedMovement;
 
         float halfSpacing = maxPlayerSpacing * 0.5f;
 
-        // ---------- PLAYER SPACING CONSTRAINT ----------
+        // Player view lock (Keeps the players from leaving the camera view
         Vector3 offsetFromCenter = targetPosition - center;
         offsetFromCenter.y = 0;
 
@@ -99,7 +113,7 @@ public class CameraManager : MonoBehaviour
             targetPosition.y = currentPosition.y;
         }
 
-        // ---------- ARENA SPHERE CONSTRAINT ----------
+        // Arena walls (Sphere)
         Vector3 fromArenaCenter = targetPosition;
         fromArenaCenter.y = 0;
 
@@ -108,6 +122,19 @@ public class CameraManager : MonoBehaviour
             Vector3 dir = fromArenaCenter.normalized;
             targetPosition = dir * arenaRadius;
             targetPosition.y = currentPosition.y;
+        }
+
+        // Player walls (Keeps the players from moving through eachother)
+        Vector3 opponentPos = playerMoveHandlers[isLeftPlayer ? 1 : 0].CurrentTransformPos;
+        opponentPos.y = targetPosition.y;
+
+        Vector3 delta = targetPosition - opponentPos;
+        delta.y = 0;
+
+        if (delta.sqrMagnitude < minPlayerSpacing * minPlayerSpacing)
+        {
+            Vector3 dir = delta.normalized;
+            targetPosition = opponentPos + dir * minPlayerSpacing;
         }
 
         return targetPosition;
