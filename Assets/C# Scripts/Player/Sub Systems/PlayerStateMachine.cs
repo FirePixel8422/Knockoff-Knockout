@@ -69,6 +69,7 @@ public class PlayerStateMachine
                 OnStunned?.Invoke();
 
                 Stun = GameRules.CombatSettings.Parry.HitStun;
+
                 break;
             }
             case AttackResult.KnockDown:
@@ -92,10 +93,7 @@ public class PlayerStateMachine
                 };
 
                 PlayAnimation(animData);
-
-                Stun = result == AttackResult.CounterHit ?
-                    attack.FrameData.CounterStun :
-                    attack.FrameData.HitStun;
+                Stun = attack.FrameData.HitStun;
 
                 break;
             }
@@ -123,7 +121,6 @@ public class PlayerStateMachine
                 };
 
                 PlayAnimation(animData);
-
                 Stun = result == AttackResult.CounterHit ?
                     attack.FrameData.CounterStun :
                     attack.FrameData.HitStun;
@@ -141,8 +138,8 @@ public class PlayerStateMachine
                 PlayAnimation(result == AttackResult.StandingBlocked ?
                     GlobalAnimHashes.Block.Standing :
                     GlobalAnimHashes.Block.Crouching);
-
                 Stun = attack.FrameData.BlockStun;
+                
                 break;
             }
             default:

@@ -12,24 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b862d7d41f8e184187976caf926811d, type: 3}
   m_Name: HighKick
   m_EditorClassIdentifier: Assembly-CSharp::AttackSO
+  animationName: HighKick
+  blendIn: 3
+  blendOut: 5
   Value:
-    animationName: HighKick
-    blendIn: 3
-    blendOut: 5
-    GeneratedAnimData:
-      Hash: -1570462898
-      AllowSelfInterrupt: 1
-      BlendIn: 3
-      BlendOut: 5
     Input:
       AttackFlags: 8
-      DirectionFlag: 4
+      DirectionFlag: 0
     Stance: 0
-    Level: 0
+    Level: 2
     Damage: 15
     HitKb: 0.1
     BlockKb: 0.05
     DoesKnockdown: 0
+    FrameData:
+      Startup: 18
+      Active: 2
+      Recovery: 26
+      CancelWindow: 0
+      HitStun: 24
+      BlockStun: 18
+      CounterStun: 32
     Lunge:
       Curve:
         curve:
@@ -61,19 +64,28 @@ MonoBehaviour:
         x: 6
         y: 14
       Power: 0.1
+    Homing:
+      Curve:
+        curve:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        sampleCount: 2
+      Window:
+        x: 0
+        y: 0
+      TotalHoming: 0
     HurtBoxIds: 070000000800000000000000
-    FrameData:
-      Startup: 18
-      Active: 2
-      Recovery: 26
-      CancelWindow: 0
-      HitStun: 24
-      BlockStun: 18
-      CounterStun: 26
-      HitStop: 0
-      BlockStop: 0
     StringTransitions: []
+    GeneratedAnimData:
+      Hash: -1570462898
+      AllowSelfInterrupt: 1
+      BlendIn: 3
+      BlendOut: 5
     TotalAttackDuration: 46
     AdvantageOnHit: -2
     AdvantageOnBlock: -8
-    AdvantageOnCounter: 0
+    AdvantageOnCounter: +6
+    AdvantageOnWhiff: -26

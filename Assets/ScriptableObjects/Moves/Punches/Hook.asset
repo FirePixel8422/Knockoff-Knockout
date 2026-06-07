@@ -12,23 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b862d7d41f8e184187976caf926811d, type: 3}
   m_Name: Hook
   m_EditorClassIdentifier: Assembly-CSharp::AttackSO
+  animationName: Hook
+  blendIn: 3
+  blendOut: 5
   Value:
-    animationName: JabFinisher
-    blendIn: 3
-    blendOut: 5
-    GeneratedAnimData:
-      Hash: -585132615
-      BlendIn: 3
-      BlendOut: 5
     Input:
-      AttackFlags: 1
-      DirectionFlag: 0
+      AttackFlags: 2
+      DirectionFlag: 4
     Stance: 0
     Level: 2
     Damage: 10
     HitKb: 0.13
     BlockKb: 0.06
     DoesKnockdown: 0
+    FrameData:
+      Startup: 14
+      Active: 2
+      Recovery: 12
+      CancelWindow: 0
+      HitStun: 12
+      BlockStun: 8
+      CounterStun: 20
     Lunge:
       Curve:
         curve:
@@ -59,20 +63,29 @@ MonoBehaviour:
       Window:
         x: 7
         y: 9
-      Power: 0.12
+      Power: 0.125
+    Homing:
+      Curve:
+        curve:
+          serializedVersion: 2
+          m_Curve: []
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        sampleCount: 2
+      Window:
+        x: 0
+        y: 0
+      TotalHoming: 0
     HurtBoxIds: 000000000100000002000000
-    FrameData:
-      Startup: 14
-      Active: 2
-      Recovery: 12
-      CancelWindow: 0
-      HitStun: 12
-      BlockStun: 8
-      CounterStun: 20
-      HitStop: 0
-      BlockStop: 0
     StringTransitions: []
+    GeneratedAnimData:
+      Hash: 74116203
+      AllowSelfInterrupt: 1
+      BlendIn: 3
+      BlendOut: 5
     TotalAttackDuration: 28
     AdvantageOnHit: 0
     AdvantageOnBlock: -4
     AdvantageOnCounter: +8
+    AdvantageOnWhiff: -12

@@ -23,7 +23,7 @@ MonoBehaviour:
     Level: 0
     Damage: 8
     HitKb: 0.15
-    BlockKb: 0.125
+    BlockKb: 0.1
     DoesKnockdown: 0
     FrameData:
       Startup: 10
@@ -33,8 +33,6 @@ MonoBehaviour:
       HitStun: 18
       BlockStun: 8
       CounterStun: 24
-      HitStop: 0
-      BlockStop: 0
     Lunge:
       Curve:
         curve:

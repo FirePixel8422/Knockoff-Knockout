@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b862d7d41f8e184187976caf926811d, type: 3}
-  m_Name: Sliding
+  m_Name: Sliding Kick
   m_EditorClassIdentifier: Assembly-CSharp::AttackSO
   animationName: Sliding
   blendIn: 3
@@ -18,7 +18,7 @@ MonoBehaviour:
   Value:
     Input:
       AttackFlags: 8
-      DirectionFlag: 0
+      DirectionFlag: 2
     Stance: 0
     Level: 0
     Damage: 20
@@ -33,8 +33,6 @@ MonoBehaviour:
       HitStun: 34
       BlockStun: 16
       CounterStun: 40
-      HitStop: 0
-      BlockStop: 0
     Lunge:
       Curve:
         curve:
