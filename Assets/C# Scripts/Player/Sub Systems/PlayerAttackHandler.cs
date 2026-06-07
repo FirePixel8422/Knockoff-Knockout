@@ -206,7 +206,7 @@ public class PlayerAttackHandler
 
         ActiveAttack = targetAttack;
 
-        stateMachine.PlayAnimation(targetAttack.GeneratedAnimData);
+        stateMachine.PlayAnimation(targetAttack.AttackAnimData);
 
         stateMachine.SetCombatState(CombatState.ActionStartup);
         stateMachine.SetStanceState(targetAttack.Stance);

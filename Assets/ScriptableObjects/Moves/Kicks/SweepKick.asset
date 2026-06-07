@@ -12,10 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b862d7d41f8e184187976caf926811d, type: 3}
   m_Name: SweepKick
   m_EditorClassIdentifier: Assembly-CSharp::AttackSO
-  animationName: SweepKick
-  blendIn: 3
-  blendOut: 5
   Value:
+    animData:
+      name: SweepKick
+      blendIn: 3
+      blendOut: 5
+    overrideHurtAnimData:
+      name: 
+      blendIn: 0
+      blendOut: 0
     Input:
       AttackFlags: 8
       DirectionFlag: 3
@@ -25,6 +30,36 @@ MonoBehaviour:
     HitKb: 1
     BlockKb: 0.3
     DoesKnockdown: 1
+    KnockBackData:
+      HitKb: 1
+      BlockKb: 0.3
+      Curve:
+        curve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 2
+            outSlope: 2
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        sampleCount: 50
+      Duration: 1
     FrameData:
       Startup: 24
       Active: 3
@@ -33,8 +68,6 @@ MonoBehaviour:
       HitStun: 44
       BlockStun: 12
       CounterStun: 26
-      HitStop: 0
-      BlockStop: 0
     Lunge:
       Curve:
         curve:
@@ -99,11 +132,16 @@ MonoBehaviour:
       TotalHoming: 0
     HurtBoxIds: 070000000800000000000000
     StringTransitions: []
-    GeneratedAnimData:
+    AttackAnimData:
       Hash: -326810665
       AllowSelfInterrupt: 1
       BlendIn: 3
       BlendOut: 5
+    OverrideHurtAnimData:
+      Hash: 1058882117
+      AllowSelfInterrupt: 0
+      BlendIn: 0
+      BlendOut: 0
     TotalAttackDuration: 57
     AdvantageOnHit: +14
     AdvantageOnBlock: -18

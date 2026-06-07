@@ -106,19 +106,27 @@ public class PlayerStateMachine
                 OnDamageTaken?.Invoke(attack.Damage);
                 OnKnockbackTaken?.Invoke(attack.HitKb);
 
-                bool isAttackLow = attack.Level == AttackLevel.Low;
-                AnimData animData = state.StanceState switch
+                AnimData animData;
+                if (attack.OverrideHurtAnimData.Hash != GlobalAnimHashes.Missing.Hash)
                 {
-                    StanceState.Standing => isAttackLow ?
-                        GlobalAnimHashes.Hurt.Standing.Low :
-                        GlobalAnimHashes.Hurt.Standing.MidHigh,
+                    animData = attack.OverrideHurtAnimData;
+                }
+                else
+                {
+                    bool isAttackLow = attack.Level == AttackLevel.Low;
+                    animData = state.StanceState switch
+                    {
+                        StanceState.Standing => isAttackLow ?
+                            GlobalAnimHashes.Hurt.Standing.Low :
+                            GlobalAnimHashes.Hurt.Standing.MidHigh,
 
-                    StanceState.Crouching => isAttackLow ?
-                        GlobalAnimHashes.Hurt.Crouching.Low :
-                        GlobalAnimHashes.Hurt.Crouching.MidHigh,
+                        StanceState.Crouching => isAttackLow ?
+                            GlobalAnimHashes.Hurt.Crouching.Low :
+                            GlobalAnimHashes.Hurt.Crouching.MidHigh,
 
-                    _ => GlobalAnimHashes.Missing,
-                };
+                        _ => GlobalAnimHashes.Missing,
+                    };
+                }
 
                 PlayAnimation(animData);
                 Stun = result == AttackResult.CounterHit ?
@@ -133,7 +141,7 @@ public class PlayerStateMachine
                 if (!isDefender) return;
 
                 OnStunned?.Invoke();
-                OnKnockbackTaken?.Invoke(attack.BlockKb);
+                OnKnockbackTaken?.Invoke(attack.BlockKb); 
 
                 PlayAnimation(result == AttackResult.StandingBlocked ?
                     GlobalAnimHashes.Block.Standing :

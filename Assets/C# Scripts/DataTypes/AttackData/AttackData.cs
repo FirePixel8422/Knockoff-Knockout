@@ -4,6 +4,11 @@
 [System.Serializable]
 public struct AttackData
 {
+#if UNITY_EDITOR
+    [SerializeField] private EditorAnimData animData;
+    [SerializeField] private EditorAnimData overrideHurtAnimData;
+#endif
+
     public FrameInput Input;
     public StanceState Stance;
     public AttackLevel Level;
@@ -22,7 +27,8 @@ public struct AttackData
 
     public StringTransition[] StringTransitions;
 
-    [EditorReadOnly] public AnimData GeneratedAnimData;
+    [EditorReadOnly] public AnimData AttackAnimData;
+    [EditorReadOnly] public AnimData OverrideHurtAnimData;
 
     public void BakeAllCurves()
     {
@@ -50,15 +56,26 @@ public struct AttackData
     [EditorReadOnly] public string AdvantageOnCounter;
     [EditorReadOnly] public string AdvantageOnWhiff;
 
-    public void UpdateDebugData(string animName, int blendIn, int blendOut)
+    public void BakeData()
     {
-        GeneratedAnimData = new AnimData(animName, true, blendIn, blendOut);
+        AttackAnimData = new AnimData(animData.name, true, animData.blendIn, animData.blendOut);
+        OverrideHurtAnimData = string.IsNullOrEmpty(overrideHurtAnimData.name) ? 
+            GlobalAnimHashes.Missing : 
+            new AnimData(overrideHurtAnimData.name, true, overrideHurtAnimData.blendIn, overrideHurtAnimData.blendOut);
 
         TotalAttackDuration = (FrameData.Startup + FrameData.Active + FrameData.Recovery).ToString();
         AdvantageOnHit = (FrameData.HitStun - FrameData.Recovery).ToString("+0;-0;0");
         AdvantageOnBlock = (FrameData.BlockStun - FrameData.Recovery).ToString("+0;-0;0");
         AdvantageOnCounter = (FrameData.CounterStun - FrameData.Recovery).ToString("+0;-0;0");
         AdvantageOnWhiff = (-FrameData.Recovery).ToString("+0;-0;0");
+    }
+
+    [System.Serializable]
+    public struct EditorAnimData
+    {
+        public string name;
+        public int blendIn;
+        public int blendOut;
     }
 #endif
 }

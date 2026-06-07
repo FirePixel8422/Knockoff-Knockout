@@ -63,6 +63,8 @@ public class PlayerInputOverrider : MonoBehaviour
         {
             case OverrideMode.None:
             default:
+                if (playerInputRouter.IsAssigned) return;
+                SendInput(new FrameInput());
                 return;
 
             case OverrideMode.Collect:

@@ -12,19 +12,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b862d7d41f8e184187976caf926811d, type: 3}
   m_Name: TeepKick
   m_EditorClassIdentifier: Assembly-CSharp::AttackSO
-  animationName: TeepKick
-  blendIn: 3
-  blendOut: 5
   Value:
+    animData:
+      name: TeepKick
+      blendIn: 3
+      blendOut: 5
+    overrideHurtAnimData:
+      name: 
+      blendIn: 0
+      blendOut: 0
     Input:
       AttackFlags: 4
       DirectionFlag: 0
     Stance: 0
     Level: 1
     Damage: 15
-    HitKb: 0.5
+    HitKb: 0.2
     BlockKb: 0.25
     DoesKnockdown: 0
+    KnockBackData:
+      HitKb: 0.5
+      BlockKb: 0.25
+      Curve:
+        curve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: 1
+            outSlope: 1
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 1
+            outSlope: 1
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        sampleCount: 25
+      Duration: 1
     FrameData:
       Startup: 16
       Active: 2
@@ -97,11 +132,16 @@ MonoBehaviour:
       TotalHoming: 0
     HurtBoxIds: 0700000000000000
     StringTransitions: []
-    GeneratedAnimData:
+    AttackAnimData:
       Hash: 1401458710
       AllowSelfInterrupt: 1
       BlendIn: 3
       BlendOut: 5
+    OverrideHurtAnimData:
+      Hash: 1058882117
+      AllowSelfInterrupt: 0
+      BlendIn: 0
+      BlendOut: 0
     TotalAttackDuration: 42
     AdvantageOnHit: -2
     AdvantageOnBlock: -4

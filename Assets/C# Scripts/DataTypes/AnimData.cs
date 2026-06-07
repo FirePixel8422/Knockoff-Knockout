@@ -2,7 +2,7 @@
 
 
 /// <summary>
-/// Animation data container struct, holding animHash, blendIn and blendOut transitionFrameCount.
+/// Animation data container struct, holding animHash, allowSelfInterrupt, blendIn and blendOut transitionFrameCount.
 /// </summary>
 [System.Serializable]
 public struct AnimData

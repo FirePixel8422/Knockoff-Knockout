@@ -26,15 +26,10 @@ public struct NativeSampledAnimationCurve
     /// </summary>
     public void Bake()
     {
-#if UNITY_EDITOR
+#if Enable_Debug_Systems
         if (curve.keys.Length == 0)
         {
             DebugLogger.LogError("AnimationCurve is null!");
-            return;
-        }
-        if (sampleCount == 2)
-        {
-            DebugLogger.LogWarning("Sample Count == 2, The intended curve is a flat line???");
             return;
         }
 #endif

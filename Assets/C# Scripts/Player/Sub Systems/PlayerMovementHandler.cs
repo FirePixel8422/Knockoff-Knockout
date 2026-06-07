@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Runtime.CompilerServices;
+using UnityEngine;
 
 
 /// <summary>
@@ -17,11 +18,12 @@ public class PlayerMovementHandler
 
     private readonly float turnSnappyness;
     private readonly float moveSnappyness;
+
     private readonly SideStepSettings sideStepSettings;
     private readonly DashSettings dashSettings;
 
-    private Vector3LerpState positionState;
-    private QuaternionLerpState rotationState;
+    [EditorReadOnly, SerializeField] private Vector3LerpState positionState;
+    [EditorReadOnly, SerializeField] private QuaternionLerpState rotationState;
     public Vector3 CurrentTransformPos => positionState.Current;
 
     private Vector3 lastMoveDir;
@@ -30,8 +32,6 @@ public class PlayerMovementHandler
     private ActionSequenceTimeline<MovementState> sequenceTimeline;
     private StateSequence<MovementState> sideStepSequence;
     private StateSequence<MovementState> dashSequence;
-
-    private float currentSideStepPower;
 
 
     public PlayerMovementHandler(PlayerStateMachine stateMachine, PlayerInputHandler inputHandler, Transform transform, bool isLeftPlayer)
@@ -56,7 +56,7 @@ public class PlayerMovementHandler
         sideStepSettings = GameRules.CombatSettings.SideStep;
         dashSettings = GameRules.CombatSettings.Dash;
 
-        sequenceTimeline = new ActionSequenceTimeline<MovementState>(new ((MovementState.Idle, 0)));
+        sequenceTimeline = new ActionSequenceTimeline<MovementState>(new((MovementState.Idle, 0)));
 
         sideStepSequence = new StateSequence<MovementState>(
             (MovementState.SideSteppingDown, sideStepSettings.Startup),
@@ -71,7 +71,7 @@ public class PlayerMovementHandler
     private PlayerMovementHandler() { }
 
 
-    #region Update Special Move Action Sequences
+    #region Update Sequence Timeline (Dash/Sidestep)
 
     /// <summary>
     /// TickUpdate active movement sequence and send state changes to the <see cref="PlayerStateMachine"/>. Also updates player transform data based on the type of movement action (Sidestep/Dash).
@@ -82,9 +82,15 @@ public class PlayerMovementHandler
 
         if (!sequenceTimeline.IsActive) return;
 
+        UpdateActiveActionSequence();
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void UpdateActiveActionSequence()
+    {
         // Update sequence and check state change
         bool didStateChange = sequenceTimeline.TickUpdateState(
-            out MovementState newState, 
+            out MovementState newState,
             out int elapsedSequenceTicks);
 
         if (didStateChange)
@@ -110,6 +116,7 @@ public class PlayerMovementHandler
         }
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void UpdateDashSequence(int elapsedSequenceTicks)
     {
         // If sequence elapsedTicks are outside of the dash window, return.
@@ -124,6 +131,8 @@ public class PlayerMovementHandler
 
         AddForwardForce(dashForce * (isDashForward ? dashSettings.ForwardDashPower : -dashSettings.BackDashPower));
     }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void UpdateSideStepSequence(int elapsedSequenceTicks)
     {
         // If sequence elapsedTicks are outside of the dash window, return.
@@ -136,8 +145,8 @@ public class PlayerMovementHandler
 
         float forceStep = sideStepSettings.DurationCurve.EvaluateDelta(tPrev, t);
 
-        AddForwardForce(currentSideStepPower * forceStep * sideStepSettings.ForwardPower);
-        AddSidewardForce(currentSideStepPower * forceStep * (isSideStepUp ? -sideStepSettings.SideStepPower : sideStepSettings.SideStepPower));
+        AddForwardForce(forceStep * sideStepSettings.ForwardPower);
+        AddSidewardForce(forceStep * (isSideStepUp ? -sideStepSettings.SideStepPower : sideStepSettings.SideStepPower));
     }
 
     #endregion
@@ -152,7 +161,6 @@ public class PlayerMovementHandler
     {
         ReadAndApplyNewInput();
     }
-
     /// <summary>
     /// Check if the input buffer holds input that correspond to a move action, if so start a move sequence. Otherwise calculaet movement and Move- and Stance-State from directional input.
     /// </summary>
@@ -170,12 +178,7 @@ public class PlayerMovementHandler
             UpdateMoveActionAnimation(targetSideStep);
 
             sideStepSequence[0] = (targetSideStep, sideStepSettings.Startup);
-
             sequenceTimeline = new ActionSequenceTimeline<MovementState>(sideStepSequence);
-
-            float playerDistance = CameraManager.Instance.GetPlayerSpacing();
-            float dist01 = (playerDistance - sideStepSettings.DistanceRange.min) / (sideStepSettings.DistanceRange.max - sideStepSettings.DistanceRange.min);
-            currentSideStepPower = sideStepSettings.PowerCurve.Evaluate(dist01);
 
             RealignFighter();
 
@@ -276,11 +279,19 @@ public class PlayerMovementHandler
         sequenceTimeline.Cancel();
         stateMachine.SetMovementState(MovementState.Idle);
     }
-    private void AddKnockBack(float kb) => AddForwardForce(-kb);
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void AddKnockBack(float kb)
+    {
+        AddForwardForce(-kb);
+    }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void AddForwardForce(float force)
     {
         MovePlayer(CameraManager.Instance.GetForwardDir() * (isLeftPlayer ? force : -force));
     }
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void AddSidewardForce(float force)
     {
         MovePlayer(CameraManager.Instance.GetRightDir() * force);
@@ -302,6 +313,7 @@ public class PlayerMovementHandler
     {
         rotationState.Target = Quaternion.LookRotation(isLeftPlayer ? CameraManager.Instance.GetForwardDir() : -CameraManager.Instance.GetForwardDir(), Vector3.up);
     }
+
     /// <summary>
     /// Lerp currentTransformPos to targetTransformPos and update transform position
     /// </summary>
