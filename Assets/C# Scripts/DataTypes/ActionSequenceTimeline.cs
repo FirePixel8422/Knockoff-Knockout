@@ -15,6 +15,16 @@ public struct ActionSequenceTimeline<TEnum>
     public readonly bool IsActive => currentStateId != stateSequence.Length - 1;
 
 
+
+
+
+    public readonly int ElapsedTicks => elapsedTicks;
+
+
+
+
+
+
     public ActionSequenceTimeline(StateSequence<TEnum> newSequence)
     {
         stateSequence = newSequence;

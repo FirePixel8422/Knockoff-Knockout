@@ -56,10 +56,10 @@ public class PlayerController : MonoBehaviour
 #endif
 
 
-    public void Init(AttackData[] attackMoveSet)
+    public void Init(AttackData[] moveSet, AttackData[] stringSet)
     {
         stateMachine = new PlayerStateMachine(transform);
-        inputHandler = new PlayerInputHandler(attackMoveSet);
+        inputHandler = new PlayerInputHandler(moveSet, stringSet);
 
         colliderHandler = new PlayerColliderHandler(transform);
         healthHandler = new PlayerHealthHandler(ref stateMachine.OnDamageTaken);
@@ -94,12 +94,10 @@ public class PlayerController : MonoBehaviour
         attackHandler.TickUpdateAttackSequence();
         movementHandler.TickUpdateMoveSequence();
 
+        // TickUpdate attack (updating a seq or reading the input buffer for a new attack)
+        attackHandler.TickUpdateAttackInput();
+
         bool wasInActionRecovery = stateMachine.State.CombatState == CombatState.Recovering;
-        if (!stateMachine.IsInCombatLock)
-        {
-            // TickUpdate attack (updating a seq or reading the input buffer for a new attack)
-            attackHandler.TickUpdateAttackInput();
-        }
 
         // TickUpdate any active movement action and read movement input IF player wont be actionlocked next frame
         bool isActionLocked = wasInActionRecovery || stateMachine.IsInCombatLock || stateMachine.IsInMoveLock;

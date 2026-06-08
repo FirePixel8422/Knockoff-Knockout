@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
 
 /// <summary>
@@ -8,12 +10,15 @@
 public class PlayerInputHandler
 {
     [EditorReadOnly, SerializeField] private AttackData[] moveSet;
+    [EditorReadOnly, SerializeField] private AttackData[] stringSet;
     [EditorReadOnly, SerializeField] private InputBufferHandler bufferHandler;
 
 
-    public PlayerInputHandler(AttackData[] moveSet)
+    public PlayerInputHandler(AttackData[] moveSet, AttackData[] stringSet)
     {
         this.moveSet = moveSet;
+        this.stringSet = stringSet;
+
         bufferHandler = new InputBufferHandler();
     }
     private PlayerInputHandler() { }
@@ -119,6 +124,44 @@ public class PlayerInputHandler
                 break;
         }
 
+        return bestAttackStrength != 0;
+    }
+
+    /// <summary>
+    /// Check all string moves to see if input buffer correlates to one
+    /// </summary>
+    public bool TryReadStringAttack(StringTransition[] stringOptions, out AttackData targetAttack, out int animFrameSkipCount)
+    {
+        targetAttack = new AttackData();
+        animFrameSkipCount = 0;
+
+        int bestAttackStrength = 0;
+        int attackStrength;
+
+        int stringOptionsCount = stringOptions.Length;
+
+        int stringSetLength = stringSet.Length;
+        for (int i = 0; i < stringOptionsCount; i++)
+        {
+            for (int i2 = 0; i2 < stringSetLength; i2++)
+            {
+                if (stringSet[i2].AttackAnimData.Hash != stringOptions[i].TargetMoveHash) continue;
+
+                attackStrength = bufferHandler.TestAttack(stringSet[i2].Input);
+
+                if (attackStrength <= bestAttackStrength)
+                    continue;
+
+                bestAttackStrength = attackStrength;
+
+                targetAttack = stringSet[i2];
+                animFrameSkipCount = stringOptions[i].frameSkipCount;
+
+                // Perfect input found, no need to continue checking other moves in the moveset
+                if (bestAttackStrength == 3)
+                    break;
+            }
+        }
         return bestAttackStrength != 0;
     }
 
@@ -292,7 +335,6 @@ public class InputBufferHandler
         isSideStepUp = false;
         return false;
     }
-
 
     /// <summary>
     /// Check if there is a dash input in the input buffer. (If a directional double tap (Left/Right) taps are within the <see cref="GlobalGameData.MAX_DOUBLE_TAP_TICKS"/> window)

@@ -28,8 +28,8 @@ MonoBehaviour:
       AdvantageOnParry: 24
       AdvantageOnMiss: -22
     SideStep:
-      Duration: 28
-      Startup: 10
+      Duration: 16
+      Startup: 12
       Recovery: 18
       DurationCurve:
         curve:
@@ -57,15 +57,16 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         sampleCount: 50
-      SideStepPower: 5
-      ForwardPower: 3
+      SideStepPower: 1.75
+      ForwardPower: 0.5
       DistanceRange:
-        min: 0.5
-        max: 3
+        min: 0.75
+        max: 4.5
+      MaxDistancePowerMultiplier: 0.4
     Dash:
-      Duration: 16
+      Duration: 6
       Startup: 6
-      Recovery: 10
+      Recovery: 8
       Curve:
         curve:
           serializedVersion: 2
@@ -101,5 +102,5 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         sampleCount: 50
-      BackDashPower: 2.25
-      ForwardDashPower: 3
+      BackDashPower: 0.85
+      ForwardDashPower: 1.2

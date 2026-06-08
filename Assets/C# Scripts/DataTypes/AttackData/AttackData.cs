@@ -25,8 +25,12 @@ public struct AttackData
 
     public int[] HurtBoxIds;
 
-    public StringTransition[] StringTransitions;
+#if UNITY_EDITOR
+    [SerializeField] private EditorStringTransition[] stringTransitions;
+#endif
 
+    [Header(">>>Baked Data<<<")]
+    [EditorReadOnly] public StringTransition[] StringTransitions;
     [EditorReadOnly] public AnimData AttackAnimData;
     [EditorReadOnly] public AnimData OverrideHurtAnimData;
 
@@ -58,6 +62,18 @@ public struct AttackData
 
     public void BakeData()
     {
+        int stringMoveCount = stringTransitions == null ? 0 : stringTransitions.Length;
+        StringTransitions = new StringTransition[stringMoveCount];
+
+        for (int i = 0; i < stringMoveCount; i++)
+        {
+            if (stringTransitions[i].TargetMove == null) continue;
+
+            StringTransitions[i] = new StringTransition(
+                stringTransitions[i].TargetMove.Value.AttackAnimData.Hash,
+                stringTransitions[i].frameSkipCount);
+        }
+
         AttackAnimData = new AnimData(animData.name, true, animData.blendIn, animData.blendOut);
         OverrideHurtAnimData = string.IsNullOrEmpty(overrideHurtAnimData.name) ? 
             GlobalAnimHashes.Missing : 
@@ -68,6 +84,13 @@ public struct AttackData
         AdvantageOnBlock = (FrameData.BlockStun - FrameData.Recovery).ToString("+0;-0;0");
         AdvantageOnCounter = (FrameData.CounterStun - FrameData.Recovery).ToString("+0;-0;0");
         AdvantageOnWhiff = (-FrameData.Recovery).ToString("+0;-0;0");
+    }
+
+    [System.Serializable]
+    public struct EditorStringTransition
+    {
+        public AttackSO TargetMove;
+        public int frameSkipCount;
     }
 
     [System.Serializable]

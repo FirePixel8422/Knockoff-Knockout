@@ -157,9 +157,23 @@ public class PlayerAttackHandler
     }
     public void TickUpdateAttackInput()
     {
-        if (sequenceTimeline.IsActive) return;
+        if (sequenceTimeline.IsActive)
+        {
+            if (sequenceTimeline.ElapsedTicks > ActiveAttack.FrameData.Startup &&
+                sequenceTimeline.ElapsedTicks == ActiveAttack.FrameData.Startup + ActiveAttack.FrameData.CancelWindow)
+            {
+                if (!inputHandler.TryReadStringAttack(ActiveAttack.StringTransitions, out AttackData attackData, out int animFrameSkipCount)) return;
 
-        ReadAndApplyNewInput();
+                StartNewAttackSequence(attackData);
+                stateMachine.TickAdvanceAnimation(animFrameSkipCount);
+            }
+            return;
+        }
+        
+        // If input for an attack was found in inputbuffer, start an attack sequence
+        if (!inputHandler.TryReadAttack(out AttackData targetAttack)) return;
+
+        StartNewAttackSequence(targetAttack);
     }
 
     /// <summary>
@@ -197,13 +211,10 @@ public class PlayerAttackHandler
         }
     }
     /// <summary>
-    /// Check if the input buffer holds input that correspond to an attack and if so, start an attack sequence.
+    /// Start a new attack sequence.
     /// </summary>
-    private void ReadAndApplyNewInput()
+    private void StartNewAttackSequence(AttackData targetAttack)
     {
-        // If input for an attack was found in inputbuffer, start an attack sequence
-        if (!inputHandler.TryReadAttack(out AttackData targetAttack)) return;
-
         ActiveAttack = targetAttack;
 
         stateMachine.PlayAnimation(targetAttack.AttackAnimData);

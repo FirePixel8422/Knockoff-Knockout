@@ -30,43 +30,13 @@ MonoBehaviour:
     HitKb: 0.15
     BlockKb: 0.1
     DoesKnockdown: 0
-    KnockBackData:
-      HitKb: 0.15
-      BlockKb: 0.1
-      Curve:
-        curve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: 1
-            outSlope: 1
-            tangentMode: 34
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 1
-            outSlope: 1
-            tangentMode: 34
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        sampleCount: 2
-      Duration: 1
     FrameData:
       Startup: 10
       Active: 2
-      Recovery: 12
+      Recovery: 14
       CancelWindow: 0
-      HitStun: 18
-      BlockStun: 8
+      HitStun: 20
+      BlockStun: 10
       CounterStun: 24
     Lunge:
       Curve:
@@ -131,6 +101,7 @@ MonoBehaviour:
         y: 0
       TotalHoming: 0
     HurtBoxIds: 000000000100000002000000
+    stringTransitions: []
     StringTransitions: []
     AttackAnimData:
       Hash: 1260756234
@@ -142,8 +113,8 @@ MonoBehaviour:
       AllowSelfInterrupt: 0
       BlendIn: 0
       BlendOut: 0
-    TotalAttackDuration: 24
+    TotalAttackDuration: 26
     AdvantageOnHit: +6
     AdvantageOnBlock: -4
-    AdvantageOnCounter: +12
-    AdvantageOnWhiff: -12
+    AdvantageOnCounter: +10
+    AdvantageOnWhiff: -14

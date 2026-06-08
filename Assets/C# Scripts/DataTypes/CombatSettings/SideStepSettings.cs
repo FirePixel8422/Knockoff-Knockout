@@ -12,7 +12,9 @@ public struct SideStepSettings
 
     public float SideStepPower;
     public float ForwardPower;
+
     public MinMaxFloat DistanceRange;
+    public float MaxDistancePowerMultiplier;
 
     public void BakeAllCurves()
     {

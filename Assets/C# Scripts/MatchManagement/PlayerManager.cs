@@ -40,7 +40,8 @@ public class PlayerManager : FrameTickUpdateMB
         {
             for (int i = 0; i < GlobalGameData.MAX_PLAYERS; i++)
             {
-                players[i].Init(moveSetSO.GetBakedDataArray());
+                moveSetSO.GetBakedDataArrays(out AttackData[] moveSet, out AttackData[] stringSet);
+                players[i].Init(moveSet, stringSet);
             }
 
             PlayersInitComplete?.Invoke();

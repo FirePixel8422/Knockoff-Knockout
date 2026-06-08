@@ -5,37 +5,30 @@
 [CreateAssetMenu(fileName = "New MoveSet", menuName = "ScriptableObjects/Combat/MoveSet", order = -1003)]
 public class AttackMoveSetSO : ScriptableObject
 {
-    [SerializeField] private AttackSO[] Attacks;
+    [SerializeField] private AttackSO[] baseMoves;
+    [SerializeField] private AttackSO[] stringMoves;
     
     /// <summary>
-    /// Get all attack as <see cref="AttackData"/> copies and bake all data into it
+    /// Get all base attacks and string attacks as <see cref="AttackData"/> copies and bake all data into them
     /// </summary>
-    public AttackData[] GetBakedDataArray()
+    public void GetBakedDataArrays(out AttackData[] moveSet, out AttackData[] stringSet)
     {
-        int moveCount = Attacks.Length;
-        AttackData[] attacksArray = new AttackData[moveCount];
+        int moveCount = baseMoves.Length;
+        moveSet = new AttackData[moveCount];
 
         for (int i = 0; i < moveCount; i++)
         {
-            attacksArray[i] = Attacks[i].Value;
-            attacksArray[i].BakeAllCurves();
+            moveSet[i] = baseMoves[i].Value;
+            moveSet[i].BakeAllCurves();
         }
-        return attacksArray;
-    }
 
+        int stringMoveCount = stringMoves.Length;
+        stringSet = new AttackData[stringMoveCount];
 
-#if UNITY_EDITOR
-    private void OnValidate()
-    {
-        int moveCount = Attacks.Length;
-        for (int i = 0; i < moveCount; i++)
+        for (int i = 0; i < stringMoveCount; i++)
         {
-            if (Attacks[i] == null)
-            {
-                DebugLogger.LogError($"One of the attacks in {name} is null");
-                return;
-            }
+            stringSet[i] = stringMoves[i].Value;
+            stringSet[i].BakeAllCurves();
         }
     }
-#endif
 }
