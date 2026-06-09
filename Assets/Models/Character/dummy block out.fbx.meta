@@ -698,35 +698,6 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: rig|PlaneAction
-      takeName: rig|PlaneAction
-      internalID: 4885872131358971340
-      firstFrame: 0
-      lastFrame: 0
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask: []
-      maskType: 3
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
       name: rig|SideStep.Down
       takeName: rig|SideStep.Down
       internalID: -1252820687879711486
@@ -988,6 +959,35 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
+      name: rig|TeepHurtKD
+      takeName: rig|TeepHurtKD
+      internalID: 1881396035302670611
+      firstFrame: 0
+      lastFrame: 28
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
       name: rig|TeepKick
       takeName: rig|TeepKick
       internalID: -1203168824884973821
@@ -1017,9 +1017,9 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: rig|WakeUp
-      takeName: rig|WakeUp
-      internalID: -3141428544342674330
+      name: rig|WakeUp(Back)
+      takeName: rig|WakeUp(Back)
+      internalID: 3789219693253357888
       firstFrame: 0
       lastFrame: 20
       wrapMode: 0
@@ -1046,11 +1046,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: rig|WakeUpCopy
-      takeName: rig|WakeUpCopy
-      internalID: 2874005479234127937
+      name: rig|WakeUp(Stomach)
+      takeName: rig|WakeUp(Stomach)
+      internalID: 142687125730309954
       firstFrame: 0
-      lastFrame: 11
+      lastFrame: 20
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
