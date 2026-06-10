@@ -224,7 +224,7 @@ MonoBehaviour:
   cachedTransform: {fileID: 0}
   SkipNextGizmoDraw: 0
   DrawGizmos: 0
-  id: 5
+  id: 1
 --- !u!1 &1938959210103132379
 GameObject:
   m_ObjectHideFlags: 0
@@ -398,7 +398,7 @@ MonoBehaviour:
   cachedTransform: {fileID: 0}
   SkipNextGizmoDraw: 0
   DrawGizmos: 0
-  id: 5
+  id: 4
 --- !u!1 &2755472557945903614
 GameObject:
   m_ObjectHideFlags: 0
@@ -624,7 +624,7 @@ MonoBehaviour:
   cachedTransform: {fileID: 0}
   SkipNextGizmoDraw: 0
   DrawGizmos: 0
-  id: 5
+  id: 6
 --- !u!1 &6445986526282937953
 GameObject:
   m_ObjectHideFlags: 0
@@ -840,7 +840,7 @@ MonoBehaviour:
   cachedTransform: {fileID: 0}
   SkipNextGizmoDraw: 0
   DrawGizmos: 0
-  id: 5
+  id: 7
 --- !u!1 &8140412481058186031
 GameObject:
   m_ObjectHideFlags: 0
@@ -913,7 +913,7 @@ MonoBehaviour:
   cachedTransform: {fileID: 0}
   SkipNextGizmoDraw: 0
   DrawGizmos: 0
-  id: 5
+  id: 2
 --- !u!1 &8568536083974517455
 GameObject:
   m_ObjectHideFlags: 0
@@ -985,7 +985,7 @@ MonoBehaviour:
   cachedTransform: {fileID: 0}
   SkipNextGizmoDraw: 0
   DrawGizmos: 0
-  id: 5
+  id: 3
 --- !u!1 &8738189819546646467
 GameObject:
   m_ObjectHideFlags: 0
@@ -1109,7 +1109,7 @@ MonoBehaviour:
   cachedTransform: {fileID: 0}
   SkipNextGizmoDraw: 0
   DrawGizmos: 0
-  id: 5
+  id: 8
 --- !u!1001 &1308309183414443283
 PrefabInstance:
   m_ObjectHideFlags: 0

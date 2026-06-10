@@ -22,6 +22,7 @@ public class PlayerInputOverrider : MonoBehaviour
         isLeftPlayer = GetComponent<PlayerController>().IsLeftPlayer;
     }
 
+#if UNITY_EDITOR
     public void OnDirection(Vector2 dirVec)
     {
         if (!IsRecording) return;
@@ -53,6 +54,7 @@ public class PlayerInputOverrider : MonoBehaviour
 
         cRawInput.AttackFlags |= flag;
     }
+#endif
 
 
     public void CollectInputs()
@@ -66,13 +68,14 @@ public class PlayerInputOverrider : MonoBehaviour
                 if (playerInputRouter.IsAssigned) return;
                 SendInput(new FrameInput());
                 return;
-
+#if UNITY_EDITOR
             case OverrideMode.Collect:
                 if (!playerInputRouter.IsAssigned) return;
                 recordingSO.Timeline.Add(cRawInput);
-                EditorUtility.SetDirty(recordingSO);
                 cRawInput.AttackFlags = AttackInputFlags.None;
+                EditorUtility.SetDirty(recordingSO);
                 break;
+#endif
 
             case OverrideMode.Playback:
                 if (playerInputRouter.IsAssigned || index == recordingSO.Timeline.Count) return;
@@ -83,7 +86,7 @@ public class PlayerInputOverrider : MonoBehaviour
     }
     private void SendInput(FrameInput input)
     {
-        bool invert = !isLeftPlayer && recordingSO.DoMirrorForRightPlayer;
+        bool invert = isLeftPlayer != recordingSO.IsLeftPlayer;
 
         Vector3 dir = input.DirectionFlag switch
         {

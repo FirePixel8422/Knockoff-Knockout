@@ -155,7 +155,7 @@ public class PlayerAttackHandler
 
         UpdateActiveAttackAction();
     }
-    public void TickUpdateAttackInput()
+    public void TickUpdateAttackInput(bool isInCombatLock)
     {
         if (sequenceTimeline.IsActive)
         {
@@ -171,7 +171,7 @@ public class PlayerAttackHandler
         }
         
         // If input for an attack was found in inputbuffer, start an attack sequence
-        if (!inputHandler.TryReadAttack(out AttackData targetAttack)) return;
+        if (isInCombatLock || !inputHandler.TryReadAttack(out AttackData targetAttack)) return;
 
         StartNewAttackSequence(targetAttack);
     }
@@ -230,6 +230,7 @@ public class PlayerAttackHandler
         //attackSequence.Sequence[3] = (CombatState.Idle, 0);
 
         sequenceTimeline = new ActionSequenceTimeline<CombatState>(attackSequence);
+        movementHandler.OnAttackStart();
     }
 
     /// <summary>

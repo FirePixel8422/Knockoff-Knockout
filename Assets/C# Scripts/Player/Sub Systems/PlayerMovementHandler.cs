@@ -30,6 +30,7 @@ public class PlayerMovementHandler
 
     private ActionSequenceTimeline<MovementState> sequenceTimeline;
     private MovementState currentActionType;
+    private bool isActionCanceled;
 
     private StateSequence<MovementState> sideStepSequence;
     private StateSequence<MovementState> dashSequence;
@@ -98,7 +99,7 @@ public class PlayerMovementHandler
         {
             stateMachine.SetMovementState(newState);
 
-            if (newState == MovementState.Recovery)
+            if (!isActionCanceled && newState == MovementState.Recovery)
             {
                 stateMachine.SetCombatState(CombatState.Idle);
             }
@@ -195,8 +196,8 @@ public class PlayerMovementHandler
 
             UpdateMoveActionAnimation(currentActionType);
 
-            sideStepSequence[0] = (currentActionType, sideStepSettings.Startup);
             sequenceTimeline = new ActionSequenceTimeline<MovementState>(sideStepSequence);
+            isActionCanceled = false;
 
             return;
         }
@@ -213,6 +214,7 @@ public class PlayerMovementHandler
             UpdateMoveActionAnimation(currentActionType);
 
             sequenceTimeline = new ActionSequenceTimeline<MovementState>(dashSequence);
+            isActionCanceled = false;
 
             RealignFighter();
 
@@ -290,6 +292,12 @@ public class PlayerMovementHandler
     #endregion
 
 
+    public void OnAttackStart()
+    {
+        if (!sequenceTimeline.IsActive) return;
+
+        isActionCanceled = true;
+    }
     private void OnStunned()
     {
         sequenceTimeline.Cancel();

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 
 
 /// <summary>
@@ -13,11 +11,13 @@ public class PlayerInputHandler
     [EditorReadOnly, SerializeField] private AttackData[] stringSet;
     [EditorReadOnly, SerializeField] private InputBufferHandler bufferHandler;
 
+    private readonly bool isLeftPlayer;
 
-    public PlayerInputHandler(AttackData[] moveSet, AttackData[] stringSet)
+    public PlayerInputHandler(AttackData[] moveSet, AttackData[] stringSet, bool isLeftPlayer)
     {
         this.moveSet = moveSet;
         this.stringSet = stringSet;
+        this.isLeftPlayer = isLeftPlayer;
 
         bufferHandler = new InputBufferHandler();
     }
@@ -111,7 +111,7 @@ public class PlayerInputHandler
         int moveSetLength = moveSet.Length;
         for (int i = 0; i < moveSetLength; i++)
         {
-            attackStrength = bufferHandler.TestAttack(moveSet[i].Input);
+            attackStrength = bufferHandler.TestAttack(moveSet[i].Input, isLeftPlayer);
 
             if (attackStrength <= bestAttackStrength)
                 continue;
@@ -147,7 +147,7 @@ public class PlayerInputHandler
             {
                 if (stringSet[i2].AttackAnimData.Hash != stringOptions[i].TargetMoveHash) continue;
 
-                attackStrength = bufferHandler.TestAttack(stringSet[i2].Input);
+                attackStrength = bufferHandler.TestAttack(stringSet[i2].Input, isLeftPlayer);
 
                 if (attackStrength <= bestAttackStrength)
                     continue;
@@ -255,11 +255,19 @@ public class InputBufferHandler
     /// <summary>
     /// Check if attack input '<paramref name="targetInput"/>' is in the input buffer. If so, return 
     /// </summary>
-    public int TestAttack(FrameInput targetInput)
+    public int TestAttack(FrameInput targetInput, bool isLeftPlayer)
     {
         int moveStrength = 0;
         int bufferIndex = index;
         bufferIndex.DecrementSmart(GlobalGameData.INPUT_BUFFER_SIZE);
+
+        DirectionInput targetDirection = targetInput.DirectionFlag switch
+        {
+            DirectionInput.Left => isLeftPlayer ? DirectionInput.Left : DirectionInput.Right,
+            DirectionInput.Right => isLeftPlayer ? DirectionInput.Right : DirectionInput.Left,
+            _ => targetInput.DirectionFlag
+        };
+        
 
         // Loop over whole buffer starting from current index all the way back to it
         for (int i = 0; i < GlobalGameData.ATTACK_BUFFER_SIZE; i++)
@@ -272,7 +280,7 @@ public class InputBufferHandler
             }
 
             // If button is correct and targetInput direction is neutral > award 1/3 points
-            if (targetInput.DirectionFlag == DirectionInput.Neutral)
+            if (targetDirection == DirectionInput.Neutral)
             {
                 moveStrength = 1;
             }
@@ -281,13 +289,13 @@ public class InputBufferHandler
             for (int i2 = 0; i2 < 1 + GlobalGameData.DIRECTION_BUFFER_WINDOW; i2++)
             {
                 // Check into the past of the buffer for X frames for if the target attacks direction is found
-                if (inputBuffer[dirIndex].DirectionFlag == targetInput.DirectionFlag)
+                if (inputBuffer[dirIndex].DirectionFlag == targetDirection)
                 {
                     // Exact move was matched with buffer history >
                     // If move is neutral direction > award 2/3 points
                     // If move is non neutral direction > award 3/3 points
                     // This so directional moves take execution priority over neutral moves.
-                    return targetInput.DirectionFlag == DirectionInput.Neutral ? 2 : 3;
+                    return targetDirection == DirectionInput.Neutral ? 2 : 3;
                 }
                 dirIndex.DecrementSmart(GlobalGameData.INPUT_BUFFER_SIZE);
             }

@@ -7,5 +7,5 @@ using UnityEngine;
 public class DummyRecordingSO : ScriptableObject
 {
     public List<FrameInput> Timeline;
-    public bool DoMirrorForRightPlayer;
+    public bool IsLeftPlayer;
 }

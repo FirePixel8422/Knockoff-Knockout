@@ -18,5 +18,5 @@ public static class GlobalGameData
     public const int ATTACK_BUFFER_SIZE = 10;
 
     public const int DIRECTION_BUFFER_WINDOW = 2;
-    public const int MAX_DOUBLE_TAP_TICKS = 18;
+    public const int MAX_DOUBLE_TAP_TICKS = 16;
 }

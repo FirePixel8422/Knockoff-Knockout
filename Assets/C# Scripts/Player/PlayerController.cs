@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
     public void Init(AttackData[] moveSet, AttackData[] stringSet)
     {
         stateMachine = new PlayerStateMachine(transform);
-        inputHandler = new PlayerInputHandler(moveSet, stringSet);
+        inputHandler = new PlayerInputHandler(moveSet, stringSet, isLeftPlayer);
 
         colliderHandler = new PlayerColliderHandler(transform);
         healthHandler = new PlayerHealthHandler(ref stateMachine.OnDamageTaken);
@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour
         movementHandler.TickUpdateMoveSequence();
 
         // TickUpdate attack (updating a seq or reading the input buffer for a new attack)
-        attackHandler.TickUpdateAttackInput();
+        attackHandler.TickUpdateAttackInput(stateMachine.IsInCombatLock);
 
         bool wasInActionRecovery = stateMachine.State.CombatState == CombatState.Recovering;
 

@@ -27,11 +27,15 @@ public class PlayerInputRouter : MonoBehaviour
     public void OnDirection(Vector2 dirVec)
     {
         inputHandler.OnDirection(dirVec);
+#if UNITY_EDITOR
         inputOverrider.OnDirection(dirVec);
+#endif
     }
     public void OnButtonPressed(AttackInputFlags flag)
     {
         inputHandler.OnButtonPressed(flag);
+#if UNITY_EDITOR
         inputOverrider.OnButtonPressed(flag);
+#endif
     }
 }

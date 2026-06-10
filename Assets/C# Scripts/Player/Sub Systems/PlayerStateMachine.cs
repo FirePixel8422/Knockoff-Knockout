@@ -16,7 +16,11 @@ public class PlayerStateMachine
     [EditorReadOnly, SerializeField] private FighterState nextState;
     public FighterState State => state;
     public void SetStanceState(StanceState newState) => state.StanceState = newState;
-    public void SetMovementState(MovementState newState) => state.MovementState = newState;
+    public void SetMovementState(MovementState newState)
+    {
+        //DebugLogger.Log(newState, doDebugMode);
+        state.MovementState = newState;
+    }
     public void SetCombatState(CombatState newState) => state.CombatState = newState;
 
 
@@ -64,7 +68,7 @@ public class PlayerStateMachine
             case AttackResult.Parried:
             {
                 // Skip defender
-                if (isDefender) return;
+                if (isDefender) break;
 
                 OnStunned?.Invoke();
 
@@ -75,7 +79,7 @@ public class PlayerStateMachine
             case AttackResult.KnockDown:
             {
                 // Skip attacker
-                if (!isDefender) return;
+                if (!isDefender) break;
 
                 OnStunned?.Invoke();
                 OnDamageTaken?.Invoke(attack.Damage);
@@ -83,14 +87,16 @@ public class PlayerStateMachine
 
                 SetStanceState(StanceState.KnockedDown);
 
-                AnimData animData = attack.Level switch
-                {
-                    AttackLevel.Low => GlobalAnimHashes.KnockDown.Low,
-                    AttackLevel.Mid => GlobalAnimHashes.KnockDown.Mid,
-                    AttackLevel.High => GlobalAnimHashes.KnockDown.High,
-
-                    _ => GlobalAnimHashes.Missing,
-                };
+                AnimData animData = attack.OverrideHurtAnimData.Hash != GlobalAnimHashes.Missing.Hash ?
+                    attack.OverrideHurtAnimData :
+                    attack.Level switch
+                    {
+                        AttackLevel.Low => GlobalAnimHashes.KnockDown.Low,
+                        AttackLevel.Mid => GlobalAnimHashes.KnockDown.Mid,
+                        AttackLevel.High => GlobalAnimHashes.KnockDown.High,
+                    
+                        _ => GlobalAnimHashes.Missing,
+                    };
 
                 PlayAnimation(animData);
                 Stun = attack.FrameData.HitStun;
@@ -100,33 +106,26 @@ public class PlayerStateMachine
             case AttackResult.Hit or AttackResult.CounterHit:
             {
                 // Skip attacker
-                if (!isDefender) return;
+                if (!isDefender) break;
                 
                 OnStunned?.Invoke();
                 OnDamageTaken?.Invoke(attack.Damage);
                 OnKnockbackTaken?.Invoke(attack.HitKb);
 
-                AnimData animData;
-                if (attack.OverrideHurtAnimData.Hash != GlobalAnimHashes.Missing.Hash)
+                AnimData animData = attack.OverrideHurtAnimData.Hash != GlobalAnimHashes.Missing.Hash ?
+                attack.OverrideHurtAnimData :
+                state.StanceState switch
                 {
-                    animData = attack.OverrideHurtAnimData;
-                }
-                else
-                {
-                    bool isAttackLow = attack.Level == AttackLevel.Low;
-                    animData = state.StanceState switch
-                    {
-                        StanceState.Standing => isAttackLow ?
-                            GlobalAnimHashes.Hurt.Standing.Low :
-                            GlobalAnimHashes.Hurt.Standing.MidHigh,
+                    StanceState.Standing => attack.Level == AttackLevel.Low ?
+                        GlobalAnimHashes.Hurt.Standing.Low :
+                        GlobalAnimHashes.Hurt.Standing.MidHigh,
 
-                        StanceState.Crouching => isAttackLow ?
-                            GlobalAnimHashes.Hurt.Crouching.Low :
-                            GlobalAnimHashes.Hurt.Crouching.MidHigh,
+                    StanceState.Crouching => attack.Level == AttackLevel.Low ?
+                        GlobalAnimHashes.Hurt.Crouching.Low :
+                        GlobalAnimHashes.Hurt.Crouching.MidHigh,
 
-                        _ => GlobalAnimHashes.Missing,
-                    };
-                }
+                    _ => GlobalAnimHashes.Missing,
+                };
 
                 PlayAnimation(animData);
                 Stun = result == AttackResult.CounterHit ?
@@ -138,7 +137,7 @@ public class PlayerStateMachine
             case AttackResult.StandingBlocked or AttackResult.CrouchBlocked:
             {
                 // Skip attacker
-                if (!isDefender) return;
+                if (!isDefender) break;
 
                 OnStunned?.Invoke();
                 OnKnockbackTaken?.Invoke(attack.BlockKb); 
