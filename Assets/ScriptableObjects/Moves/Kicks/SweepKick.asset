@@ -26,10 +26,10 @@ MonoBehaviour:
       DirectionFlag: 3
     Stance: 0
     Level: 0
+    KnockDown: 2
     Damage: 22
     HitKb: 1
     BlockKb: 0.3
-    DoesKnockdown: 1
     FrameData:
       Startup: 24
       Active: 3
@@ -100,7 +100,7 @@ MonoBehaviour:
         x: 0
         y: 0
       TotalHoming: 0
-    HurtBoxIds: 070000000800000000000000
+    HurtBoxIds: 000000000700000008000000
     stringTransitions: []
     StringTransitions: []
     AttackAnimData:

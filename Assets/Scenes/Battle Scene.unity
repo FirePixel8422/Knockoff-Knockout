@@ -2024,7 +2024,7 @@ PrefabInstance:
     - target: {fileID: 1793510462318588232, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1793510462318588232, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
@@ -2296,6 +2296,11 @@ PrefabInstance:
       propertyPath: opponent
       value: 
       objectReference: {fileID: 49275784}
+    - target: {fileID: 4266670142322476388, guid: 2c306b11cd47a6646b8d56dd3ec68212,
+        type: 3}
+      propertyPath: attackHandler.d
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 4295653629329792564, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

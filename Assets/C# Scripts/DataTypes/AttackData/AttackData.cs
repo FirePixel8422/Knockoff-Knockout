@@ -12,11 +12,11 @@ public struct AttackData
     public FrameInput Input;
     public StanceState Stance;
     public AttackLevel Level;
+    public AttackKnockDown KnockDown;
 
-    [Header("Damage for hitting the move, hit/block knockback and does knockdown?")]
+    [Header("Damage for hitting the move, hit/block knockback")]
     public float Damage;
     public float HitKb, BlockKb;
-    public bool DoesKnockdown;
 
     public FrameData FrameData;
 

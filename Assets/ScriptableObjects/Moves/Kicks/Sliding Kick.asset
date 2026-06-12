@@ -34,10 +34,10 @@ MonoBehaviour:
       Startup: 16
       Active: 4
       Recovery: 30
-      CancelWindow: 12
-      HitStun: 34
+      CancelWindow: 10
+      HitStun: 24
       BlockStun: 16
-      CounterStun: 40
+      CounterStun: 34
     Lunge:
       Curve:
         curve:
@@ -100,9 +100,9 @@ MonoBehaviour:
         x: 0
         y: 0
       TotalHoming: 0
-    HurtBoxIds: 070000000800000000000000
+    HurtBoxIds: 000000000700000008000000
     stringTransitions:
-    - TargetMove: {fileID: 11400000, guid: a201bcd4ec575bb4f80f180d5b1feb42, type: 2}
+    - TargetMove: {fileID: 11400000, guid: 88130d3eb5663bf4c91502c5ba531341, type: 2}
       frameSkipCount: 0
     StringTransitions:
     - TargetMoveHash: 1401458710
@@ -118,7 +118,7 @@ MonoBehaviour:
       BlendIn: 0
       BlendOut: 0
     TotalAttackDuration: 50
-    AdvantageOnHit: +4
+    AdvantageOnHit: -6
     AdvantageOnBlock: -14
-    AdvantageOnCounter: +10
+    AdvantageOnCounter: +4
     AdvantageOnWhiff: -30

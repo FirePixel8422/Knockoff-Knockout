@@ -13,8 +13,13 @@ public enum StanceState : byte
     /// Fighter is crouching
     /// </summary>
     Crouching,
+
     /// <summary>
-    /// Fighter is laying on the ground
+    /// Fighter is laying on the ground on their back
     /// </summary>
-    KnockedDown,
+    KnockedDownBack,
+    /// <summary>
+    /// Fighter is laying on the ground on their stomach
+    /// </summary>
+    KnockedDownStomach,
 }

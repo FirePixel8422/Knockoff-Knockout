@@ -15,4 +15,4 @@ MonoBehaviour:
   Timeline:
   - AttackFlags: 0
     DirectionFlag: 2
-  DoMirrorForRightPlayer: 1
+  IsLeftPlayer: 1

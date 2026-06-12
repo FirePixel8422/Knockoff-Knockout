@@ -123,7 +123,7 @@ public class PlayerController : MonoBehaviour
         if (activeAttackConnected)
         {
             AttackData activeAttack = attackHandler.ActiveAttack;
-            AttackResult attackResult = opponent.attackHandler.GetInboundAttackResult(activeAttack.Level, activeAttack.DoesKnockdown);
+            AttackResult attackResult = opponent.attackHandler.GetInboundAttackResult(activeAttack.Level, activeAttack.KnockDown != AttackKnockDown.None);
 
             attackHandler.OnActiveAttackConnected();
 

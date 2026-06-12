@@ -85,18 +85,17 @@ public class PlayerStateMachine
                 OnDamageTaken?.Invoke(attack.Damage);
                 OnKnockbackTaken?.Invoke(attack.HitKb);
 
-                SetStanceState(StanceState.KnockedDown);
+                bool doAnimOverride = attack.OverrideHurtAnimData.Hash != GlobalAnimHashes.Missing.Hash;
 
-                AnimData animData = attack.OverrideHurtAnimData.Hash != GlobalAnimHashes.Missing.Hash ?
-                    attack.OverrideHurtAnimData :
-                    attack.Level switch
-                    {
-                        AttackLevel.Low => GlobalAnimHashes.KnockDown.Low,
-                        AttackLevel.Mid => GlobalAnimHashes.KnockDown.Mid,
-                        AttackLevel.High => GlobalAnimHashes.KnockDown.High,
-                    
-                        _ => GlobalAnimHashes.Missing,
-                    };
+                (StanceState knockDownState, AnimData animData) = attack.KnockDown switch
+                {
+                    AttackKnockDown.Back => (StanceState.KnockedDownBack, doAnimOverride ? attack.OverrideHurtAnimData : GlobalAnimHashes.KnockDown.Crouching),
+                    AttackKnockDown.Stomach => (StanceState.KnockedDownStomach, doAnimOverride ? attack.OverrideHurtAnimData : GlobalAnimHashes.KnockDown.Standing),
+
+                    AttackKnockDown.None or _ => (default, GlobalAnimHashes.Missing),
+                };
+                
+                SetStanceState(knockDownState);
 
                 PlayAnimation(animData);
                 Stun = attack.FrameData.HitStun;
@@ -184,17 +183,25 @@ public class PlayerStateMachine
             SetCombatState(CombatState.Idle);
         }
 
-        Recovery = Mathf.Clamp(Recovery - 1, 0, int.MaxValue);
-        Stun = Mathf.Clamp(Stun - 1, 0, int.MaxValue);
+        Recovery = Mathf.Max(Recovery - 1, 0);
+        Stun = Mathf.Max(Stun - 1, 0);
     }
     /// <summary>
     /// Update animator based on current state
     /// </summary>
     public void TickUpdateAnimator()
     {
-        if (state.StanceState == StanceState.KnockedDown && Stun == GlobalAnimHashes.WakeupDuration)
+        if ((state.StanceState == StanceState.KnockedDownBack || state.StanceState == StanceState.KnockedDownStomach)
+            && Stun == GlobalAnimHashes.Wakeup.Duration)
         {
-            PlayAnimation(GlobalAnimHashes.Wakeup);
+            AnimData animData = state.StanceState switch
+            {
+                StanceState.KnockedDownBack => GlobalAnimHashes.Wakeup.Back,
+                StanceState.KnockedDownStomach => GlobalAnimHashes.Wakeup.Stomach,
+
+                _ => GlobalAnimHashes.Missing,
+            };
+            PlayAnimation(animData);
         }
         else if (!IsInMoveLock)
         {

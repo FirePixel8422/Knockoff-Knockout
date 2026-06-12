@@ -33,9 +33,8 @@ public static class GlobalAnimHashes
 
     public static class KnockDown
     {
-        public static readonly AnimData Low = new AnimData("LowKnockDown", true, 8, 5);
-        public static readonly AnimData Mid = new AnimData("MidKnockDown", true, 8, 5);
-        public static readonly AnimData High = new AnimData("HighKnockDown", true, 8, 5);
+        public static readonly AnimData Standing = new AnimData("StandingKnockDown", true, 8, 5);
+        public static readonly AnimData Crouching = new AnimData("CrouchingKnockDown", true, 8, 5);
     }
 
     public static class Movement
@@ -59,9 +58,13 @@ public static class GlobalAnimHashes
             public static readonly AnimData Down = new AnimData("SideStepDown", true, 2, 5);
         }
     }
+    public static class Wakeup
+    {
+        public static readonly AnimData Back = new AnimData("WakeupBack", false, 0, 8);
+        public static readonly AnimData Stomach = new AnimData("WakeupStomach", false, 0, 8);
 
-    public static readonly AnimData Wakeup = new AnimData("Wakeup", false, 0, 8);
-    public static readonly int WakeupDuration = 11;
+        public static readonly int Duration = 14;
+    }
 
     public static readonly AnimData Missing = new AnimData("Missing", false, 0, 0);
 }

@@ -193,4 +193,64 @@ MonoBehaviour:
     DirectionFlag: 3
   - AttackFlags: 0
     DirectionFlag: 3
-  DoMirrorForRightPlayer: 1
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  IsLeftPlayer: 0

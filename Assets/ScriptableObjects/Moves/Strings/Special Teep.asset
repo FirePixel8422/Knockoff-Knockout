@@ -10,34 +10,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b862d7d41f8e184187976caf926811d, type: 3}
-  m_Name: OverHead
+  m_Name: Special Teep
   m_EditorClassIdentifier: Assembly-CSharp::AttackSO
   Value:
     animData:
-      name: OverHead
+      name: TeepKick
       blendIn: 3
       blendOut: 5
     overrideHurtAnimData:
-      name: 
-      blendIn: 0
-      blendOut: 0
+      name: TeepKD
+      blendIn: 3
+      blendOut: 5
     Input:
-      AttackFlags: 2
+      AttackFlags: 4
       DirectionFlag: 0
     Stance: 0
     Level: 1
-    KnockDown: 2
-    Damage: 20
-    HitKb: 1.2
-    BlockKb: 0.1
+    KnockDown: 1
+    Damage: 15
+    HitKb: 1.5
+    BlockKb: 0.25
     FrameData:
-      Startup: 18
-      Active: 3
-      Recovery: 28
-      CancelWindow: 0
-      HitStun: 60
-      BlockStun: 14
-      CounterStun: 0
+      Startup: 16
+      Active: 2
+      Recovery: 36
+      CancelWindow: 10
+      HitStun: 50
+      BlockStun: 20
+      CounterStun: 50
     Lunge:
       Curve:
         curve:
@@ -66,8 +66,8 @@ MonoBehaviour:
           m_RotationOrder: 4
         sampleCount: 50
       Window:
-        x: 8
-        y: 14
+        x: 2
+        y: 8
       Power: 0.25
     Homing:
       Curve:
@@ -100,25 +100,21 @@ MonoBehaviour:
         x: 0
         y: 0
       TotalHoming: 0
-    HurtBoxIds: 000000000300000004000000
-    stringTransitions:
-    - TargetMove: {fileID: 0}
-      frameSkipCount: 0
-    StringTransitions:
-    - TargetMoveHash: 0
-      frameSkipCount: 0
+    HurtBoxIds: 000000000700000008000000
+    stringTransitions: []
+    StringTransitions: []
     AttackAnimData:
-      Hash: -410435135
+      Hash: 1401458710
       AllowSelfInterrupt: 1
       BlendIn: 3
       BlendOut: 5
     OverrideHurtAnimData:
-      Hash: 1058882117
-      AllowSelfInterrupt: 0
-      BlendIn: 0
-      BlendOut: 0
-    TotalAttackDuration: 49
-    AdvantageOnHit: +32
-    AdvantageOnBlock: -14
-    AdvantageOnCounter: -28
-    AdvantageOnWhiff: -28
+      Hash: 1295675225
+      AllowSelfInterrupt: 1
+      BlendIn: 3
+      BlendOut: 5
+    TotalAttackDuration: 54
+    AdvantageOnHit: +14
+    AdvantageOnBlock: -16
+    AdvantageOnCounter: +14
+    AdvantageOnWhiff: -36

@@ -18,7 +18,7 @@ MonoBehaviour:
       blendIn: 3
       blendOut: 5
     overrideHurtAnimData:
-      name: 
+      name: TeepKIckHurt
       blendIn: 0
       blendOut: 0
     Input:
@@ -27,7 +27,7 @@ MonoBehaviour:
     Stance: 0
     Level: 1
     Damage: 15
-    HitKb: 0.2
+    HitKb: 1.5
     BlockKb: 0.25
     DoesKnockdown: 0
     FrameData:
@@ -100,7 +100,7 @@ MonoBehaviour:
         x: 0
         y: 0
       TotalHoming: 0
-    HurtBoxIds: 0700000000000000
+    HurtBoxIds: 080000000700000000000000
     stringTransitions:
     - TargetMove: {fileID: 11400000, guid: 72acb49e2441c1740addec0e4da523e9, type: 2}
       frameSkipCount: 0
@@ -113,8 +113,8 @@ MonoBehaviour:
       BlendIn: 3
       BlendOut: 5
     OverrideHurtAnimData:
-      Hash: 1058882117
-      AllowSelfInterrupt: 0
+      Hash: 559624198
+      AllowSelfInterrupt: 1
       BlendIn: 0
       BlendOut: 0
     TotalAttackDuration: 42

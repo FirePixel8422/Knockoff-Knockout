@@ -34,7 +34,7 @@ MonoBehaviour:
       Startup: 10
       Active: 2
       Recovery: 12
-      CancelWindow: 2
+      CancelWindow: 6
       HitStun: 20
       BlockStun: 14
       CounterStun: 24
@@ -104,8 +104,12 @@ MonoBehaviour:
     stringTransitions:
     - TargetMove: {fileID: 11400000, guid: 72acb49e2441c1740addec0e4da523e9, type: 2}
       frameSkipCount: 0
+    - TargetMove: {fileID: 11400000, guid: dcb486528f066fe4e9788f019e473ed6, type: 2}
+      frameSkipCount: 0
     StringTransitions:
     - TargetMoveHash: -1570462898
+      frameSkipCount: 0
+    - TargetMoveHash: 74116203
       frameSkipCount: 0
     AttackAnimData:
       Hash: 1561758614

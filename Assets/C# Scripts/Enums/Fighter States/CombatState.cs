@@ -37,7 +37,6 @@ public enum CombatState : byte
     /// Fighter is in the active frames of a ParryLow animation
     /// </summary>
     ParryLowActive,
-
     /// <summary>
     /// Fighter is in the active frames of a ParryHigh animation
     /// </summary>
