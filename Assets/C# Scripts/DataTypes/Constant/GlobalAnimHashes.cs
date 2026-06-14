@@ -26,8 +26,9 @@ public static class GlobalAnimHashes
         }
         public static class KnockedDown
         {
-            public static readonly AnimData Low = new AnimData("KnockedDownLowHurt", true, 3, 5);
-            public static readonly AnimData MidHigh = new AnimData("KnockedDownHighHurt", true, 3, 5);
+            public static readonly AnimData Back = new AnimData("KDBackHurt", true, 2, 5);
+            public static readonly AnimData Stomach = new AnimData("KDStomachHurt", true, 2, 5);
+            public static readonly AnimData WakeUp = new AnimData("CrouchingLowHurt", true, 2, 5);
         }
     }
 

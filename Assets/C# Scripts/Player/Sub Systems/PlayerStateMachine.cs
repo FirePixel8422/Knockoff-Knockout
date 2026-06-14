@@ -16,11 +16,7 @@ public class PlayerStateMachine
     [EditorReadOnly, SerializeField] private FighterState nextState;
     public FighterState State => state;
     public void SetStanceState(StanceState newState) => state.StanceState = newState;
-    public void SetMovementState(MovementState newState)
-    {
-        //DebugLogger.Log(newState, doDebugMode);
-        state.MovementState = newState;
-    }
+    public void SetMovementState(MovementState newState) => state.MovementState = newState;
     public void SetCombatState(CombatState newState) => state.CombatState = newState;
 
 
@@ -34,6 +30,9 @@ public class PlayerStateMachine
     public bool IsInMoveLock =>
         IsInCombatLock ||
         state.MovementState == MovementState.Recovery;
+    public bool IsInWakeUp =>
+        (state.StanceState == StanceState.KnockedDownBack || state.StanceState == StanceState.KnockedDownStomach) &&
+        Stun <= GlobalAnimHashes.Wakeup.Duration;
 
     public Action<AttackData, AttackResult, bool> OnAttackConnected;
     public Action OnStunned;
@@ -123,6 +122,9 @@ public class PlayerStateMachine
                         GlobalAnimHashes.Hurt.Crouching.Low :
                         GlobalAnimHashes.Hurt.Crouching.MidHigh,
 
+                    StanceState.KnockedDownBack => IsInWakeUp ? GlobalAnimHashes.Hurt.KnockedDown.WakeUp : GlobalAnimHashes.Hurt.KnockedDown.Back,
+                    StanceState.KnockedDownStomach => IsInWakeUp ? GlobalAnimHashes.Hurt.KnockedDown.WakeUp : GlobalAnimHashes.Hurt.KnockedDown.Stomach,
+                    
                     _ => GlobalAnimHashes.Missing,
                 };
 
