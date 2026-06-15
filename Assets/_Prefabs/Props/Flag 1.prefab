@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &3561863492473665967
+--- !u!1001 &7495354677581243990
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -11,17 +11,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: abffb8662dba3104ea20c8840a220b35,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.8434246
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: abffb8662dba3104ea20c8840a220b35,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.49718562
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: abffb8662dba3104ea20c8840a220b35,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -37.330997
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: abffb8662dba3104ea20c8840a220b35,
         type: 3}

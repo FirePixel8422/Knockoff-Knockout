@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &2314354673875524985
+--- !u!1001 &3990366889445528063
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -11,17 +11,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9712ed66cce3e5742b7f8af2fce22af5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.3301797
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9712ed66cce3e5742b7f8af2fce22af5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.00000019506324
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9712ed66cce3e5742b7f8af2fce22af5,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -37.53521
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9712ed66cce3e5742b7f8af2fce22af5,
         type: 3}
@@ -58,6 +58,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: 9712ed66cce3e5742b7f8af2fce22af5,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: aac6dfca37cf96d439e5f903b468d3cd, type: 2}
     - target: {fileID: 919132149155446097, guid: 9712ed66cce3e5742b7f8af2fce22af5,
         type: 3}
       propertyPath: m_Name
