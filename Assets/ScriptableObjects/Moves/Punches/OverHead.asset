@@ -101,12 +101,8 @@ MonoBehaviour:
         y: 0
       TotalHoming: 0
     HurtBoxIds: 000000000300000004000000
-    stringTransitions:
-    - TargetMove: {fileID: 0}
-      frameSkipCount: 0
-    StringTransitions:
-    - TargetMoveHash: 0
-      frameSkipCount: 0
+    stringTransitions: []
+    StringTransitions: []
     AttackAnimData:
       Hash: -410435135
       AllowSelfInterrupt: 1

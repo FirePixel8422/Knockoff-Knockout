@@ -71,18 +71,19 @@ public class PlayerAttackHandler
     {
         FighterState defenderState = stateMachine.State;
 
-        // If the defender is in an active parry
-        if (defenderState.CombatState == CombatState.ParryHighActive)
+        // If defender is knocked down, they dodge highs but lose to mids and highs
+        if (defenderState.StanceState == StanceState.KnockedDownStomach ||
+            defenderState.StanceState == StanceState.KnockedDownBack)
         {
-            return attackType == AttackLevel.High
-                ? AttackResult.Parried
-                : AttackResult.Hit;
-        }
-        if (defenderState.CombatState == CombatState.ParryLowActive)
-        {
-            return attackType == AttackLevel.Low
-                ? AttackResult.Parried
-                : AttackResult.Hit;
+            return attackType switch
+            {
+                AttackLevel.High =>
+                    AttackResult.Missed,
+
+                _ => doesKnockDown ?
+                    AttackResult.KnockDown :
+                    AttackResult.Hit,
+            };
         }
 
         // If defender cant block or the incoming attack is unblockable, the defender gets hit OR interrupted
@@ -99,7 +100,7 @@ public class PlayerAttackHandler
             return AttackResult.Hit;
         }
 
-        // If defender is crouching, they blocks lows, duck highs but lose to mids
+        // If defender is crouching, they blocks lows, dodge highs but lose to mids
         if (defenderState.StanceState == StanceState.Crouching)
         {
             return attackType switch
@@ -162,10 +163,9 @@ public class PlayerAttackHandler
             if (sequenceTimeline.ElapsedTicks > ActiveAttack.FrameData.Startup &&
                 sequenceTimeline.ElapsedTicks == ActiveAttack.FrameData.Startup + ActiveAttack.FrameData.CancelWindow)
             {
-                if (!inputHandler.TryReadStringAttack(ActiveAttack.StringTransitions, out AttackData attackData, out int animFrameSkipCount)) return;
+                if (!inputHandler.TryReadStringAttack(ActiveAttack.BakedStringTransitions, out AttackData attackData)) return;
 
                 StartNewAttackSequence(attackData);
-                stateMachine.TickAdvanceAnimation(animFrameSkipCount);
             }
             return;
         }

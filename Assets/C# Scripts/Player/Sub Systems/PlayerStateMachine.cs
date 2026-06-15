@@ -64,17 +64,6 @@ public class PlayerStateMachine
 
         switch (result)
         {
-            case AttackResult.Parried:
-            {
-                // Skip defender
-                if (isDefender) break;
-
-                OnStunned?.Invoke();
-
-                Stun = GameRules.CombatSettings.Parry.HitStun;
-
-                break;
-            }
             case AttackResult.KnockDown:
             {
                 // Skip attacker
@@ -122,8 +111,10 @@ public class PlayerStateMachine
                         GlobalAnimHashes.Hurt.Crouching.Low :
                         GlobalAnimHashes.Hurt.Crouching.MidHigh,
 
-                    StanceState.KnockedDownBack => IsInWakeUp ? GlobalAnimHashes.Hurt.KnockedDown.WakeUp : GlobalAnimHashes.Hurt.KnockedDown.Back,
-                    StanceState.KnockedDownStomach => IsInWakeUp ? GlobalAnimHashes.Hurt.KnockedDown.WakeUp : GlobalAnimHashes.Hurt.KnockedDown.Stomach,
+                    StanceState.KnockedDownBack => GlobalAnimHashes.Hurt.KnockedDown.Back,
+                    StanceState.KnockedDownStomach => GlobalAnimHashes.Hurt.KnockedDown.Stomach,
+
+                    StanceState.Wakeup => GlobalAnimHashes.Hurt.KnockedDown.WakeUp,
                     
                     _ => GlobalAnimHashes.Missing,
                 };
@@ -203,6 +194,10 @@ public class PlayerStateMachine
 
                 _ => GlobalAnimHashes.Missing,
             };
+
+            // Mark the players stance as no longer knocked down
+            SetStanceState(StanceState.Wakeup);
+
             PlayAnimation(animData);
         }
         else if (!IsInMoveLock)
@@ -249,9 +244,11 @@ public class PlayerStateMachine
 
         if (animData.Hash == GlobalAnimHashes.Missing.Hash)
         {
-            DebugLogger.LogWarning("Animator: an empty animation was requested, skipping");
+            DebugLogger.LogWarning($"Animator: an empty animation was requested, skipping, '{animData.Name}'");
             return;
         }
+
+        DebugLogger.LogWarning($"{animData.Name}", doDebugMode);
 
         AnimData prevAnimData = currentAnimData;
         currentAnimData = animData;

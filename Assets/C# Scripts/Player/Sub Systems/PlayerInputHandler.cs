@@ -130,10 +130,9 @@ public class PlayerInputHandler
     /// <summary>
     /// Check all string moves to see if input buffer correlates to one
     /// </summary>
-    public bool TryReadStringAttack(StringTransition[] stringOptions, out AttackData targetAttack, out int animFrameSkipCount)
+    public bool TryReadStringAttack(StringTransition[] stringOptions, out AttackData targetAttack)
     {
         targetAttack = new AttackData();
-        animFrameSkipCount = 0;
 
         int bestAttackStrength = 0;
         int attackStrength;
@@ -155,7 +154,6 @@ public class PlayerInputHandler
                 bestAttackStrength = attackStrength;
 
                 targetAttack = stringSet[i2];
-                animFrameSkipCount = stringOptions[i].frameSkipCount;
 
                 // Perfect input found, no need to continue checking other moves in the moveset
                 if (bestAttackStrength == 3)

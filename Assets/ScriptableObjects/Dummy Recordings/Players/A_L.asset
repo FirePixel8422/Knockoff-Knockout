@@ -10,11 +10,61 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc140f1d4c6b5a34b95d8caa6d37ed13, type: 3}
-  m_Name: Random Block
+  m_Name: A_L
   m_EditorClassIdentifier: Assembly-CSharp::FrameDataRecordingSO
   Timeline:
   - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
     DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
   - AttackFlags: 0
     DirectionFlag: 2
   - AttackFlags: 0
@@ -28,7 +78,23 @@ MonoBehaviour:
   - AttackFlags: 0
     DirectionFlag: 2
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
   - AttackFlags: 0
     DirectionFlag: 2
   - AttackFlags: 0
@@ -36,6 +102,8 @@ MonoBehaviour:
   - AttackFlags: 0
     DirectionFlag: 2
   - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 2
     DirectionFlag: 2
   - AttackFlags: 0
     DirectionFlag: 2
@@ -100,6 +168,132 @@ MonoBehaviour:
   - AttackFlags: 0
     DirectionFlag: 0
   - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 3
+  - AttackFlags: 0
+    DirectionFlag: 3
+  - AttackFlags: 0
+    DirectionFlag: 3
+  - AttackFlags: 0
+    DirectionFlag: 3
+  - AttackFlags: 1
+    DirectionFlag: 3
+  - AttackFlags: 0
+    DirectionFlag: 3
+  - AttackFlags: 0
+    DirectionFlag: 3
+  - AttackFlags: 0
+    DirectionFlag: 3
+  - AttackFlags: 0
+    DirectionFlag: 3
+  - AttackFlags: 0
+    DirectionFlag: 3
+  - AttackFlags: 0
+    DirectionFlag: 3
+  - AttackFlags: 0
+    DirectionFlag: 3
+  - AttackFlags: 0
+    DirectionFlag: 3
+  - AttackFlags: 1
+    DirectionFlag: 3
+  - AttackFlags: 0
+    DirectionFlag: 3
+  - AttackFlags: 0
+    DirectionFlag: 3
+  - AttackFlags: 0
+    DirectionFlag: 3
+  - AttackFlags: 0
+    DirectionFlag: 3
+  - AttackFlags: 0
+    DirectionFlag: 3
+  - AttackFlags: 0
+    DirectionFlag: 3
+  - AttackFlags: 0
+    DirectionFlag: 3
+  - AttackFlags: 0
+    DirectionFlag: 3
+  - AttackFlags: 1
+    DirectionFlag: 3
+  - AttackFlags: 0
+    DirectionFlag: 3
+  - AttackFlags: 0
+    DirectionFlag: 3
+  - AttackFlags: 0
+    DirectionFlag: 3
+  - AttackFlags: 0
+    DirectionFlag: 3
+  - AttackFlags: 0
+    DirectionFlag: 3
+  - AttackFlags: 0
+    DirectionFlag: 3
+  - AttackFlags: 0
+    DirectionFlag: 3
+  - AttackFlags: 0
+    DirectionFlag: 3
+  - AttackFlags: 0
+    DirectionFlag: 3
+  - AttackFlags: 0
+    DirectionFlag: 3
+  - AttackFlags: 1
+    DirectionFlag: 3
+  - AttackFlags: 0
+    DirectionFlag: 3
+  - AttackFlags: 0
+    DirectionFlag: 3
+  - AttackFlags: 0
+    DirectionFlag: 3
+  - AttackFlags: 0
     DirectionFlag: 0
   - AttackFlags: 0
     DirectionFlag: 0
@@ -134,183 +328,151 @@ MonoBehaviour:
   - AttackFlags: 0
     DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 4
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 4
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 4
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 4
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 4
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 4
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 4
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 4
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 4
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 4
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 4
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 4
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 4
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 4
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 4
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 4
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 4
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 4
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 4
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 4
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 4
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 4
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 4
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 4
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 4
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 4
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 4
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 4
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 4
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 4
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
-  - AttackFlags: 0
-    DirectionFlag: 2
-  - AttackFlags: 0
-    DirectionFlag: 2
-  - AttackFlags: 0
-    DirectionFlag: 2
-  - AttackFlags: 0
-    DirectionFlag: 2
-  - AttackFlags: 0
-    DirectionFlag: 2
-  - AttackFlags: 0
-    DirectionFlag: 2
-  - AttackFlags: 0
-    DirectionFlag: 2
-  - AttackFlags: 0
-    DirectionFlag: 2
-  - AttackFlags: 0
-    DirectionFlag: 2
-  - AttackFlags: 0
-    DirectionFlag: 2
-  - AttackFlags: 0
-    DirectionFlag: 2
-  - AttackFlags: 0
-    DirectionFlag: 2
-  - AttackFlags: 0
-    DirectionFlag: 2
-  - AttackFlags: 0
-    DirectionFlag: 2
-  - AttackFlags: 0
-    DirectionFlag: 2
-  - AttackFlags: 0
-    DirectionFlag: 2
-  IsLeftPlayer: 0
+    DirectionFlag: 0
+  IsLeftPlayer: 1

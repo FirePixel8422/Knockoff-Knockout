@@ -6,38 +6,6 @@
 /// </summary>
 public static class GlobalAnimHashes
 {
-    public static class Block
-    {
-        public static readonly AnimData Standing = new AnimData("StandingBlock", true, 1, 5);
-        public static readonly AnimData Crouching = new AnimData("CrouchingBlock", true, 1, 5);
-    }
-
-    public static class Hurt
-    {
-        public static class Standing
-        {
-            public static readonly AnimData Low = new AnimData("StandingLowHurt", true, 2, 5);
-            public static readonly AnimData MidHigh = new AnimData("StandingHighHurt", true, 2, 5);
-        }
-        public static class Crouching
-        {
-            public static readonly AnimData Low = new AnimData("CrouchingLowHurt", true, 2, 5);
-            public static readonly AnimData MidHigh = new AnimData("CrouchingHighHurt", true, 2, 5);
-        }
-        public static class KnockedDown
-        {
-            public static readonly AnimData Back = new AnimData("KDBackHurt", true, 2, 5);
-            public static readonly AnimData Stomach = new AnimData("KDStomachHurt", true, 2, 5);
-            public static readonly AnimData WakeUp = new AnimData("CrouchingLowHurt", true, 2, 5);
-        }
-    }
-
-    public static class KnockDown
-    {
-        public static readonly AnimData Standing = new AnimData("StandingKnockDown", true, 8, 5);
-        public static readonly AnimData Crouching = new AnimData("CrouchingKnockDown", true, 8, 5);
-    }
-
     public static class Movement
     {
         public static readonly AnimData Crouching = new AnimData("Crouching", false, 6, 5);
@@ -58,6 +26,35 @@ public static class GlobalAnimHashes
             public static readonly AnimData Up = new AnimData("SideStepUp", true, 2, 5);
             public static readonly AnimData Down = new AnimData("SideStepDown", true, 2, 5);
         }
+    }
+    public static class Block
+    {
+        public static readonly AnimData Standing = new AnimData("StandingBlock", true, 1, 5);
+        public static readonly AnimData Crouching = new AnimData("CrouchingBlock", true, 1, 5);
+    }
+    public static class Hurt
+    {
+        public static class Standing
+        {
+            public static readonly AnimData Low = new AnimData("StandingLowHurt", true, 2, 5);
+            public static readonly AnimData MidHigh = new AnimData("StandingHighHurt", true, 2, 5);
+        }
+        public static class Crouching
+        {
+            public static readonly AnimData Low = new AnimData("CrouchingLowHurt", true, 2, 5);
+            public static readonly AnimData MidHigh = new AnimData("CrouchingHighHurt", true, 2, 5);
+        }
+        public static class KnockedDown
+        {
+            public static readonly AnimData Back = new AnimData("KDBackHurt", true, 2, 5);
+            public static readonly AnimData Stomach = new AnimData("KDStomachHurt", true, 2, 5);
+            public static readonly AnimData WakeUp = new AnimData("CrouchingLowHurt", true, 2, 5);
+        }
+    }
+    public static class KnockDown
+    {
+        public static readonly AnimData Standing = new AnimData("StandingKnockDown", true, 8, 5);
+        public static readonly AnimData Crouching = new AnimData("CrouchingKnockDown", true, 8, 5);
     }
     public static class Wakeup
     {

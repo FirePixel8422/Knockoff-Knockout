@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b862d7d41f8e184187976caf926811d, type: 3}
-  m_Name: JabFinisher
+  m_Name: F_HighKick
   m_EditorClassIdentifier: Assembly-CSharp::AttackSO
   Value:
     animData:
-      name: JabFinisher
+      name: HighKick
       blendIn: 3
       blendOut: 5
     overrideHurtAnimData:
@@ -22,22 +22,22 @@ MonoBehaviour:
       blendIn: 0
       blendOut: 0
     Input:
-      AttackFlags: 1
+      AttackFlags: 8
       DirectionFlag: 0
     Stance: 0
     Level: 2
-    Damage: 10
-    HitKb: 0.13
-    BlockKb: 0.06
-    DoesKnockdown: 0
+    KnockDown: 0
+    Damage: 15
+    HitKb: 0.1
+    BlockKb: 0.05
     FrameData:
-      Startup: 14
+      Startup: 18
       Active: 2
-      Recovery: 12
+      Recovery: 26
       CancelWindow: 0
-      HitStun: 12
-      BlockStun: 8
-      CounterStun: 20
+      HitStun: 22
+      BlockStun: 12
+      CounterStun: 32
     Lunge:
       Curve:
         curve:
@@ -66,45 +66,27 @@ MonoBehaviour:
           m_RotationOrder: 4
         sampleCount: 50
       Window:
-        x: 7
-        y: 9
-      Power: 0.12
+        x: 6
+        y: 14
+      Power: 0.1
     Homing:
       Curve:
         curve:
           serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 0
-            inSlope: -0.0006721981
-            outSlope: -0.0006721981
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.9923954
-            outWeight: 0.33333334
-          - serializedVersion: 3
-            time: 1
-            value: 1
-            inSlope: 0.000036617694
-            outSlope: 0.000036617694
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.3231937
-            outWeight: 0.9994418
+          m_Curve: []
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        sampleCount: 50
+        sampleCount: 2
       Window:
         x: 0
         y: 0
       TotalHoming: 0
-    HurtBoxIds: 000000000100000002000000
+    HurtBoxIds: 000000000700000008000000
     stringTransitions: []
     StringTransitions: []
     AttackAnimData:
-      Hash: -585132615
+      Hash: -1570462898
       AllowSelfInterrupt: 1
       BlendIn: 3
       BlendOut: 5
@@ -113,8 +95,8 @@ MonoBehaviour:
       AllowSelfInterrupt: 0
       BlendIn: 0
       BlendOut: 0
-    TotalAttackDuration: 28
-    AdvantageOnHit: 0
-    AdvantageOnBlock: -4
-    AdvantageOnCounter: +8
-    AdvantageOnWhiff: -12
+    TotalAttackDuration: 46
+    AdvantageOnHit: -4
+    AdvantageOnBlock: -14
+    AdvantageOnCounter: +6
+    AdvantageOnWhiff: -26

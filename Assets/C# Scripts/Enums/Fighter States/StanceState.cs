@@ -22,4 +22,9 @@ public enum StanceState : byte
     /// Fighter is laying on the ground on their stomach
     /// </summary>
     KnockedDownStomach,
+
+    /// <summary>
+    /// Fighter has stood up and from KD state, but is still recovering
+    /// </summary>
+    Wakeup,
 }

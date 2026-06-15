@@ -5,12 +5,10 @@
 public struct StringTransition
 {
     public int TargetMoveHash;
-    public int frameSkipCount;
 
-    public StringTransition(int moveHash, int frameSkipCount)
+    public StringTransition(int moveHash)
     {
-        this.TargetMoveHash = moveHash;
-        this.frameSkipCount = frameSkipCount;
+        TargetMoveHash = moveHash;
     }
 
     public override readonly int GetHashCode()

@@ -20,5 +20,13 @@ public struct AnimData
 
         BlendIn = blendIn;
         BlendOut = blendOut;
+
+#if UNITY_EDITOR
+        Name = animName;
+#endif
     }
+
+#if UNITY_EDITOR
+    public string Name;
+#endif
 }

@@ -30,7 +30,7 @@ public struct AttackData
 #endif
 
     [Header(">>>Baked Data<<<")]
-    [EditorReadOnly] public StringTransition[] StringTransitions;
+    [EditorReadOnly] public StringTransition[] BakedStringTransitions;
     [EditorReadOnly] public AnimData AttackAnimData;
     [EditorReadOnly] public AnimData OverrideHurtAnimData;
 
@@ -53,25 +53,22 @@ public struct AttackData
 
 
 #if UNITY_EDITOR
-    [Header("Usefull Info")]
-    [EditorReadOnly] public string TotalAttackDuration;
-    [EditorReadOnly] public string AdvantageOnHit;
-    [EditorReadOnly] public string AdvantageOnBlock;
-    [EditorReadOnly] public string AdvantageOnCounter;
-    [EditorReadOnly] public string AdvantageOnWhiff;
+    [Header("Attack On-Hit/Block/Whiff Info:")]
+    [EditorReadOnly, SerializeField] private AdvantageContainer normalAdvantages;
 
     public void BakeData()
     {
         int stringMoveCount = stringTransitions == null ? 0 : stringTransitions.Length;
-        StringTransitions = new StringTransition[stringMoveCount];
+        BakedStringTransitions = new StringTransition[stringMoveCount];
 
         for (int i = 0; i < stringMoveCount; i++)
         {
             if (stringTransitions[i].TargetMove == null) continue;
 
-            StringTransitions[i] = new StringTransition(
-                stringTransitions[i].TargetMove.Value.AttackAnimData.Hash,
-                stringTransitions[i].frameSkipCount);
+            stringTransitions[i].BakeData(FrameData);
+
+            BakedStringTransitions[i] = new StringTransition(
+                stringTransitions[i].TargetMove.Value.AttackAnimData.Hash);
         }
 
         AttackAnimData = new AnimData(animData.name, true, animData.blendIn, animData.blendOut);
@@ -79,20 +76,39 @@ public struct AttackData
             GlobalAnimHashes.Missing : 
             new AnimData(overrideHurtAnimData.name, true, overrideHurtAnimData.blendIn, overrideHurtAnimData.blendOut);
 
-        TotalAttackDuration = (FrameData.Startup + FrameData.Active + FrameData.Recovery).ToString();
-        AdvantageOnHit = (FrameData.HitStun - FrameData.Recovery).ToString("+0;-0;0");
-        AdvantageOnBlock = (FrameData.BlockStun - FrameData.Recovery).ToString("+0;-0;0");
-        AdvantageOnCounter = (FrameData.CounterStun - FrameData.Recovery).ToString("+0;-0;0");
-        AdvantageOnWhiff = (-FrameData.Recovery).ToString("+0;-0;0");
+        normalAdvantages.AttackDuration = (FrameData.Startup + FrameData.Active + FrameData.Recovery).ToString();
+        normalAdvantages.OnHit = (FrameData.HitStun - FrameData.Recovery).ToString("+0;-0;0");
+        normalAdvantages.OnBlock = (FrameData.BlockStun - FrameData.Recovery).ToString("+0;-0;0");
+        normalAdvantages.OnCounter = (FrameData.CounterStun - FrameData.Recovery).ToString("+0;-0;0");
+        normalAdvantages.OnWhiff = (-FrameData.Recovery).ToString("+0;-0;0");
     }
 
     [System.Serializable]
     public struct EditorStringTransition
     {
         public AttackSO TargetMove;
-        public int frameSkipCount;
-    }
 
+        [Header("Cancel Transition On-Hit/Block/Whiff Info:")]
+        [EditorReadOnly, SerializeField] private AdvantageContainer cancelAdvantages;
+
+        public void BakeData(FrameData frameData)
+        {
+            cancelAdvantages.AttackDuration = (frameData.Startup + frameData.Active + frameData.CancelWindow).ToString();
+            cancelAdvantages.OnHit = (frameData.HitStun - frameData.CancelWindow).ToString("+0;-0;0");
+            cancelAdvantages.OnBlock = (frameData.BlockStun - frameData.CancelWindow).ToString("+0;-0;0");
+            cancelAdvantages.OnCounter = (frameData.CounterStun - frameData.CancelWindow).ToString("+0;-0;0");
+            cancelAdvantages.OnWhiff = (-frameData.CancelWindow).ToString("+0;-0;0");
+        }
+    }
+    [System.Serializable]
+    public struct AdvantageContainer
+    {
+        [EditorReadOnly] public string AttackDuration;
+        [EditorReadOnly] public string OnHit;
+        [EditorReadOnly] public string OnBlock;
+        [EditorReadOnly] public string OnCounter;
+        [EditorReadOnly] public string OnWhiff;
+    }
     [System.Serializable]
     public struct EditorAnimData
     {

@@ -10,34 +10,34 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b862d7d41f8e184187976caf926811d, type: 3}
-  m_Name: Special Teep
+  m_Name: F_ Jab
   m_EditorClassIdentifier: Assembly-CSharp::AttackSO
   Value:
     animData:
-      name: TeepKick
+      name: JabFinisher
       blendIn: 3
       blendOut: 5
     overrideHurtAnimData:
-      name: TeepKD
-      blendIn: 3
-      blendOut: 5
+      name: 
+      blendIn: 0
+      blendOut: 0
     Input:
-      AttackFlags: 4
+      AttackFlags: 2
       DirectionFlag: 0
     Stance: 0
-    Level: 1
-    KnockDown: 1
-    Damage: 15
-    HitKb: 1.5
-    BlockKb: 0.25
+    Level: 2
+    KnockDown: 0
+    Damage: 10
+    HitKb: 0.13
+    BlockKb: 0.06
     FrameData:
-      Startup: 16
+      Startup: 14
       Active: 2
-      Recovery: 36
-      CancelWindow: 10
-      HitStun: 50
-      BlockStun: 20
-      CounterStun: 50
+      Recovery: 18
+      CancelWindow: 0
+      HitStun: 12
+      BlockStun: 6
+      CounterStun: 20
     Lunge:
       Curve:
         curve:
@@ -66,9 +66,9 @@ MonoBehaviour:
           m_RotationOrder: 4
         sampleCount: 50
       Window:
-        x: 2
-        y: 8
-      Power: 0.25
+        x: 7
+        y: 9
+      Power: 0.12
     Homing:
       Curve:
         curve:
@@ -100,21 +100,21 @@ MonoBehaviour:
         x: 0
         y: 0
       TotalHoming: 0
-    HurtBoxIds: 000000000700000008000000
+    HurtBoxIds: 000000000300000004000000
     stringTransitions: []
     StringTransitions: []
     AttackAnimData:
-      Hash: 1401458710
+      Hash: -585132615
       AllowSelfInterrupt: 1
       BlendIn: 3
       BlendOut: 5
     OverrideHurtAnimData:
-      Hash: 1295675225
-      AllowSelfInterrupt: 1
-      BlendIn: 3
-      BlendOut: 5
-    TotalAttackDuration: 54
-    AdvantageOnHit: +14
-    AdvantageOnBlock: -16
-    AdvantageOnCounter: +14
-    AdvantageOnWhiff: -36
+      Hash: 1058882117
+      AllowSelfInterrupt: 0
+      BlendIn: 0
+      BlendOut: 0
+    TotalAttackDuration: 34
+    AdvantageOnHit: -6
+    AdvantageOnBlock: -12
+    AdvantageOnCounter: +2
+    AdvantageOnWhiff: -18

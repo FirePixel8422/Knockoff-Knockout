@@ -13,6 +13,4 @@ public enum AttackResult : byte
 
     StandingBlocked,
     CrouchBlocked,
-
-    Parried,
 }

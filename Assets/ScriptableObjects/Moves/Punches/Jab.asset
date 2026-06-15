@@ -26,15 +26,15 @@ MonoBehaviour:
       DirectionFlag: 0
     Stance: 0
     Level: 2
+    KnockDown: 0
     Damage: 8
     HitKb: 0.1
     BlockKb: 0.05
-    DoesKnockdown: 0
     FrameData:
       Startup: 10
       Active: 2
       Recovery: 12
-      CancelWindow: 6
+      CancelWindow: 10
       HitStun: 20
       BlockStun: 14
       CounterStun: 24
@@ -102,14 +102,10 @@ MonoBehaviour:
       TotalHoming: 0
     HurtBoxIds: 000000000100000002000000
     stringTransitions:
-    - TargetMove: {fileID: 11400000, guid: 72acb49e2441c1740addec0e4da523e9, type: 2}
-      frameSkipCount: 0
-    - TargetMove: {fileID: 11400000, guid: dcb486528f066fe4e9788f019e473ed6, type: 2}
+    - TargetMove: {fileID: 11400000, guid: 3ea569a664f04b34b9aaca01d8142247, type: 2}
       frameSkipCount: 0
     StringTransitions:
-    - TargetMoveHash: -1570462898
-      frameSkipCount: 0
-    - TargetMoveHash: 74116203
+    - TargetMoveHash: 1561758614
       frameSkipCount: 0
     AttackAnimData:
       Hash: 1561758614

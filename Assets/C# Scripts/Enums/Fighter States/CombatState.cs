@@ -32,13 +32,4 @@ public enum CombatState : byte
     /// Fighter is stunned in block stance because they blocked a Low while crouching or Mid/High while standing
     /// </summary>
     BlockStun,
-
-    /// <summary>
-    /// Fighter is in the active frames of a ParryLow animation
-    /// </summary>
-    ParryLowActive,
-    /// <summary>
-    /// Fighter is in the active frames of a ParryHigh animation
-    /// </summary>
-    ParryHighActive,
 }
