@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
         inputHandler = new PlayerInputHandler(moveSet, stringSet, isLeftPlayer);
 
         colliderHandler = new PlayerColliderHandler(transform);
-        healthHandler = new PlayerHealthHandler(ref stateMachine.OnDamageTaken);
+        healthHandler = new PlayerHealthHandler(ref stateMachine.OnDamageTaken, isLeftPlayer);
 
         movementHandler = new PlayerMovementHandler(stateMachine, inputHandler, transform, isLeftPlayer);
         attackHandler = new PlayerAttackHandler(stateMachine, inputHandler, colliderHandler, movementHandler);
@@ -76,7 +76,9 @@ public class PlayerController : MonoBehaviour
     }
     public void Dispose()
     {
+        stateMachine.Dispose();
         inputHandler.Dispose();
+        healthHandler.Dispose();
     }
 
 

@@ -29,5 +29,8 @@ public class MatchManager : MonoBehaviour
     private void OnDestroy()
     {
         Time.timeScale = 1;
+
+        OnGamePaused = null;
+        OnGameUnPaused = null;
     }
 }

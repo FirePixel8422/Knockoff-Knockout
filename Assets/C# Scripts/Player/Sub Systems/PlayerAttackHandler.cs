@@ -194,6 +194,17 @@ public class PlayerAttackHandler
             if (newState == CombatState.AttackActive)
             {
                 colliderHandler.EnableTargetHurtBoxes(ActiveAttack.HurtBoxIds);
+
+                switch (ActiveAttack.Type)
+                {
+                    case AttackType.Punch:
+                        AudioManager.PlayPunchSFX();
+                        break;
+
+                    case AttackType.Kick:
+                        AudioManager.PlayKickSFX();
+                        break;
+                }
             }
             else if (newState == CombatState.Recovering)
             {
@@ -215,6 +226,7 @@ public class PlayerAttackHandler
             movementHandler.AddForwardForce((currentLunge - prevLunge) * lungeData.Power);
         }
     }
+
     /// <summary>
     /// Start a new attack sequence.
     /// </summary>

@@ -11,6 +11,7 @@ public struct AttackData
 
     public FrameInput Input;
     public StanceState Stance;
+    public AttackType Type;
     public AttackLevel Level;
     public AttackKnockDown KnockDown;
 

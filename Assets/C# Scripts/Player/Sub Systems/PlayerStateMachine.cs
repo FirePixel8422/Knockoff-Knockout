@@ -53,6 +53,13 @@ public class PlayerStateMachine
         anim.enabled = false;
     }
     private PlayerStateMachine() { }
+    public void Dispose()
+    {
+        OnAttackConnected = null;
+        OnStunned = null;
+        OnDamageTaken = null;
+        OnKnockbackTaken = null;
+    }
 
 
     /// <summary>
@@ -87,6 +94,8 @@ public class PlayerStateMachine
 
                 PlayAnimation(animData);
                 Stun = attack.FrameData.HitStun;
+
+                AudioManager.PlayKnockDownSFX();
 
                 break;
             }
@@ -123,7 +132,9 @@ public class PlayerStateMachine
                 Stun = result == AttackResult.CounterHit ?
                     attack.FrameData.CounterStun :
                     attack.FrameData.HitStun;
-                
+
+                AudioManager.PlayHitSFX();
+
                 break;
             }
             case AttackResult.StandingBlocked or AttackResult.CrouchBlocked:
@@ -138,7 +149,9 @@ public class PlayerStateMachine
                     GlobalAnimHashes.Block.Standing :
                     GlobalAnimHashes.Block.Crouching);
                 Stun = attack.FrameData.BlockStun;
-                
+
+                AudioManager.PlayBlockSFX();
+
                 break;
             }
             default:

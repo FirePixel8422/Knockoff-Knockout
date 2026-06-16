@@ -23,6 +23,8 @@ public class HUDManager : MonoBehaviour
             PlayerController targetPlayer;
             PlayerUIModule targetUIModule;
 
+            ResetHUD();
+
             for (int i = 0; i < GlobalGameData.MAX_PLAYERS; i++)
             {
                 targetPlayer = PlayerManager.Instance.Players[i];
@@ -30,8 +32,17 @@ public class HUDManager : MonoBehaviour
 
                 targetUIModule.HealthBar.Init(fighterSettings.StartHealth);
                 targetPlayer.HealthHandler.OnHealthChanged += targetUIModule.HealthBar.OnHealthChanged;
+                targetPlayer.HealthHandler.OnFighterDied += AddStock;
             }
         };
+    }
+
+    public void ResetHUD()
+    {
+        for (int i = 0; i < GlobalGameData.MAX_PLAYERS; i++)
+        {
+            modules[i].Stocks.ResetStocks();
+        }
     }
 
     public void UpdateUI(float deltaTime)
@@ -43,6 +54,11 @@ public class HUDManager : MonoBehaviour
             modules[i].HealthBar.OnUpdate(deltaTime, globalTime);
         }
     }
+
+    public void AddStock(bool isLeftPlayer)
+    {
+        modules[isLeftPlayer ? 0 : 1].Stocks.AddStock();
+    }
 }
 
 
@@ -50,4 +66,5 @@ public class HUDManager : MonoBehaviour
 public class PlayerUIModule
 {
     public HealthBarUIController HealthBar;
+    public StockUIController Stocks;
 }
