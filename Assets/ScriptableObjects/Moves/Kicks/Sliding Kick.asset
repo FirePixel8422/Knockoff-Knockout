@@ -26,10 +26,10 @@ MonoBehaviour:
       DirectionFlag: 2
     Stance: 0
     Level: 0
+    KnockDown: 0
     Damage: 20
     HitKb: 0.7
     BlockKb: 0.2
-    DoesKnockdown: 0
     FrameData:
       Startup: 16
       Active: 4
@@ -101,24 +101,32 @@ MonoBehaviour:
         y: 0
       TotalHoming: 0
     HurtBoxIds: 000000000700000008000000
-    stringTransitions:
-    - TargetMove: {fileID: 11400000, guid: 88130d3eb5663bf4c91502c5ba531341, type: 2}
-      frameSkipCount: 0
     StringTransitions:
-    - TargetMoveHash: 1401458710
-      frameSkipCount: 0
+    - TargetMove: {fileID: 11400000, guid: 88130d3eb5663bf4c91502c5ba531341, type: 2}
+      cancelAdvantages:
+        AttackDuration: 30
+        OnHit: +14
+        OnBlock: +6
+        OnCounter: +24
+        OnWhiff: -10
+    AttackId: 2
+    BakedStringTransitions:
+    - TargetMoveId: 0
     AttackAnimData:
       Hash: -1078995872
       AllowSelfInterrupt: 1
       BlendIn: 3
       BlendOut: 5
+      Name: Sliding
     OverrideHurtAnimData:
       Hash: 1058882117
       AllowSelfInterrupt: 0
       BlendIn: 0
       BlendOut: 0
-    TotalAttackDuration: 50
-    AdvantageOnHit: -6
-    AdvantageOnBlock: -14
-    AdvantageOnCounter: +4
-    AdvantageOnWhiff: -30
+      Name: Missing
+    normalAdvantages:
+      AttackDuration: 50
+      OnHit: -6
+      OnBlock: -14
+      OnCounter: +4
+      OnWhiff: -30

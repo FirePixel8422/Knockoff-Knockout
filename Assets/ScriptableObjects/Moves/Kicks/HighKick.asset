@@ -26,10 +26,10 @@ MonoBehaviour:
       DirectionFlag: 0
     Stance: 0
     Level: 2
+    KnockDown: 0
     Damage: 15
     HitKb: 0.1
     BlockKb: 0.05
-    DoesKnockdown: 0
     FrameData:
       Startup: 18
       Active: 2
@@ -83,20 +83,24 @@ MonoBehaviour:
         y: 0
       TotalHoming: 0
     HurtBoxIds: 000000000700000008000000
-    stringTransitions: []
     StringTransitions: []
+    AttackId: 0
+    BakedStringTransitions: []
     AttackAnimData:
       Hash: -1570462898
       AllowSelfInterrupt: 1
       BlendIn: 3
       BlendOut: 5
+      Name: HighKick
     OverrideHurtAnimData:
       Hash: 1058882117
       AllowSelfInterrupt: 0
       BlendIn: 0
       BlendOut: 0
-    TotalAttackDuration: 46
-    AdvantageOnHit: -2
-    AdvantageOnBlock: -8
-    AdvantageOnCounter: +6
-    AdvantageOnWhiff: -26
+      Name: Missing
+    normalAdvantages:
+      AttackDuration: 46
+      OnHit: -2
+      OnBlock: -8
+      OnCounter: +6
+      OnWhiff: -26

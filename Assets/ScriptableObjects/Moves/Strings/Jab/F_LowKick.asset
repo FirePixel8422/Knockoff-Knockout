@@ -23,13 +23,13 @@ MonoBehaviour:
       blendOut: 0
     Input:
       AttackFlags: 4
-      DirectionFlag: 3
+      DirectionFlag: 0
     Stance: 0
     Level: 0
+    KnockDown: 0
     Damage: 10
     HitKb: 0.1
     BlockKb: 0.05
-    DoesKnockdown: 0
     FrameData:
       Startup: 14
       Active: 2
@@ -102,19 +102,22 @@ MonoBehaviour:
       TotalHoming: 0
     HurtBoxIds: 000000000700000008000000
     stringTransitions: []
-    StringTransitions: []
+    BakedStringTransitions: []
     AttackAnimData:
       Hash: 859106820
       AllowSelfInterrupt: 1
       BlendIn: 3
       BlendOut: 5
+      Name: LowKick
     OverrideHurtAnimData:
       Hash: 1058882117
       AllowSelfInterrupt: 0
       BlendIn: 0
       BlendOut: 0
-    TotalAttackDuration: 34
-    AdvantageOnHit: -2
-    AdvantageOnBlock: -4
-    AdvantageOnCounter: +4
-    AdvantageOnWhiff: -18
+      Name: Missing
+    normalAdvantages:
+      AttackDuration: 34
+      OnHit: -2
+      OnBlock: -4
+      OnCounter: +4
+      OnWhiff: -18

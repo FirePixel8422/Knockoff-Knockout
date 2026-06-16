@@ -101,20 +101,24 @@ MonoBehaviour:
         y: 0
       TotalHoming: 0
     HurtBoxIds: 000000000700000008000000
-    stringTransitions: []
     StringTransitions: []
+    AttackId: 3
+    BakedStringTransitions: []
     AttackAnimData:
       Hash: -326810665
       AllowSelfInterrupt: 1
       BlendIn: 3
       BlendOut: 5
+      Name: SweepKick
     OverrideHurtAnimData:
       Hash: 1058882117
       AllowSelfInterrupt: 0
       BlendIn: 0
       BlendOut: 0
-    TotalAttackDuration: 57
-    AdvantageOnHit: +14
-    AdvantageOnBlock: -18
-    AdvantageOnCounter: -4
-    AdvantageOnWhiff: -30
+      Name: Missing
+    normalAdvantages:
+      AttackDuration: 57
+      OnHit: +14
+      OnBlock: -18
+      OnCounter: -4
+      OnWhiff: -30
