@@ -74,6 +74,11 @@ public class PlayerController : MonoBehaviour
 
         inputRouter.Init(inputHandler, inputOverrider);
     }
+    public void Dispose()
+    {
+        inputHandler.Dispose();
+    }
+
 
     public void OnUpdate(float deltaTime)
     {
@@ -89,7 +94,6 @@ public class PlayerController : MonoBehaviour
         inputHandler.CollectInputs();
 
         colliderHandler.RecalculateHitBoxes();
-
 
         attackHandler.TickUpdateAttackSequence();
         movementHandler.TickUpdateMoveSequence();

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Diagnostics;
+using UnityEngine;
 
 
 /// <summary>
@@ -22,7 +23,7 @@ public class PlayerInputHandler
         bufferHandler = new InputBufferHandler();
     }
     private PlayerInputHandler() { }
-    ~PlayerInputHandler()
+    public void Dispose()
     {
         int attackCount = moveSet.Length;
         for (int i = 0; i < attackCount; i++)
@@ -138,28 +139,24 @@ public class PlayerInputHandler
         int attackStrength;
 
         int stringOptionsCount = stringOptions.Length;
-
-        int stringSetLength = stringSet.Length;
         for (int i = 0; i < stringOptionsCount; i++)
         {
-            for (int i2 = 0; i2 < stringSetLength; i2++)
-            {
-                if (stringSet[i2].AttackAnimData.Hash != stringOptions[i].TargetMoveHash) continue;
+            int stringAttackId = stringOptions[i].TargetMoveId;
 
-                attackStrength = bufferHandler.TestAttack(stringSet[i2].Input, isLeftPlayer);
+            attackStrength = bufferHandler.TestAttack(stringSet[stringAttackId].Input, isLeftPlayer);
 
-                if (attackStrength <= bestAttackStrength)
-                    continue;
+            if (attackStrength <= bestAttackStrength)
+                continue;
 
-                bestAttackStrength = attackStrength;
+            bestAttackStrength = attackStrength;
 
-                targetAttack = stringSet[i2];
+            targetAttack = stringSet[stringAttackId];
 
-                // Perfect input found, no need to continue checking other moves in the moveset
-                if (bestAttackStrength == 3)
-                    break;
-            }
+            // Perfect input found, no need to continue checking other moves in the moveset
+            if (bestAttackStrength == 3)
+                break;
         }
+
         return bestAttackStrength != 0;
     }
 

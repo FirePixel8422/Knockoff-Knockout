@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using Unity.Collections;
+using UnityEngine;
 
 
 
@@ -6,29 +9,110 @@
 public class AttackMoveSetSO : ScriptableObject
 {
     [SerializeField] private AttackSO[] baseMoves;
-    [SerializeField] private AttackSO[] stringMoves;
     
     /// <summary>
     /// Get all base attacks and string attacks as <see cref="AttackData"/> copies and bake all data into them
     /// </summary>
-    public void GetBakedDataArrays(out AttackData[] moveSet, out AttackData[] stringSet)
+    public void GetBakedAttackData(out AttackData[] moveSet, out AttackData[] stringSet)
     {
         int moveCount = baseMoves.Length;
         moveSet = new AttackData[moveCount];
+
+        HashSet<AttackSO> stringMoves = new HashSet<AttackSO>(moveCount);
+        List<AttackSO> toCheckList = new List<AttackSO>();
+
+        // Collect (duplicate free) set of all string attacks
+        for (int i = 0; i < moveCount; i++)
+        {
+            AddStringTransitions(stringMoves, toCheckList, baseMoves[i].Value.StringTransitions);
+        }
+
+        // Collect all nested string attacks (in string attacks)
+        while (toCheckList.Count > 0)
+        {
+            int toRemove = toCheckList.Count - 1;
+
+            AddStringTransitions(stringMoves, toCheckList, toCheckList[^1].Value.StringTransitions);
+
+            toCheckList.RemoveAtSwapBack(toRemove);
+        }
+
+        int stringMoveCount = stringMoves.Count;
+        stringSet = new AttackData[stringMoveCount];
+
+        // Send all string attacks in hashset to 'stringSet' (output)
+        int i3 = 0;
+        foreach (AttackSO attack in stringMoves)
+        {
+            attack.Value.AttackId = i3;
+
+            stringSet[i3] = attack.Value;
+            stringSet[i3].BakeAllCurves();
+            i3 += 1;
+        }
 
         for (int i = 0; i < moveCount; i++)
         {
             moveSet[i] = baseMoves[i].Value;
             moveSet[i].BakeAllCurves();
         }
+    }
 
-        int stringMoveCount = stringMoves.Length;
-        stringSet = new AttackData[stringMoveCount];
 
-        for (int i = 0; i < stringMoveCount; i++)
+    //public void GetBakedAttackData(out AttackData[] moveSet, out AttackData[] stringSet)
+    //{
+    //    int moveCount = baseMoves.Length;
+    //    moveSet = new AttackData[moveCount];
+
+    //    HashSet<AttackData> stringMoves = new HashSet<AttackData>(moveCount);
+    //    List<AttackData> toCheckList = new List<AttackData>();
+
+    //    // Collect (duplicate free) set of all string attacks
+    //    for (int i = 0; i < moveCount; i++)
+    //    {
+    //        moveSet[i] = baseMoves[i].Value;
+    //        moveSet[i].BakeAllCurves();
+
+    //        AddStringTransitions(stringMoves, toCheckList, moveSet[i].StringTransitions);
+    //    }
+
+    //    // Collect all nested string attacks (in string attacks)
+    //    while (toCheckList.Count > 0)
+    //    {
+    //        int toRemove = toCheckList.Count - 1;
+
+    //        AddStringTransitions(stringMoves, toCheckList, toCheckList[^1].StringTransitions);
+
+    //        toCheckList.RemoveAtSwapBack(toRemove);
+    //    }
+
+    //    int stringMoveCount = stringMoves.Count;
+    //    stringSet = new AttackData[stringMoveCount];
+
+    //    // Send all string attacks in hashset to 'stringSet' (output)
+    //    int i3 = 0;
+    //    foreach (AttackData attack in stringMoves)
+    //    {
+    //        stringSet[i3] = attack;
+    //        stringSet[i3].BakeAllCurves();
+    //        i3 += 1;
+    //    }
+    //}
+
+
+    /// <summary>
+    /// Add all attacks in <paramref name="stringTransitions"/> to both <paramref name="stringMoves"/> and <paramref name="toCheckList"/>
+    /// </summary>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    private void AddStringTransitions(HashSet<AttackSO> stringMoves, List<AttackSO> toCheckList, EditorStringTransition[] stringTransitions)
+    {
+        int stringCount = stringTransitions.Length;
+        for (int i = 0; i < stringCount; i++)
         {
-            stringSet[i] = stringMoves[i].Value;
-            stringSet[i].BakeAllCurves();
+            AttackSO targetMove = stringTransitions[i].TargetMove;
+
+            stringMoves.Add(targetMove);
+            toCheckList.Add(targetMove);
         }
     }
 }

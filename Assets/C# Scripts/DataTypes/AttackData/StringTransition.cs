@@ -4,15 +4,15 @@
 [System.Serializable]
 public struct StringTransition
 {
-    public int TargetMoveHash;
+    public int TargetMoveId;
 
-    public StringTransition(int moveHash)
+    public StringTransition(int moveId)
     {
-        TargetMoveHash = moveHash;
+        TargetMoveId = moveId;
     }
 
     public override readonly int GetHashCode()
     {
-        return TargetMoveHash;
+        return TargetMoveId;
     }
 }

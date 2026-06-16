@@ -248,8 +248,6 @@ public class PlayerStateMachine
             return;
         }
 
-        DebugLogger.LogWarning($"{animData.Name}", doDebugMode);
-
         AnimData prevAnimData = currentAnimData;
         currentAnimData = animData;
 

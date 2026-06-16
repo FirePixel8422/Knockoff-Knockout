@@ -40,12 +40,20 @@ public class PlayerManager : FrameTickUpdateMB
         {
             for (int i = 0; i < GlobalGameData.MAX_PLAYERS; i++)
             {
-                moveSetSO.GetBakedDataArrays(out AttackData[] moveSet, out AttackData[] stringSet);
+                moveSetSO.GetBakedAttackData(out AttackData[] moveSet, out AttackData[] stringSet);
                 players[i].Init(moveSet, stringSet);
             }
 
             PlayersInitComplete?.Invoke();
         };
+    }
+    private void OnDestroy()
+    {
+        PlayersInitComplete = new CompletionAction();
+        for (int i = 0; i < GlobalGameData.MAX_PLAYERS; i++)
+        {
+            players[i].Dispose();
+        }
     }
 
 
@@ -157,10 +165,4 @@ public class PlayerManager : FrameTickUpdateMB
     }
 
     #endregion
-
-
-    private void OnDestroy()
-    {
-        PlayersInitComplete = new CompletionAction();
-    }
 }
