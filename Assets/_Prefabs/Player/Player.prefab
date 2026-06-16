@@ -2113,6 +2113,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.00000056028904
       objectReference: {fileID: 0}
+    - target: {fileID: 8417361359673230750, guid: f56bd06238713cb4fbae175ea8d17357,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f5326aa548b1b7142b4d33ff46a4007c, type: 2}
     - target: {fileID: 8476774781526831030, guid: f56bd06238713cb4fbae175ea8d17357,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2344,6 +2349,7 @@ MonoBehaviour:
       AllowSelfInterrupt: 0
       BlendIn: 0
       BlendOut: 0
+      Name: 
     doDebugMode: 1
     stateHistory: []
   inputHandler:
