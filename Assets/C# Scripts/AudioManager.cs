@@ -6,10 +6,10 @@ using System;
 /// </summary>
 public static class AudioManager
 {
-    private static event Action HitSFX;
-    private static event Action BlockSFX;
-    private static event Action PunchSFX;
-    private static event Action KickSFX;
+    public static event Action HitSFX;
+    public static event Action BlockSFX;
+    public static event Action PunchSFX;
+    public static event Action KickSFX;
 
     public static void PlayOnHitSFX() => HitSFX?.Invoke();
     public static void PlayOnBlockSFX() => BlockSFX?.Invoke();
