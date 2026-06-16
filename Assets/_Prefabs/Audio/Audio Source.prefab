@@ -143,10 +143,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioPlayer
   audioSource: {fileID: 0}
-  hitAudioClip: {fileID: 8300000, guid: 321434bfcf5684b468eccaede5fb1204, type: 3}
-  punchAudioClip: {fileID: 8300000, guid: 6b785afd1f08f3043a8fc3f4f03ff410, type: 3}
-  kickAudioClip: {fileID: 8300000, guid: 0f3d5bbe197e9a6489b2f2b1d7c909cf, type: 3}
-  blockAudioClip: {fileID: 8300000, guid: 6f07b0b3599eae84c9cd137bb1849b7d, type: 3}
+  hitAudioClip: {fileID: 8300000, guid: 9a48b94fc09ff2b49a45c86885fa6f60, type: 3}
+  punchAudioClip: {fileID: 8300000, guid: f4543e8e15b05dc408f2543b35cc7e00, type: 3}
+  kickAudioClip: {fileID: 8300000, guid: 52119e9b439cf3f499c72105679dc5e5, type: 3}
+  blockAudioClip: {fileID: 8300000, guid: 8c183bb697ead3a499e34a89a46c8bbe, type: 3}
   hitPitchRange:
     min: 0.8
     max: 1.2
