@@ -68,7 +68,7 @@ MonoBehaviour:
       Window:
         x: 8
         y: 12
-      Power: 0.1
+      Power: 0.25
     Homing:
       Curve:
         curve:
@@ -101,7 +101,8 @@ MonoBehaviour:
         y: 0
       TotalHoming: 0
     HurtBoxIds: 000000000700000008000000
-    stringTransitions: []
+    StringTransitions: []
+    AttackId: 4
     BakedStringTransitions: []
     AttackAnimData:
       Hash: 859106820

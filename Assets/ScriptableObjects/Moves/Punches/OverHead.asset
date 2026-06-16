@@ -28,14 +28,14 @@ MonoBehaviour:
     Level: 1
     KnockDown: 2
     Damage: 20
-    HitKb: 1.2
+    HitKb: 1.25
     BlockKb: 0.1
     FrameData:
       Startup: 18
       Active: 3
-      Recovery: 28
-      CancelWindow: 0
-      HitStun: 60
+      Recovery: 30
+      CancelWindow: 18
+      HitStun: 54
       BlockStun: 14
       CounterStun: 0
     Lunge:
@@ -101,9 +101,17 @@ MonoBehaviour:
         y: 0
       TotalHoming: 0
     HurtBoxIds: 000000000300000004000000
-    StringTransitions: []
+    StringTransitions:
+    - TargetMove: {fileID: 11400000, guid: 30d58cf78c1d7904baf156cfa2a2cab5, type: 2}
+      cancelAdvantages:
+        AttackDuration: 39
+        OnHit: +36
+        OnBlock: -4
+        OnCounter: -18
+        OnWhiff: -18
     AttackId: 7
-    BakedStringTransitions: []
+    BakedStringTransitions:
+    - TargetMoveId: 2
     AttackAnimData:
       Hash: -410435135
       AllowSelfInterrupt: 1
@@ -117,8 +125,8 @@ MonoBehaviour:
       BlendOut: 0
       Name: Missing
     normalAdvantages:
-      AttackDuration: 49
-      OnHit: +32
-      OnBlock: -14
-      OnCounter: -28
-      OnWhiff: -28
+      AttackDuration: 51
+      OnHit: +24
+      OnBlock: -16
+      OnCounter: -30
+      OnWhiff: -30

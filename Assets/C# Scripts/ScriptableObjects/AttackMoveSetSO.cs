@@ -32,7 +32,7 @@ public class AttackMoveSetSO : ScriptableObject
         {
             int toRemove = toCheckList.Count - 1;
 
-            AddStringTransitions(stringMoves, toCheckList, toCheckList[^1].Value.StringTransitions);
+            AddStringTransitions(stringMoves, toCheckList, toCheckList[toRemove].Value.StringTransitions);
 
             toCheckList.RemoveAtSwapBack(toRemove);
         }

@@ -26,6 +26,72 @@ MonoBehaviour:
   - AttackFlags: 0
     DirectionFlag: 0
   - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
     DirectionFlag: 0
   - AttackFlags: 0
     DirectionFlag: 0
@@ -54,11 +120,355 @@ MonoBehaviour:
   - AttackFlags: 0
     DirectionFlag: 0
   - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
     DirectionFlag: 2
   - AttackFlags: 0
     DirectionFlag: 2
   - AttackFlags: 0
     DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
   - AttackFlags: 0
     DirectionFlag: 0
   - AttackFlags: 0
@@ -88,6 +498,16 @@ MonoBehaviour:
   - AttackFlags: 0
     DirectionFlag: 0
   - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
     DirectionFlag: 0
   - AttackFlags: 0
     DirectionFlag: 0
@@ -103,44 +523,1494 @@ MonoBehaviour:
     DirectionFlag: 2
   - AttackFlags: 0
     DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 2
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
   - AttackFlags: 2
-    DirectionFlag: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
+  - AttackFlags: 0
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
   - AttackFlags: 0
     DirectionFlag: 0
   - AttackFlags: 0
@@ -155,6 +2025,8 @@ MonoBehaviour:
     DirectionFlag: 0
   - AttackFlags: 0
     DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
   - AttackFlags: 0
     DirectionFlag: 0
   - AttackFlags: 0
@@ -168,11 +2040,13 @@ MonoBehaviour:
   - AttackFlags: 0
     DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
   - AttackFlags: 0
     DirectionFlag: 0
   - AttackFlags: 0
@@ -184,15 +2058,17 @@ MonoBehaviour:
   - AttackFlags: 0
     DirectionFlag: 0
   - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
     DirectionFlag: 0
   - AttackFlags: 0
     DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
   - AttackFlags: 0
     DirectionFlag: 0
   - AttackFlags: 0
@@ -204,13 +2080,15 @@ MonoBehaviour:
   - AttackFlags: 0
     DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 2
+    DirectionFlag: 0
   - AttackFlags: 0
     DirectionFlag: 0
   - AttackFlags: 0
@@ -220,84 +2098,82 @@ MonoBehaviour:
   - AttackFlags: 0
     DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
-  - AttackFlags: 1
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
-  - AttackFlags: 1
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
-  - AttackFlags: 1
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
-  - AttackFlags: 1
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
-    DirectionFlag: 3
+    DirectionFlag: 0
   - AttackFlags: 0
     DirectionFlag: 0
   - AttackFlags: 0
     DirectionFlag: 0
   - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
     DirectionFlag: 0
   - AttackFlags: 0
     DirectionFlag: 0
@@ -319,6 +2195,8 @@ MonoBehaviour:
     DirectionFlag: 0
   - AttackFlags: 0
     DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
   - AttackFlags: 0
     DirectionFlag: 0
   - AttackFlags: 0
@@ -340,6 +2218,8 @@ MonoBehaviour:
   - AttackFlags: 0
     DirectionFlag: 0
   - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
     DirectionFlag: 0
   - AttackFlags: 0
     DirectionFlag: 0
@@ -363,6 +2243,8 @@ MonoBehaviour:
     DirectionFlag: 0
   - AttackFlags: 0
     DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
   - AttackFlags: 0
     DirectionFlag: 0
   - AttackFlags: 0
@@ -382,6 +2264,8 @@ MonoBehaviour:
   - AttackFlags: 0
     DirectionFlag: 0
   - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
     DirectionFlag: 0
   - AttackFlags: 0
     DirectionFlag: 0
@@ -399,6 +2283,8 @@ MonoBehaviour:
     DirectionFlag: 0
   - AttackFlags: 0
     DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
   - AttackFlags: 0
     DirectionFlag: 0
   - AttackFlags: 0
@@ -415,6 +2301,8 @@ MonoBehaviour:
     DirectionFlag: 0
   - AttackFlags: 0
     DirectionFlag: 0
+  - AttackFlags: 2
+    DirectionFlag: 0
   - AttackFlags: 0
     DirectionFlag: 0
   - AttackFlags: 0
@@ -438,6 +2326,8 @@ MonoBehaviour:
   - AttackFlags: 0
     DirectionFlag: 0
   - AttackFlags: 0
+    DirectionFlag: 0
+  - AttackFlags: 2
     DirectionFlag: 0
   - AttackFlags: 0
     DirectionFlag: 0

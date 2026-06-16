@@ -67,17 +67,18 @@ public class PlayerAttackHandler
     /// <summary>
     /// Get <see cref="AttackResult"/> based on what type of attack hit this fighter (defender perspective) in what state
     /// </summary>
-    public AttackResult GetInboundAttackResult(AttackLevel attackType, bool doesKnockDown)
+    public AttackResult GetInboundAttackResult(AttackLevel attackLevel, bool doesKnockDown)
     {
         FighterState defenderState = stateMachine.State;
 
         // If defender is knocked down, they dodge highs but lose to mids and highs
         if (defenderState.StanceState == StanceState.KnockedDownStomach ||
-            defenderState.StanceState == StanceState.KnockedDownBack)
+            defenderState.StanceState == StanceState.KnockedDownBack ||
+            defenderState.StanceState == StanceState.Wakeup)
         {
-            return attackType switch
+            return attackLevel switch
             {
-                AttackLevel.High =>
+                AttackLevel.High or AttackLevel.Mid =>
                     AttackResult.Missed,
 
                 _ => doesKnockDown ?
@@ -87,8 +88,12 @@ public class PlayerAttackHandler
         }
 
         // If defender cant block or the incoming attack is unblockable, the defender gets hit OR interrupted
-        if ((defenderState.CanBlock() == false) || attackType == AttackLevel.Unblockable)
+        if ((defenderState.CanBlock() == false) || attackLevel == AttackLevel.Unblockable)
         {
+            if (attackLevel == AttackLevel.High && stateMachine.State.StanceState == StanceState.Crouching)
+            {
+                return AttackResult.Missed;
+            }
             if (doesKnockDown)
             {
                 return AttackResult.KnockDown;
@@ -103,7 +108,7 @@ public class PlayerAttackHandler
         // If defender is crouching, they blocks lows, dodge highs but lose to mids
         if (defenderState.StanceState == StanceState.Crouching)
         {
-            return attackType switch
+            return attackLevel switch
             {
                 AttackLevel.Low =>
                     AttackResult.CrouchBlocked,
@@ -123,7 +128,7 @@ public class PlayerAttackHandler
             {
                 // If defender is standing still or walking backwards, they blocks mids and highs and lose to lows
                 MovementState.Idle or MovementState.Retreating =>
-                    attackType switch
+                    attackLevel switch
                     {
                         AttackLevel.Mid or AttackLevel.High =>
                             AttackResult.StandingBlocked,

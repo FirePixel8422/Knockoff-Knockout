@@ -29,8 +29,8 @@ MonoBehaviour:
       AdvantageOnMiss: -22
     SideStep:
       Duration: 12
-      Startup: 16
-      Recovery: 14
+      Startup: 14
+      Recovery: 15
       DurationCurve:
         curve:
           serializedVersion: 2
@@ -57,8 +57,8 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         sampleCount: 50
-      SideStepPower: 1.75
-      ForwardPower: 0.5
+      SideStepPower: 1.8
+      ForwardPower: 0.6
       DistanceRange:
         min: 0.75
         max: 4.5

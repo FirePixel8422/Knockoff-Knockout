@@ -68,7 +68,7 @@ MonoBehaviour:
       Window:
         x: 4
         y: 20
-      Power: 1
+      Power: 0.8
     Homing:
       Curve:
         curve:

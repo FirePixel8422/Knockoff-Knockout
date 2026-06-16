@@ -18,9 +18,9 @@ MonoBehaviour:
       blendIn: 2
       blendOut: 5
     overrideHurtAnimData:
-      name: 
-      blendIn: 0
-      blendOut: 0
+      name: StandingHighHurt
+      blendIn: 3
+      blendOut: 5
     Input:
       AttackFlags: 1
       DirectionFlag: 3
@@ -111,11 +111,11 @@ MonoBehaviour:
       BlendOut: 5
       Name: CrouchJab
     OverrideHurtAnimData:
-      Hash: 1058882117
-      AllowSelfInterrupt: 0
-      BlendIn: 0
-      BlendOut: 0
-      Name: Missing
+      Hash: -1926057759
+      AllowSelfInterrupt: 1
+      BlendIn: 3
+      BlendOut: 5
+      Name: StandingHighHurt
     normalAdvantages:
       AttackDuration: 26
       OnHit: +6

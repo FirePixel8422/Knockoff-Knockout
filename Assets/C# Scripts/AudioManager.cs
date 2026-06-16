@@ -6,13 +6,13 @@ using System;
 /// </summary>
 public static class AudioManager
 {
-    public static event Action OnHitSFX;
-    public static event Action OnBlockSFX;
-    public static event Action OnPunchSFX;
-    public static event Action OnKickSFX;
+    private static event Action HitSFX;
+    private static event Action BlockSFX;
+    private static event Action PunchSFX;
+    private static event Action KickSFX;
 
-    public static void PlayOnHit() => OnHitSFX?.Invoke();
-    public static void PlayOnBlock() => OnBlockSFX?.Invoke();
-    public static void PlayOnPunch() => OnPunchSFX?.Invoke();
-    public static void PlayOnKick() => OnKickSFX?.Invoke();
+    public static void PlayOnHitSFX() => HitSFX?.Invoke();
+    public static void PlayOnBlockSFX() => BlockSFX?.Invoke();
+    public static void PlayOnPunchSFX() => PunchSFX?.Invoke();
+    public static void PlayOnKickSFX() => KickSFX?.Invoke();
 }

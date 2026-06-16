@@ -104,11 +104,10 @@ public class PlayerController : MonoBehaviour
         bool wasInActionRecovery = stateMachine.State.CombatState == CombatState.Recovering;
 
         // TickUpdate any active movement action and read movement input IF player wont be actionlocked next frame
-        bool isActionLocked = wasInActionRecovery || stateMachine.IsInCombatLock || stateMachine.IsInMoveLock;
-        if (!isActionLocked)
-        {
-            movementHandler.TickUpdateMoveInput();
-        }
+        // If IsActionLocked, return
+        if (wasInActionRecovery || stateMachine.IsInCombatLock || stateMachine.IsInMoveLock) return;
+
+        movementHandler.TickUpdateMoveInput();
     }
 
     public void TickUpdate(out bool activeAttackConnected)

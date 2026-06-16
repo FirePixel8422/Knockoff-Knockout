@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b862d7d41f8e184187976caf926811d, type: 3}
-  m_Name: HighKick
+  m_Name: F_SweepKick
   m_EditorClassIdentifier: Assembly-CSharp::AttackSO
   Value:
     animData:
-      name: HighKick
+      name: SweepKick
       blendIn: 3
       blendOut: 5
     overrideHurtAnimData:
@@ -23,21 +23,21 @@ MonoBehaviour:
       blendOut: 0
     Input:
       AttackFlags: 8
-      DirectionFlag: 0
+      DirectionFlag: 3
     Stance: 0
-    Level: 2
-    KnockDown: 0
-    Damage: 15
-    HitKb: 0.1
-    BlockKb: 0.05
+    Level: 0
+    KnockDown: 2
+    Damage: 22
+    HitKb: 1
+    BlockKb: 0.3
     FrameData:
-      Startup: 18
-      Active: 2
-      Recovery: 20
+      Startup: 24
+      Active: 3
+      Recovery: 30
       CancelWindow: 0
-      HitStun: 22
-      BlockStun: 18
-      CounterStun: 28
+      HitStun: 32
+      BlockStun: 12
+      CounterStun: 26
     Lunge:
       Curve:
         curve:
@@ -66,32 +66,50 @@ MonoBehaviour:
           m_RotationOrder: 4
         sampleCount: 50
       Window:
-        x: 6
+        x: 4
         y: 14
-      Power: 0.15
+      Power: 0.75
     Homing:
       Curve:
         curve:
           serializedVersion: 2
-          m_Curve: []
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: -0.0006721981
+            outSlope: -0.0006721981
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.9923954
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 1
+            value: 1
+            inSlope: 0.000036617694
+            outSlope: 0.000036617694
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.3231937
+            outWeight: 0.9994418
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        sampleCount: 2
+        sampleCount: 50
       Window:
         x: 0
         y: 0
       TotalHoming: 0
     HurtBoxIds: 000000000700000008000000
     StringTransitions: []
-    AttackId: 0
+    AttackId: 2
     BakedStringTransitions: []
     AttackAnimData:
-      Hash: -1570462898
+      Hash: -326810665
       AllowSelfInterrupt: 1
       BlendIn: 3
       BlendOut: 5
-      Name: HighKick
+      Name: SweepKick
     OverrideHurtAnimData:
       Hash: 1058882117
       AllowSelfInterrupt: 0
@@ -99,8 +117,8 @@ MonoBehaviour:
       BlendOut: 0
       Name: Missing
     normalAdvantages:
-      AttackDuration: 40
+      AttackDuration: 57
       OnHit: +2
-      OnBlock: -2
-      OnCounter: +8
-      OnWhiff: -20
+      OnBlock: -18
+      OnCounter: -4
+      OnWhiff: -30

@@ -138,8 +138,6 @@ public class PlayerManager : FrameTickUpdateMB
         }
 
         // Update systems after players.
-        PlayerSpacingManager.Instance.OnUpdate();
-
         HUDManager.Instance.UpdateUI(deltaTime);
         CameraManager.Instance.UpdateCamera(deltaTime);
     }
@@ -162,6 +160,9 @@ public class PlayerManager : FrameTickUpdateMB
         {
             players[i].PostTickUpdate(playerAttackConnects[i]);
         }
+
+        PlayerSpacingManager.Instance.TickUpdate();
+        CameraManager.Instance.TickUpdate();
     }
 
     #endregion

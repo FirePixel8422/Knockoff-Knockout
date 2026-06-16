@@ -68,7 +68,7 @@ MonoBehaviour:
       Window:
         x: 2
         y: 8
-      Power: 0.25
+      Power: 0.4
     Homing:
       Curve:
         curve:
@@ -101,21 +101,24 @@ MonoBehaviour:
         y: 0
       TotalHoming: 0
     HurtBoxIds: 000000000700000008000000
-    stringTransitions: []
+    StringTransitions: []
+    AttackId: 0
     BakedStringTransitions: []
     AttackAnimData:
       Hash: 1401458710
       AllowSelfInterrupt: 1
       BlendIn: 3
       BlendOut: 5
+      Name: TeepKick
     OverrideHurtAnimData:
       Hash: 1295675225
       AllowSelfInterrupt: 1
       BlendIn: 3
       BlendOut: 5
+      Name: TeepKD
     normalAdvantages:
       AttackDuration: 54
-      OnHit: 
+      OnHit: +14
       OnBlock: -16
       OnCounter: +14
       OnWhiff: -36

@@ -68,7 +68,7 @@ MonoBehaviour:
       Window:
         x: 5
         y: 7
-      Power: 0.1
+      Power: 0.15
     Homing:
       Curve:
         curve:
@@ -123,10 +123,11 @@ MonoBehaviour:
         OnBlock: +2
         OnCounter: +12
         OnWhiff: -12
+    AttackId: 1
     BakedStringTransitions:
-    - TargetMoveHash: -585132615
-    - TargetMoveHash: -1570462898
-    - TargetMoveHash: 859106820
+    - TargetMoveId: 2
+    - TargetMoveId: 3
+    - TargetMoveId: 4
     AttackAnimData:
       Hash: 1561758614
       AllowSelfInterrupt: 1

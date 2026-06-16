@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering;
 
 
 public static class ExtensionMethods
@@ -277,34 +278,50 @@ public static class ExtensionMethods
     /// <summary>
     /// Lets AudioSource play selected clip with selected pitch
     /// </summary>
-    public static void PlayClipWithPitch(this AudioSource source, AudioClip clip, float pitch)
+    public static void PlayClipWithPitch(this AudioSource source, AudioClip clip, float pitch, float volume = -1)
     {
         source.clip = clip;
         source.pitch = pitch;
+        if (volume != -1)
+        {
+            source.volume = volume;
+        }
         source.Play();
     }
     /// <summary>
     /// Lets AudioSource play with selected pitch
     /// </summary>
-    public static void PlayWithPitch(this AudioSource source, float pitch)
+    public static void PlayWithPitch(this AudioSource source, float pitch, float volume = -1)
     {
         source.pitch = pitch;
+        if (volume != -1)
+        {
+            source.volume = volume;
+        }
         source.Play();
     }
     /// <summary>
     /// Lets AudioSource play with selected pitch
     /// </summary>
-    public static void PlayOneShotWithPitch(this AudioSource source, float pitch)
+    public static void PlayOneShotWithPitch(this AudioSource source, float pitch, float volume = -1)
     {
         source.pitch = pitch;
+        if (volume != -1)
+        {
+            source.volume = volume;
+        }
         source.PlayOneShot(source.clip);
     }
     /// <summary>
     /// Lets AudioSource play selected clip with selected pitch
     /// </summary>
-    public static void PlayOneShotClipWithPitch(this AudioSource source, AudioClip clip, float pitch)
+    public static void PlayOneShotClipWithPitch(this AudioSource source, AudioClip clip, float pitch, float volume = -1)
     {
         source.pitch = pitch;
+        if (volume != -1)
+        {
+            source.volume = volume;
+        }
         source.PlayOneShot(clip);
     }
 

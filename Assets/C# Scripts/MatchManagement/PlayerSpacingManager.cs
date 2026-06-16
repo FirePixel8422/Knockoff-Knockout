@@ -46,7 +46,7 @@ public class PlayerSpacingManager : MonoBehaviour
         }
     }
 
-    public void OnUpdate()
+    public void TickUpdate()
     {
         Vector3 playerPosA = playerMoveHandlers[0].CurrentTransformPos;
         Vector3 playerPosB = playerMoveHandlers[1].CurrentTransformPos;

@@ -84,12 +84,14 @@ public class CameraManager : MonoBehaviour
 
     public void UpdateCamera(float deltaTime)
     {
-        viewPositionState.Target = GetPlayerCenter();
-        viewRotationState.Target = Quaternion.LookRotation(-GetRightDir(), Vector3.up);
-
         viewCenterTransform.SetPositionAndRotation(
             viewPositionState.Lerp(cameraPosLerpSpeed * deltaTime),
             viewRotationState.Slerp(cameraRotLerpSpeed * deltaTime));
+    }
+    public void TickUpdate()
+    {
+        viewPositionState.Target = GetPlayerCenter();
+        viewRotationState.Target = Quaternion.LookRotation(-GetRightDir(), Vector3.up);
     }
 
     /// <summary>
