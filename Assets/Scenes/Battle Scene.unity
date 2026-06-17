@@ -522,7 +522,7 @@ PrefabInstance:
     - target: {fileID: 955034650294576780, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
       propertyPath: mode
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 955034650294576780, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
@@ -1570,6 +1570,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: -0.1182062
       objectReference: {fileID: 0}
+    - target: {fileID: 7762258183537775421, guid: 2c306b11cd47a6646b8d56dd3ec68212,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7762258183537775421, guid: 2c306b11cd47a6646b8d56dd3ec68212,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: f5326aa548b1b7142b4d33ff46a4007c, type: 2}
     - target: {fileID: 7793673818144359985, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
       propertyPath: DrawGizmos
@@ -2079,7 +2089,7 @@ PrefabInstance:
     - target: {fileID: 955034650294576780, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
       propertyPath: mode
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 955034650294576780, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
@@ -3686,7 +3696,7 @@ PrefabInstance:
     - target: {fileID: 2445341876200361654, guid: 8c87cf2705f7ed5449e1017a1f867766,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2445341876200361654, guid: 8c87cf2705f7ed5449e1017a1f867766,
         type: 3}
