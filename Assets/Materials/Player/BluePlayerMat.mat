@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PlayerMat
+  m_Name: BluePlayerMat
   m_Shader: {fileID: 4800000, guid: 933532a4fcc9baf4fa0491de14d08ed7, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -28,11 +28,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 04717fe6499cab9429a24ac756e93e7a, type: 3}
+        m_Texture: {fileID: 2800000, guid: 230f3d0f47909a042bf65e7d387b56c1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: 33f6670fcee918740b924f9e05a5ca39, type: 3}
+        m_Texture: {fileID: 2800000, guid: 3c0a56bcc63a0d442a48dada70a3fafe, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -52,11 +52,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 04717fe6499cab9429a24ac756e93e7a, type: 3}
+        m_Texture: {fileID: 2800000, guid: 230f3d0f47909a042bf65e7d387b56c1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: e8e23eb5cec33e84caead02caec8341e, type: 3}
+        m_Texture: {fileID: 2800000, guid: bb9f2c7398cfa064c9a608740acb4862, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:

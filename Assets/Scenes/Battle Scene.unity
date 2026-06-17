@@ -1579,7 +1579,7 @@ PrefabInstance:
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: f5326aa548b1b7142b4d33ff46a4007c, type: 2}
+      objectReference: {fileID: 2100000, guid: 52a398201a196f346ab590372f77c156, type: 2}
     - target: {fileID: 7793673818144359985, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
       propertyPath: DrawGizmos
