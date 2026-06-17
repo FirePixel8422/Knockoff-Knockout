@@ -25,6 +25,7 @@ MonoBehaviour:
       AttackFlags: 1
       DirectionFlag: 0
     Stance: 0
+    Type: 0
     Level: 2
     KnockDown: 0
     Damage: 8
@@ -34,7 +35,7 @@ MonoBehaviour:
       Startup: 10
       Active: 2
       Recovery: 12
-      CancelWindow: 10
+      CancelWindow: 8
       HitStun: 20
       BlockStun: 14
       CounterStun: 24
@@ -104,14 +105,14 @@ MonoBehaviour:
     StringTransitions:
     - TargetMove: {fileID: 11400000, guid: 3ea569a664f04b34b9aaca01d8142247, type: 2}
       cancelAdvantages:
-        AttackDuration: 22
-        OnHit: +10
-        OnBlock: +4
-        OnCounter: +14
-        OnWhiff: -10
+        AttackDuration: 20
+        OnHit: +12
+        OnBlock: +6
+        OnCounter: +16
+        OnWhiff: -8
     AttackId: 6
     BakedStringTransitions:
-    - TargetMoveId: 0
+    - TargetMoveId: 1
     AttackAnimData:
       Hash: 1561758614
       AllowSelfInterrupt: 1

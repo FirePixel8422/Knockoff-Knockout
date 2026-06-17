@@ -25,6 +25,7 @@ MonoBehaviour:
       AttackFlags: 1
       DirectionFlag: 3
     Stance: 1
+    Type: 0
     Level: 0
     KnockDown: 0
     Damage: 8
@@ -35,9 +36,9 @@ MonoBehaviour:
       Active: 2
       Recovery: 14
       CancelWindow: 0
-      HitStun: 20
+      HitStun: 18
       BlockStun: 10
-      CounterStun: 24
+      CounterStun: 22
     Lunge:
       Curve:
         curve:
@@ -118,7 +119,7 @@ MonoBehaviour:
       Name: StandingHighHurt
     normalAdvantages:
       AttackDuration: 26
-      OnHit: +6
+      OnHit: +4
       OnBlock: -4
-      OnCounter: +10
+      OnCounter: +8
       OnWhiff: -14

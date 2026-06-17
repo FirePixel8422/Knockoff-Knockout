@@ -18,25 +18,26 @@ MonoBehaviour:
       blendIn: 3
       blendOut: 5
     overrideHurtAnimData:
-      name: 
-      blendIn: 0
-      blendOut: 0
+      name: TeepKD
+      blendIn: 3
+      blendOut: 5
     Input:
       AttackFlags: 8
       DirectionFlag: 0
     Stance: 0
+    Type: 0
     Level: 2
-    KnockDown: 0
-    Damage: 15
-    HitKb: 0.1
+    KnockDown: 1
+    Damage: 19
+    HitKb: 1.5
     BlockKb: 0.05
     FrameData:
       Startup: 18
       Active: 2
-      Recovery: 20
+      Recovery: 22
       CancelWindow: 0
-      HitStun: 22
-      BlockStun: 12
+      HitStun: 52
+      BlockStun: 10
       CounterStun: 32
     Lunge:
       Curve:
@@ -84,7 +85,7 @@ MonoBehaviour:
       TotalHoming: 0
     HurtBoxIds: 000000000700000008000000
     StringTransitions: []
-    AttackId: 3
+    AttackId: 5
     BakedStringTransitions: []
     AttackAnimData:
       Hash: -1570462898
@@ -93,14 +94,14 @@ MonoBehaviour:
       BlendOut: 5
       Name: HighKick
     OverrideHurtAnimData:
-      Hash: 1058882117
-      AllowSelfInterrupt: 0
-      BlendIn: 0
-      BlendOut: 0
-      Name: Missing
+      Hash: 1295675225
+      AllowSelfInterrupt: 1
+      BlendIn: 3
+      BlendOut: 5
+      Name: TeepKD
     normalAdvantages:
-      AttackDuration: 40
-      OnHit: +2
-      OnBlock: -8
-      OnCounter: +12
-      OnWhiff: -20
+      AttackDuration: 42
+      OnHit: +30
+      OnBlock: -12
+      OnCounter: +10
+      OnWhiff: -22

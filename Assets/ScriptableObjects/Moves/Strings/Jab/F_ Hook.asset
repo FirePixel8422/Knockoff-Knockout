@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b862d7d41f8e184187976caf926811d, type: 3}
-  m_Name: F_ Jab
+  m_Name: F_ Hook
   m_EditorClassIdentifier: Assembly-CSharp::AttackSO
   Value:
     animData:
-      name: JabFinisher
+      name: Hook
       blendIn: 3
       blendOut: 5
     overrideHurtAnimData:
@@ -22,17 +22,17 @@ MonoBehaviour:
       blendIn: 0
       blendOut: 0
     Input:
-      AttackFlags: 1
+      AttackFlags: 2
       DirectionFlag: 0
     Stance: 0
     Type: 0
-    Level: 2
+    Level: 1
     KnockDown: 0
-    Damage: 10
+    Damage: 14
     HitKb: 0.3
     BlockKb: 0.15
     FrameData:
-      Startup: 14
+      Startup: 16
       Active: 2
       Recovery: 18
       CancelWindow: 0
@@ -69,7 +69,7 @@ MonoBehaviour:
       Window:
         x: 7
         y: 9
-      Power: 0.25
+      Power: 0.5
     Homing:
       Curve:
         curve:
@@ -103,14 +103,14 @@ MonoBehaviour:
       TotalHoming: 0
     HurtBoxIds: 000000000300000004000000
     StringTransitions: []
-    AttackId: 3
+    AttackId: 4
     BakedStringTransitions: []
     AttackAnimData:
-      Hash: -585132615
+      Hash: 74116203
       AllowSelfInterrupt: 1
       BlendIn: 3
       BlendOut: 5
-      Name: JabFinisher
+      Name: Hook
     OverrideHurtAnimData:
       Hash: 1058882117
       AllowSelfInterrupt: 0
@@ -118,7 +118,7 @@ MonoBehaviour:
       BlendOut: 0
       Name: Missing
     normalAdvantages:
-      AttackDuration: 34
+      AttackDuration: 36
       OnHit: -6
       OnBlock: -12
       OnCounter: +2

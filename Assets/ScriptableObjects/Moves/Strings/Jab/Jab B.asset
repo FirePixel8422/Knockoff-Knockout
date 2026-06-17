@@ -25,6 +25,7 @@ MonoBehaviour:
       AttackFlags: 1
       DirectionFlag: 0
     Stance: 0
+    Type: 0
     Level: 2
     KnockDown: 0
     Damage: 8
@@ -34,8 +35,8 @@ MonoBehaviour:
       Startup: 10
       Active: 2
       Recovery: 24
-      CancelWindow: 12
-      HitStun: 26
+      CancelWindow: 8
+      HitStun: 23
       BlockStun: 14
       CounterStun: 24
     Lunge:
@@ -104,30 +105,38 @@ MonoBehaviour:
     StringTransitions:
     - TargetMove: {fileID: 11400000, guid: 12df6c9c1c2a2f74e869e75a49fbb133, type: 2}
       cancelAdvantages:
-        AttackDuration: 24
-        OnHit: +14
-        OnBlock: +2
-        OnCounter: +12
-        OnWhiff: -12
+        AttackDuration: 20
+        OnHit: +15
+        OnBlock: +6
+        OnCounter: +16
+        OnWhiff: -8
+    - TargetMove: {fileID: 11400000, guid: 84ed5ba8292172f42a35334d97ddfc75, type: 2}
+      cancelAdvantages:
+        AttackDuration: 20
+        OnHit: +15
+        OnBlock: +6
+        OnCounter: +16
+        OnWhiff: -8
     - TargetMove: {fileID: 11400000, guid: 6a9a2ce25d7a7cb4da9141e298f28e2f, type: 2}
       cancelAdvantages:
-        AttackDuration: 24
-        OnHit: +14
-        OnBlock: +2
-        OnCounter: +12
-        OnWhiff: -12
+        AttackDuration: 20
+        OnHit: +15
+        OnBlock: +6
+        OnCounter: +16
+        OnWhiff: -8
     - TargetMove: {fileID: 11400000, guid: ff776586a3b47fd4383973b802339d3a, type: 2}
       cancelAdvantages:
-        AttackDuration: 24
-        OnHit: +14
-        OnBlock: +2
-        OnCounter: +12
-        OnWhiff: -12
+        AttackDuration: 20
+        OnHit: +15
+        OnBlock: +6
+        OnCounter: +16
+        OnWhiff: -8
     AttackId: 1
     BakedStringTransitions:
-    - TargetMoveId: 2
     - TargetMoveId: 3
     - TargetMoveId: 4
+    - TargetMoveId: 5
+    - TargetMoveId: 6
     AttackAnimData:
       Hash: 1561758614
       AllowSelfInterrupt: 1
@@ -142,7 +151,7 @@ MonoBehaviour:
       Name: Missing
     normalAdvantages:
       AttackDuration: 36
-      OnHit: +2
+      OnHit: -1
       OnBlock: -10
       OnCounter: 0
       OnWhiff: -24
