@@ -11,9 +11,9 @@ public struct ActionSequenceTimeline<TEnum>
 
     private int currentStateId;
     private int nextStateDelay;
-    private int elapsedTicks;
+
+    public int ElapsedTicks;
     public readonly bool IsActive => currentStateId != stateSequence.Length - 1;
-    public readonly int ElapsedTicks => elapsedTicks;
     public readonly TEnum CurrentState => stateSequence[currentStateId].State;
 
 
@@ -23,7 +23,7 @@ public struct ActionSequenceTimeline<TEnum>
 
         currentStateId = 0;
         nextStateDelay = stateSequence[0].Duration;
-        elapsedTicks = 0;
+        ElapsedTicks = 0;
     }
 
     /// <summary>
@@ -33,12 +33,12 @@ public struct ActionSequenceTimeline<TEnum>
     public bool TickUpdateState(out TEnum newState, out int elapsedTicks)
     {
         nextStateDelay -= 1;
-        this.elapsedTicks += 1;
+        ElapsedTicks += 1;
 
         if (nextStateDelay > 0)
         {
             newState = default;
-            elapsedTicks = this.elapsedTicks;
+            elapsedTicks = ElapsedTicks;
             return false;
         }
 
@@ -46,13 +46,12 @@ public struct ActionSequenceTimeline<TEnum>
         nextStateDelay = stateSequence[currentStateId].Duration;
 
         newState = stateSequence[currentStateId].State;
-        elapsedTicks = this.elapsedTicks;
+        elapsedTicks = ElapsedTicks;
         return true;
     }
 
     /// <summary>
     /// Instantly mark sequence for advancement to next state.
-    /// (State will be applied in <see cref="TickUpdateState(out CombatState)"/>)
     /// </summary>
     /// <returns>The amount of ticks left in the current state</returns>
     public int AdvanceState()

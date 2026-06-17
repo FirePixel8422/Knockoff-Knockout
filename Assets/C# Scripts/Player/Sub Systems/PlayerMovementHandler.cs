@@ -199,14 +199,12 @@ public class PlayerMovementHandler
 
             switch (dirInput)
             {
-                // Crouch Idle
                 case DirectionInput.Down:
                     {
                         stateMachine.SetStanceState(StanceState.Crouching);
                         stateMachine.SetMovementState(MovementState.Idle);
                         return;
                     }
-                //  Moving
                 case DirectionInput.Left or DirectionInput.Right:
                     {
                         bool isMovingRight = dirInput == DirectionInput.Right;

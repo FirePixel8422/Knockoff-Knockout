@@ -209,6 +209,12 @@ public class PlayerAttackHandler
             }
         }
 
+        // Dont count attack active frames towards total elapsed ticks for attack seqeunces
+        if (sequenceTimeline.CurrentState == CombatState.AttackActive)
+        {
+            sequenceTimeline.ElapsedTicks -= 1;
+        }
+
         LungeData lungeData = ActiveAttack.Lunge;
         if (lungeData.Power != 0 &&
             elapsedSequenceTicks >= lungeData.Window.x &&
@@ -253,7 +259,6 @@ public class PlayerAttackHandler
     public void OnActiveAttackConnected()
     {
         int activeTicksLeft = sequenceTimeline.AdvanceState();
-
         stateMachine.TickAdvanceAnimation(activeTicksLeft);
     }
 

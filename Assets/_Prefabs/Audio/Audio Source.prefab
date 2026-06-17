@@ -45,9 +45,9 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
-  m_Volume: 0.5
-  m_Pitch: 1
+  m_PlayOnAwake: 0
+  m_Volume: 0.894
+  m_Pitch: 1.0099038
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79ac62d3f3471e846baacb2f0cb583c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioPlayer
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 5992440576148908121}
   hitAudioClip: {fileID: 8300000, guid: 9a48b94fc09ff2b49a45c86885fa6f60, type: 3}
   punchAudioClip: {fileID: 8300000, guid: f4543e8e15b05dc408f2543b35cc7e00, type: 3}
   kickAudioClip: {fileID: 8300000, guid: 52119e9b439cf3f499c72105679dc5e5, type: 3}
