@@ -13,12 +13,4 @@ public class CombatSettingsSO : ScriptableObject
 
         return value;
     }
-
-
-#if UNITY_EDITOR
-    private void OnValidate()
-    {
-        value.UpdateDebugData();
-    }
-#endif
 }

@@ -16,7 +16,7 @@ public class PlayerInputOverrider : MonoBehaviour
     private bool IsRecording => mode == OverrideMode.Collect;
 
 
-    private void Awake()
+    private void Awake() 
     {
         playerInputRouter = GetComponent<PlayerInputRouter>();
         isLeftPlayer = GetComponent<PlayerController>().IsLeftPlayer;

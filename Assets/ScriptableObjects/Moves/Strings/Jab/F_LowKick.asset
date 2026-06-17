@@ -25,6 +25,7 @@ MonoBehaviour:
       AttackFlags: 4
       DirectionFlag: 0
     Stance: 0
+    Type: 0
     Level: 0
     KnockDown: 0
     Damage: 10
@@ -68,7 +69,7 @@ MonoBehaviour:
       Window:
         x: 8
         y: 12
-      Power: 0.25
+      Power: 0.125
     Homing:
       Curve:
         curve:
@@ -102,7 +103,7 @@ MonoBehaviour:
       TotalHoming: 0
     HurtBoxIds: 000000000700000008000000
     StringTransitions: []
-    AttackId: 4
+    AttackId: 6
     BakedStringTransitions: []
     AttackAnimData:
       Hash: 859106820

@@ -215,7 +215,7 @@ AnimatorStateMachine:
     m_Position: {x: 960, y: -190, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5868700246272285685}
-    m_Position: {x: 1130, y: -490, z: 0}
+    m_Position: {x: 300, y: -460, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 932929599309865361}
     m_Position: {x: 520, y: -400, z: 0}
@@ -1019,7 +1019,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TeepKD
+  m_Name: TeepKnockDown
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []

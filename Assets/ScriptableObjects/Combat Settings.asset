@@ -19,14 +19,6 @@ MonoBehaviour:
       RetreatingSpeed: 1.5
       MoveSnappyness: 18
       TurnSnappyness: 10
-    Parry:
-      Startup: 12
-      Active: 2
-      Recovery: 22
-      HitStun: 46
-      TotalParryDuration: 36
-      AdvantageOnParry: 24
-      AdvantageOnMiss: -22
     SideStep:
       Duration: 12
       Startup: 14
@@ -57,16 +49,16 @@ MonoBehaviour:
           m_PostInfinity: 2
           m_RotationOrder: 4
         sampleCount: 50
-      SideStepPower: 1.8
-      ForwardPower: 0.6
+      SideStepPower: 1.25
+      ForwardPower: 0.4
       DistanceRange:
         min: 0.75
         max: 4.5
-      MaxDistancePowerMultiplier: 0.4
+      MaxDistancePowerMultiplier: 0.6
     Dash:
       Duration: 6
-      Startup: 6
-      Recovery: 8
+      Startup: 8
+      Recovery: 10
       Curve:
         curve:
           serializedVersion: 2
@@ -104,3 +96,4 @@ MonoBehaviour:
         sampleCount: 50
       BackDashPower: 0.85
       ForwardDashPower: 1.2
+    MaxAttackRealignmentDeg: 40

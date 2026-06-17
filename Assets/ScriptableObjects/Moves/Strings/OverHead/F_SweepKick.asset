@@ -25,6 +25,7 @@ MonoBehaviour:
       AttackFlags: 8
       DirectionFlag: 3
     Stance: 0
+    Type: 0
     Level: 0
     KnockDown: 2
     Damage: 22
@@ -33,11 +34,11 @@ MonoBehaviour:
     FrameData:
       Startup: 24
       Active: 3
-      Recovery: 30
+      Recovery: 32
       CancelWindow: 0
-      HitStun: 32
+      HitStun: 30
       BlockStun: 12
-      CounterStun: 26
+      CounterStun: 0
     Lunge:
       Curve:
         curve:
@@ -117,8 +118,8 @@ MonoBehaviour:
       BlendOut: 0
       Name: Missing
     normalAdvantages:
-      AttackDuration: 57
-      OnHit: +2
-      OnBlock: -18
-      OnCounter: -4
-      OnWhiff: -30
+      AttackDuration: 59
+      OnHit: -2
+      OnBlock: -20
+      OnCounter: -32
+      OnWhiff: -32

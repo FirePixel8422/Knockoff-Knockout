@@ -5,9 +5,9 @@
 public struct CombatSettings
 {
     public FighterSettings Fighter;
-    public ParrySettings Parry;
     public SideStepSettings SideStep;
     public DashSettings Dash;
+    public float MaxAttackRealignmentDeg;
 
     public void BakeAllCurves()
     {
@@ -19,14 +19,4 @@ public struct CombatSettings
         SideStep.Dispose();
         Dash.Dispose();
     }
-
-
-#if UNITY_EDITOR
-    public void UpdateDebugData()
-    {
-        Parry.TotalParryDuration = Parry.Startup + Parry.Active + Parry.Recovery;
-        Parry.AdvantageOnParry = Parry.HitStun - Parry.Recovery;
-        Parry.AdvantageOnMiss = -Parry.Recovery;
-    }
-#endif
 }

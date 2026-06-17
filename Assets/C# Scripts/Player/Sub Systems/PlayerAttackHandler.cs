@@ -163,15 +163,12 @@ public class PlayerAttackHandler
     }
     public void TickUpdateAttackInput(bool isInCombatLock)
     {
-        if (sequenceTimeline.IsActive)
+        if (sequenceTimeline.IsActive &&
+            sequenceTimeline.ElapsedTicks == ActiveAttack.FrameData.Startup + ActiveAttack.FrameData.CancelWindow)
         {
-            if (sequenceTimeline.ElapsedTicks > ActiveAttack.FrameData.Startup &&
-                sequenceTimeline.ElapsedTicks == ActiveAttack.FrameData.Startup + ActiveAttack.FrameData.CancelWindow)
-            {
-                if (!inputHandler.TryReadStringAttack(ActiveAttack.BakedStringTransitions, out AttackData attackData)) return;
+            if (!inputHandler.TryReadStringAttack(ActiveAttack.BakedStringTransitions, out AttackData attackData)) return;
 
-                StartNewAttackSequence(attackData);
-            }
+            StartNewAttackSequence(attackData);
             return;
         }
         
@@ -239,7 +236,7 @@ public class PlayerAttackHandler
         stateMachine.SetCombatState(CombatState.ActionStartup);
         stateMachine.SetStanceState(targetAttack.Stance);
 
-        movementHandler.RealignFighter();
+        movementHandler.DoAttackRealignment();
 
         attackSequence.Sequence[0] = (CombatState.ActionStartup, targetAttack.FrameData.Startup);
         attackSequence.Sequence[1] = (CombatState.AttackActive, targetAttack.FrameData.Active);

@@ -18,13 +18,14 @@ MonoBehaviour:
       blendIn: 3
       blendOut: 5
     overrideHurtAnimData:
-      name: 
-      blendIn: 0
-      blendOut: 0
+      name: StandingKnockDown
+      blendIn: 3
+      blendOut: 5
     Input:
       AttackFlags: 2
       DirectionFlag: 0
     Stance: 0
+    Type: 0
     Level: 1
     KnockDown: 2
     Damage: 20
@@ -119,11 +120,11 @@ MonoBehaviour:
       BlendOut: 5
       Name: OverHead
     OverrideHurtAnimData:
-      Hash: 1058882117
-      AllowSelfInterrupt: 0
-      BlendIn: 0
-      BlendOut: 0
-      Name: Missing
+      Hash: 885874948
+      AllowSelfInterrupt: 1
+      BlendIn: 3
+      BlendOut: 5
+      Name: StandingKnockDown
     normalAdvantages:
       AttackDuration: 51
       OnHit: +24

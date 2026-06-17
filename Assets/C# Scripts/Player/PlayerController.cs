@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
 
         // TickUpdate any active movement action and read movement input IF player wont be actionlocked next frame
         // If IsActionLocked, return
-        if (wasInActionRecovery || stateMachine.IsInCombatLock || stateMachine.IsInMoveLock) return;
+        if (wasInActionRecovery || stateMachine.IsInCombatLock) return;
 
         movementHandler.TickUpdateMoveInput();
     }

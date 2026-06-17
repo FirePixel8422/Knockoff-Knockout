@@ -51,11 +51,6 @@ public static class GlobalAnimHashes
             public static readonly AnimData WakeUp = new AnimData("CrouchingLowHurt", true, 2, 5);
         }
     }
-    public static class KnockDown
-    {
-        public static readonly AnimData Standing = new AnimData("StandingKnockDown", true, 8, 5);
-        public static readonly AnimData Crouching = new AnimData("CrouchingKnockDown", true, 8, 5);
-    }
     public static class Wakeup
     {
         public static readonly AnimData Back = new AnimData("WakeupBack", false, 0, 8);

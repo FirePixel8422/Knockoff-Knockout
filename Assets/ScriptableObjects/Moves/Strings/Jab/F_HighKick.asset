@@ -18,8 +18,8 @@ MonoBehaviour:
       blendIn: 3
       blendOut: 5
     overrideHurtAnimData:
-      name: TeepKD
-      blendIn: 3
+      name: TeepKnockDown
+      blendIn: 8
       blendOut: 5
     Input:
       AttackFlags: 8
@@ -94,11 +94,11 @@ MonoBehaviour:
       BlendOut: 5
       Name: HighKick
     OverrideHurtAnimData:
-      Hash: 1295675225
+      Hash: -1204848783
       AllowSelfInterrupt: 1
-      BlendIn: 3
+      BlendIn: 8
       BlendOut: 5
-      Name: TeepKD
+      Name: TeepKnockDown
     normalAdvantages:
       AttackDuration: 42
       OnHit: +30

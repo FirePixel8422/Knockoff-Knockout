@@ -80,12 +80,10 @@ public class PlayerStateMachine
                 OnDamageTaken?.Invoke(attack.Damage);
                 OnKnockbackTaken?.Invoke(attack.HitKb);
 
-                bool doAnimOverride = attack.OverrideHurtAnimData.Hash != GlobalAnimHashes.Missing.Hash;
-
                 (StanceState knockDownState, AnimData animData) = attack.KnockDown switch
                 {
-                    AttackKnockDown.Back => (StanceState.KnockedDownBack, doAnimOverride ? attack.OverrideHurtAnimData : GlobalAnimHashes.KnockDown.Crouching),
-                    AttackKnockDown.Stomach => (StanceState.KnockedDownStomach, doAnimOverride ? attack.OverrideHurtAnimData : GlobalAnimHashes.KnockDown.Standing),
+                    AttackKnockDown.Back => (StanceState.KnockedDownBack, attack.OverrideHurtAnimData),
+                    AttackKnockDown.Stomach => (StanceState.KnockedDownStomach, attack.OverrideHurtAnimData),
 
                     AttackKnockDown.None or _ => (default, GlobalAnimHashes.Missing),
                 };
@@ -260,6 +258,8 @@ public class PlayerStateMachine
             DebugLogger.LogWarning($"Animator: an empty animation was requested, skipping, '{animData.Name}'");
             return;
         }
+
+        DebugLogger.LogWarning(animData.Name, doDebugMode);
 
         AnimData prevAnimData = currentAnimData;
         currentAnimData = animData;

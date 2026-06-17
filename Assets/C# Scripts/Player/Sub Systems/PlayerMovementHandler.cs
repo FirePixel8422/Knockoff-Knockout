@@ -23,6 +23,8 @@ public class PlayerMovementHandler
     private readonly SideStepSettings sideStepSettings;
     private readonly DashSettings dashSettings;
 
+    private readonly float maxAttackRealignmentDeg;
+
     [EditorReadOnly, SerializeField] private Vector3LerpState positionState;
     [EditorReadOnly, SerializeField] private QuaternionLerpState rotationState;
     public Vector3 CurrentTransformPos => positionState.Current;
@@ -57,6 +59,8 @@ public class PlayerMovementHandler
 
         sideStepSettings = GameRules.CombatSettings.SideStep;
         dashSettings = GameRules.CombatSettings.Dash;
+
+        maxAttackRealignmentDeg = GameRules.CombatSettings.MaxAttackRealignmentDeg;
 
         sequenceTimeline = new ActionSequenceTimeline<MovementState>(new((MovementState.Idle, 0)));
 
@@ -185,6 +189,39 @@ public class PlayerMovementHandler
     /// </summary>
     private void ReadAndApplyNewInput()
     {
+        DirectionInput dirInput = inputHandler.GetCurrentDirection();
+
+        // If fighter is in or recovering from a dash, they cant do any normal move input or actions but CAN do an dash cancel if the active dash is in recovery state
+        if (sequenceTimeline.IsActive)
+        {
+            if (sequenceTimeline.CurrentState != MovementState.Recovery ||
+                (currentActionType != MovementState.DashingBack && currentActionType != MovementState.DashingForward)) return;
+
+            switch (dirInput)
+            {
+                // Crouch Idle
+                case DirectionInput.Down:
+                    {
+                        stateMachine.SetStanceState(StanceState.Crouching);
+                        stateMachine.SetMovementState(MovementState.Idle);
+                        return;
+                    }
+                //  Moving
+                case DirectionInput.Left or DirectionInput.Right:
+                    {
+                        bool isMovingRight = dirInput == DirectionInput.Right;
+                        GetMovementData(isLeftPlayer, isMovingRight, out MovementState moveDirState, out _);
+
+                        if (moveDirState != MovementState.Retreating) return;
+
+                        stateMachine.SetStanceState(StanceState.Standing);
+                        stateMachine.SetMovementState(MovementState.Idle);
+                        return;
+                    }
+                default: return;
+            }
+        }
+
         // If fighter sidesteps, set fighter in standing stance and sidestepping movement state
         if (inputHandler.TryReadSideStep(out bool isSideStepUp))
         {
@@ -221,9 +258,7 @@ public class PlayerMovementHandler
             return;
         }
 
-
         // If fighter doesnt do a special movement action (Sidestep/Dash), check for normal movement input and resolve it
-        DirectionInput dirInput = inputHandler.GetCurrentDirection();
         switch (dirInput)
         {
             // Crouch Idle
@@ -234,8 +269,7 @@ public class PlayerMovementHandler
                 break;
             }
             // Standing Moving
-            case DirectionInput.Left:
-            case DirectionInput.Right:
+            case DirectionInput.Left or DirectionInput.Right:
             {
                 bool isMovingRight = dirInput == DirectionInput.Right;
                 GetMovementData(isLeftPlayer, isMovingRight, out MovementState moveDirState, out Vector3 moveDelta);
@@ -260,6 +294,7 @@ public class PlayerMovementHandler
     /// <summary>
     /// Calculate MoveState and MoveDelta based on if target player is moving forward from his perspective.
     /// </summary>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void GetMovementData(bool isLeftPlayer, bool isMovingRight, out MovementState moveDir, out Vector3 moveDelta)
     {
         moveDir = isLeftPlayer == isMovingRight ? MovementState.Pushing : MovementState.Retreating;
@@ -274,6 +309,7 @@ public class PlayerMovementHandler
     /// <summary>
     /// Update fighter animation
     /// </summary>
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void UpdateMoveActionAnimation(MovementState actionState)
     {
         AnimData animData = actionState switch
@@ -304,6 +340,9 @@ public class PlayerMovementHandler
         stateMachine.SetMovementState(MovementState.Idle);
     }
 
+
+    #region Knockback and MoveForces
+
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     private void AddKnockBack(float kb)
     {
@@ -321,6 +360,9 @@ public class PlayerMovementHandler
         MovePlayer(CameraManager.Instance.GetRightDir() * force);
     }
 
+    #endregion
+
+
     /// <summary>
     /// Add movement to the fighters position, which will be lerped to over time in OnUpdate()
     /// </summary>
@@ -331,11 +373,20 @@ public class PlayerMovementHandler
         positionState.Target = CameraManager.Instance.ClampMovementToCameraBounds(positionState.Target, addedMovement, isLeftPlayer);
     }
     /// <summary>
-    /// Set the fighters target rotation to be so its looking at the other fighter, which is slerped in OnUpdate()
+    /// Set the fighters target rotation to be so its looking at the other fighter (slerped in OnUpdate).
     /// </summary>
     public void RealignFighter()
     {
         rotationState.Target = Quaternion.LookRotation(isLeftPlayer ? CameraManager.Instance.GetForwardDir() : -CameraManager.Instance.GetForwardDir(), Vector3.up);
+    }
+    /// <summary>
+    /// Set the fighters target rotation to the current fighter rotation (not target, current transform rotation) and rotate it so it faces other fighter by max of <see cref="CombatSettings.MaxAttackRealignmentDeg"/> degrees.
+    /// </summary>
+    public void DoAttackRealignment()
+    {
+        Quaternion targetRot = Quaternion.LookRotation(isLeftPlayer ? CameraManager.Instance.GetForwardDir() : -CameraManager.Instance.GetForwardDir(), Vector3.up);
+        targetRot = Quaternion.RotateTowards(transform.rotation, targetRot, maxAttackRealignmentDeg);
+        rotationState.Target = targetRot;
     }
 
     /// <summary>

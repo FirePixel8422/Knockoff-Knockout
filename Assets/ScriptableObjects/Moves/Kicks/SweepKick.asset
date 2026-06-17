@@ -18,15 +18,16 @@ MonoBehaviour:
       blendIn: 3
       blendOut: 5
     overrideHurtAnimData:
-      name: 
-      blendIn: 0
-      blendOut: 0
+      name: CrouchingKnockDown
+      blendIn: 8
+      blendOut: 5
     Input:
       AttackFlags: 8
       DirectionFlag: 3
     Stance: 0
+    Type: 0
     Level: 0
-    KnockDown: 2
+    KnockDown: 1
     Damage: 22
     HitKb: 1
     BlockKb: 0.3
@@ -111,11 +112,11 @@ MonoBehaviour:
       BlendOut: 5
       Name: SweepKick
     OverrideHurtAnimData:
-      Hash: 1058882117
-      AllowSelfInterrupt: 0
-      BlendIn: 0
-      BlendOut: 0
-      Name: Missing
+      Hash: 1016409568
+      AllowSelfInterrupt: 1
+      BlendIn: 8
+      BlendOut: 5
+      Name: CrouchingKnockDown
     normalAdvantages:
       AttackDuration: 57
       OnHit: +14
