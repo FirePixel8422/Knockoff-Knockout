@@ -21,6 +21,10 @@ public class PlayerInputOverrider : MonoBehaviour
         playerInputRouter = GetComponent<PlayerInputRouter>();
         isLeftPlayer = GetComponent<PlayerController>().IsLeftPlayer;
     }
+    private void OnValidate()
+    {
+        index = 0;
+    }
 
 #if UNITY_EDITOR
     public void OnDirection(Vector2 dirVec)

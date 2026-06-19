@@ -57,7 +57,7 @@ public class HUDManager : MonoBehaviour
 
     public void AddStock(bool isLeftPlayer)
     {
-        modules[isLeftPlayer ? 0 : 1].Stocks.AddStock();
+        modules[isLeftPlayer ? 1 : 0].Stocks.AddStock();
     }
 }
 
