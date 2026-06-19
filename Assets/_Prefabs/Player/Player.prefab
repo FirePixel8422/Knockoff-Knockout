@@ -690,9 +690,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FastHurtBox
   halfSize:
-    x: 0.2
-    y: 0.2
-    z: 0.2
+    x: 0.23
+    y: 0.23
+    z: 0.23
   cachedTransform: {fileID: 0}
   SkipNextGizmoDraw: 0
   DrawGizmos: 0
@@ -2386,6 +2386,7 @@ MonoBehaviour:
         DirectionFlag: 0
   healthHandler:
     health: 0
+    isLeftPlayer: 0
   movementHandler:
     positionState:
       Current: {x: 0, y: 0, z: 0}
