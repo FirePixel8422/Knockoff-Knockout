@@ -11,6 +11,7 @@ using UnityEngine;
 public class PlayerStateMachine
 {
     private readonly Animator anim;
+    private readonly bool isLeftPlayer;
 
     [EditorReadOnly, SerializeField] private FighterState state;
     [EditorReadOnly, SerializeField] private FighterState nextState;
@@ -36,7 +37,7 @@ public class PlayerStateMachine
 
     public Action<AttackData, AttackResult, bool> OnAttackConnected;
     public Action OnStunned;
-    public Action<float> OnDamageTaken;
+    public Func<float, bool> OnDamageTaken;
     public Action<float> OnKnockbackTaken;
 
     [EditorReadOnly, SerializeField] private AnimData currentAnimData;
@@ -47,10 +48,11 @@ public class PlayerStateMachine
 #endif
 
 
-    public PlayerStateMachine(Transform playerRoot)
+    public PlayerStateMachine(Transform playerRoot, bool isLeftPlayer)
     {
         anim = playerRoot.GetComponent<Animator>();
         anim.enabled = false;
+        this.isLeftPlayer = isLeftPlayer;
     }
     private PlayerStateMachine() { }
     public void Dispose()
@@ -77,10 +79,12 @@ public class PlayerStateMachine
                 if (!isDefender) break;
 
                 OnStunned?.Invoke();
-                OnDamageTaken?.Invoke(attack.Damage);
+                bool playerDied = (bool)OnDamageTaken?.Invoke(attack.Damage);
                 OnKnockbackTaken?.Invoke(attack.HitKb);
 
-                (StanceState knockDownState, AnimData animData) = attack.KnockDown switch
+                (StanceState knockDownState, AnimData animData) = playerDied ?
+                (StanceState.Standing, GlobalAnimHashes.Hurt.Death) : 
+                attack.KnockDown switch
                 {
                     AttackKnockDown.Back => (StanceState.KnockedDownBack, attack.OverrideHurtAnimData),
                     AttackKnockDown.Stomach => (StanceState.KnockedDownStomach, attack.OverrideHurtAnimData),
@@ -95,6 +99,15 @@ public class PlayerStateMachine
 
                 AudioManager.PlayKnockDownSFX();
 
+                if (playerDied)
+                {
+                    HUDManager.Instance.EndGame(isLeftPlayer);
+                        PlayerManager.Instance.Players[0].StateMachine.Stun = 1000;
+                        PlayerManager.Instance.Players[0].StateMachine.SetCombatState(CombatState.HitStun);
+                        PlayerManager.Instance.Players[1].StateMachine.Stun = 1000;
+                        PlayerManager.Instance.Players[1].StateMachine.SetCombatState(CombatState.HitStun);
+                    }
+                
                 break;
             }
             case AttackResult.Hit or AttackResult.CounterHit:
@@ -103,10 +116,12 @@ public class PlayerStateMachine
                 if (!isDefender) break;
                 
                 OnStunned?.Invoke();
-                OnDamageTaken?.Invoke(attack.Damage);
+                bool playerDied = (bool)OnDamageTaken?.Invoke(attack.Damage);
                 OnKnockbackTaken?.Invoke(attack.HitKb);
 
-                AnimData animData = attack.OverrideHurtAnimData.Hash != GlobalAnimHashes.Missing.Hash ?
+                AnimData animData = playerDied ?
+                GlobalAnimHashes.Hurt.Death :
+                (attack.OverrideHurtAnimData.Hash != GlobalAnimHashes.Missing.Hash ?
                 attack.OverrideHurtAnimData :
                 state.StanceState switch
                 {
@@ -124,7 +139,7 @@ public class PlayerStateMachine
                     StanceState.Wakeup => GlobalAnimHashes.Hurt.KnockedDown.WakeUp,
                     
                     _ => GlobalAnimHashes.Missing,
-                };
+                });
 
                 PlayAnimation(animData);
                 Stun = result == AttackResult.CounterHit ?
@@ -132,6 +147,15 @@ public class PlayerStateMachine
                     attack.FrameData.HitStun;
 
                 AudioManager.PlayHitSFX();
+
+                if (playerDied)
+                {
+                    HUDManager.Instance.EndGame(isLeftPlayer);
+                        PlayerManager.Instance.Players[0].StateMachine.Stun = 1000;
+                        PlayerManager.Instance.Players[0].StateMachine.SetCombatState(CombatState.HitStun);
+                        PlayerManager.Instance.Players[1].StateMachine.Stun = 1000;
+                        PlayerManager.Instance.Players[1].StateMachine.SetCombatState(CombatState.HitStun);
+                    }
 
                 break;
             }
@@ -253,11 +277,13 @@ public class PlayerStateMachine
     {
         if (!animData.AllowSelfInterrupt && currentAnimData.Hash == animData.Hash) return;
 
+#if UNITY_EDITOR
         if (animData.Hash == GlobalAnimHashes.Missing.Hash)
         {
             DebugLogger.LogWarning($"Animator: an empty animation was requested, skipping, '{animData.Name}'");
             return;
         }
+#endif
 
         AnimData prevAnimData = currentAnimData;
         currentAnimData = animData;

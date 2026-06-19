@@ -1,4 +1,6 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 /// <summary>
@@ -10,6 +12,7 @@ public class HUDManager : MonoBehaviour
 
 
     [SerializeField] private PlayerUIModule[] modules;
+    [SerializeField] private TextMeshProUGUI winText;
 
 
     private void Awake()
@@ -58,6 +61,16 @@ public class HUDManager : MonoBehaviour
     public void AddStock(bool isLeftPlayer)
     {
         modules[isLeftPlayer ? 1 : 0].Stocks.AddStock();
+    }
+
+    public void EndGame(bool isLeftPlayer)
+    {
+        winText.text = isLeftPlayer ? "Blue Won!" : "Red Won!";
+
+        this.Invoke(3, () =>
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        });
     }
 }
 

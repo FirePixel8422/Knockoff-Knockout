@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     [EditorReadOnly, SerializeField] private PlayerInputOverrider inputOverrider;
 
     public bool IsLeftPlayer => isLeftPlayer;
+    public PlayerStateMachine StateMachine => stateMachine;
     public PlayerColliderHandler ColliderHandler => colliderHandler;
     public PlayerHealthHandler HealthHandler => healthHandler;
     public PlayerMovementHandler MovementHandler => movementHandler;
@@ -58,7 +59,7 @@ public class PlayerController : MonoBehaviour
 
     public void Init(AttackData[] moveSet, AttackData[] stringSet)
     {
-        stateMachine = new PlayerStateMachine(transform);
+        stateMachine = new PlayerStateMachine(transform, isLeftPlayer);
         inputHandler = new PlayerInputHandler(moveSet, stringSet, isLeftPlayer);
 
         colliderHandler = new PlayerColliderHandler(transform);

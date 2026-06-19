@@ -26,10 +26,8 @@ public struct AttackData
 
     public int[] HurtBoxIds;
 
-#if UNITY_EDITOR
     public EditorStringTransition[] StringTransitions;
     [EditorReadOnly] public int AttackId;
-#endif
 
     [Header(">>>Baked Data<<<")]
     [EditorReadOnly] public StringTransition[] BakedStringTransitions;

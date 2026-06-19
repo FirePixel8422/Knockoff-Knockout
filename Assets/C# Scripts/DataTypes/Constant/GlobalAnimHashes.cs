@@ -50,6 +50,8 @@ public static class GlobalAnimHashes
             public static readonly AnimData Stomach = new AnimData("KDStomachHurt", true, 2, 5);
             public static readonly AnimData WakeUp = new AnimData("CrouchingLowHurt", true, 2, 5);
         }
+
+        public static readonly AnimData Death = new AnimData("Death", true, 2, 5);
     }
     public static class Wakeup
     {

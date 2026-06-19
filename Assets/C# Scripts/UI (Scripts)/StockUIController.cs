@@ -21,7 +21,6 @@ public class StockUIController
             DebugLogger.LogWarning("Exceeded max stocks");
             return;
         }
-
         stocks[cStocks++].SetActive(true);
     }
     public void ResetStocks()

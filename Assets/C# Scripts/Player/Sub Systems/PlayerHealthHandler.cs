@@ -13,7 +13,7 @@ public class PlayerHealthHandler
     public Action<bool> OnFighterDied;
 
 
-    public PlayerHealthHandler(ref Action<float> onDamageTaken, bool isLeftPlayer)
+    public PlayerHealthHandler(ref Func<float, bool> onDamageTaken, bool isLeftPlayer)
     {
         health = GameRules.CombatSettings.Fighter.StartHealth;
 
@@ -28,16 +28,18 @@ public class PlayerHealthHandler
     }
 
 
-    public void TakeDamage(float damage)
+    public bool TakeDamage(float damage)
     {
         health = math.max(0, health - damage);
         OnHealthChanged?.Invoke(health);
 
-        if (health > 0) return;
+        if (health > 0) return false;
 
         OnFighterDied?.Invoke(isLeftPlayer);
 
         health = GameRules.CombatSettings.Fighter.StartHealth;
         OnHealthChanged?.Invoke(health);
+
+        return true;
     }
 }
