@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -21,6 +22,11 @@ public class ControllerAssigner : UpdateMonoBehaviour
 
     [SerializeField] private float animationLerp;
 
+    [SerializeField] private GameObject assignControllerTipObj;
+    [SerializeField] private GameObject startMatchTip1Obj;
+    [SerializeField] private GameObject startMatchTip2Obj;
+    [SerializeField] private GameObject reconnectControllerTipObj;
+
     private readonly Vector2[] prevDirInputs = new Vector2[GlobalGameData.MAX_PLAYERS];
     private readonly bool[] usedPlayerIds = new bool[GlobalGameData.MAX_PLAYERS];
     private readonly int[] playerFighterSlotIds = new int[GlobalGameData.MAX_PLAYERS];
@@ -38,9 +44,12 @@ public class ControllerAssigner : UpdateMonoBehaviour
 
     #region Start/End ControllerAssignment
 
-    public void StartControllerAssignment()
+    public void StartControllerAssignment(bool wasControllerLost = false)
     {
+        if (MatchManager.Instance.GameState == GameState.InGame && !wasControllerLost) return;
+
         MatchManager.Instance.PauseGame();
+
         PlayerManager.Instance.UnbindAllPlayerInput();
         uiRoot.SetActive(true);
         isUIActive = true;
@@ -49,9 +58,27 @@ public class ControllerAssigner : UpdateMonoBehaviour
         {
             controllerImages[i].gameObject.SetActiveSmart(usedPlayerIds[i]);
         }
+
+        if (wasControllerLost)
+        {
+            MatchManager.Instance.SetGameState(GameState.InGame_DeviceLost);
+            reconnectControllerTipObj.SetActive(true);
+        }
+        startMatchTip1Obj.SetActive(false);
+        startMatchTip2Obj.SetActive(false);
+        assignControllerTipObj.SetActive(!wasControllerLost);
     }
     public void EndControllerAssignment()
     {
+        // If in controller lost state, only allow game resume if all controllers are reassigned
+        if (MatchManager.Instance.GameState == GameState.InGame_DeviceLost)
+        {
+            for (int i = 0; i < GlobalGameData.MAX_PLAYERS; i++)
+            {
+                if (usedPlayerIds[i] == false || playerFighterSlotIds[i] == UNASSIGNED_FIGHTER_SLOT_ID) return;
+            }
+        }
+
         foreach (var kvp in deviceToIdMap)
         {
             int deviceId = kvp.Value;
@@ -73,6 +100,20 @@ public class ControllerAssigner : UpdateMonoBehaviour
         MatchManager.Instance.UnPauseGame();
         uiRoot.SetActive(false);
         isUIActive = false;
+
+        reconnectControllerTipObj.SetActiveSmart(false);
+
+        int playerAssignedCount = 0;
+        for (int i = 0; i < GlobalGameData.MAX_PLAYERS; i++)
+        {
+            if (usedPlayerIds[i] == true && playerFighterSlotIds[i] != UNASSIGNED_FIGHTER_SLOT_ID)
+            {
+                playerAssignedCount += 1;
+            }
+        }
+        assignControllerTipObj.SetActiveSmart(playerAssignedCount == 0);
+        startMatchTip1Obj.SetActiveSmart(playerAssignedCount > 0 && playerAssignedCount != GlobalGameData.MAX_PLAYERS);
+        startMatchTip2Obj.SetActiveSmart(playerAssignedCount == GlobalGameData.MAX_PLAYERS);
     }
 
     #endregion
@@ -104,7 +145,8 @@ public class ControllerAssigner : UpdateMonoBehaviour
 
         playerInput.actions["Direction"].performed += OnDirection;
         playerInput.actions["Direction"].canceled += OnDirection;
-        playerInput.actions["Start"].performed += OnStart;
+        playerInput.actions["Start"].performed += OnOptionsButton;
+        playerInput.actions["TouchPad"].performed += OnStart;
         playerInput.actions["Menu Confirm"].performed += OnMenuConfirm;
 
         playerInput.SwitchCurrentActionMap("Gameplay");
@@ -127,7 +169,8 @@ public class ControllerAssigner : UpdateMonoBehaviour
 
             playerInput.actions["Direction"].performed -= OnDirection;
             playerInput.actions["Direction"].canceled -= OnDirection;
-            playerInput.actions["Start"].performed -= OnStart;
+            playerInput.actions["Start"].performed -= OnOptionsButton;
+            playerInput.actions["TouchPad"].performed -= OnStart;
             playerInput.actions["Menu Confirm"].performed -= OnMenuConfirm;
 
             UpdateAllowPlayerJoinState();
@@ -137,6 +180,8 @@ public class ControllerAssigner : UpdateMonoBehaviour
 
             UpdateControllerImage(controllerImages[targetId], unassignedPos, Color.white);
         }
+
+        StartControllerAssignment();
     }
 
     private void UpdateAllowPlayerJoinState()
@@ -180,8 +225,7 @@ public class ControllerAssigner : UpdateMonoBehaviour
 
         MoveFighterSlot(playerId, xDirection, ctx.control.device);
     }
-
-    private void OnStart(InputAction.CallbackContext ctx)
+    private void OnOptionsButton(InputAction.CallbackContext ctx)
     {
         InputDevice device = ctx.control.device;
         if (!deviceToIdMap.ContainsKey(device))
@@ -198,6 +242,28 @@ public class ControllerAssigner : UpdateMonoBehaviour
         {
             StartControllerAssignment();
         }
+    }
+    private void OnStart(InputAction.CallbackContext ctx)
+    {
+        if (isUIActive) return;
+
+        InputDevice device = ctx.control.device;
+        if (!deviceToIdMap.ContainsKey(device))
+        {
+            DebugLogger.LogError("Player id not found for device " + device.name);
+            return;
+        }
+
+        for (int i = 0; i < GlobalGameData.MAX_PLAYERS; i++)
+        {
+            if (usedPlayerIds[i] == false || playerFighterSlotIds[i] == UNASSIGNED_FIGHTER_SLOT_ID) return;
+        }
+
+        startMatchTip2Obj.SetActive(false);
+
+        MatchManager.Instance.StartMatch();
+        PlayerManager.Instance.ResetPlayers();
+        HUDManager.Instance.ResetHUD();
     }
     private void OnMenuConfirm(InputAction.CallbackContext ctx)
     {
@@ -315,7 +381,8 @@ public class ControllerAssigner : UpdateMonoBehaviour
 
             playerInput.actions["Direction"].performed -= OnDirection;
             playerInput.actions["Direction"].canceled -= OnDirection;
-            playerInput.actions["Start"].performed -= OnStart;
+            playerInput.actions["Start"].performed -= OnOptionsButton;
+            playerInput.actions["TouchPad"].performed -= OnStart;
             playerInput.actions["Menu Confirm"].performed -= OnMenuConfirm;
         }
     }

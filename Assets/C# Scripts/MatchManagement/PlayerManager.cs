@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 
 /// <summary>
-/// Manager MB class that assigns input devices to the players.
+/// Manager MB class that assigns input devices to the Players.
 /// </summary>
 public class PlayerManager : FrameTickUpdateMB
 {
@@ -15,10 +15,9 @@ public class PlayerManager : FrameTickUpdateMB
 
 
     [SerializeField] private AttackMoveSetSO moveSetSO;
-    [SerializeField] private PlayerController[] players;
-    [SerializeField] private Color[] playerColors;
-    public PlayerController[] Players => players;
-    public Color[] PlayerColors => playerColors;
+    [SerializeField] private Transform[] playerSpawnPoints;
+    [field: SerializeField] public PlayerController[] Players { get; private set; }
+    [field: SerializeField] public Color[] PlayerColors { get; private set; }
 
 
     private readonly Dictionary<PlayerInputBinder, PlayerInputRouter> binderToRouterMap = new(GlobalGameData.MAX_PLAYERS);
@@ -41,7 +40,7 @@ public class PlayerManager : FrameTickUpdateMB
             for (int i = 0; i < GlobalGameData.MAX_PLAYERS; i++)
             {
                 moveSetSO.GetBakedAttackData(out AttackData[] moveSet, out AttackData[] stringSet);
-                players[i].Init(moveSet, stringSet);
+                Players[i].Init(moveSet, stringSet);
             }
 
             PlayersInitComplete?.Invoke();
@@ -52,7 +51,17 @@ public class PlayerManager : FrameTickUpdateMB
         PlayersInitComplete = new CompletionAction();
         for (int i = 0; i < GlobalGameData.MAX_PLAYERS; i++)
         {
-            players[i].Dispose();
+            Players[i].Dispose();
+        }
+    }
+
+
+    public void ResetPlayers()
+    {
+        for (int i = 0; i < GlobalGameData.MAX_PLAYERS; i++)
+        {
+            Players[i].MovementHandler.SetTransform(playerSpawnPoints[i].position, playerSpawnPoints[i].rotation);
+            Players[i].HealthHandler.TakeDamage(1000);
         }
     }
 
@@ -95,7 +104,7 @@ public class PlayerManager : FrameTickUpdateMB
             return;
         }
 
-        PlayerInputRouter router = players[targetPlayerId].InputRouter;
+        PlayerInputRouter router = Players[targetPlayerId].InputRouter;
 
         //DebugLogger.Log($"Input driver '{}' bound to {router.name}", logInputDeviceChanges);
 
@@ -110,7 +119,7 @@ public class PlayerManager : FrameTickUpdateMB
     }
 
     /// <summary>
-    /// Unbind all bound active input module (binders) from their players (drivers).
+    /// Unbind all bound active input module (binders) from their Players (drivers).
     /// </summary>
     public void UnbindAllPlayerInput()
     {
@@ -128,37 +137,37 @@ public class PlayerManager : FrameTickUpdateMB
 
     protected override void OnUpdate()
     {
-        if (MatchManager.Instance.GamePaused) return;
+        if (MatchManager.Instance.IsGamePaused) return;
 
         float deltaTime = Time.deltaTime;
 
         for (int i = 0; i < GlobalGameData.MAX_PLAYERS; i++)
         {
-            players[i].OnUpdate(deltaTime);
+            Players[i].OnUpdate(deltaTime);
         }
 
-        // Update systems after players.
+        // Update systems after Players.
         HUDManager.Instance.UpdateUI(deltaTime);
         CameraManager.Instance.UpdateCamera(deltaTime);
     }
 
 
-    // TickUpdate players tick dependent logic in order.
+    // TickUpdate Players tick dependent logic in order.
     protected override void OnTickUpdate()
     {
-        if (MatchManager.Instance.GamePaused) return;
+        if (MatchManager.Instance.IsGamePaused) return;
 
         for (int i = 0; i < GlobalGameData.MAX_PLAYERS; i++)
         {
-            players[i].PreTickUpdate();
+            Players[i].PreTickUpdate();
         }
         for (int i = 0; i < GlobalGameData.MAX_PLAYERS; i++)
         {
-            players[i].TickUpdate(out playerAttackConnects[i]);
+            Players[i].TickUpdate(out playerAttackConnects[i]);
         }
         for (int i = 0; i < GlobalGameData.MAX_PLAYERS; i++)
         {
-            players[i].PostTickUpdate(playerAttackConnects[i]);
+            Players[i].PostTickUpdate(playerAttackConnects[i]);
         }
 
         PlayerSpacingManager.Instance.TickUpdate();

@@ -275,6 +275,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "TouchPad",
+                    "type": "Button",
+                    "id": "0d62454c-adc2-4316-9386-c1b5e3f8cc88",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -319,6 +328,17 @@
                     "processors": "",
                     "groups": ";Gamepad",
                     "action": "Menu Confirm",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9b830954-ba28-4810-bd58-652637b81cbf",
+                    "path": "<Gamepad>/touchpadButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";Gamepad",
+                    "action": "TouchPad",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

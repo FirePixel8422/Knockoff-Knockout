@@ -101,13 +101,14 @@ public class PlayerStateMachine
 
                 if (playerDied)
                 {
-                    HUDManager.Instance.EndGame(isLeftPlayer);
-                        PlayerManager.Instance.Players[0].StateMachine.Stun = 1000;
-                        PlayerManager.Instance.Players[0].StateMachine.SetCombatState(CombatState.HitStun);
-                        PlayerManager.Instance.Players[1].StateMachine.Stun = 1000;
-                        PlayerManager.Instance.Players[1].StateMachine.SetCombatState(CombatState.HitStun);
-                    }
-                
+                    Stun += 20;
+                    //    HUDManager.Instance.EndGame(isLeftPlayer);
+                    //        PlayerManager.Instance.Players[0].StateMachine.Stun = 1000;
+                    //        PlayerManager.Instance.Players[0].StateMachine.SetCombatState(CombatState.HitStun);
+                    //        PlayerManager.Instance.Players[1].StateMachine.Stun = 1000;
+                    //        PlayerManager.Instance.Players[1].StateMachine.SetCombatState(CombatState.HitStun);
+                }
+
                 break;
             }
             case AttackResult.Hit or AttackResult.CounterHit:
@@ -150,12 +151,13 @@ public class PlayerStateMachine
 
                 if (playerDied)
                 {
-                    HUDManager.Instance.EndGame(isLeftPlayer);
-                        PlayerManager.Instance.Players[0].StateMachine.Stun = 1000;
-                        PlayerManager.Instance.Players[0].StateMachine.SetCombatState(CombatState.HitStun);
-                        PlayerManager.Instance.Players[1].StateMachine.Stun = 1000;
-                        PlayerManager.Instance.Players[1].StateMachine.SetCombatState(CombatState.HitStun);
-                    }
+                    Stun += 20;
+                    //    HUDManager.Instance.EndGame(isLeftPlayer);
+                    //        PlayerManager.Instance.Players[0].StateMachine.Stun = 1000;
+                    //        PlayerManager.Instance.Players[0].StateMachine.SetCombatState(CombatState.HitStun);
+                    //        PlayerManager.Instance.Players[1].StateMachine.Stun = 1000;
+                    //        PlayerManager.Instance.Players[1].StateMachine.SetCombatState(CombatState.HitStun);
+                }
 
                 break;
             }

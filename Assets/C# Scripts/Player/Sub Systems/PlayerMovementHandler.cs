@@ -370,6 +370,16 @@ public class PlayerMovementHandler
 
         positionState.Target = CameraManager.Instance.ClampMovementToCameraBounds(positionState.Target, addedMovement, isLeftPlayer);
     }
+
+    /// <summary>
+    /// Override transform data
+    /// </summary>
+    public void SetTransform(Vector3 pos, Quaternion rot)
+    {
+        positionState.Target = pos;
+        rotationState.Target = rot;
+    }
+
     /// <summary>
     /// Set the fighters target rotation to be so its looking at the other fighter (slerped in OnUpdate).
     /// </summary>

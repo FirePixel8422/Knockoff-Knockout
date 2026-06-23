@@ -5,32 +5,44 @@ using UnityEngine;
 public class MatchManager : MonoBehaviour
 {
     public static MatchManager Instance { get; private set; }
-    private void Awake() => Instance = this;
 
+    [field: SerializeField] public GameState GameState { get; private set; }
+    public void SetGameState(GameState newState) => GameState = newState;
 
-    [SerializeField] private bool gamePaused;
-    public bool GamePaused => gamePaused;
+    [field: SerializeField] public bool IsGamePaused { get; private set; }
+
     public event Action OnGamePaused;
     public event Action OnGameUnPaused;
 
-    public void PauseGame()
-    {
-        OnGamePaused?.Invoke();
-        gamePaused = true;
-        Time.timeScale = 0;
-    }
-    public void UnPauseGame()
-    {
-        OnGameUnPaused?.Invoke();
-        gamePaused = false;
-        Time.timeScale = 1;
-    }
 
+    private void Awake() => Instance = this;
     private void OnDestroy()
     {
         Time.timeScale = 1;
 
         OnGamePaused = null;
         OnGameUnPaused = null;
+    }
+
+    public void StartMatch()
+    {
+        SetGameState(GameState.InGame);
+    }
+    public void EndMatch()
+    {
+        SetGameState(GameState.PreGame);
+    }
+
+    public void PauseGame()
+    {
+        OnGamePaused?.Invoke();
+        IsGamePaused = true;
+        Time.timeScale = 0;
+    }
+    public void UnPauseGame()
+    {
+        OnGameUnPaused?.Invoke();
+        IsGamePaused = false;
+        Time.timeScale = 1;
     }
 }
