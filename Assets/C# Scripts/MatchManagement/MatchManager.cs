@@ -27,6 +27,8 @@ public class MatchManager : MonoBehaviour
     public void StartMatch()
     {
         SetGameState(GameState.InGame);
+
+
     }
     public void EndMatch()
     {

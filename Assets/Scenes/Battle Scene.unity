@@ -274,6 +274,12 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!4 &270788440 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4871174872277730614, guid: 8c87cf2705f7ed5449e1017a1f867766,
+    type: 3}
+  m_PrefabInstance: {fileID: 2101046795}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &278025358
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,6 +407,12 @@ MonoBehaviour:
   m_ShadowLayerMask: 1
   m_RenderingLayers: 1
   m_ShadowRenderingLayers: 1
+--- !u!4 &479914601 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8275035240480504364, guid: 8c87cf2705f7ed5449e1017a1f867766,
+    type: 3}
+  m_PrefabInstance: {fileID: 2101046795}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &581686778 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 826075128991707477, guid: 24758f354dc4b5b459d0a9f43fbcb42a,
@@ -4627,11 +4639,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 107833132692567687, guid: 24758f354dc4b5b459d0a9f43fbcb42a,
-        type: 3}
-      propertyPath: m_text
-      value: Assign 1 more player to start a match
-      objectReference: {fileID: 0}
     - target: {fileID: 3690987542145081388, guid: 24758f354dc4b5b459d0a9f43fbcb42a,
         type: 3}
       propertyPath: m_Name
@@ -4741,11 +4748,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8624155767203820076, guid: 24758f354dc4b5b459d0a9f43fbcb42a,
-        type: 3}
-      propertyPath: m_Name
-      value: StartMatchTip 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4967,7 +4969,7 @@ PrefabInstance:
     - target: {fileID: 4638663938442125716, guid: 6cac0834235e2b148973d2983c240604,
         type: 3}
       propertyPath: logInputDeviceChanges
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4638663938442125716, guid: 6cac0834235e2b148973d2983c240604,
         type: 3}
@@ -4979,6 +4981,81 @@ PrefabInstance:
       propertyPath: 'players.Array.data[1]'
       value: 
       objectReference: {fileID: 49275784}
+    - target: {fileID: 4638663938442125716, guid: 6cac0834235e2b148973d2983c240604,
+        type: 3}
+      propertyPath: playerSpawnPoints.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638663938442125716, guid: 6cac0834235e2b148973d2983c240604,
+        type: 3}
+      propertyPath: 'playerSpawnPoints.Array.data[0]'
+      value: 
+      objectReference: {fileID: 270788440}
+    - target: {fileID: 4638663938442125716, guid: 6cac0834235e2b148973d2983c240604,
+        type: 3}
+      propertyPath: 'playerSpawnPoints.Array.data[1]'
+      value: 
+      objectReference: {fileID: 479914601}
+    - target: {fileID: 4638663938442125716, guid: 6cac0834235e2b148973d2983c240604,
+        type: 3}
+      propertyPath: <Players>k__BackingField.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638663938442125716, guid: 6cac0834235e2b148973d2983c240604,
+        type: 3}
+      propertyPath: '<Players>k__BackingField.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1767933210}
+    - target: {fileID: 4638663938442125716, guid: 6cac0834235e2b148973d2983c240604,
+        type: 3}
+      propertyPath: '<Players>k__BackingField.Array.data[1]'
+      value: 
+      objectReference: {fileID: 49275784}
+    - target: {fileID: 4638663938442125716, guid: 6cac0834235e2b148973d2983c240604,
+        type: 3}
+      propertyPath: <PlayerColors>k__BackingField.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638663938442125716, guid: 6cac0834235e2b148973d2983c240604,
+        type: 3}
+      propertyPath: <PlayerColors>k__BackingField.Array.data[0].a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638663938442125716, guid: 6cac0834235e2b148973d2983c240604,
+        type: 3}
+      propertyPath: <PlayerColors>k__BackingField.Array.data[0].b
+      value: 0.3372549
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638663938442125716, guid: 6cac0834235e2b148973d2983c240604,
+        type: 3}
+      propertyPath: <PlayerColors>k__BackingField.Array.data[0].g
+      value: 0.40784314
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638663938442125716, guid: 6cac0834235e2b148973d2983c240604,
+        type: 3}
+      propertyPath: <PlayerColors>k__BackingField.Array.data[0].r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638663938442125716, guid: 6cac0834235e2b148973d2983c240604,
+        type: 3}
+      propertyPath: <PlayerColors>k__BackingField.Array.data[1].a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638663938442125716, guid: 6cac0834235e2b148973d2983c240604,
+        type: 3}
+      propertyPath: <PlayerColors>k__BackingField.Array.data[1].b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638663938442125716, guid: 6cac0834235e2b148973d2983c240604,
+        type: 3}
+      propertyPath: <PlayerColors>k__BackingField.Array.data[1].g
+      value: 0.75686276
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638663938442125716, guid: 6cac0834235e2b148973d2983c240604,
+        type: 3}
+      propertyPath: <PlayerColors>k__BackingField.Array.data[1].r
+      value: 0.32941177
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

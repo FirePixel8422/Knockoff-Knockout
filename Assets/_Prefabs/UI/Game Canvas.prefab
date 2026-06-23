@@ -1866,7 +1866,7 @@ GameObject:
   - component: {fileID: 107833132692567687}
   - component: {fileID: 3771036725746843399}
   m_Layer: 5
-  m_Name: StartMatchTip
+  m_Name: StartMatchTip 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1919,7 +1919,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Press TOUCHPAD to start a match
+  m_text: Assign 1 more player to start a match
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cabb5ae0b02ddcd439a67f36e3b6f4c5, type: 2}
   m_sharedMaterial: {fileID: 8619102441684052537, guid: cabb5ae0b02ddcd439a67f36e3b6f4c5,

@@ -61,7 +61,14 @@ public class PlayerManager : FrameTickUpdateMB
         for (int i = 0; i < GlobalGameData.MAX_PLAYERS; i++)
         {
             Players[i].MovementHandler.SetTransform(playerSpawnPoints[i].position, playerSpawnPoints[i].rotation);
-            Players[i].HealthHandler.TakeDamage(1000);
+            Players[i].StateMachine.ResolveAttack(new AttackData
+            {
+                Damage = 1000,
+                FrameData = new FrameData
+                {
+                    HitStun = 40,
+                },
+            }, AttackResult.KnockDown, true);
         }
     }
 
