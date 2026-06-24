@@ -660,7 +660,7 @@ PrefabInstance:
     - target: {fileID: 955034650294576780, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
       propertyPath: mode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 955034650294576780, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
@@ -671,7 +671,7 @@ PrefabInstance:
         type: 3}
       propertyPath: recordingSO
       value: 
-      objectReference: {fileID: 11400000, guid: f6741c3f42029a0448d28757be990c66,
+      objectReference: {fileID: 11400000, guid: 10d8ea33a77aa284ab96e6220d42d644,
         type: 2}
     - target: {fileID: 955034650294576780, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
@@ -2888,13 +2888,13 @@ PrefabInstance:
     - target: {fileID: 955034650294576780, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
       propertyPath: mode
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 955034650294576780, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
       propertyPath: recordingSO
       value: 
-      objectReference: {fileID: 11400000, guid: 96f09e45d5734e04b837a17d4c95370f,
+      objectReference: {fileID: 11400000, guid: d6956b0b09309d54eb60bcaf06e531e0,
         type: 2}
     - target: {fileID: 994616824748443815, guid: 2c306b11cd47a6646b8d56dd3ec68212,
         type: 3}
