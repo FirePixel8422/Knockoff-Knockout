@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Fire_Pixel.Utility;
+using System;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -11,6 +12,9 @@ public class PlayerHealthHandler
 
     public Action<float> OnHealthChanged;
     public Action<bool> OnFighterDied;
+
+    public bool isInvulnerable;
+    public const float I_FRAME_DURATION = 2;
 
 
     public PlayerHealthHandler(ref Func<float, bool> onDamageTaken, bool isLeftPlayer)
@@ -30,15 +34,23 @@ public class PlayerHealthHandler
 
     public bool TakeDamage(float damage)
     {
+        if (isInvulnerable) return false;
+
         health = math.max(0, health - damage);
         OnHealthChanged?.Invoke(health);
 
         if (health > 0) return false;
 
         OnFighterDied?.Invoke(isLeftPlayer);
+        isInvulnerable = true;
 
-        health = GameRules.CombatSettings.Fighter.StartHealth;
-        OnHealthChanged?.Invoke(health);
+        CallbackScheduler.Invoke(I_FRAME_DURATION, () =>
+        {
+            isInvulnerable = false;
+
+            health = GameRules.CombatSettings.Fighter.StartHealth;
+            OnHealthChanged?.Invoke(health);
+        });
 
         return true;
     }

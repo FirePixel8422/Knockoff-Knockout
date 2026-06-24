@@ -28,7 +28,7 @@ MonoBehaviour:
     Type: 0
     Level: 0
     KnockDown: 0
-    Damage: 10
+    Damage: 100000
     HitKb: 0.1
     BlockKb: 0.05
     FrameData:

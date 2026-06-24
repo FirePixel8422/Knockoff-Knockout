@@ -101,7 +101,8 @@ public class PlayerStateMachine
 
                 if (playerDied)
                 {
-                    Stun += 20;
+                    SetStanceState(StanceState.KnockedDownStomach);
+                    Stun = 120;
                     //    HUDManager.Instance.EndGame(isLeftPlayer);
                     //        PlayerManager.Instance.Players[0].StateMachine.Stun = 1000;
                     //        PlayerManager.Instance.Players[0].StateMachine.SetCombatState(CombatState.HitStun);
@@ -151,7 +152,8 @@ public class PlayerStateMachine
 
                 if (playerDied)
                 {
-                    Stun += 20;
+                    SetStanceState(StanceState.KnockedDownStomach);
+                    Stun = 120;
                     //    HUDManager.Instance.EndGame(isLeftPlayer);
                     //        PlayerManager.Instance.Players[0].StateMachine.Stun = 1000;
                     //        PlayerManager.Instance.Players[0].StateMachine.SetCombatState(CombatState.HitStun);

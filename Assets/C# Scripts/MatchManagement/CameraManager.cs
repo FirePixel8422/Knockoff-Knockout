@@ -88,6 +88,13 @@ public class CameraManager : MonoBehaviour
             viewPositionState.Lerp(cameraPosLerpSpeed * deltaTime),
             viewRotationState.Slerp(cameraRotLerpSpeed * deltaTime));
     }
+    public void ResetTransform()
+    {
+        viewCenterTransform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
+
+        viewPositionState = new Vector3LerpState(Vector3.zero);
+        viewRotationState = new QuaternionLerpState(Quaternion.identity);
+    }
     public void TickUpdate()
     {
         viewPositionState.Target = GetPlayerCenter();

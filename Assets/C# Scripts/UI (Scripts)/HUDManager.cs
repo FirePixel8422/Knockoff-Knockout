@@ -1,3 +1,4 @@
+using Fire_Pixel.Utility;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -12,7 +13,12 @@ public class HUDManager : MonoBehaviour
 
 
     [SerializeField] private PlayerUIModule[] modules;
-    [SerializeField] private TextMeshProUGUI winText;
+
+    [SerializeField] private TextMeshProUGUI stockWonText;
+    [SerializeField] private Animator stockWonAnim;
+
+    [SerializeField] private TextMeshProUGUI matchWonText;
+    [SerializeField] private Animator matchWonAnim;
 
 
     private void Awake()
@@ -60,16 +66,39 @@ public class HUDManager : MonoBehaviour
 
     public void AddStock(bool isLeftPlayer)
     {
+        if (MatchManager.Instance.GameState == GameState.PreGame || MatchManager.Instance.IsMatchRestarting) return;
+
+        if (modules[isLeftPlayer ? 1 : 0].Stocks.WillWin)
+        {
+            EndGame(isLeftPlayer);
+
+            modules[isLeftPlayer ? 1 : 0].Stocks.AddStock();
+            return;
+        }
+
+        stockWonText.text = isLeftPlayer ? "Blue Won a Stock" : "Red Won a Stock";
+        stockWonAnim.Play("ScaleInPopup", 0);
+
+        this.Invoke(1.5f, () =>
+        {
+            stockWonText.text = "";
+        });
+
         modules[isLeftPlayer ? 1 : 0].Stocks.AddStock();
     }
 
     public void EndGame(bool isLeftPlayer)
     {
-        winText.text = isLeftPlayer ? "Blue Won!" : "Red Won!";
+        matchWonText.text = isLeftPlayer ? "Blue Won the Match" : "Red Won the Match";
+        matchWonAnim.Play("ScaleInPopup", 0);
+
+        MatchManager.Instance.IsMatchRestarting = true;
 
         this.Invoke(3, () =>
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            MatchManager.Instance.StartMatch();
+
+            matchWonText.text = "";
         });
     }
 }

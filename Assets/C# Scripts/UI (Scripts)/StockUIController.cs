@@ -11,8 +11,9 @@ public class StockUIController
 
     [EditorReadOnly, SerializeField] private int cStocks;
 
-    private const int TOTAL_STOCKS = 3;
+    public bool WillWin => cStocks == (TOTAL_STOCKS - 1);
 
+    private const int TOTAL_STOCKS = 3;
 
     public void AddStock()
     {

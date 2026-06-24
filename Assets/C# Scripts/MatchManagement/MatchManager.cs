@@ -10,6 +10,7 @@ public class MatchManager : MonoBehaviour
     public void SetGameState(GameState newState) => GameState = newState;
 
     [field: SerializeField] public bool IsGamePaused { get; private set; }
+    public bool IsMatchRestarting;
 
     public event Action OnGamePaused;
     public event Action OnGameUnPaused;
@@ -28,7 +29,11 @@ public class MatchManager : MonoBehaviour
     {
         SetGameState(GameState.InGame);
 
+        HUDManager.Instance.ResetHUD();
+        PlayerManager.Instance.ResetPlayers();
+        HUDManager.Instance.ResetHUD();
 
+        IsMatchRestarting = false;
     }
     public void EndMatch()
     {

@@ -58,17 +58,16 @@ public class PlayerManager : FrameTickUpdateMB
 
     public void ResetPlayers()
     {
+        CameraManager.Instance.ResetTransform();
+
         for (int i = 0; i < GlobalGameData.MAX_PLAYERS; i++)
         {
-            Players[i].MovementHandler.SetTransform(playerSpawnPoints[i].position, playerSpawnPoints[i].rotation);
             Players[i].StateMachine.ResolveAttack(new AttackData
             {
-                Damage = 1000,
-                FrameData = new FrameData
-                {
-                    HitStun = 40,
-                },
+                Damage = 1000
             }, AttackResult.KnockDown, true);
+
+            Players[i].MovementHandler.SetTransform(playerSpawnPoints[i].position, playerSpawnPoints[i].rotation);
         }
     }
 

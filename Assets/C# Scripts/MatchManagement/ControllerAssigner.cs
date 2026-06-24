@@ -262,8 +262,6 @@ public class ControllerAssigner : UpdateMonoBehaviour
         startMatchTip2Obj.SetActive(false);
 
         MatchManager.Instance.StartMatch();
-        PlayerManager.Instance.ResetPlayers();
-        HUDManager.Instance.ResetHUD();
     }
     private void OnMenuConfirm(InputAction.CallbackContext ctx)
     {

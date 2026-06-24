@@ -376,8 +376,10 @@ public class PlayerMovementHandler
     /// </summary>
     public void SetTransform(Vector3 pos, Quaternion rot)
     {
-        positionState.Target = pos;
-        rotationState.Target = rot;
+        positionState = new Vector3LerpState(pos);
+        rotationState = new QuaternionLerpState(rot);
+
+        transform.SetPositionAndRotation(pos, rot);
     }
 
     /// <summary>
