@@ -1,13 +1,17 @@
 ﻿using System;
 
 
-[AttributeUsage(AttributeTargets.Method, Inherited = true)]
-public class InspectorButtonAttribute : Attribute
+[AttributeUsage(AttributeTargets.Method, AllowMultiple = false)]
+public sealed class InspectorButtonAttribute : Attribute
 {
     public string Label;
 
-    public InspectorButtonAttribute(string label = null)
+    // Allow execution in edit mode (default true)
+    public bool AllowUsageOutsidePlayMode = true;
+
+    public InspectorButtonAttribute(string label = null, bool allowUsageOutsidePlayMode = true)
     {
         Label = label;
+        AllowUsageOutsidePlayMode = allowUsageOutsidePlayMode;
     }
 }

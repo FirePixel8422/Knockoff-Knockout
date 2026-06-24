@@ -15,6 +15,7 @@ public class MatchStartAnimator : MonoBehaviour
     [SerializeField] private float growScale = 5;
     [SerializeField] private float countDownSpeed = 1;
     [SerializeField] private float startDelay = 0.5f;
+    [SerializeField] private float endDelay = 0.5f;
 
     [EditorReadOnly, SerializeField] private float cTimer;
 
@@ -22,15 +23,14 @@ public class MatchStartAnimator : MonoBehaviour
 
 
 
-    [InspectorButton("Start")]
+    [InspectorButton("Start", false)]
     public void StartTimer()
     {
-#if UNITY_EDITOR
-        DebugLogger.LogWarning("You cant start the sequence unless youre in playmode");
-#endif
-
-        cTimer = Time.time + (float)(TIMER_START / countDownSpeed);
-        CallbackScheduler.RegisterUpdate(CountDownTimer);
+        this.Invoke(startDelay, () =>
+        {
+            cTimer = Time.time + (float)(TIMER_START / countDownSpeed);
+            CallbackScheduler.RegisterUpdate(CountDownTimer);
+        });
     }
     private void CountDownTimer()
     {
@@ -49,7 +49,7 @@ public class MatchStartAnimator : MonoBehaviour
             numberText.text = "FIGHT";
             CallbackScheduler.UnRegisterUpdate(CountDownTimer);
 
-            CallbackScheduler.Invoke(startDelay, () =>
+            this.Invoke(endDelay, () =>
             {
                 numberText.text = "";
             });

@@ -27,11 +27,15 @@ public class MatchManager : MonoBehaviour
 
     public void StartMatch()
     {
+        IsMatchRestarting = true;
+
         SetGameState(GameState.InGame);
 
         HUDManager.Instance.ResetHUD();
         PlayerManager.Instance.ResetPlayers();
         HUDManager.Instance.ResetHUD();
+
+        MatchStartAnimator.Instance.StartTimer();
 
         IsMatchRestarting = false;
     }

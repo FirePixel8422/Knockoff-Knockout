@@ -77,12 +77,7 @@ public class HUDManager : MonoBehaviour
         }
 
         stockWonText.text = isLeftPlayer ? "Blue Won a Stock" : "Red Won a Stock";
-        stockWonAnim.Play("ScaleInPopup", 0);
-
-        this.Invoke(1.5f, () =>
-        {
-            stockWonText.text = "";
-        });
+        stockWonAnim.CrossFadeInFixedTime("ScaleInPopup", 0);
 
         modules[isLeftPlayer ? 1 : 0].Stocks.AddStock();
     }
@@ -90,15 +85,11 @@ public class HUDManager : MonoBehaviour
     public void EndGame(bool isLeftPlayer)
     {
         matchWonText.text = isLeftPlayer ? "Blue Won the Match" : "Red Won the Match";
-        matchWonAnim.Play("ScaleInPopup", 0);
-
-        MatchManager.Instance.IsMatchRestarting = true;
+        matchWonAnim.CrossFadeInFixedTime("ScaleInPopupLong", 0);
 
         this.Invoke(3, () =>
         {
             MatchManager.Instance.StartMatch();
-
-            matchWonText.text = "";
         });
     }
 }

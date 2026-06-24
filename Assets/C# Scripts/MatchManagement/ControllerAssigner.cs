@@ -245,7 +245,7 @@ public class ControllerAssigner : UpdateMonoBehaviour
     }
     private void OnStart(InputAction.CallbackContext ctx)
     {
-        if (isUIActive) return;
+        if (isUIActive || MatchManager.Instance.GameState != GameState.PreGame) return;
 
         InputDevice device = ctx.control.device;
         if (!deviceToIdMap.ContainsKey(device))
