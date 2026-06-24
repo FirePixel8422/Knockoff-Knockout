@@ -5079,6 +5079,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5633202356952377430, guid: 24758f354dc4b5b459d0a9f43fbcb42a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6537202269809336508, guid: 24758f354dc4b5b459d0a9f43fbcb42a,
         type: 3}
       propertyPath: stockWonAnim

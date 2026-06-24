@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿#if UNITY_EDITOR
+using UnityEditor;
 using UnityEngine;
 
 public abstract class MessageIfAttribute : PropertyAttribute
@@ -50,3 +51,4 @@ public enum ComparisonType
     GreaterThanOrEqual,
     GreaterThan,
 }
+#endif
